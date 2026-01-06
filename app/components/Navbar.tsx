@@ -1,8 +1,13 @@
+"use client";
 import Image from "next/image";
-import { RiSettings2Fill } from "react-icons/ri";
+import { useState } from "react";
+import SelectorModal from "./SelectorModal";
 
 export default function Navbar() {
+    const [openSelector, setOpenSelector] = useState(false);
+
   return (
+    <>
     <div className="absolute top-0 z-20 w-full">
       <div className="mx-auto flex max-w-full items-center justify-between py-2 px-4 bg-white/60 backdrop-blur-md shadow-md">
           <Image src="/logo.svg" alt="logo" width={90} height={90}/>
@@ -32,11 +37,15 @@ export default function Navbar() {
           <button className="rounded-full border-2 border-white px-5 py-2 ">
             Login
           </button>
-          <button className="rounded-full bg-gradient-to-br from-[#73F752] to-[#23B100] px-5 py-2 ">
+          <button 
+          onClick={() => setOpenSelector(true)}
+          className="rounded-full bg-gradient-to-br from-[#73F752] to-[#23B100] px-5 py-2 ">
             Sign Up
           </button>
         </div>
       </div>
     </div>
+    <SelectorModal open={openSelector} onClose={() => setOpenSelector(false)} />
+    </>
   );
 }
