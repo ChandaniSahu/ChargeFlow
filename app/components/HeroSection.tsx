@@ -1,12 +1,10 @@
 import Image from "next/image";
-import { BiSupport } from "react-icons/bi";
 import LoginPage from "./LoginPage";
-import Navbar from "./Navbar";
 
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[100vh] w-full">
+    <div className="relative h-[100vh] w-full">
       <Image
         src="/images/herobg.png"
         alt="hero background"
@@ -20,6 +18,11 @@ export default function HeroSection() {
       <div className="relative z-10 flex h-full items-center justify-center">
         <LoginPage />
       </div>
-    </section>
+
+     <div className="absolute bg-white p-2 rounded-full bottom-10 right-10 hidden md:block">
+        <Image src="/icons/support.svg" alt="support" width={40} height={40} />
+     </div>
+      
+    </div>
   );
 }

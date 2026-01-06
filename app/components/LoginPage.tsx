@@ -68,7 +68,8 @@ export default function LoginPage() {
             </div>
            
            <div className="px-2 mt-2">
-            <button className="mt-4 w-full rounded-lg bg-[#38EF0A] py-2  text-white text-[24px] font-semibold hover:bg-green-600">
+            <button className="mt-4 w-full rounded-[10px] bg-[#38EF0A] py-2  text-white text-[24px] font-semibold hover:bg-green-600 shadow-[0_4px_4px_0_rgba(0,0,0,0.25)]
+ transition">
                 Log In
             </button>
             </div>
