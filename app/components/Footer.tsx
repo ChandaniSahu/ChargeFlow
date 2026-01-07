@@ -21,7 +21,7 @@ export default function Footer() {
       <div className=" flex justify-around gap-10 px-6">
         {/* Logo + description */}
         <div className="flex flex-col justify-center items-center">
-          <Image src="/logo.svg" alt="logo" width={150} height={150} />
+          <Image src="/logo.svg" alt="logo" width={150} height={150} className="transform scale-90 hover:scale-100 transition-transform duration-200 ease-in-out"/>
           <h2 className="mt-4 text-[22px] font-semibold">
             Powering India&apos;s EV Revolution
           </h2>
@@ -35,27 +35,27 @@ export default function Footer() {
         {/* Quick Links */}
         <div>
           <h4 className="mb-4 font-semibold text-[24px]">Quick Links</h4>
-          <ul className="space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Find Chargers</li>
-            <li>Become A Host</li>
-            <li>Pricing</li>
-            <li>Contact Us</li>
-          </ul>
+          <div className="flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
+            <a href="#" className="hover:text-[#38EF0A]">Home</a>
+            <a href="#" className="hover:text-[#38EF0A]">About Us</a>
+            <a href="#" className="hover:text-[#38EF0A]">Find Chargers</a>
+            <a href="#" className="hover:text-[#38EF0A]">Become A Host</a>
+            <a href="#" className="hover:text-[#38EF0A]">Pricing</a>
+            <a href="#" className="hover:text-[#38EF0A]">Contact Us</a>
+          </div>
         </div>
 
         {/* Services */}
         <div>
           <h4 className="mb-4 font-semibold text-[24px]">Our Services</h4>
-          <ul className="space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
-            <li>EV Charging</li>
-            <li>Host Registration</li>
-            <li>Customer Support</li>
-            <li>How It Works</li>
-            <li>Pricing Plans</li>
-            <li>Mobile App</li>
-          </ul>
+          <div className="flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
+            <a href="#" className="hover:text-[#38EF0A]">EV Charging</a>
+            <a href="#" className="hover:text-[#38EF0A]">Host Registration</a>
+            <a href="#" className="hover:text-[#38EF0A]">Customer Support</a>
+            <a href="#" className="hover:text-[#38EF0A]">How It Works</a>
+            <a href="#" className="hover:text-[#38EF0A]">Pricing Plans</a>
+            <a href="#" className="hover:text-[#38EF0A]">Mobile App</a>
+          </div>
         </div>
 
         {/* Contact Info */}
@@ -64,17 +64,17 @@ export default function Footer() {
 
           <div className="space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
             <p className="flex items-center gap-3">
-              <SlLocationPin className="w-5 h-5 text-green-500" />
+              <SlLocationPin className="w-5 h-5 text-[#38EF0A]" />
               Sector 18, Noida, India
             </p>
 
             <p className="flex items-center gap-3">
-              <MdOutlineMailOutline className="w-5 h-5 text-green-500" />
+              <MdOutlineMailOutline className="w-5 h-5 text-[#38EF0A]" />
               support@chargeflow.com
             </p>
 
             <p className="flex items-center gap-3">
-              <FiPhone className="w-5 h-5 text-green-500" />
+              <FiPhone className="w-5 h-5 text-[#38EF0A]" />
               +91-7887209295
             </p>
           </div>
@@ -90,14 +90,14 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-12 border-t border-green-200 py-5">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-[18px] text-[#727272] md:flex-row">
-          <p>© 2025 ChargeFlow All Rights Reserved.</p>
-          <div className="flex gap-6 font-[600]">
-            <span className="cursor-pointer hover:text-black">
+      <div className="mt-12 border-t border-green-200 py-5 px-6">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6  text-[20px] text-[#727272] md:flex-row">
+          <p className="hover:text-[#38EF0A]">© 2025 ChargeFlow All Rights Reserved.</p>
+          <div className="flex gap-6 font-[600] ">
+            <span className="cursor-pointer hover:text-[#38EF0A]">
               Terms Of Service
             </span>
-            <span className="cursor-pointer hover:text-black">
+            <span className="cursor-pointer hover:text-[#38EF0A]">
               Privacy Policy
             </span>
           </div>

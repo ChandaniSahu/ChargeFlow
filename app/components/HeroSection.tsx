@@ -18,11 +18,6 @@ export default function HeroSection() {
       <div className="relative z-10 flex h-full items-center justify-center">
         <LoginPage />
       </div>
-
-     <div className="absolute bg-white p-2 rounded-full bottom-10 right-10 hidden md:block">
-        <Image src="/icons/support.svg" alt="support" width={40} height={40} />
-     </div>
-      
     </div>
   );
 }

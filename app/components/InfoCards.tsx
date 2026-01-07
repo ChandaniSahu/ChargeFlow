@@ -29,12 +29,12 @@ export default function InfoCards() {
         ].map((item, i) => (
           <div
             key={i}
-            className="rounded-xl bg-white p-6 w-[280px] text-center shadow-[0_0_10px_rgba(0,0,0,0.2)] justify-center items-center flex flex-col"
+            className="rounded-xl bg-white p-6 w-[280px] text-center shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:ring-[1.2px] hover:ring-[#38EF0A] transition-all duration-300 ease-in-out justify-center items-center flex flex-col"
           >
             <div className="mb-4">{item.icon}</div>
             <h3 className="mb-1 text-[20px] font-semibold">{item.title}</h3>
             <p className="mb-4 text-[12px] text-gray-600">{item.des}</p>
-            <button className="rounded-full bg-[#38EF0A] px-4 py-2 text-sm text-white text-[20px] font-semibold flex flex-wrap items-center justify-center gap-2 hover:bg-green-600">
+            <button className="rounded-full bg-[#38EF0A] px-4 py-2 text-sm text-white text-[20px] font-semibold flex flex-wrap items-center justify-center gap-2 cursor-pointer hover:bg-[#32c700] transition-colors duration-300 ease-in-out">
               {item.btn} <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

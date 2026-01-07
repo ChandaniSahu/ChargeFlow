@@ -10,18 +10,18 @@ export default function Navbar() {
     <>
     <div className="absolute top-0 z-20 w-full">
       <div className="mx-auto flex max-w-full items-center justify-between py-2 px-4 bg-white/60 backdrop-blur-md shadow-md">
-          <Image src="/logo.svg" alt="logo" width={90} height={90} className="scale-[0.9]"/>
+          <Image src="/logo.svg" alt="logo" width={90} height={90} className=" hover:scale-90 transition-transform duration-200 ease-in-out"/>
           
         
 
         <div className="hidden md:flex gap-8 text-[16px] font-[600] text-black">
-          <a href="#" className="hover:text-[#38EF0A]">Home</a>
-          <a href="#" className="hover:text-[#38EF0A]">About</a>
-          <a href="#" className="hover:text-[#38EF0A]">Our Services</a>
-          <a href="#" className="hover:text-[#38EF0A]">For EV Owners</a>
-          <a href="#" className="hover:text-[#38EF0A]">For Hosts</a>
-          <a href="#" className="hover:text-[#38EF0A]">Support</a>
-          <a href="#" className="hover:text-[#38EF0A]">Contact Us</a>
+          <a href="#" className="hover:text-[#38EF0A] ">Home</a>
+          <a href="#" className="hover:text-[#38EF0A] ">About</a>
+          <a href="#" className="hover:text-[#38EF0A] ">Our Services</a>
+          <a href="#" className="hover:text-[#38EF0A] ">For EV Owners</a>
+          <a href="#" className="hover:text-[#38EF0A] ">For Hosts</a>
+          <a href="#" className="hover:text-[#38EF0A] ">Support</a>
+          <a href="#" className="hover:text-[#38EF0A] ">Contact Us</a>
         </div>
 
         <div className="flex gap-3 items-center text-[16px] font-[600] text-white">
