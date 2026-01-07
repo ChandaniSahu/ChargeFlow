@@ -5,7 +5,7 @@ import { IoEyeSharp } from "react-icons/io5";
 
 export default function LoginPage() {
     return (
-        <div className="mt-20 w-[400px] rounded-2xl bg-white/50 py-2 px-6 backdrop-blur-md border border-[#DADADA] shadow-xl z-[150]">
+        <div className="mt-20  rounded-2xl bg-white/50 py-2 px-6 backdrop-blur-md border border-[#DADADA] shadow-xl z-[150]">
             <div className="mb-3 text-center">
                 <Image
                     src="/logo.svg"

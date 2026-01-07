@@ -62,7 +62,7 @@ export default function Footer() {
         <div>
           <h4 className="mb-4 font-semibold text-[24px]">Contact Info</h4>
 
-          <div className="space-y-3 flex flex-col items-center text-[16px] font-[600] text-[#7C7C7C]">
+          <div className="space-y-3 flex flex-col items-center md:items-start text-[16px] font-[600] text-[#7C7C7C]">
             <p className="flex items-center  gap-3">
               <SlLocationPin className="w-5 h-5 text-[#38EF0A]" />
               Sector 18, Noida, India

@@ -32,7 +32,7 @@ export default function Navbar() {
           />
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex gap-8 text-[16px] font-[600] text-black">
+          <div className="hidden xl:flex gap-8 text-[16px] font-[600] text-black">
             {menuItems.map((item, i) => (
               <a key={i} href={item.href} className="hover:text-[#38EF0A]">
                 {item.title}
@@ -40,7 +40,7 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden md:flex lg:hidden  gap-3 flex items-center text-white">
+          <div className="hidden md:flex xl:hidden  gap-3 flex items-center text-white">
             <div className="rounded-full bg-white text-[#38EF0A] p-2 cursor-pointer">
               <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.6667 12.5C16.6667 13.6051 16.2277 14.6649 15.4463 15.4463C14.6649 16.2277 13.6051 16.6667 12.5 16.6667C11.395 16.6667 10.3352 16.2277 9.55376 15.4463C8.77236 14.6649 8.33337 13.6051 8.33337 12.5C8.33337 11.3949 8.77236 10.3351 9.55376 9.55372C10.3352 8.77231 11.395 8.33333 12.5 8.33333C13.6051 8.33333 14.6649 8.77231 15.4463 9.55372C16.2277 10.3351 16.6667 11.3949 16.6667 12.5Z" fill="#2FE900" />
@@ -64,14 +64,14 @@ export default function Navbar() {
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-2 rounded-md border border-black"
+              className="xl:hidden p-2 rounded-md border border-black"
             >
               <span className="text-black text-xl font-bold">&#9776;</span>
 
             </button>
 
             {/* Call-to-action buttons (always visible) */}
-            <div className="hidden lg:flex gap-3 items-center text-white">
+            <div className="hidden xl:flex gap-3 items-center text-white">
               <div className="rounded-full bg-white text-[#38EF0A] p-2 cursor-pointer">
                 <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.6667 12.5C16.6667 13.6051 16.2277 14.6649 15.4463 15.4463C14.6649 16.2277 13.6051 16.6667 12.5 16.6667C11.395 16.6667 10.3352 16.2277 9.55376 15.4463C8.77236 14.6649 8.33337 13.6051 8.33337 12.5C8.33337 11.3949 8.77236 10.3351 9.55376 9.55372C10.3352 8.77231 11.395 8.33333 12.5 8.33333C13.6051 8.33333 14.6649 8.77231 15.4463 9.55372C16.2277 10.3351 16.6667 11.3949 16.6667 12.5Z" fill="#2FE900" />
@@ -93,7 +93,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Dropdown */}
         {menuOpen && (
-          <div className="w-[70%] flex items-center absolute top-0 right-0 lg:hidden bg-white/20 backdrop-blur-md shadow-md px-4 py-4 flex flex-col gap-4 text-black font-[600]">
+          <div className="w-[70%] flex items-center absolute top-0 right-0 xl:hidden bg-white/20 backdrop-blur-md shadow-md px-4 py-4 flex flex-col gap-4 text-black font-[600]">
             <span
               className="self-end text-2xl font-bold cursor-pointer"
               onClick={() => setMenuOpen(false)}
