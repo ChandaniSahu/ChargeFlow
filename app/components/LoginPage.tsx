@@ -5,7 +5,7 @@ import { IoEyeSharp } from "react-icons/io5";
 
 export default function LoginPage() {
     return (
-        <div className="mt-10 w-[400px] rounded-2xl bg-white/50 py-2 px-6 backdrop-blur-md border border-[#DADADA] shadow-xl z-[150]">
+        <div className="mt-20 w-[400px] rounded-2xl bg-white/50 py-2 px-6 backdrop-blur-md border border-[#DADADA] shadow-xl z-[150]">
             <div className="mb-3 text-center">
                 <Image
                     src="/logo.svg"
@@ -50,20 +50,13 @@ export default function LoginPage() {
 
 
             <div className="mt-2 flex justify-between text-xs">
-                <label className="flex items-center gap-1 text-[14px] font-bold cursor-pointer">
-                      <input type="checkbox" />
-
-     {/* <span
-      className="flex h-4 w-4 items-center justify-center rounded
-                 border border-white bg-transparent
-                 text-white text-xs font-bold
-                 peer-checked:bg-green-500
-                 peer-checked:border-white"
-    >
-      <span className="block peer-checked:hidden text-white">✓</span>
-    </span> */}
-                    Remember me
-                </label>
+<label className="flex items-center gap-1 text-[14px] font-bold cursor-pointer group">
+  <input type="checkbox" className="peer sr-only"/>
+  <span className="flex h-4 w-4 items-center justify-center rounded border border-white bg-transparent text-xs font-bold peer-checked:bg-green-500 peer-checked:border-white peer-checked:[&>span]:block">
+    <span className="hidden text-white">✓</span>
+  </span>
+  Remember me
+</label>
                 <span className="text-[#38EF0A] text-[13px] hover:text-[#FBFB05] cursor-pointer">
                     Forgot Password?
                 </span>
