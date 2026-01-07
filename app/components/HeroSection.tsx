@@ -4,7 +4,7 @@ import LoginPage from "./LoginPage";
 
 export default function HeroSection() {
   return (
-    <div className="relative h-[110vh] w-full">
+    <div className="relative h-[80vh] md:h-[80vh] lg:h-[110vh] w-full">
       <Image
         src="/images/herobg.png"
         alt="hero background"

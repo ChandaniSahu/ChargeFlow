@@ -18,7 +18,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#ECFFE6] pt-16">
       {/* Top section */}
-      <div className=" flex justify-around gap-10 px-6">
+      <div className="flex flex-col lg:flex-row justify-around gap-10 px-6 text-center">
         {/* Logo + description */}
         <div className="flex flex-col justify-center items-center">
           <Image src="/logo.svg" alt="logo" width={150} height={150} className="transform scale-90 hover:scale-100 transition-transform duration-200 ease-in-out"/>
@@ -62,8 +62,8 @@ export default function Footer() {
         <div>
           <h4 className="mb-4 font-semibold text-[24px]">Contact Info</h4>
 
-          <div className="space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
-            <p className="flex items-center gap-3">
+          <div className="space-y-3 flex flex-col items-center text-[16px] font-[600] text-[#7C7C7C]">
+            <p className="flex items-center  gap-3">
               <SlLocationPin className="w-5 h-5 text-[#38EF0A]" />
               Sector 18, Noida, India
             </p>
@@ -80,7 +80,7 @@ export default function Footer() {
           </div>
 
           {/* Social icons */}
-          <div className="mt-5 flex gap-4 text-xl text-gray-600">
+          <div className="mt-5 flex gap-4 text-xl text-gray-600 text-center justify-center">
             <Image src='/icons/instagram.svg' width={25} height={25} alt="Instagram" className="cursor-pointer hover:transform hover:scale-110" />
             <Image src='/icons/facebook.svg' width={35} height={35} alt="Facebook" className="cursor-pointer hover:transform hover:scale-110" />
             <Image src='/icons/twitter.svg' width={25} height={25} alt="Twitter" className="cursor-pointer hover:transform hover:scale-110" />
@@ -92,8 +92,9 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="mt-12 border-t border-green-200 py-5 px-6">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6  text-[20px] text-[#727272] md:flex-row">
-          <p className="hover:text-[#38EF0A]">© 2025 ChargeFlow All Rights Reserved.</p>
-          <div className="flex gap-6 font-[600] ">
+          <p className="hover:text-[#38EF0A] hidden md:block">© 2025 ChargeFlow All Rights Reserved.</p>
+          <p className="hover:text-[#38EF0A] block sm:hidden">© 2025 All Rights Reserved.</p>
+          <div className="flex sm:gap-6 gap-3 font-[600] ">
             <span className="cursor-pointer hover:text-[#38EF0A]">
               Terms Of Service
             </span>

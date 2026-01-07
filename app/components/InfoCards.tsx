@@ -29,7 +29,7 @@ export default function InfoCards() {
         ].map((item, i) => (
           <div
             key={i}
-            className="rounded-xl bg-white p-6 w-[280px] text-center shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:ring-[1.2px] hover:ring-[#38EF0A] transition-all duration-300 ease-in-out justify-center items-center flex flex-col"
+            className="mx-auto rounded-xl bg-white p-6 w-[280px] text-center shadow-[0_0_10px_rgba(0,0,0,0.2)] hover:ring-[1.2px] hover:ring-[#38EF0A] transition-all duration-300 ease-in-out justify-center items-center flex flex-col"
           >
             <div className="mb-4">{item.icon}</div>
             <h3 className="mb-1 text-[20px] font-semibold">{item.title}</h3>
