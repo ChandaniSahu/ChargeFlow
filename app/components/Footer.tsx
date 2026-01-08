@@ -18,7 +18,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#ECFFE6] pt-16">
       {/* Top section */}
-      <div className="flex flex-col lg:flex-row justify-around gap-10 px-6 text-center">
+      <div className="flex flex-col xl:flex-row justify-around gap-10 px-6 text-center">
         {/* Logo + description */}
         <div className="flex flex-col justify-center items-center">
           <Image src="/logo.svg" alt="logo" width={150} height={150} className="transform scale-90 hover:scale-100 transition-transform duration-200 ease-in-out"/>
@@ -32,10 +32,11 @@ export default function Footer() {
           </p>
         </div>
 
+        <div className="xl:flex-row flex flex-col gap-12">
         {/* Quick Links */}
         <div>
           <h4 className="mb-4 font-semibold text-[24px]">Quick Links</h4>
-          <div className="flex flex-col lg:ml-6 ml-0 items-center lg:items-start space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
+          <div className="flex flex-col xl:ml-6 ml-0 items-center xl:items-start space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
             <a href="#" className="hover:text-[#38EF0A]">Home</a>
             <a href="#" className="hover:text-[#38EF0A]">About Us</a>
             <a href="#" className="hover:text-[#38EF0A]">Find Chargers</a>
@@ -48,7 +49,7 @@ export default function Footer() {
         {/* Services */}
         <div>
           <h4 className="mb-4 font-semibold text-[24px]">Our Services</h4>
-          <div className="lg:ml-6 ml-0 items-center lg:items-start flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
+          <div className="xl:ml-6 ml-0 items-center xl:items-start flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
             <a href="#" className="hover:text-[#38EF0A]">EV Charging</a>
             <a href="#" className="hover:text-[#38EF0A]">Host Registration</a>
             <a href="#" className="hover:text-[#38EF0A]">Customer Support</a>
@@ -62,7 +63,7 @@ export default function Footer() {
         <div>
           <h4 className="mb-4 font-semibold text-[24px]">Contact Info</h4>
 
-          <div className="space-y-3 flex flex-col items-center lg:items-start text-[16px] font-[600] text-[#7C7C7C]">
+          <div className="space-y-3 flex flex-col items-center xl:items-start text-[16px] font-[600] text-[#7C7C7C]">
             <p className="flex items-center  gap-3">
               <SlLocationPin className="w-5 h-5 text-[#38EF0A]" />
               Sector 18, Noida, India
@@ -86,6 +87,7 @@ export default function Footer() {
             <Image src='/icons/twitter.svg' width={25} height={25} alt="Twitter" className="cursor-pointer hover:transform hover:scale-110" />
             <Image src='/icons/linkedin.svg' width={25} height={25} alt="LinkedIn" className="cursor-pointer hover:transform hover:scale-110" />
           </div>
+        </div>
         </div>
       </div>
 
