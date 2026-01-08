@@ -92,7 +92,7 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="mt-12 border-t border-green-200 py-5 px-6">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6  text-[20px] text-[#727272] md:flex-row">
-          <p className="hover:text-[#38EF0A] hidden md:block">© 2025 ChargeFlow All Rights Reserved.</p>
+          <p className="hover:text-[#38EF0A] hidden sm:block">© 2025 ChargeFlow All Rights Reserved.</p>
           <p className="hover:text-[#38EF0A] block sm:hidden">© 2025 All Rights Reserved.</p>
           <div className="flex sm:gap-6 gap-3 font-[600] ">
             <span className="cursor-pointer hover:text-[#38EF0A]">
