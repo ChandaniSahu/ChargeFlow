@@ -92,7 +92,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="mt-12 border-t border-green-200 py-5 px-10">
+      <div className="mt-12 border-t border-green-200 py-5 xl:px-10 px-6">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6  text-[20px] text-[#727272] md:flex-row">
           <p className="hover:text-[#38EF0A] text-[#8E8E93] hidden sm:block">© 2025 ChargeFlow All Rights Reserved.</p>
           <p className="hover:text-[#38EF0A] text-[#8E8E93] block sm:hidden">© 2025 All Rights Reserved.</p>
