@@ -35,7 +35,7 @@ export default function Footer() {
         {/* Quick Links */}
         <div>
           <h4 className="mb-4 font-semibold text-[24px]">Quick Links</h4>
-          <div className="flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
+          <div className="flex flex-col lg:ml-6 ml-0 items-center lg:items-start space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
             <a href="#" className="hover:text-[#38EF0A]">Home</a>
             <a href="#" className="hover:text-[#38EF0A]">About Us</a>
             <a href="#" className="hover:text-[#38EF0A]">Find Chargers</a>
@@ -48,7 +48,7 @@ export default function Footer() {
         {/* Services */}
         <div>
           <h4 className="mb-4 font-semibold text-[24px]">Our Services</h4>
-          <div className="flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
+          <div className="lg:ml-6 ml-0 items-center lg:items-start flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
             <a href="#" className="hover:text-[#38EF0A]">EV Charging</a>
             <a href="#" className="hover:text-[#38EF0A]">Host Registration</a>
             <a href="#" className="hover:text-[#38EF0A]">Customer Support</a>
@@ -92,8 +92,8 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="mt-12 border-t border-green-200 py-5 px-6">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6  text-[20px] text-[#727272] md:flex-row">
-          <p className="hover:text-[#38EF0A] hidden sm:block">© 2025 ChargeFlow All Rights Reserved.</p>
-          <p className="hover:text-[#38EF0A] block sm:hidden">© 2025 All Rights Reserved.</p>
+          <p className="hover:text-[#38EF0A] text-[#8E8E93] hidden sm:block">© 2025 ChargeFlow All Rights Reserved.</p>
+          <p className="hover:text-[#38EF0A] text-[#8E8E93] block sm:hidden">© 2025 All Rights Reserved.</p>
           <div className="flex sm:gap-6 gap-3 font-[600] ">
             <span className="cursor-pointer hover:text-[#38EF0A]">
               Terms Of Service
