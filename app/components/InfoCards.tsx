@@ -36,7 +36,7 @@ export default function InfoCards() {
             <p className="mb-4 text-[12px] text-gray-600">{item.des}</p>
             <button className="rounded-full bg-[#38EF0A] px-4 py-2 text-sm text-white text-[20px] font-semibold flex flex-wrap items-center justify-center gap-2 cursor-pointer hover:bg-[#32c700] transition-colors duration-300 ease-in-out">
               {item.btn} <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
 </svg>
 
             </button>

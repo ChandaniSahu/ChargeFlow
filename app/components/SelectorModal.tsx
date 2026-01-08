@@ -24,7 +24,6 @@ export default function SelectorModal({ open, onClose }: SelectorModalProps) {
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm "
-        onClick={onClose}
       />
 
       {/* Dialog */}
@@ -36,7 +35,7 @@ export default function SelectorModal({ open, onClose }: SelectorModalProps) {
 
         <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
           {/* Host */}
-          <div className="cursor-pointer rounded-xl p-2  text-center flex flex-col items-center justify-center shadow-[0px_2px_5.3px_0px_rgba(0,0,0,0.25)]
+          <div onClick={onClose} className="cursor-pointer rounded-xl p-2  text-center flex flex-col items-center justify-center shadow-[0px_2px_5.3px_0px_rgba(0,0,0,0.25)]
  hover:ring-[2px] hover:ring-[#38EF0A] transition-all duration-300 ease-in-out">
 <Image src='/icons/charging_host.svg' alt='Charging Host' width={74} height={74}/>
 
@@ -45,7 +44,7 @@ export default function SelectorModal({ open, onClose }: SelectorModalProps) {
           </div>
 
           {/* User */}
-          <div className="cursor-pointer rounded-xl p-2 text-center flex flex-col items-center justify-center shadow-[0px_2px_5.3px_0px_rgba(0,0,0,0.25)]
+          <div onClick={onClose} className="cursor-pointer rounded-xl p-2 text-center flex flex-col items-center justify-center shadow-[0px_2px_5.3px_0px_rgba(0,0,0,0.25)]
  hover:ring-[2px] hover:ring-[#38EF0A] transition-all duration-300 ease-in-out">
             <Image src='/icons/electric_vehicle.png' alt='electric vehicle' width={74} height={74}/>
 
