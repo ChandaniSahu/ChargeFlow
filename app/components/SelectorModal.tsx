@@ -37,7 +37,7 @@ export default function SelectorModal({ open, onClose }: SelectorModalProps) {
           {/* Host */}
           <div onClick={onClose} className="cursor-pointer rounded-xl p-2  text-center flex flex-col items-center justify-center shadow-[0px_2px_5.3px_0px_rgba(0,0,0,0.25)]
  hover:ring-[2px] hover:ring-[#38EF0A] transition-all duration-300 ease-in-out">
-<Image src='/icons/charging_host.svg' alt='Charging Host' width={74} height={74}/>
+<Image src='/illustration/charging_host.svg' alt='Charging Host' width={74} height={74}/>
 
             <h3 className="mt-4 text-lg font-semibold">Charging Host</h3>
             <p className="text-sm text-gray-500">List Station | Earn Money</p>
@@ -46,7 +46,7 @@ export default function SelectorModal({ open, onClose }: SelectorModalProps) {
           {/* User */}
           <div onClick={onClose} className="cursor-pointer rounded-xl p-2 text-center flex flex-col items-center justify-center shadow-[0px_2px_5.3px_0px_rgba(0,0,0,0.25)]
  hover:ring-[2px] hover:ring-[#38EF0A] transition-all duration-300 ease-in-out">
-            <Image src='/icons/electric_vehicle.png' alt='electric vehicle' width={74} height={74}/>
+            <Image src='/illustration/electric_vehicle.svg' alt='electric vehicle' width={74} height={74}/>
 
 
             <h3 className="mt-2 text-lg font-semibold">Charging User</h3>

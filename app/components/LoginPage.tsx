@@ -5,6 +5,7 @@ import { FaLock } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { useState } from "react";
 import { GoEyeClosed } from "react-icons/go";
+import {GoogleIcon , AppleIcon , FacebookIcon1 } from './icons'
 
 export default function LoginPage() {
     const [isEyeOpen, setIsEyeOpen] = useState(true);
@@ -84,13 +85,13 @@ export default function LoginPage() {
 
             <div className="mt-1 flex justify-center gap-4">
                 <div className="bg-white hover:bg-green-100 cursor-pointer flex items-center justify-center rounded-full p-1">
-                    <Image src="/icons/google.svg" alt="google" width={18} height={18} />
+                    <GoogleIcon />
                 </div>
                 <div className="bg-white hover:bg-green-100 cursor-pointer flex items-center justify-center rounded-full p-1">
-                    <Image src="/icons/apple.svg" alt="apple" width={18} height={18} />
+                    <AppleIcon />
                 </div>
                 <div className="bg-white hover:bg-green-100 cursor-pointer flex items-center justify-center rounded-full p-1">
-                    <Image src="/icons/facebook.svg" alt="facebook" width={18} height={18} />
+                    <FacebookIcon1 />
                 </div>
             </div>
 
