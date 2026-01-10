@@ -58,12 +58,12 @@ export default function Footer() {
   return (
     <footer className="bg-[#ECFFE6] pt-16">
       {/* Top section */}
-      <div className="flex flex-col lg:flex-row justify-around gap-10 px-4">
+      <div className="flex flex-col desktop:flex-row justify-around gap-10 px-4">
 
         {/* Desktop View (unchanged) */}
-        <div className="hidden lg:flex flex-col lg:flex-row justify-around gap-10 w-full">
+        <div className="hidden desktop:flex flex-col desktop:flex-row justify-around gap-10 w-full">
           {/* Logo + description */}
-          <div className="flex flex-col justify-center items-center lg:items-start">
+          <div className="flex flex-col justify-center items-center desktop:items-start">
             <Image
               src="/logo.svg"
               alt="logo"
@@ -74,7 +74,7 @@ export default function Footer() {
             <h2 className="mt-4 text-[22px] font-semibold">
               Powering India&apos;s EV Revolution
             </h2>
-            <p className="mt-3 text-[16px] text-[#727272] font-[600] leading-relaxed max-w-[320px] px-2 lg:px-0">
+            <p className="mt-3 text-[16px] text-[#727272] font-[600] leading-relaxed max-w-[320px] px-2 desktop:px-0">
               ChargeFlow connects EV owners with charging station hosts across
               India. Find charging points, book slots, and power your journey
               seamlessly.
@@ -135,7 +135,7 @@ export default function Footer() {
         </div>
 
         {/* Tablet View (768px - 1023px) */}
-        <div className="hidden md:flex lg:hidden flex-col items-center">
+        <div className="hidden tablat:flex desktop:hidden flex-col items-center">
           {/* Logo Section - Top */}
           <div className="flex flex-col justify-center items-center mb-10 w-full">
             <Image
@@ -145,10 +145,10 @@ export default function Footer() {
               height={150}
               className="transform scale-90 hover:scale-100 transition-transform duration-200 ease-in-out"
             />
-            <h2 className="mt-4 text-[22px] font-semibold text-center">
+            <h2 className="mt-3 text-[22px] font-semibold text-center">
               Powering India&apos;s EV Revolution
             </h2>
-            <p className="mt-3 text-[16px] text-[#727272] font-[600] leading-relaxed max-w-[320px] text-center px-4">
+            <p className="mt-2 text-[12px] text-[#727272] font-[600] leading-relaxed max-w-[320px] text-center px-4">
               ChargeFlow connects EV owners with charging station hosts across
               India. Find charging points, book slots, and power your journey
               seamlessly.
@@ -209,7 +209,7 @@ export default function Footer() {
         </div>
 
         {/* Mobile View (below 768px) */}
-        <div className="flex md:hidden flex-col ml-6">
+        <div className="flex tablat:hidden flex-col ml-6">
           {/* Logo Section */}
           <div className="flex flex-col mb-10">
             <Image
@@ -222,7 +222,7 @@ export default function Footer() {
             <h2 className="text-[20px] font-semibold text-left">
               Powering India&apos;s EV Revolution
             </h2>
-            <p className="mt-3 text-[14px] text-[#727272] font-[600] leading-relaxed max-w-[280px] text-left">
+            <p className="mt-3 text-[13px] text-[#727272] font-[600] leading-relaxed max-w-[280px] text-left">
               ChargeFlow connects EV owners with charging station hosts across
               India. Find charging points, book slots, and power your journey
               seamlessly.
@@ -282,8 +282,8 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar - Same for all views */}
-      <div className="mt-12 border-t border-green-200 py-5 lg:px-10 px-6">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-[20px] text-[#727272] md:flex-row">
+      <div className="mt-12 border-t border-green-200 py-5 desktop:px-10 px-6">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-[1rem] text-[#727272] tablat:flex-row">
           <p className="hover:text-[#38EF0A] text-[#8E8E93] hidden sm:block">
             © 2025 ChargeFlow All Rights Reserved.
           </p>
