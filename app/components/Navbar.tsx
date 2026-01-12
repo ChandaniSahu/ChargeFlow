@@ -35,7 +35,7 @@ export default function Navbar() {
           />
 
           {/* Desktop Menu */}
-          <div className="hidden xl:flex gap-8 text-[16px] font-[600] text-black">
+          <div className="hidden xl:flex gap-8 text-[16px] font-[600] font-open-sans text-black">
             {menuItems.map((item, i) => (
               <a key={i} href={item.href} className="hover:text-[#38EF0A]">
                 {item.title}
@@ -124,7 +124,7 @@ export default function Navbar() {
               <a
                 key={i}
                 href={item.href}
-                className="hover:text-[#38EF0A] text-center"
+                className="hover:text-[#38EF0A] text-center font-open-sans"
                 onClick={() => setMenuOpen(false)} // close menu on click
               >
                 {item.title}

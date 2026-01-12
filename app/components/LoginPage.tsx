@@ -11,7 +11,7 @@ export default function LoginPage() {
     const [isEyeOpen, setIsEyeOpen] = useState(true);
     
     return (
-        <div className="mt-20  sm:w-[400px] w-[370px] rounded-2xl bg-white/50 py-2 px-6 backdrop-blur-[19.3px] border-[1.4] border-[#DADADA] shadow-xl z-[150]">
+        <div className="font-inter mt-20  sm:w-[400px] w-[370px] rounded-2xl bg-white/50 py-2 px-6 backdrop-blur-[19.3px] border-[1.4] border-[#DADADA] shadow-xl z-[150]">
             <div className="mb-2 text-center">
                 <Image
                     src="/logo.svg"

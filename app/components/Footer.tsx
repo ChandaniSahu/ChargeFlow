@@ -71,10 +71,10 @@ export default function Footer() {
               height={150}
               className="transform scale-90 hover:scale-100 transition-transform duration-200 ease-in-out"
             />
-            <h2 className="mt-4 text-[22px] font-semibold">
+            <h2 className="mt-4 text-[22px] font-semibold font-inter">
               Powering India&apos;s EV Revolution
             </h2>
-            <p className="mt-3 text-[16px] text-[#727272] font-[600] leading-relaxed max-w-[320px] px-2 desktop:px-0">
+            <p className="font-roboto mt-3 text-[16px] text-[#727272] font-[600] leading-relaxed max-w-[320px] px-2 desktop:px-0">
               ChargeFlow connects EV owners with charging station hosts across
               India. Find charging points, book slots, and power your journey
               seamlessly.
@@ -85,7 +85,7 @@ export default function Footer() {
           <div className="flex flex-row gap-12">
             {/* Quick Links */}
             <div>
-              <h4 className="mb-4 font-semibold text-[24px]">Quick Links</h4>
+              <h4 className="font-inter mb-4 font-semibold text-[24px]">Quick Links</h4>
               <div className="flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
                 {quickLinks.map((link, index) => (
                   <a key={index} href={link.href} className="hover:text-[#38EF0A]">
@@ -97,7 +97,7 @@ export default function Footer() {
 
             {/* Services */}
             <div>
-              <h4 className="mb-4 font-semibold text-[24px]">Our Services</h4>
+              <h4 className="font-inter mb-4 font-semibold text-[24px]">Our Services</h4>
               <div className="flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
                 {services.map((service, index) => (
                   <a key={index} href={service.href} className="hover:text-[#38EF0A]">
@@ -109,7 +109,7 @@ export default function Footer() {
 
             {/* Contact Info */}
             <div>
-              <h4 className="mb-4 font-semibold text-[24px]">Contact Info</h4>
+              <h4 className="font-inter mb-4 font-semibold text-[24px]">Contact Info</h4>
               <div className="space-y-3 flex flex-col text-[16px] font-[600] text-[#7C7C7C]">
                 {contactInfo.map((contact, index) => {
                   const IconComponent = contact.icon; // Store component reference
@@ -145,10 +145,10 @@ export default function Footer() {
               height={150}
               className="transform scale-90 hover:scale-100 transition-transform duration-200 ease-in-out"
             />
-            <h2 className="mt-3 text-[22px] font-semibold text-center">
+            <h2 className="mt-3 text-[22px] font-semibold text-center font-inter">
               Powering India&apos;s EV Revolution
             </h2>
-            <p className="mt-2 text-[12px] text-[#727272] font-[600] leading-relaxed max-w-[320px] text-center px-4">
+            <p className="font-roboto mt-2 text-[12px] text-[#727272] font-[600] leading-relaxed max-w-[320px] text-center px-4">
               ChargeFlow connects EV owners with charging station hosts across
               India. Find charging points, book slots, and power your journey
               seamlessly.
@@ -159,7 +159,7 @@ export default function Footer() {
           <div className="flex flex-row justify-center gap-12 mb-10">
             {/* Quick Links */}
             <div>
-              <h4 className="mb-4 font-semibold text-[24px] text-center">Quick Links</h4>
+              <h4 className="font-inter mb-4 font-semibold text-[24px] text-center">Quick Links</h4>
               <div className="flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
                 {quickLinks.map((link, index) => (
                   <a key={index} href={link.href} className="hover:text-[#38EF0A] text-center">
@@ -171,7 +171,7 @@ export default function Footer() {
 
             {/* Services */}
             <div>
-              <h4 className="mb-4 font-semibold text-[24px] text-center">Our Services</h4>
+              <h4 className="font-inter mb-4 font-semibold text-[24px] text-center">Our Services</h4>
               <div className="flex flex-col space-y-3 text-[16px] font-[600] text-[#7C7C7C]">
                 {services.map((service, index) => (
                   <a key={index} href={service.href} className="hover:text-[#38EF0A] text-center">
@@ -184,7 +184,7 @@ export default function Footer() {
 
           {/* Contact Info - Below */}
           <div className="flex flex-col items-center">
-            <h4 className="mb-4 font-semibold text-[24px]">Contact Info</h4>
+            <h4 className="font-inter mb-4 font-semibold text-[24px]">Contact Info</h4>
             <div className="space-y-3 flex flex-col items-center text-[16px] font-[600] text-[#7C7C7C]">
               {contactInfo.map((contact, index) => {
                 const IconComponent = contact.icon; // Store component reference
@@ -219,10 +219,10 @@ export default function Footer() {
               height={120}
               className="transform scale-90 hover:scale-100 transition-transform duration-200 ease-in-out mb-4"
             />
-            <h2 className="text-[20px] font-semibold text-left">
+            <h2 className="text-[20px] font-semibold text-left font-inter">
               Powering India&apos;s EV Revolution
             </h2>
-            <p className="mt-3 text-[13px] text-[#727272] font-[600] leading-relaxed max-w-[280px] text-left">
+            <p className="font-roboto mt-3 text-[13px] text-[#727272] font-[600] leading-relaxed max-w-[280px] text-left">
               ChargeFlow connects EV owners with charging station hosts across
               India. Find charging points, book slots, and power your journey
               seamlessly.
@@ -231,7 +231,7 @@ export default function Footer() {
 
           {/* Quick Links - Left aligned */}
           <div className="mb-8">
-            <h4 className="mb-4 font-semibold text-[22px]">Quick Links</h4>
+            <h4 className="font-inter mb-4 font-semibold text-[22px]">Quick Links</h4>
             <div className="flex flex-col space-y-3 text-[14px] font-[600] text-[#7C7C7C]">
               {quickLinks.map((link, index) => (
                 <a key={index} href={link.href} className="hover:text-[#38EF0A] ml-2">
@@ -243,7 +243,7 @@ export default function Footer() {
 
           {/* Services - Left aligned */}
           <div className="mb-8">
-            <h4 className="mb-4 font-semibold text-[22px]">Our Services</h4>
+            <h4 className="font-inter mb-4 font-semibold text-[22px]">Our Services</h4>
             <div className="flex flex-col space-y-3 text-[14px] font-[600] text-[#7C7C7C]">
               {services.map((service, index) => (
                 <a key={index} href={service.href} className="hover:text-[#38EF0A] ml-2">
@@ -255,7 +255,7 @@ export default function Footer() {
 
           {/* Contact Info - Left aligned */}
           <div className="mb-8">
-            <h4 className="mb-4 font-semibold text-[22px]">Contact Info</h4>
+            <h4 className="font-inter mb-4 font-semibold text-[22px]">Contact Info</h4>
             <div className="space-y-3 flex flex-col text-[14px] font-[600] text-[#7C7C7C]">
               {contactInfo.map((contact, index) => {
                 const IconComponent = contact.icon; // Store component reference
@@ -282,8 +282,8 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar - Same for all views */}
-      <div className="mt-12 border-t border-green-200 py-5 desktop:px-10 px-6">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-[1rem] text-[#727272] tablat:flex-row">
+      <div className="font-roboto mt-12 border-t border-green-200 py-5 desktop:px-10 px-6">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 text-[20px] text-[#727272] tablat:flex-row">
           <p className="hover:text-[#38EF0A] text-[#8E8E93] hidden sm:block">
             © 2025 ChargeFlow All Rights Reserved.
           </p>
