@@ -32,7 +32,7 @@ const ImageCarousel = () => {
 
   return (
     <div
-      className="w-full overflow-hidden"
+      className="w-full h-[400px] border border-black"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
