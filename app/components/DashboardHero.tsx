@@ -1,7 +1,53 @@
+"use client"
+import { useState , useEffect } from "react";
 import Image from "next/image";
+import Typewriter from "typewriter-effect";
 import { FaPlay } from "react-icons/fa6";
+import { FiSearch } from "react-icons/fi";
+import { RiEqualizerLine } from "react-icons/ri";
+import { TbLocationFilled } from "react-icons/tb";
+import { TataIcon ,OfferIcon} from "./icons";
 
 export default function HeroSection() {
+  const [search, setSearch] = useState("");
+  const placeholders = [
+  "Search For Your Location",
+  "Search For Your Station",
+  "Search For Your Charger",
+];
+
+
+
+const AnimatedPlaceholder = ({ hidden }: { hidden: boolean }) => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((i) => (i + 1) % placeholders.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (hidden) return null;
+
+  return (
+    <div className="absolute left-9 top-1/2 -translate-y-1/2 h-5 overflow-hidden pointer-events-none">
+      <div
+        className="transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateY(-${index * 20}px)` }}
+      >
+        {placeholders.map((text, i) => (
+          <div key={i} className="h-5 text-gray-400 text-sm">
+            {text}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
+
   return (
     <section className="relative w-full min-h-[95vh] flex flex-col overflow-hidden">
       
@@ -19,14 +65,27 @@ export default function HeroSection() {
       <div className="relative z-20 flex flex-col h-full px-6 lg:px-20">
 
         {/* TOP : Heading */}
-        <div className="pt-28 text-center ">
+        <div className="pt-28 text-center mb-15 ">
           <h1 className="text-4xl lg:text-6xl font-extrabold text-green-400">
             Power Your EV Journey
           </h1>
-          <p className="mt-3 text-lg text-gray-200">
+          {/* <p className="mt-3 text-lg text-gray-200">
             Smart, reliable and profitable EV charging made simple
-          </p>
+          </p> */}
+<div className="text-white text-[40px] font-[1000]">
+  <Typewriter
+    options={{
+      strings: ["With Seamless", "Charging Solutions"],
+      autoStart: true,
+      loop: true,
+      delay: 300,
+      deleteSpeed: 120,
+    }}
+  />
+</div>
+
         </div>
+        
 
        {/* MIDDLE : Map + Bottom Right Content */}
 <div className="flex-1 flex items-end mb-10">
@@ -34,26 +93,47 @@ export default function HeroSection() {
 
     {/* LEFT : MAP */}
     <div className="flex items-end">
-      <div className="bg-[#87807b] border rounded-2xl p-4 max-w-md shadow-xl">
+      <div className="bg-[#87807b] border rounded-2xl p-4 min-w-[400px] shadow-xl">
         
         {/* Search */}
-        <div className="flex items-center gap-2 mb-3 border border-gray-300 bg-white px-2 py-1 rounded-lg">
-          <input
-            type="text"
-            placeholder="Search for your Location"
-            className="w-full px-4 py-2 rounded-lg outline-none text-sm"
-          />
-          <button className="bg-white p-2 rounded-lg">⚙️</button>
+        <div className="flex items-center gap-2 mt-3 mb-4 ">
+          <div className="w-full relative flex items-center border border-gray-300 bg-white rounded-[15px]">
+          <FiSearch  className="w-5 h-5 absolute left-2 top-1/2 -translate-y-1/2 text-[#757575]" />
+           <AnimatedPlaceholder hidden={search.length > 0} />
+
+  <input
+    type="text"
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="w-full pl-9 py-3 rounded-lg outline-none text-sm bg-transparent relative z-10"
+  />
+          </div>
+          
+          <button className="bg-white p-3 rounded-lg">
+            <RiEqualizerLine className="w-5 h-5 text-[#8D8D8D]" />
+          </button>
         </div>
 
         {/* Pills */}
-        <div className="flex gap-2 mb-3 flex-wrap">
-          <span className="bg-white px-3 py-1 rounded-full text-xs">🚗 Tata Nexon EV</span>
-          <span className="bg-white px-3 py-1 rounded-full text-xs">⚡ Offers</span>
-          <span className="bg-white px-3 py-1 rounded-full text-xs">📍 Nearest</span>
-        </div>
+       <div className="flex gap-2 mb-4 flex-wrap text-[12px] font-medium">
+  <span className="flex items-center gap-2 bg-white px-3 py-1 rounded-lg ">
+    <TataIcon />
+    Tata Nexon EV
+  </span>
 
- <div className="relative w-full h-[300px] rounded-xl overflow-hidden mb-3">
+  <span className="flex items-center gap-1 bg-white px-3 py-1 rounded-lg ">
+    <OfferIcon />
+    Offers
+  </span>
+
+  <span className="flex items-center  bg-white pl-1 pr-3 py-1 rounded-lg ">
+    <span className="text-[18px]">📍</span>
+    Nearest
+  </span>
+</div>
+
+
+ <div className="relative w-full h-[300px] rounded-xl overflow-hidden mb-2">
   <Image
     src="/images/map.png"
     alt="Map"
@@ -64,13 +144,11 @@ export default function HeroSection() {
 
   <button
     type="button"
-    className="absolute bottom-3 left-1/2 -translate-x-1/2
-               bg-green-500 hover:bg-green-600
-               text-white px-6 py-2.5
-               rounded-full font-semibold
-               shadow-lg z-10 whitespace-nowrap"
+    className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-[linear-gradient(90deg,rgba(97,253,58,0.87)_0%,rgba(3,168,0,0.87)_100%)] 
+    hover:bg-green-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg z-10 whitespace-nowrap"
   >
-    Location Nearest Station
+   <TbLocationFilled className="w-5 h-5 inline-block mr-2" />
+   Location Nearest Station
   </button>
 </div>
 
@@ -80,21 +158,22 @@ export default function HeroSection() {
     </div>
 
     {/* RIGHT : BOTTOM DESCRIPTION */}
-    <div className="flex items-end justify-end">
-      <div className="max-w-xl text-right text-white space-y-6 pb-6">
+    <div className="flex items-end justify-center lg:justify-end">
+      <div className="text-white space-y-6 pb-6">
         
-        <p className="text-gray-200 line-clamp-2">
-          ChargeFlow connects EV hosts and drivers, making charging accessible
-          and reliable. Our platform simplifies the process while ensuring
-          every charge is profitable.
+        <p className="text-gray-200 min-w-[640px] text-center">
+         ​ChargeFlow connects EV hosts and drivers, making charging accessible and reliable.
+         Our platform simplifies the process while ensuring every charge is profitable.
         </p>
 
         <div className="flex items-center justify-center gap-6">
           <button className="flex items-center gap-3 bg-[linear-gradient(141.25deg,#48FE1A_8.79%,#1F9900_100%)]
- hover:bg-green-600 p-4 rounded-full text-black font-semibold border-2 border-white shadow-[0_0_16.1px_#38EF0A]">
+          hover:bg-green-600 p-4 rounded-full text-black font-semibold border-2 border-white shadow-[0_0_16.1px_#38EF0A]">
             <FaPlay className="w-5 h-5 text-white" />
-            
           </button>
+          <section className="max-w-[200px] text-[11px]">
+            Watch our video to see how ChargeFlow is revolutionizing EV charging for hosts and drivers.
+          </section>
 
           <div className="flex -space-x-3">
             {["user1.png", "user2.png", "user3.png"].map((img) => (
