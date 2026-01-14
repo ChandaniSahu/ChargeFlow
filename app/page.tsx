@@ -15,7 +15,10 @@ export default function Home() {
       
       {/* <HeroSection/> */}
       <DashboardHero/>
-      <Carousel />
+      <div className="-mb-50">
+       <Carousel /> 
+      </div>
+      
       <ExpertiseSection/>
       {/* <InfoCards /> */}
       <ChooseChargeFlow />

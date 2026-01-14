@@ -23,7 +23,7 @@ const cardData = [
 
 const ChooseChargeFlow = () => {
   return (
-    <section className="w-full bg-white text-black px-14">
+    <section className="w-full bg-white text-black px-14 pb-20">
       {/* Top label */}
       <div className="flex items-center justify-center gap-2 mb-14">
         <div className="relative w-[22px] h-[22px] flex items-center justify-center">
