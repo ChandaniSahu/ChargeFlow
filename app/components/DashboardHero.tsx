@@ -173,7 +173,7 @@ export default function HeroSection() {
                   </section>
 
                   <div className="flex -space-x-3">
-                    {["user1.png", "user2.png", "user3.png"].map((img) => (
+                    {["user1.jpg", "user2.jpg", "user3.jpg"].map((img) => (
                       <div
                         key={img}
                         className="relative w-10 h-10 rounded-full border-2 border-green-400 overflow-hidden"

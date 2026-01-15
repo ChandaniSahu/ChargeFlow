@@ -7,6 +7,8 @@ import Carousel from "./components/Carousel";
 import ExpertiseSection from "./components/Expertise";
 import ChooseChargeFlow from "./components/ChooseChargeFlow";
 import DashboardHero from "./components/DashboardHero";
+import ChargingServices from "./components/ChargingServices";
+import PricingPlans from "./components/PricingPlans";
 
 export default function Home() {
   return (
@@ -22,7 +24,8 @@ export default function Home() {
       <ExpertiseSection/>
       {/* <InfoCards /> */}
       <ChooseChargeFlow />
-
+      <ChargingServices />
+      <PricingPlans/>
       <Footer />
     </>
   );
