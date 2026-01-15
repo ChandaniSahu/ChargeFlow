@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <>
-      <div className="absolute top-0 z-20 w-full">
+      <div className="absolute top-0 z-[150] w-full">
         <div className="mx-auto flex max-w-full items-center justify-between py-2 px-4 bg-white/60 backdrop-blur-md shadow-md">
           {/* Logo */}
           <Image
