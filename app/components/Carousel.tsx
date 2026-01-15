@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 const ImageCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -8,18 +7,17 @@ const ImageCarousel = () => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const images = [
-    "/images/card1.png",
-    "/images/card2.png",
-    "/images/card3.png",
+    './images/card1.png',
+    './images/card2.png',
+    './images/card3.png',
   ];
 
-  // start / restart auto scroll
   const startAutoScroll = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 4000);
+    }, 3000);
   };
 
   useEffect(() => {
@@ -31,23 +29,52 @@ const ImageCarousel = () => {
   }, [isHovered]);
 
   return (
-    <div
-      className="w-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="w-full max-w-8xl mx-auto px-4 py-8">
+      {/* Carousel Container */}
       <div
-        className="flex transition-transform duration-700 ease-in-out"
-        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        className="relative overflow-hidden"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        {images.map((src, index) => (
-  <div
-    key={index}
-    className="w-full min-w-9xl h-[400px] flex-shrink-0"
-  >
-   <img src={src} alt={`Slide ${index + 1}`} className="object-cover rounded-xl" />
-  </div>
-))}
+        {/* Main carousel wrapper */}
+        <div className="relative h-[230px] flex items-center justify-center">
+          {/* Previous card (partial view) */}
+          <div
+            className="absolute left-0 w-[60px] h-50 opacity-50 cursor-pointer transition-all duration-500 z-10"
+            style={{
+              transform: "translateX(-20%)",
+            }}
+          >
+            <img
+              src={images[(currentIndex - 1 + images.length) % images.length]}
+              alt="Previous"
+              className="w-full h-full object-cover rounded-xl"
+            />
+          </div>
+
+          {/* Current card (center, full size) */}
+          <div className="w-[90%] h-full z-20 transition-all duration-700 ease-in-out bg-transparent">
+            <img
+              src={images[currentIndex]}
+              alt={`Slide ${currentIndex + 1}`}
+              className="w-full h-full object-cover rounded-xl shadow-2xl"
+            />
+          </div>
+
+          {/* Next card (partial view) */}
+          <div
+            className="absolute right-0 w-[60px] h-50 opacity-50 cursor-pointer transition-all duration-500 z-10"
+            style={{
+              transform: "translateX(20%)",
+            }}
+          >
+            <img
+              src={images[(currentIndex + 1) % images.length]}
+              alt="Next"
+              className="w-full h-full object-cover rounded-xl"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

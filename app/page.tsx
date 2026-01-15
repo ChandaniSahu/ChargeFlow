@@ -15,7 +15,7 @@ export default function Home() {
       
       {/* <HeroSection/> */}
       <DashboardHero/>
-      <div className="-mb-50">
+      <div className="-mb-20 -mt-15">
        <Carousel /> 
       </div>
       
