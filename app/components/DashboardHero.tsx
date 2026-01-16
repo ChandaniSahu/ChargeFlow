@@ -6,7 +6,11 @@ import { FaPlay } from "react-icons/fa6";
 import { FiSearch } from "react-icons/fi";
 import { RiEqualizerLine } from "react-icons/ri";
 import { TbLocationFilled } from "react-icons/tb";
-import { TataIcon, OfferIcon } from "./icons";
+import {OfferIcon } from "./icons";
+import { Icon } from "@iconify/react";
+
+
+
 
 export default function HeroSection() {
   const [search, setSearch] = useState("");
@@ -65,12 +69,12 @@ export default function HeroSection() {
       <div className="relative z-20 flex flex-col h-full px-6 lg:px-20">
 
         {/* TOP : Heading */}
-        <div className="pt-28 text-center  ">
-          <h1 className="font-poppins font-extrabold text-[#38EF0A] text-[80px] leading-[100px] tracking-[0] text-center capitalize">
+        <div className="pt-28 text-center mb-10 ">
+          <span className="font-poppins font-extrabold text-[#38EF0A] text-[80px] text-center capitalize">
             Power Your EV Journey
-          </h1>
+          </span>
 
-          <div className="font-poppins font-extrabold text-[40px] leading-[103px] tracking-[0] capitalize text-white">
+          <div className="font-poppins font-extrabold text-[40px] capitalize text-white">
             <Typewriter
               options={{
                 strings: ["With Seamless", "Charging Solutions"],
@@ -91,7 +95,7 @@ export default function HeroSection() {
 
             {/* LEFT : MAP */}
             <div className="flex items-end">
-              <div className="bg-[#87807b] border rounded-2xl p-4 min-w-[400px] shadow-xl">
+              <div className="bg-[#87807b]  rounded-2xl p-4 min-w-[400px] shadow-xl">
 
                 {/* Search */}
                 <div className="flex items-center gap-2 mt-3 mb-4 ">
@@ -115,12 +119,12 @@ export default function HeroSection() {
                 {/* Pills */}
                 <div className="flex gap-2 mb-4 flex-wrap text-[12px] font-medium">
                   <span className="flex items-center gap-2 bg-white px-3 py-1 rounded-lg ">
-                    <TataIcon />
+                    <Icon icon="simple-icons:tata" className="w-5 h-5 text-[#1E59C7]" />
                     Tata Nexon EV
                   </span>
 
                   <span className="flex items-center gap-1 bg-white px-3 py-1 rounded-lg ">
-                    <OfferIcon />
+                    <OfferIcon/>
                     Offers
                   </span>
 

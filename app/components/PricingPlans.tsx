@@ -5,21 +5,16 @@ import { DiamondIcon, LeafIcon, StarShieldIcon } from './icons';
 
 const PricingPlans = () => {
   const [isYearly, setIsYearly] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const plans = [
     {
-      // icon: (
-      //   <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8">
-      //     <path d="M12 2L4 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-8-5z" fill="#10b981" stroke="#10b981" strokeWidth="1"/>
-      //     <path d="M9 12l2 2 4-4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      //   </svg>
-      // ),
+     
       icon : <LeafIcon/>,
       heading: 'Basic Plans',
-      monthlyPrice: '₹499',
-      yearlyPrice: '₹4,990',
-      dollarPrice: '$6',
+      monthlyPrice: '₹499/Month',
+      yearlyPrice: '₹399/Year',
+      dollarPrice: '$6 / Month',
       features: [
         'Basic Charger Management',
         'Up To 2 Chargers',
@@ -29,17 +24,12 @@ const PricingPlans = () => {
       isPremium: false
     },
     {
-      // icon: (
-      //   <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8">
-      //     <path d="M12 2L4 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-8-5z" fill="white" stroke="white" strokeWidth="1"/>
-      //     <path d="M12 7l1.545 3.13L17 10.764l-2.5 2.436.59 3.436L12 15.13l-3.09 1.506.59-3.436L7 10.764l3.455-.634L12 7z" fill="#10b981"/>
-      //   </svg>
-      // ),
+     
       icon : <StarShieldIcon/>,
       heading: 'Premium Plans',
-      monthlyPrice: '₹1,399',
-      yearlyPrice: '₹13,990',
-      dollarPrice: '$17',
+      monthlyPrice: '₹1,399/Month',
+      yearlyPrice: '₹2,399/Month',
+      dollarPrice: '$17 / Month',
       features: [
         'Up To 10 Chargers',
         'Advanced Management Tools',
@@ -50,17 +40,12 @@ const PricingPlans = () => {
       isPremium: true
     },
     {
-      // icon: (
-      //   <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8">
-      //     <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5zm0 18.5c-4.28-1.05-7.5-5.48-7.5-10.5V8.3l7.5-4.3 7.5 4.3v1.7c0 5.02-3.22 9.45-7.5 10.5z" fill="#10b981"/>
-      //     <path d="M12 8l-2 6h4l-2 6" fill="#10b981"/>
-      //   </svg>
-      // ),
+     
       icon : <DiamondIcon/>,
       heading: 'Pro Plans',
-      monthlyPrice: '₹1,499',
-      yearlyPrice: '₹14,990',
-      dollarPrice: '$18',
+      monthlyPrice: '₹1,499/Month',
+      yearlyPrice: '₹2,499/Month',
+      dollarPrice: '$18 / Month',
       features: [
         'Complete Charger Management Suite',
         'Unlimited Chargers',
@@ -74,7 +59,7 @@ const PricingPlans = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <div className="min-h-screen bg-white py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -94,23 +79,23 @@ const PricingPlans = () => {
           </h1>
 
           {/* Toggle */}
-          <div className="inline-flex bg-green-100 rounded-full p-1">
+          <div className="inline-flex bg-[#F0F9EE] rounded-full p-2">
             <button
               onClick={() => setIsYearly(false)}
-              className={`px-8 py-3 rounded-full font-medium transition-all ${
+              className={`px-9 py-2 rounded-full font-medium text-[20px] transition-all ${
                 !isYearly 
-                  ? 'bg-green-500 text-white shadow-lg' 
-                  : 'text-gray-700'
+                  ? 'bg-[#38EF0A] text-white shadow-lg' 
+                  : 'text-[#364153] cursor-pointer'
               }`}
             >
               Monthly
             </button>
             <button
               onClick={() => setIsYearly(true)}
-              className={`px-8 py-3 rounded-full font-medium transition-all ${
+              className={`px-9 py-2 rounded-full font-medium text-[20px] transition-all ${
                 isYearly 
-                  ? 'bg-green-500 text-white shadow-lg' 
-                  : 'text-gray-700'
+                  ? 'bg-[#38EF0A] text-white shadow-lg ' 
+                  : 'text-[#364153] cursor-pointer'
               }`}
             >
               Yearly
@@ -119,49 +104,49 @@ const PricingPlans = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-[1200px] mx-auto">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`rounded-3xl p-8 transition-all duration-300 flex flex-col items-center ${
+              className={`rounded-3xl p-6 transition-all duration-300 flex flex-col items-center shadow-[0px_3px_6.2px_0px_#00000033] ${
                 plan.isPremium
-                  ? 'bg-green-500 text-white shadow-2xl scale-105'
-                  : 'bg-white text-gray-900 border-2 border-green-500 shadow-lg hover:shadow-xl'
+                  ? 'bg-green-500 text-white shadow-2xl '
+                  : 'bg-white text-gray-900 shadow-lg hover:shadow-xl'
               }`}
-            >
+             >
+
               {/* Icon */}
-              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${
-                plan.isPremium ? 'bg-white' : 'bg-gray-50'
-              }`}>
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-5 bg-white shadow-[0px_3px_5.6px_0px_#0000002E]
+                 `}>
                 {plan.icon}
               </div>
 
               {/* Heading */}
-              <h3 className={`text-2xl font-bold mb-2 ${
-                plan.isPremium ? 'text-white' : 'text-gray-900'
+              <h3 className={`text-[35px] font-bold  ${
+                plan.isPremium ? 'text-white' : 'text-[#364153]'
               }`}>
                 {plan.heading}
               </h3>
 
               {/* Price */}
-              <div className={`text-4xl font-bold mb-8 ${
-                plan.isPremium ? 'text-white' : 'text-gray-900'
+              <div className={`text-[48px] font-bold mb-4 ${
+                plan.isPremium ? 'text-white' : 'text-[#171717]'
               }`}>
                 {isYearly ? plan.yearlyPrice : plan.monthlyPrice}
-                <span className="text-lg font-normal">/Month</span>
+                {/* <span className="text-lg font-normal">/Month</span> */}
               </div>
 
               {/* Features */}
-              <div className="space-y-4 mb-8">
+              <div className="space-y-3 mb-8">
                 {plan.features.map((feature, idx) => (
                   <div key={idx} className="flex items-start gap-3">
-                    <div className={`mt-0.5 ${
+                    <div className={`mt-1 ${
                       plan.isPremium ? 'text-white' : 'text-green-500'
                     }`}>
                       <Check className="w-5 h-5" />
                     </div>
-                    <span className={`text-sm ${
-                      plan.isPremium ? 'text-white' : 'text-gray-700'
+                    <span className={`text-[19px] font-[600] ${
+                      plan.isPremium ? 'text-white' : 'text-[#49454F]'
                     }`}>
                       {feature}
                     </span>
@@ -173,13 +158,16 @@ const PricingPlans = () => {
               <button
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`w-full py-4 rounded-full font-medium transition-all duration-300 ${
+                className={`group mt-auto w-full py-4 rounded-full font-[600] transition-all duration-300 text-[20px] text-[#364153] shadow-[0px_3px_5.3px_0px_#00000026]
+                ${
                   plan.isPremium
-                    ? 'bg-white text-green-500 hover:bg-gray-50'
-                    : 'bg-white border-2 border-green-500 text-green-500 hover:bg-green-50'
+                    ? 'bg-white  hover:bg-gray-50'
+                    : 'bg-white border-[1.5] border-[#2EDE02]  hover:bg-[linear-gradient(157.4deg,#3FFF52_1.97%,#06B30B_98.88%)] hover:text-white transition-colors duration-300'
+
                 }`}
               >
-                {hoveredCard === index ? plan.dollarPrice : 'Select Plan'}
+                {!plan.isPremium && hoveredCard === index ? plan.dollarPrice : 'Select Plan'}
+
               </button>
             </div>
           ))}
