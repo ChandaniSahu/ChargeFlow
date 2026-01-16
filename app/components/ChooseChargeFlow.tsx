@@ -30,7 +30,7 @@ const ChooseChargeFlow = () => {
           <div className="absolute w-[22px] h-[22px] rounded-full border-2 border-green-500" />
           <div className="w-2 h-2 rounded-full bg-green-500" />
         </div>
-        <p className="text-[#333333] font-semibold text-[24px]">
+        <p className="font-roboto text-[#333333] font-semibold text-[20px] leading-[100%] tracking-[0] capitalize">
           Why Choose ChargeFlow
         </p>
       </div>
@@ -39,9 +39,9 @@ const ChooseChargeFlow = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
         {/* LEFT */}
         <div>
-          <h2 className="text-4xl lg:text-5xl font-extrabold text-center leading-tight mb-6">
+          <h2 className="text-4xl lg:text-5xl text-[#171717] font-extrabold text-center leading-tight mb-6">
             Your EV <br />
-            <span className="text-green-500">Charging Partner</span>
+            <span className="text-[#2CDE00]">Charging Partner</span>
           </h2>
 
           <p className="text-[#757575] text-[16.5px] font-medium text-center max-w-xl mb-12">

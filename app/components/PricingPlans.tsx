@@ -83,13 +83,13 @@ const PricingPlans = () => {
           <div className="absolute w-[22px] h-[22px] rounded-full border-2 border-green-500" />
           <div className="w-2 h-2 rounded-full bg-green-500" />
         </div>
-            <span className="text-gray-700 font-medium">Pricing Plans</span>
+            <span className="font-roboto text-[#333333] font-semibold text-[20px] leading-[100%] tracking-[0] capitalize">Pricing Plans</span>
           </div>
           
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl md:text-5xl font-bold mb-2 text-[#171717] ">
             Flexible Plans For Every
           </h1>
-          <h1 className="text-5xl md:text-6xl font-bold text-green-500 mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#2CDE00] mb-8">
             Charging Need
           </h1>
 

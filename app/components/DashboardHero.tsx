@@ -65,12 +65,12 @@ export default function HeroSection() {
       <div className="relative z-20 flex flex-col h-full px-6 lg:px-20">
 
         {/* TOP : Heading */}
-        <div className="pt-28 text-center mb-15 ">
-          <h1 className="text-4xl lg:text-6xl font-extrabold text-green-400">
+        <div className="pt-28 text-center  ">
+          <h1 className="font-poppins font-extrabold text-[#38EF0A] text-[80px] leading-[100px] tracking-[0] text-center capitalize">
             Power Your EV Journey
           </h1>
 
-          <div className="text-white text-[40px] font-[1000]">
+          <div className="font-poppins font-extrabold text-[40px] leading-[103px] tracking-[0] capitalize text-white">
             <Typewriter
               options={{
                 strings: ["With Seamless", "Charging Solutions"],

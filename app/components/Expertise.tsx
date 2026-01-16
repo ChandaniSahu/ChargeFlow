@@ -28,7 +28,7 @@ const ExpertiseSection = () => {
                             <div className="w-2 h-2 rounded-full bg-green-400" />
                         </div>
 
-                        <p className="text-[20px] text-[#333333] font-semibold">Our Expertise</p>
+                        <p className="font-roboto text-[#333333] font-semibold text-[20px] leading-[100%] tracking-[0] capitalize">Our Expertise</p>
                     </div>
 
 
