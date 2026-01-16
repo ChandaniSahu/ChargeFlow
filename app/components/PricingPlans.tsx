@@ -1,4 +1,6 @@
 "use client";
+import "@stianlarsen/border-beam/css";
+import { BorderBeam } from "@stianlarsen/border-beam";
 import React, { useState } from 'react';
 import { Check } from 'lucide-react';
 import { DiamondIcon, LeafIcon, StarShieldIcon } from './icons';
@@ -108,13 +110,22 @@ const PricingPlans = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`rounded-3xl p-6 transition-all duration-300 flex flex-col items-center shadow-[0px_3px_6.2px_0px_#00000033] ${
+              className={`relative overflow-hidden rounded-3xl p-6 transition-all duration-300 flex flex-col items-center shadow-[0px_3px_6.2px_0px_#00000033] ${
                 plan.isPremium
                   ? 'bg-green-500 text-white shadow-2xl '
-                  : 'bg-white text-gray-900 shadow-lg hover:shadow-xl'
+                  : 'bg-white text-gray-900 shadow-lg hover:shadow-xl moving-gradient-border '
               }`}
              >
-
+             {/* The Moving Border Component */}
+      {!plan.isPremium &&<BorderBeam 
+        size={500} 
+        duration={5} 
+        colorFrom="#3FFF52" 
+        colorTo="#06B30B" 
+        borderWidth={2}
+      />}
+         
+  
               {/* Icon */}
               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-5 bg-white shadow-[0px_3px_5.6px_0px_#0000002E]
                  `}>
