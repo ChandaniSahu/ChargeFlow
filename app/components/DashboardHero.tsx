@@ -53,7 +53,7 @@ export default function HeroSection() {
 
 
   return (
-    <section className="relative w-full min-h-[95vh] flex flex-col overflow-hidden">
+    <section className="relative w-full  flex flex-col overflow-hidden">
 
       {/* Background */}
       <Image
@@ -70,11 +70,11 @@ export default function HeroSection() {
 
         {/* TOP : Heading */}
         <div className="pt-28 text-center mb-10 ">
-          <span className="font-poppins font-extrabold text-[#38EF0A] text-[80px] text-center capitalize">
+          <span className="font-poppins font-extrabold text-[#38EF0A] text-[40px] desktop:text-[80px] text-center capitalize">
             Power Your EV Journey
           </span>
 
-          <div className="font-poppins font-extrabold text-[40px] capitalize text-white">
+          <div className="font-poppins font-extrabold text-[30px] desktop:text-[40px] capitalize text-white">
             <Typewriter
               options={{
                 strings: ["With Seamless", "Charging Solutions"],
@@ -95,7 +95,7 @@ export default function HeroSection() {
 
             {/* LEFT : MAP */}
             <div className="flex items-end">
-              <div className="bg-[#87807b]  rounded-2xl p-4 min-w-[400px] shadow-xl">
+              <div className="bg-[#87807b] mx-auto desktop:mx-0 rounded-2xl p-4 desktop:min-w-[400px] shadow-xl">
 
                 {/* Search */}
                 <div className="flex items-center gap-2 mt-3 mb-4 ">
@@ -111,14 +111,14 @@ export default function HeroSection() {
                     />
                   </div>
 
-                  <button className="bg-white p-3 rounded-lg">
-                    <RiEqualizerLine className="w-5 h-5 text-[#8D8D8D]" />
+                  <button className="group hover:bg-[#38EF0A] bg-white p-3 rounded-lg border-[1.2px] border-transparent hover:border-white transition-all duration-300">
+                    <RiEqualizerLine className="w-6 h-6 text-[#8D8D8D] group-hover:text-white transition-colors duration-300" />
                   </button>
                 </div>
 
                 {/* Pills */}
                 <div className="flex gap-2 mb-4 flex-wrap text-[12px] font-medium">
-                  <span className="flex items-center gap-2 bg-white px-3 py-1 rounded-lg ">
+                  <span className="flex items-center gap-2 bg-white px-1 desktop:px-3  desktop:py-1 rounded-lg ">
                     <Icon icon="simple-icons:tata" className="w-5 h-5 text-[#1E59C7]" />
                     Tata Nexon EV
                   </span>
@@ -162,7 +162,7 @@ export default function HeroSection() {
             <div className="flex items-end justify-center lg:justify-end">
               <div className="text-white space-y-6 pb-6">
 
-                <p className="text-gray-200 min-w-[640px] text-center">
+                <p className="text-gray-200 desktop:min-w-[640px] desktop:text-center tablat:text-center mx-6">
                   ChargeFlow connects EV hosts and drivers, making charging accessible and reliable.
                   Our platform simplifies the process while ensuring every charge is profitable.
                 </p>
@@ -172,7 +172,7 @@ export default function HeroSection() {
           hover:bg-green-600 p-4 rounded-full text-black font-semibold border-2 border-white shadow-[0_0_16.1px_#38EF0A]">
                     <FaPlay className="w-5 h-5 text-white" />
                   </button>
-                  <section className="max-w-[200px] text-[11px]">
+                  <section className="w-[170px] desktop:max-w-[200px] text-[11px]">
                     Watch our video to see how ChargeFlow is revolutionizing EV charging for hosts and drivers.
                   </section>
 
