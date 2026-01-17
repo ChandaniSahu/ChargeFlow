@@ -63,11 +63,11 @@ const ChooseChargeFlow = () => {
                 >
                   <div
                     className="
-                      bg-white text-black rounded-2xl px-2 py-6
+                      bg-white text-black rounded-2xl  px-2 py-6
                        flex items-center flex-col w-[280px]
                       shadow-[0_-2px_12.6px_0_#38EF0A47] border-[1.5] border-[#53FF28]
                     "
-                  >
+                   >
                     <h3 className="font-semibold text-lg  mb-3">
                       {card.title}
                     </h3>

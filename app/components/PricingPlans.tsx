@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { Check } from 'lucide-react';
 import { DiamondIcon, LeafIcon, StarShieldIcon } from './icons';
 
+
 const PricingPlans = () => {
   const [isYearly, setIsYearly] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
@@ -56,7 +57,8 @@ const PricingPlans = () => {
         'Custom Pricing Strategies',
         'Weekly Performance Insights'
       ],
-      isPremium: false
+      isPremium: false,
+      isDiamond: true
     }
   ];
 
@@ -106,16 +108,17 @@ const PricingPlans = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-[1200px] mx-auto">
+        <div className="grid desktop:grid-cols-3 tablat:grid-cols-2 mobile:grid-cols-1 gap-8 max-w-[1200px] mx-auto">
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative overflow-hidden rounded-3xl p-6 transition-all duration-300 flex flex-col items-center shadow-[0px_3px_6.2px_0px_#00000033] ${
+              className={`relative overflow-hidden rounded-3xl p-6  transition-all duration-300 flex flex-col items-center shadow-[0px_3px_6.2px_0px_#00000033] ${
                 plan.isPremium
-                  ? 'bg-green-500 text-white shadow-2xl '
+                  ? 'bg-[linear-gradient(157.4deg,_#3FFF52_1.97%,_#06B30B_98.88%)] text-white shadow-2xl premium-inner-glow'
                   : 'bg-white text-gray-900 shadow-lg hover:shadow-xl moving-gradient-border '
               }`}
              >
+       
              {/* The Moving Border Component */}
       {!plan.isPremium &&<BorderBeam 
         size={500} 
@@ -133,14 +136,14 @@ const PricingPlans = () => {
               </div>
 
               {/* Heading */}
-              <h3 className={`text-[35px] font-bold  ${
+              <h3 className={`text-[30px] lg:text-[35px] font-bold  ${
                 plan.isPremium ? 'text-white' : 'text-[#364153]'
               }`}>
                 {plan.heading}
               </h3>
 
               {/* Price */}
-              <div className={`text-[48px] font-bold mb-4 ${
+              <div className={`text-[40px] lg:text-[48px] font-bold mb-4 ${
                 plan.isPremium ? 'text-white' : 'text-[#171717]'
               }`}>
                 {isYearly ? plan.yearlyPrice : plan.monthlyPrice}
@@ -148,15 +151,15 @@ const PricingPlans = () => {
               </div>
 
               {/* Features */}
-              <div className="space-y-3 mb-8">
+              <div className={`space-y-3 mb-8`}>
                 {plan.features.map((feature, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
+                  <div key={idx} className="flex items-start  gap-3">
                     <div className={`mt-1 ${
                       plan.isPremium ? 'text-white' : 'text-green-500'
                     }`}>
                       <Check className="w-5 h-5" />
                     </div>
-                    <span className={`text-[19px] font-[600] ${
+                    <span className={`text-[19px] font-[00] ${
                       plan.isPremium ? 'text-white' : 'text-[#49454F]'
                     }`}>
                       {feature}
@@ -169,7 +172,7 @@ const PricingPlans = () => {
               <button
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`group mt-auto w-full py-4 rounded-full font-[600] transition-all duration-300 text-[20px] text-[#364153] shadow-[0px_3px_5.3px_0px_#00000026]
+                className={`group mt-auto w-full py-4 rounded-full font-[500] transition-all duration-300 text-[20px] text-[#364153] shadow-[0px_3px_5.3px_0px_#00000026]
                 ${
                   plan.isPremium
                     ? 'bg-white  hover:bg-gray-50'

@@ -33,7 +33,7 @@ function ProfileDropdown() {
   return (
     <div 
       className="relative" 
-      onMouseLeave={() => setProfileOpen(false)} // close dropdown on mouse leave
+      // onMouseLeave={() => setProfileOpen(false)} // close dropdown on mouse leave
     >
       {/* Profile Image */}
       <img
@@ -47,29 +47,35 @@ function ProfileDropdown() {
 
       {/* Dropdown */}
       {profileOpen && (
-       <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg py-3">
-          <div className="flex items-center gap-3 px-4 pb-4 border-b border-gray-200">
+       <div className="font-inter absolute right-0 mt-2 w-45 bg-white rounded-[5px] shadow-lg py-1 text-[11px]">
+          <div className="flex items-center gap-3 px-4 pb-2 ">
             <img src="/images/user.jpg" className="w-12 h-12 rounded-full" />
             <div>
-              <p className="font-semibold text-base text-gray-900">Rajesh Kumar</p>
+              <p className="font-[500] text-gray-900">Rajesh Kumar</p>
             </div>
           </div>
-
-          <div className="flex flex-col pt-2">
-            <button className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 transition-colors text-left">
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <span className="h-[1.5px] bg-gray-300 block mx-3"></span>
+          <div className="flex flex-col px-2 font-[400] text-gray-500">
+            <button className="flex items-center gap-3 px-4 py-3  transition-colors justify-between ">
+              <span className="flex items-center gap-1 hover:text-[#38EF0A]">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"/>
               </svg>
-              <span className="flex-1">My Account</span>
+              <span >My Account</span> 
+              </span>
+             
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
               </svg>
             </button>
-            <button className="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-gray-50 transition-colors text-left">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button className="flex items-center gap-3 px-4 py-3 transition-colors justify-between ">
+              <span className="flex items-center gap-1 hover:text-[#38EF0A]">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
               </svg>
               <span className="flex-1">Logout</span>
+              </span>
+              
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
               </svg>
