@@ -29,7 +29,7 @@ const ImageCarousel = () => {
   }, [isHovered]);
 
   return (
-    <div className="w-full max-w-8xl mx-auto px-4 py-8">
+    <div className="w-full desktop:max-w-8xl desktop:mx-auto desktop:px-4 py-8">
       {/* Carousel Container */}
       <div
         className="relative overflow-hidden"
@@ -37,10 +37,10 @@ const ImageCarousel = () => {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Main carousel wrapper */}
-        <div className="relative h-[230px] flex items-center justify-center">
+        <div className="relative desktop:h-[230px] flex items-center justify-center">
           {/* Previous card (partial view) */}
           <div
-            className="absolute left-0 w-[60px] h-50 opacity-50 cursor-pointer transition-all duration-500 z-10"
+            className="absolute left-0 w-[60px] h-50 hidden desktop:block opacity-50 cursor-pointer transition-all duration-500 z-10"
             style={{
               transform: "translateX(-20%)",
             }}
@@ -53,17 +53,17 @@ const ImageCarousel = () => {
           </div>
 
           {/* Current card (center, full size) */}
-          <div className="w-[90%] h-full z-20 transition-all duration-700 ease-in-out bg-transparent">
+          <div className="w-full desktop:w-[90%] h-full z-20 transition-all duration-700 ease-in-out bg-transparent">
             <img
               src={images[currentIndex]}
               alt={`Slide ${currentIndex + 1}`}
-              className="w-full h-full object-cover rounded-xl shadow-2xl"
+              className="w-full h-full object-contain desktop:object-cover  rounded-xl shadow-2xl"
             />
           </div>
 
           {/* Next card (partial view) */}
           <div
-            className="absolute right-0 w-[60px] h-50 opacity-50 cursor-pointer transition-all duration-500 z-10"
+            className="absolute right-0 w-[60px] h-50 hidden desktop:block  opacity-50 cursor-pointer transition-all duration-500 z-10"
             style={{
               transform: "translateX(20%)",
             }}
