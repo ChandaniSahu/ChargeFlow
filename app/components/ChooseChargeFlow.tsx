@@ -64,8 +64,8 @@ const ChooseChargeFlow = () => {
                 >
                   <div
                     className="
-                      font-roboto bg-white text-black rounded-2xl  desktop:px-2 px-3 py-6 
-                       flex items-center flex-col max-w-[280px] mobile:max-w-[330px]
+                      font-roboto bg-white text-black rounded-2xl  px-2   py-6 
+                       flex items-center flex-col desktop:max-w-[280px] max-w-[340px]
                       shadow-[0_-2px_12.6px_0_#38EF0A47] border-[1.5] border-[#53FF28]
                     "
                    >

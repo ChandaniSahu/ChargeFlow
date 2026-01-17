@@ -69,7 +69,7 @@ export default function HeroSection() {
       <div className="relative z-20 flex flex-col h-full px-6 lg:px-20">
 
         {/* TOP : Heading */}
-        <div className="pt-28 text-center mb-10 ">
+        <div className="pt-28 text-center desktop:mb-10 mb-4">
           <span className="font-poppins font-extrabold text-[#38EF0A] text-[40px] desktop:text-[80px] text-center leading-[32px] capitalize">
             Power Your EV Journey
           </span>
