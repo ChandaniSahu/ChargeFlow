@@ -1,26 +1,42 @@
 const ExpertiseSection = () => {
     return (
         <section className="bg-white text-black py-20 px-4">
+                      {/* small label */}
+                    <div className="flex items-center gap-2 mb-5 text-center justify-center desktop:hidden block">
+                        <div className="relative w-[22px] h-[22px] flex items-center justify-center">
+                            {/* outer circle */}
+                            <div className="absolute w-[22px] h-[22px] rounded-full border-3 border-green-400" />
+                            {/* inner dot */}
+                            <div className="w-2 h-2 rounded-full bg-green-400" />
+                        </div>
+
+                        <p className="font-roboto text-[#333333] font-semibold text-[20px] leading-[100%] tracking-[0] capitalize">Our Expertise</p>
+                    </div>
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2  items-center">
 
                 {/* LEFT IMAGE */}
-                <div className="relative flex justify-center">
-                    {/* green background shape */}
-                    <div className="absolute -bottom-8 left-10 w-[70%] h-[90%] bg-[#CEFFC1] rounded-[22px] z-0 hidden sm:block" />
+        <div className="relative flex justify-center mb-10 desktop:mb-0">
+  <div
+    className="
+      absolute bg-[#CEFFC1] rounded-[22px] z-0
+      -bottom-6 -left-6 w-[90%] h-[85%]
+      tablat:-bottom-8 tablat:left-30 tablat:w-[50%] tablat:h-[80%]
+      desktop:-bottom-8 desktop:left-10 desktop:w-[70%] desktop:h-[90%]
+    "
+  />
 
+  <img
+    src="/images/expertise.jpg"
+    alt="Our Expertise"
+    className="relative z-10 rounded-xl shadow-lg w-full max-w-md object-cover"
+  />
+</div>
 
-
-                    <img
-                        src="/images/expertise.jpg"
-                        alt="Our Expertise"
-                        className="relative z-10 rounded-xl shadow-lg w-full max-w-md object-cover"
-                    />
-                </div>
 
                 {/* RIGHT CONTENT */}
-                <div >
+                <div className="mx-auto">
                     {/* small label */}
-                    <div className="flex items-center gap-2 mb-5">
+                    <div className="flex items-center gap-2 mb-5 hidden desktop:block">
                         <div className="relative w-[22px] h-[22px] flex items-center justify-center">
                             {/* outer circle */}
                             <div className="absolute w-[22px] h-[22px] rounded-full border-3 border-green-400" />
