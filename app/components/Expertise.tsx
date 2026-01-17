@@ -1,8 +1,8 @@
 const ExpertiseSection = () => {
     return (
-        <section className="bg-white text-black py-20 px-4">
+        <section className="bg-white text-black pt-20 pb-12 px-4 ">
                       {/* small label */}
-                    <div className="flex items-center gap-2 mb-5 text-center justify-center desktop:hidden block">
+                     <div className="font-roboto flex items-center gap-2 mb-5 text-center justify-center desktop:hidden block">
                         <div className="relative w-[22px] h-[22px] flex items-center justify-center">
                             {/* outer circle */}
                             <div className="absolute w-[22px] h-[22px] rounded-full border-3 border-green-400" />
@@ -11,7 +11,7 @@ const ExpertiseSection = () => {
                         </div>
 
                         <p className="font-roboto text-[#333333] font-semibold text-[20px] leading-[100%] tracking-[0] capitalize">Our Expertise</p>
-                    </div>
+                    </div> 
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2  items-center">
 
                 {/* LEFT IMAGE */}
@@ -34,9 +34,9 @@ const ExpertiseSection = () => {
 
 
                 {/* RIGHT CONTENT */}
-                <div className="mx-auto">
+                <div className="desktop:mx-0 mx-auto">
                     {/* small label */}
-                    <div className="flex items-center gap-2 mb-5 hidden desktop:block">
+                    <div className="flex  items-center gap-2 mb-5 hidden desktop:flex">
                         <div className="relative w-[22px] h-[22px] flex items-center justify-center">
                             {/* outer circle */}
                             <div className="absolute w-[22px] h-[22px] rounded-full border-3 border-green-400" />
@@ -49,14 +49,14 @@ const ExpertiseSection = () => {
 
 
                     {/* heading */}
-                    <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+                    <h2 className="font-roboto text-4xl md:text-5xl font-extrabold leading-tight text-center desktop:text-left">
                         <span className="text-[#171717]">Smart Charging</span>
                         <br />
                         <span className="text-[#2CDE00]">Solutions, Real Results</span>
                     </h2>
 
                     {/* description */}
-                    <p className="text-[#757575] mt-5 max-w-xl">
+                    <p className="font-inter text-[#757575] mt-5 max-w-xl  desktop:text-left text-justify mx-auto">
                         At ChargeFlow, we simplify your EV experience with cutting-edge
                         technology. Whether for your home or business, our solutions are
                         built to be fast, reliable, and easy to manage—so you’re always
@@ -64,7 +64,7 @@ const ExpertiseSection = () => {
                     </p>
 
                     {/* features */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 mt-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 mt-6  mx-10 desktop:mx-0">
                         {[
                             "Host Onboarding & KYC",
                             "Payment Processing",
@@ -73,7 +73,7 @@ const ExpertiseSection = () => {
                             "Booking System",
                             "Revenue Analytics",
                         ].map((item) => (
-                            <div key={item} className="flex items-center gap-3">
+                            <div key={item} className="font-inter flex items-center gap-3">
                                 <span className="w-5 h-5 flex items-center justify-center rounded-full border-2 border-green-400 text-green-400 text-xs">
                                     ✓
                                 </span>

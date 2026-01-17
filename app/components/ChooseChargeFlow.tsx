@@ -1,4 +1,5 @@
 import React from "react";
+import { ArrowRight } from "lucide-react";
 
 const cardData = [
   {
@@ -23,9 +24,9 @@ const cardData = [
 
 const ChooseChargeFlow = () => {
   return (
-    <section className="w-full bg-white text-black px-14 pb-20">
+    <section className="w-full bg-white text-black pb-18 desktop:px-10 px-6">
       {/* Top label */}
-      <div className="flex items-center justify-center gap-2 mb-14">
+      <div className="flex items-center justify-center gap-2 desktop:mb-14 mb-4 ">
         <div className="relative w-[22px] h-[22px] flex items-center justify-center">
           <div className="absolute w-[22px] h-[22px] rounded-full border-2 border-green-500" />
           <div className="w-2 h-2 rounded-full bg-green-500" />
@@ -36,15 +37,15 @@ const ChooseChargeFlow = () => {
       </div>
 
       {/* Main layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 desktop:items-start">
         {/* LEFT */}
-        <div>
-          <h2 className="text-4xl lg:text-5xl text-[#171717] font-extrabold text-center leading-tight mb-6">
-            Your EV <br />
-            <span className="text-[#2CDE00]">Charging Partner</span>
+        <div >
+          <h2 className="font-roboto flex flex-col text-4xl lg:text-5xl  font-extrabold text-center  mb-4">
+            <span className="text-[#171717]">Your EV </span>
+            <span className="text-[#2CDE00] whitespace-nowrap">Charging Partner</span>
           </h2>
 
-          <p className="text-[#757575] text-[16.5px] font-medium text-center max-w-xl mb-12">
+          <p className="font-inter text-[#757575] text-[16.5px] font-medium  desktop:text-center text-justify max-w-xl mb-8 mx-auto">
             We don’t just provide chargers; we provide a complete ecosystem. Our
             mission is to bridge the gap between technology and convenience,
             making electric mobility a reality for everyone, everywhere.
@@ -52,35 +53,35 @@ const ChooseChargeFlow = () => {
           </p>
 
           {/* Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 ">
             {cardData.map((card, index) => {
               const isLast = index === cardData.length - 1;
 
               return (
                 <div
                   key={index}
-                  className={isLast ? "sm:col-span-2 flex justify-center" : ""}
+                  className={`flex justify-center ${isLast ? "sm:col-span-2" : ""}`}
                 >
                   <div
                     className="
-                      bg-white text-black rounded-2xl  px-2 py-6
-                       flex items-center flex-col w-[280px]
+                      font-roboto bg-white text-black rounded-2xl  desktop:px-2 px-3 py-6 
+                       flex items-center flex-col max-w-[280px] mobile:max-w-[330px]
                       shadow-[0_-2px_12.6px_0_#38EF0A47] border-[1.5] border-[#53FF28]
                     "
                    >
-                    <h3 className="font-semibold text-lg  mb-3">
+                    <h3 className="font-roboto font-[700] text-[20px] mb-1 ">
                       {card.title}
                     </h3>
 
-                    <p className="text-sm text-gray-600 mb-5 max-w-[230px] ">
+                    <p className="text-sm text-gray-600 mb-5 min-w-[230px] text-center desktop:px-0 tablat:px-3">
                       {card.description}
                     </p>
 
                     <a
                       href={card.link}
-                      className="text-green-500 font-medium flex items-center gap-2"
+                      className="text-[#2DE100] font-[500] flex items-center gap-2"
                     >
-                      Read More <span>→</span>
+                      Read More <ArrowRight/>
                     </a>
                   </div>
                 </div>

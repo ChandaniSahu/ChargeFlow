@@ -70,7 +70,7 @@ export default function HeroSection() {
 
         {/* TOP : Heading */}
         <div className="pt-28 text-center mb-10 ">
-          <span className="font-poppins font-extrabold text-[#38EF0A] text-[40px] desktop:text-[80px] text-center capitalize">
+          <span className="font-poppins font-extrabold text-[#38EF0A] text-[40px] desktop:text-[80px] text-center leading-[32px] capitalize">
             Power Your EV Journey
           </span>
 
@@ -90,7 +90,7 @@ export default function HeroSection() {
 
 
         {/* MIDDLE : Map + Bottom Right Content */}
-        <div className="flex-1 flex items-end mb-14">
+        <div className="font-inter flex-1 flex items-end mb-14">
           <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-10">
 
             {/* LEFT : MAP */}
@@ -145,7 +145,7 @@ export default function HeroSection() {
 
                   <button
                     type="button"
-                    className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-[linear-gradient(90deg,rgba(97,253,58,0.87)_0%,rgba(3,168,0,0.87)_100%)] 
+                    className="font-roboto absolute bottom-3 left-1/2 -translate-x-1/2 bg-[linear-gradient(90deg,rgba(97,253,58,0.87)_0%,rgba(3,168,0,0.87)_100%)] 
                     hover:bg-green-600 text-white px-6 py-2.5 rounded-full font-semibold shadow-lg z-10 whitespace-nowrap"
                   >
                     <TbLocationFilled className="w-5 h-5 inline-block mr-2" />
@@ -162,7 +162,7 @@ export default function HeroSection() {
             <div className="flex items-end justify-center lg:justify-end">
               <div className="text-white space-y-6 pb-6">
 
-                <p className="text-gray-200 desktop:min-w-[640px] desktop:text-center tablat:text-center mx-6">
+                <p className="font-roboto text-gray-200 desktop:min-w-[640px] desktop:text-center tablat:text-center mx-6">
                   ChargeFlow connects EV hosts and drivers, making charging accessible and reliable.
                   Our platform simplifies the process while ensuring every charge is profitable.
                 </p>

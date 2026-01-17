@@ -84,15 +84,15 @@ const ChargingServices = () => {
   // ];
 
   return (
-    <div className="min-h-screen bg-white py-16 px-14">
+    <div className="min-h-screen bg-white pb-16 desktop:px-14 px-6 ">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="text-center mb-16">
+        <div className="text-center desktop:mb-16 mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
              <div className="relative w-[22px] h-[22px] flex items-center justify-center">
           <div className="absolute w-[22px] h-[22px] rounded-full border-2 border-green-500" />
           <div className="w-2 h-2 rounded-full bg-green-500" />
-        </div>
+         </div>
             <span className="font-roboto text-[#333333] font-semibold text-[20px] leading-[100%] tracking-[0] capitalize">Our Core Services</span>
           </div>
           
@@ -105,13 +105,13 @@ const ChargingServices = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 desktop:gap-y-[25px] gap-x-14">
           {servicesData.map((service, index) => {
             const IconComponent = service.icon;
             return (
               <div
                 key={index}
-                className="group bg-[#DEFBD6] border-[1.5px] border-[#38EF0A] rounded-[15px] flex flex-col items-center justify-center  p-6 transition-all duration-300 hover:bg-[linear-gradient(141.25deg,_#48FE1A_8.79%,_#1F9900_100%)] cursor-pointer"
+                className="group bg-[#DEFBD6] border-[1.5px] border-[#38EF0A] rounded-[15px] flex flex-col items-center justify-center p-4  desktop:p-6 transition-all duration-300 hover:bg-[linear-gradient(141.25deg,_#48FE1A_8.79%,_#1F9900_100%)] cursor-pointer"
               >
                 {/* Icon */}
                 <div className="mb-4">
@@ -123,7 +123,7 @@ const ChargingServices = () => {
                 </div>
 
                 {/* Title */}
-                <h3 className="font-inter text-[24px] font-semibold mb-2 text-[#171717] group-hover:text-white transition-colors duration-300">
+                <h3 className="font-inter text-[22px] desktop:text-[24px] font-semibold mb-2 text-[#171717] group-hover:text-white transition-colors duration-300">
                   {service.title}
                 </h3>
 

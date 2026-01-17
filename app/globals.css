@@ -155,7 +155,7 @@
 
 @layer utilities {
   .font-open-sans {
-    font-family: var(--font-open-sans);
+    font-family: var(--font-inter);
   }
 
   .font-inter {
