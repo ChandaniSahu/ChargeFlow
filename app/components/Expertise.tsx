@@ -56,7 +56,7 @@ const ExpertiseSection = () => {
                     </h2>
 
                     {/* description */}
-                    <p className="font-inter text-[#757575] mt-5 max-w-xl  desktop:text-left text-justify mx-auto">
+                    <p className="font-inter text-[#757575] mt-5 max-w-xl  desktop:text-left text-justify desktop:mx-0 mx-auto">
                         At ChargeFlow, we simplify your EV experience with cutting-edge
                         technology. Whether for your home or business, our solutions are
                         built to be fast, reliable, and easy to manage—so you’re always

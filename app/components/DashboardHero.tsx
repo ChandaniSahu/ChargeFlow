@@ -172,7 +172,7 @@ export default function HeroSection() {
           hover:bg-green-600 p-4 rounded-full text-black font-semibold border-2 border-white shadow-[0_0_16.1px_#38EF0A]">
                     <FaPlay className="w-5 h-5 text-white" />
                   </button>
-                  <section className="w-[170px] desktop:max-w-[200px] text-[11px]">
+                  <section className="w-[170px] desktop:max-w-[200px] text-[10px]">
                     Watch our video to see how ChargeFlow is revolutionizing EV charging for hosts and drivers.
                   </section>
 
