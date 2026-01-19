@@ -33,8 +33,9 @@ function ProfileDropdown() {
   return (
     <div 
       className="relative" 
-      // onMouseLeave={() => setProfileOpen(false)} // close dropdown on mouse leave
+      onMouseLeave={() => setProfileOpen(false)} // close dropdown on mouse leave
     >
+
       {/* Profile Image */}
       <img
         onClick={() => setProfileOpen(!profileOpen)} // toggle dropdown on click
@@ -48,6 +49,12 @@ function ProfileDropdown() {
       {/* Dropdown */}
       {profileOpen && (
        <div className="font-inter absolute right-0 mt-2 w-45 bg-white rounded-[5px] shadow-lg py-1 text-[11px]">
+              <span
+              className="desktop:hidden text-black absolute right-2 top-2 text-[16px] font-bold cursor-pointer"
+              onClick={() => setProfileOpen(false)}
+            >
+              &times;
+            </span>
           <div className="flex items-center gap-3 px-4 pb-2 ">
             <img src="/images/user.jpg" className="w-12 h-12 rounded-full" />
             <div>
@@ -171,7 +178,8 @@ function ProfileDropdown() {
 
         {/* Mobile Menu Dropdown */}
         {menuOpen && (
-          <div className="md:w-[30%] w-[70%] flex items-center absolute top-0 right-0 xl:hidden bg-white/20 backdrop-blur-md shadow-md px-4 py-4 flex flex-col gap-4 text-black font-[600]">
+          <div 
+          className="md:w-[30%] w-[70%] flex items-center absolute top-0 right-0 xl:hidden bg-white/20 backdrop-blur-md shadow-md px-4 py-4 flex flex-col gap-4 text-black font-[600]">
             <span
               className="self-end text-2xl font-bold cursor-pointer"
               onClick={() => setMenuOpen(false)}
