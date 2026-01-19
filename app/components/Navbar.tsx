@@ -95,8 +95,7 @@ function ProfileDropdown() {
   );
 }
   
-useEffect(()=>{console.log('onmousedown',onmouseleave)})
-useEffect(()=>{console.log('openprofile',profileOpen)})
+
   return (
     <>
       <div className="absolute top-0 z-[150] w-full">

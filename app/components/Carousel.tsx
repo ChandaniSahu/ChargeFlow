@@ -13,11 +13,12 @@ const ImageCarousel = () => {
     './images/card3.png',
   ];
 
+
   // Add CSS animations
   useEffect(() => {
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes slideFrameLeft {
+      @keyframes slideFrameRight {
         from {
           transform: translateX(100%);
         }
@@ -26,7 +27,7 @@ const ImageCarousel = () => {
         }
       }
       
-      @keyframes slideFrameRight {
+      @keyframes slideFrameLeft {
         from {
           transform: translateX(-100%);
         }
@@ -53,10 +54,18 @@ const ImageCarousel = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
-      setSlideDirection('left');
-      setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
+  const nextIndex = (currentIndex + 1) % images.length;
+
+  // THIS line controls direction
+  const direction = nextIndex === 0 ? 'left' : 'right';
+
+  setSlideDirection(direction);
+  setCurrentIndex(nextIndex);
+}, 3000);
+
   };
+
+  // Handle manual navigation with correct direction
 
   useEffect(() => {
     if (!isHovered) startAutoScroll();
@@ -64,7 +73,7 @@ const ImageCarousel = () => {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isHovered]);
+  }, [isHovered, currentIndex]); // Added currentIndex to dependencies
 
   // Reset slide direction after animation
   useEffect(() => {
@@ -127,7 +136,7 @@ const ImageCarousel = () => {
             slideDirection === 'left' ? 'animate-frame-slide-left' : 
             slideDirection === 'right' ? 'animate-frame-slide-right' : ''
           }`}
-          key={currentIndex}
+          key={`${currentIndex}-${slideDirection}`} // Added slideDirection to key for proper re-render
         >
           {/* Previous card (partial view) - Only show if not first image */}
           {showPrevCard && (
