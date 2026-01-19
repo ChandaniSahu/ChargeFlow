@@ -74,19 +74,21 @@ const PricingPlans = () => {
         </div>
             <span className="font-roboto text-[#333333] font-semibold text-[20px] leading-[100%] tracking-[0] capitalize">Pricing Plans</span>
           </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold mb-2 text-[#171717] ">
+          <div className="font-roboto flex flex-col">
+           <h1 className="text-4xl md:text-5xl font-bold  text-[#171717] ">
             Flexible Plans For Every
           </h1>
           <h1 className="text-4xl md:text-5xl font-bold text-[#2CDE00] mb-8">
             Charging Need
-          </h1>
+          </h1> 
+          </div>
+          
 
           {/* Toggle */}
-          <div className="inline-flex bg-[#F0F9EE] rounded-full p-2">
+          <div className="font-roboto inline-flex bg-[#F0F9EE] rounded-full p-2">
             <button
               onClick={() => setIsYearly(false)}
-              className={`px-9 py-2 rounded-full font-medium text-[20px] transition-all ${
+              className={`px-9 py-2 rounded-full font-[600] text-[20px] transition-all ${
                 !isYearly 
                   ? 'bg-[#38EF0A] text-white shadow-lg' 
                   : 'text-[#364153] cursor-pointer'
@@ -96,7 +98,7 @@ const PricingPlans = () => {
             </button>
             <button
               onClick={() => setIsYearly(true)}
-              className={`px-9 py-2 rounded-full font-medium text-[20px] transition-all ${
+              className={`px-9 py-2 rounded-full font-[600] text-[20px] transition-all ${
                 isYearly 
                   ? 'bg-[#38EF0A] text-white shadow-lg ' 
                   : 'text-[#364153] cursor-pointer'
@@ -112,7 +114,7 @@ const PricingPlans = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative overflow-hidden rounded-3xl p-6  transition-all duration-300 flex flex-col items-center shadow-[0px_3px_6.2px_0px_#00000033] ${
+              className={`font-inter font-[600] relative overflow-hidden rounded-3xl p-6  transition-all duration-300 flex flex-col items-center shadow-[0px_3px_6.2px_0px_#00000033] ${
                 plan.isPremium
                   ? 'bg-[linear-gradient(157.4deg,_#3FFF52_1.97%,_#06B30B_98.88%)] text-white shadow-2xl premium-inner-glow'
                   : 'bg-white text-gray-900 shadow-lg hover:shadow-xl moving-gradient-border '
@@ -136,14 +138,14 @@ const PricingPlans = () => {
               </div>
 
               {/* Heading */}
-              <h3 className={`text-[30px] lg:text-[35px] font-bold  ${
+              <h3 className={`text-[30px] lg:text-[35px]  ${
                 plan.isPremium ? 'text-white' : 'text-[#364153]'
               }`}>
                 {plan.heading}
               </h3>
 
               {/* Price */}
-              <div className={`text-[40px] lg:text-[48px] font-bold mb-4 ${
+              <div className={`text-[40px] lg:text-[48px] mb-4 ${
                 plan.isPremium ? 'text-white' : 'text-[#171717]'
               }`}>
                 {isYearly ? plan.yearlyPrice : plan.monthlyPrice}

@@ -64,16 +64,16 @@ const ChooseChargeFlow = () => {
                 >
                   <div
                     className="
-                      font-roboto bg-white text-black rounded-2xl  px-2   py-6 
+                      font-roboto bg-white  rounded-2xl  px-2   py-6 
                        flex items-center flex-col desktop:max-w-[280px] max-w-[340px]
                       shadow-[0_-2px_12.6px_0_#38EF0A47] border-[1.5] border-[#53FF28]
                     "
                    >
-                    <h3 className="font-roboto font-[700] text-[20px] mb-1 ">
+                    <h3 className="font-roboto font-[700] text-[20px] text-[#364153] mb-1 ">
                       {card.title}
                     </h3>
 
-                    <p className="text-sm text-gray-600 mb-5 min-w-[230px] text-center desktop:px-0 tablat:px-3">
+                    <p className="text-sm text-[#757575] mb-5 min-w-[230px] text-center desktop:px-0 tablat:px-3">
                       {card.description}
                     </p>
 
@@ -100,8 +100,8 @@ const ChooseChargeFlow = () => {
             />
           </div>
 
-          <div className="absolute bottom-6 right-6 bg-white text-black rounded-xl px-5 py-4 max-w-xs shadow-xl">
-            <p className="font-semibold text-sm mb-1">
+          <div className="font-roboto absolute bottom-6 right-6 bg-white rounded-xl px-5 py-4 max-w-xs shadow-xl">
+            <p className="font-[700] text-[#364153] text-[16px] mb-1">
               Join ChargeFlow & Power The
               <br />
               Future Of Mobility.
@@ -109,9 +109,10 @@ const ChooseChargeFlow = () => {
 
             <a
               href="/become-host"
-              className="text-green-500 font-medium text-sm flex items-center gap-2"
+              className="text-[#2BCD02] font-[600] text-[11.25px] flex items-center gap-2"
             >
-              Become A Host Today <span>→</span>
+              Become A Host Today 
+               <ArrowRight className="w-5 h-5 text-[#2BCD02]" />
             </a>
           </div>
         </div>

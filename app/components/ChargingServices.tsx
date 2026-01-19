@@ -44,44 +44,6 @@ const ChargingServices = () => {
       link: "#"
     }
   ];
-  // const servicesData = [
-  //   {
-  //     icon: Home,
-  //     title: "Host Registration",
-  //     description: "Join our growing network as a charging host, register your location in minutes, set your own rules, and start welcoming ev drivers to your station.",
-  //     link: "#"
-  //   },
-  //   {
-  //     icon: Zap,
-  //     title: "Charger Management",
-  //     description: "Stay in full control of your infrastructure, monitor charger health, track energy usage, and manage multiple charging points from a single, smart dashboard.",
-  //     link: "#"
-  //   },
-  //   {
-  //     icon: Calendar,
-  //     title: "Booking System",
-  //     description: "Eliminate wait times with our smart scheduling tool, allow users to reserve charging slots in advance, ensuring a smooth and organized flow at your station.",
-  //     link: "#"
-  //   },
-  //   {
-  //     icon: CreditCard,
-  //     title: "Payment Processing",
-  //     description: "Experience fast and secure automated billing, our system supports multiple payment modes and provides instant digital receipts for every successful session.",
-  //     link: "#"
-  //   },
-  //   {
-  //     icon: Headphones,
-  //     title: "Customer App",
-  //     description: "We are here to help you 24/7, our dedicated support team ensures that both hosts and drivers get immediate assistance whenever they face any technical issues.",
-  //     link: "#"
-  //   },
-  //   {
-  //     icon: BarChart3,
-  //     title: "Revenue Analytics",
-  //     description: "Gain deep insights into your business performance, track your daily earnings, peak usage hours, and growth trends with easy-to-read visual reports.",
-  //     link: "#"
-  //   }
-  // ];
 
   return (
     <div className="min-h-screen bg-white pb-16 desktop:px-14 px-6 ">
@@ -95,13 +57,15 @@ const ChargingServices = () => {
          </div>
             <span className="font-roboto text-[#333333] font-semibold text-[20px] leading-[100%] tracking-[0] capitalize">Our Core Services</span>
           </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold mb-2 text-[#171717]">
+          <div className='font-roboto flex flex-col'>
+           <h1 className="text-4xl md:text-5xl font-bold mb-2 text-[#171717]">
             Complete EV Charging Solutions
           </h1>
           <h2 className="text-4xl md:text-5xl font-bold text-[#2CDE00]">
             That Deliver Real Value
-          </h2>
+          </h2> 
+          </div>
+          
         </div>
 
         {/* Services Grid */}
@@ -135,7 +99,7 @@ const ChargingServices = () => {
                 {/* View Details Link */}
                 <a
                   href={service.link}
-                  className="inline-flex items-center gap-2 text-[18px] text-[#364153] font-[600] group-hover:text-white transition-colors duration-300"
+                  className="font-inter inline-flex items-center gap-2 text-[18px] text-[#364153] font-[600] group-hover:text-white transition-colors duration-300"
                 >
                   View Details
                   <ArrowRight className="w-5 h-5 text-[#38EF0A]  group-hover:text-white transition-colors duration-300" />
