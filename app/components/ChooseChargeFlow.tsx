@@ -64,7 +64,7 @@ const ChooseChargeFlow = () => {
                 >
                   <div
                     className="
-                      font-roboto bg-white  rounded-2xl  px-2   py-6 
+                      font-roboto bg-white  rounded-2xl  px-2   py-2 
                        flex items-center flex-col desktop:max-w-[280px] max-w-[340px]
                       shadow-[0_-2px_12.6px_0_#38EF0A47] border-[1.5] border-[#53FF28]
                     "
@@ -73,7 +73,7 @@ const ChooseChargeFlow = () => {
                       {card.title}
                     </h3>
 
-                    <p className="text-sm text-[#757575] mb-5 min-w-[230px] text-center desktop:px-0 tablat:px-3">
+                    <p className="text-sm text-[#757575] mb-3 min-w-[230px] text-center desktop:px-0 tablat:px-3">
                       {card.description}
                     </p>
 

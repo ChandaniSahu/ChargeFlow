@@ -1,7 +1,7 @@
 
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectorModal from "./SelectorModal";
 import { IoMoonSharp } from "react-icons/io5";
 import { LightModeIcon } from "./icons";
@@ -32,8 +32,8 @@ const visibleMenuItems = isLoggedIn
 function ProfileDropdown() {
   return (
     <div 
-      className="relative" 
-      onMouseLeave={() => setProfileOpen(false)} // close dropdown on mouse leave
+      className="relative " 
+      // onMouseLeave={() => setProfileOpen(false)} // close dropdown on mouse leave
     >
 
       {/* Profile Image */}
@@ -48,7 +48,8 @@ function ProfileDropdown() {
 
       {/* Dropdown */}
       {profileOpen && (
-       <div className="font-inter absolute right-0 mt-2 w-45 bg-white rounded-[5px] shadow-lg py-1 text-[11px]">
+       <div onMouseLeave={() => setProfileOpen(false)}
+       className="font-inter absolute right-0 mt-2 w-45 bg-white rounded-[5px] shadow-lg py-1 text-[11px]">
               <span
               className="desktop:hidden text-black absolute right-2 top-2 text-[16px] font-bold cursor-pointer"
               onClick={() => setProfileOpen(false)}
@@ -93,7 +94,9 @@ function ProfileDropdown() {
     </div>
   );
 }
-
+  
+useEffect(()=>{console.log('onmousedown',onmouseleave)})
+useEffect(()=>{console.log('openprofile',profileOpen)})
   return (
     <>
       <div className="absolute top-0 z-[150] w-full">

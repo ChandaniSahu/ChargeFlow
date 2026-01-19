@@ -69,16 +69,16 @@ const ChargingServices = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 desktop:gap-y-[25px] gap-x-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 desktop:gap-y-[25px] desktop:gap-x-14 gap-x-5">
           {servicesData.map((service, index) => {
             const IconComponent = service.icon;
             return (
               <div
                 key={index}
-                className="group bg-[#DEFBD6] border-[1.5px] border-[#38EF0A] rounded-[15px] flex flex-col items-center justify-center p-4  desktop:p-6 transition-all duration-300 hover:bg-[linear-gradient(141.25deg,_#48FE1A_8.79%,_#1F9900_100%)] cursor-pointer"
+                className="group bg-[#DEFBD6] border-[1.5px] border-[#38EF0A] rounded-[15px] flex flex-col items-center justify-center p-5 transition-all duration-300 hover:bg-[linear-gradient(141.25deg,_#48FE1A_8.79%,_#1F9900_100%)] cursor-pointer"
               >
                 {/* Icon */}
-                <div className="mb-4">
+                <div className="mb-3">
                   <div className="group w-16 h-16 bg-[linear-gradient(135deg,_#70FF4C_10%,_#27C300_100%)]
  rounded-full flex items-center justify-center group-hover:bg-gradient-to-br from-white to-white transition-colors duration-300">
                      {service.icon}
@@ -92,7 +92,7 @@ const ChargingServices = () => {
                 </h3>
 
                 {/* Description */}
-                <p className="font-roboto  text-[15px] leading-[109%] tracking-[0.01em] text-justify text-[#434343]  mb-5 group-hover:text-white transition-colors duration-300">
+                <p className="font-roboto  text-[15px] leading-[109%] tracking-[0.01em] text-justify text-[#434343]  mb-[15px] group-hover:text-white transition-colors duration-300">
                   {service.description}
                 </p>
 
@@ -100,7 +100,7 @@ const ChargingServices = () => {
                 <a
                   href={service.link}
                   className="font-inter inline-flex items-center gap-2 text-[18px] text-[#364153] font-[600] group-hover:text-white transition-colors duration-300"
-                >
+                 >
                   View Details
                   <ArrowRight className="w-5 h-5 text-[#38EF0A]  group-hover:text-white transition-colors duration-300" />
                 </a>

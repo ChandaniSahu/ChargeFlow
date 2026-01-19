@@ -162,7 +162,7 @@ export default function HeroSection() {
             <div className="flex items-end justify-center lg:justify-end">
               <div className="text-white space-y-6 pb-6">
 
-                <p className="font-roboto text-gray-200 desktop:min-w-[640px] desktop:text-center tablat:text-center mx-6">
+                <p className="font-roboto font-[500] text-gray-200 desktop:min-w-[640px] capitalize desktop:text-center tablat:text-center mx-6">
                   ChargeFlow connects EV hosts and drivers, making charging accessible and reliable.
                   Our platform simplifies the process while ensuring every charge is profitable.
                 </p>
