@@ -39,18 +39,19 @@ const ImageCarousel = () => {
         {/* Main carousel wrapper */}
         <div className="relative desktop:h-[230px] flex items-center justify-center">
           {/* Previous card (partial view) */}
-          <div
-            className="absolute left-0 w-[60px] h-50 hidden desktop:block opacity-50 cursor-pointer transition-all duration-500 z-10"
-            style={{
-              transform: "translateX(-20%)",
-            }}
-          >
-            <img
-              src={images[(currentIndex - 1 + images.length) % images.length]}
-              alt="Previous"
-              className="w-full h-full object-cover rounded-xl"
-            />
-          </div>
+          {currentIndex !== 0 && (
+  <div
+    className="absolute left-0 w-[60px] h-50 hidden desktop:block opacity-50 cursor-pointer transition-all duration-500 z-10"
+    style={{ transform: "translateX(-20%)" }}
+  >
+    <img
+      src={images[(currentIndex - 1 + images.length) % images.length]}
+      alt="Previous"
+      className="w-full h-full object-cover rounded-xl"
+    />
+  </div>
+)}
+
 
           {/* Current card (center, full size) */}
           <div className="w-full desktop:w-[90%] h-full z-20 transition-all duration-700 ease-in-out bg-transparent">
@@ -62,18 +63,19 @@ const ImageCarousel = () => {
           </div>
 
           {/* Next card (partial view) */}
-          <div
-            className="absolute right-0 w-[60px] h-50 hidden desktop:block  opacity-50 cursor-pointer transition-all duration-500 z-10"
-            style={{
-              transform: "translateX(20%)",
-            }}
-          >
-            <img
-              src={images[(currentIndex + 1) % images.length]}
-              alt="Next"
-              className="w-full h-full object-cover rounded-xl"
-            />
-          </div>
+         {currentIndex !== images.length - 1 && (
+  <div
+    className="absolute right-0 w-[60px] h-50 hidden desktop:block opacity-50 cursor-pointer transition-all duration-500 z-10"
+    style={{ transform: "translateX(20%)" }}
+  >
+    <img
+      src={images[(currentIndex + 1) % images.length]}
+      alt="Next"
+      className="w-full h-full object-cover rounded-xl"
+    />
+  </div>
+)}
+
         </div>
       </div>
     </div>
