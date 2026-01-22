@@ -97,7 +97,7 @@ export default function HeroSection() {
 
             {/* LEFT : MAP */}
             <div className="flex items-end">
-              <div className="bg-[#87807b] mx-auto xl:mx-0 rounded-2xl p-4 xl:min-w-[400px] shadow-xl">
+              <div className="bg-[#87807b] mx-auto xl:mx-0 rounded-2xl py-2 px-6 xl:min-w-[400px] shadow-xl">
 
                 {/* Search */}
                 <div className="flex items-center gap-2 mt-3 mb-4 ">
@@ -119,7 +119,7 @@ export default function HeroSection() {
                 </div>
 
                 {/* Pills */}
-                <div className="flex gap-2 mb-4 flex-wrap text-[12px] font-medium">
+                <div className="flex gap-2 mb-4 flex-wrap text-[12px] font-medium desktop:justify-between ">
                   <span onClick={() => setIsOpenModal(true)}
                   className="flex items-center gap-2 bg-white px-1 xl:px-3  xl:py-1 rounded-lg cursor-pointer">
                     <Icon icon="simple-icons:tata" className="w-5 h-5 text-[#1E59C7]" />
