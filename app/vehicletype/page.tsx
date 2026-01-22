@@ -1,14 +1,14 @@
 "use client";
 import React from 'react';
 const VehicleType = () => {
-  const handleVehicleClick = (vehicleType) => {
+  const handleVehicleClick = (vehicleType:any) => {
     if (vehicleType === 'fourwheeler') {
       window.location.href = '/selectvehicle';
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8 ">
+    <div className="min-h-screen bg-white p-4 sm:p-6 lg:p-8 ">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -41,9 +41,6 @@ const VehicleType = () => {
                   src="/vehicletype/scooter.png" 
                   alt="Two Wheeler"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ctext x='50%25' y='50%25' font-size='60' text-anchor='middle' dy='.3em'%3E🛵%3C/text%3E%3C/svg%3E";
-                  }}
                 />
               </div>
               <h3 className="text-xl font-semibold text-gray-900">Two Wheeler</h3>
@@ -61,9 +58,6 @@ const VehicleType = () => {
                   src="/vehicletype/rickshaw.png" 
                   alt="Three Wheeler"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ctext x='50%25' y='50%25' font-size='60' text-anchor='middle' dy='.3em'%3E🛺%3C/text%3E%3C/svg%3E";
-                  }}
                 />
               </div>
               <h3 className="text-xl font-semibold text-gray-900">Three Wheeler</h3>
@@ -81,9 +75,6 @@ const VehicleType = () => {
                   src="/vehicletype/car.png" 
                   alt="Four Wheeler"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ctext x='50%25' y='50%25' font-size='60' text-anchor='middle' dy='.3em'%3E🚗%3C/text%3E%3C/svg%3E";
-                  }}
                 />
               </div>
               <h3 className="text-xl font-semibold text-gray-900">Four Wheeler</h3>
@@ -101,9 +92,6 @@ const VehicleType = () => {
                   src="/vehicletype/truck.png" 
                   alt="Commercial"
                   className="w-full h-full object-contain"
-                  onError={(e) => {
-                    e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ctext x='50%25' y='50%25' font-size='60' text-anchor='middle' dy='.3em'%3E🚚%3C/text%3E%3C/svg%3E";
-                  }}
                 />
               </div>
               <h3 className="text-xl font-semibold text-gray-900">Commercial</h3>

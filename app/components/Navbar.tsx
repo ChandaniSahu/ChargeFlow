@@ -99,7 +99,7 @@ function ProfileDropdown() {
   return (
     <>
       <div className="absolute top-0 z-[150] w-full">
-        <div className="mx-auto flex max-w-full items-center justify-between py-2 px-4 bg-white/60 backdrop-blur-md shadow-md">
+        <div className="mx-auto flex max-w-full items-center justify-between py-2 px-4 bg-[linear-gradient(90.22deg,rgba(255,255,255,0.79)_0.06%,rgba(142,142,147,0.64)_100%)] backdrop-blur-[46.3px] shadow-[0px_5px_8px_0px_rgba(0,0,0,0.35)] rounded-b-lg ">
           {/* Logo */}
           <Image
             src="/logo.svg"

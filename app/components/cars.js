@@ -66,3 +66,32 @@ export const carsData = [
 { id: 45, name: "Mercedes G 580", company: "Mercedes", image: "/cars/mercedes-g-580-2.png" },
 
 ]
+
+import { Icon } from "@iconify/react";
+
+export const companies = [
+  { name: "All", logo: "" },
+
+  {
+    name: "Tata",
+    logo: <Icon icon="simple-icons:tata" className="w-6 h-6 text-[#1E59C7]" />,
+  },
+
+  { name: "MG", logo: "/logos/mg.svg" },
+  { name: "Hyundai", logo: "/logos/hyundai.svg" },
+  { name: "Mahindra", logo: "/logos/mahindra.svg" },
+  { name: "Mercedes", logo: "/logos/mercedes.svg" },
+
+  { name: "Jaguar", logo: "/logos/jaguar.svg" },
+  { name: "Mini Cooper", logo: "/logos/mini.svg" },
+  { name: "Tesla", logo: "/logos/tesla.svg" },
+  { name: "Audi", logo: "/logos/audi.svg" },
+  { name: "Volvo", logo: "/logos/volvo.svg" },
+  { name: "BYD", logo: "/logos/byd.svg" },
+  { name: "Kia", logo: "/logos/kia.svg" },
+  { name: "BMW", logo: "/logos/bmw.svg" },
+  { name: "Rolls Royce", logo: "/logos/rolls.svg" },
+  { name: "Citroen", logo: "/logos/citroen.svg" },
+  { name: "Porsche", logo: "/logos/porsche.svg" },
+  { name: "Vinfast", logo: "/logos/vinfast.svg" },
+];
