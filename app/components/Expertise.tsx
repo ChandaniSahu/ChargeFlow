@@ -57,10 +57,9 @@ const ExpertiseSection = () => {
 
                     {/* description */}
                     <p className="font-inter text-[#757575] mt-5 max-w-xl  xl:text-left text-justify xl:mx-0 mx-auto">
-                        At ChargeFlow, we simplify your EV experience with cutting-edge
-                        technology. Whether for your home or business, our solutions are
-                        built to be fast, reliable, and easy to manage—so you’re always
-                        ready for the road ahead.
+                      At ChargeFlow, we simplify your EV experience with cutting-edge technology. 
+                      Whether for your home or business, our solutions are built to be fast, reliable,
+                       and incredibly easy to manage, ensuring you’re always ready for the road ahead.
                     </p>
 
                     {/* features */}
