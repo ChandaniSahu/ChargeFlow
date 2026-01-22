@@ -65,6 +65,71 @@ export const carsData = [
 
 { id: 45, name: "Mercedes G 580", company: "Mercedes", image: "/cars/mercedes-g-580-2.png" },
 
+// Jaguar
+{ id: 46, name: "Jaguar I-Pace", company: "Jaguar", image: "/cars/jaguar-i-pace-black.png" },
+{ id: 47, name: "Jaguar I-Pace", company: "Jaguar", image: "/cars/jaguar-i-pace-red.png" },
+
+// Mini
+{ id: 48, name: "Mini Cooper SE", company: "Mini Cooper", image: "/cars/mini-cooper-se.png" },
+{ id: 49, name: "Mini Cooper Countryman E", company: "Mini Cooper", image: "/cars/mini-cooper-countryman-e.png" },
+
+// Tesla
+{ id: 50, name: "Tesla Model Y", company: "Tesla", image: "/cars/tesla-model-y.png" },
+
+// Audi
+{ id: 51, name: "Audi Q8 E-Tron", company: "Audi", image: "/cars/audi-q8-e-tron.png" },
+
+
+// BYD – Row 1
+{ id: 52, name: "BYD E6", company: "BYD", image: "/cars/byd-e6.png" },
+{ id: 53, name: "BYD Atto 3", company: "BYD", image: "/cars/byd-atto-3.png" },
+{ id: 54, name: "BYD Seal", company: "BYD", image: "/cars/byd-seal.png" },
+
+// BYD – Row 2
+{ id: 55, name: "BYD Emax 7 Premium", company: "BYD", image: "/cars/byd-emax-7-premium.png" },
+{ id: 56, name: "BYD Emax 7 Superior", company: "BYD", image: "/cars/byd-emax-7-superior.png" },
+{ id: 57, name: "BYD Sealion 7 RWD", company: "BYD", image: "/cars/byd-sealion-7-rwd.png" },
+
+// Kia – Row 1
+{ id: 58, name: "Kia EV6", company: "Kia", image: "/cars/kia-ev6.png" },
+{ id: 59, name: "Kia EV9", company: "Kia", image: "/cars/kia-ev9.png" },
+{ id: 60, name: "Kia Carens Clavis EV", company: "Kia", image: "/cars/kia-carens-clavis-ev.png" },
+
+// Kia – Row 2
+{ id: 61, name: "Kia Carens Clavis EV", company: "Kia", image: "/cars/kia-carens-clavis-ev-2.png" },
+
+// BMW – Row 1
+{ id: 62, name: "BMW i4", company: "BMW", image: "/cars/bmw-i4.png" },
+{ id: 63, name: "BMW iX", company: "BMW", image: "/cars/bmw-ix.png" },
+{ id: 64, name: "BMW iX xDrive40", company: "BMW", image: "/cars/bmw-ix-xdrive40.png" },
+
+// BMW – Row 2
+{ id: 65, name: "BMW iX xDrive30", company: "BMW", image: "/cars/bmw-ix-xdrive30.png" },
+{ id: 66, name: "BMW i5 560 xDrive40", company: "BMW", image: "/cars/bmw-i5-560-xdrive40.png" },
+{ id: 67, name: "BMW iX eDrive50", company: "BMW", image: "/cars/bmw-ix-edrive50.png" },
+
+// BMW – Row 3
+{ id: 68, name: "BMW iX1 LWB", company: "BMW", image: "/cars/bmw-ix1-lwb-blue.png" },
+{ id: 69, name: "BMW iX1 LWB", company: "BMW", image: "/cars/bmw-ix1-lwb-black.png" },
+
+
+// Porsche
+{ id: 70, name: "Porsche Taycan", company: "Porsche", image: "/cars/porsche-taycan-white.png" },
+{ id: 71, name: "Porsche Taycan", company: "Porsche", image: "/cars/porsche-taycan-black.png" },
+
+// VinFast
+{ id: 72, name: "VinFast VF7", company: "Vinfast", image: "/cars/vinfast-vf7.png" },
+{ id: 73, name: "VinFast VF6", company: "Vinfast", image: "/cars/vinfast-vf6.png" },
+
+// Volvo
+{ id: 74, name: "Volvo XC40 Recharge", company: "Volvo", image: "/cars/volvo-xc40-recharge.png" },
+
+// Rolls Royce
+{ id: 75, name: "Rolls Royce Spectre", company: "Rolls Royce", image: "/cars/rolls-royce-spectre.png" },
+
+// citroen
+{ id: 76, name: "Citroen e-C4", company: "Citroen", image: "/cars/citroen-e-c4.png" },
+
 ]
 
 import { Icon } from "@iconify/react";

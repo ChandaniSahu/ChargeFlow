@@ -34,11 +34,11 @@ if(!open) return null;
  return (
   <>
     {/* Black Background Overlay */}
-    <div className="fixed inset-0 bg-black bg-opacity-60 z-40"></div>
+    <div className="fixed inset-0 bg-black bg-opacity-60 z-[150]"></div>
 
     {/* Modal Box */}
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="font-roboto bg-white rounded-[20px] p-6 w-full max-w-[942px]">
+    <div className="fixed inset-0 flex items-center justify-center z-[150]">
+      <div className="font-roboto bg-white rounded-[20px] p-6 w-full max-w-[942px] ">
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center gap-5">
@@ -72,7 +72,7 @@ if(!open) return null;
           {vehicles.map((vehicle) => (
             <div
               key={vehicle.type}
-              className="w-[198px] h-[170px] bg-white rounded-[17px] shadow-[0px_2.84px_7.67px_0px_rgba(0,0,0,0.2)] p-4 cursor-pointer hover:scale-105 transition"
+              className="group w-[198px] h-[170px] bg-white hover:bg-[#e3ffdb] border-2 border-transparent hover:border-[#38ef0a] rounded-[17px] shadow-[0px_2.84px_7.67px_0px_rgba(0,0,0,0.2)] p-4 cursor-pointer hover:scale-105 transition"
               onClick={() => handleVehicleClick(vehicle.type)}
             >
               <div className="flex flex-col items-center">
@@ -80,7 +80,7 @@ if(!open) return null;
                   <img
                     src={vehicle.image}
                     alt={vehicle.label}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain "
                   />
                 </div>
                 <h3 className="text-[20px] font-[500] text-[#121212]">
