@@ -8,12 +8,13 @@ import { RiEqualizerLine } from "react-icons/ri";
 import { TbLocationFilled } from "react-icons/tb";
 import {OfferIcon } from "./icons";
 import { Icon } from "@iconify/react";
-
+import VehicleTypeModal from "./VehicleTypeModal";
 
 
 
 export default function HeroSection() {
   const [search, setSearch] = useState("");
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const placeholders = [
     "Search For Your Location",
     "Search For Your Station",
@@ -53,6 +54,7 @@ export default function HeroSection() {
 
 
   return (
+    <>
     <section className="relative w-full  flex flex-col overflow-hidden">
 
       {/* Background */}
@@ -118,7 +120,8 @@ export default function HeroSection() {
 
                 {/* Pills */}
                 <div className="flex gap-2 mb-4 flex-wrap text-[12px] font-medium">
-                  <span className="flex items-center gap-2 bg-white px-1 xl:px-3  xl:py-1 rounded-lg ">
+                  <span onClick={() => setIsOpenModal(true)}
+                  className="flex items-center gap-2 bg-white px-1 xl:px-3  xl:py-1 rounded-lg cursor-pointer">
                     <Icon icon="simple-icons:tata" className="w-5 h-5 text-[#1E59C7]" />
                     Tata Nexon EV
                   </span>
@@ -200,5 +203,8 @@ export default function HeroSection() {
 
       </div>
     </section>
+
+         <VehicleTypeModal open={isOpenModal} onClose={() => setIsOpenModal(false)} />
+    </>
   );
 }

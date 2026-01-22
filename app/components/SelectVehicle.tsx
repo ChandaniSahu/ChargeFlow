@@ -132,11 +132,12 @@ export default function SelectVehicle() {
         </div>
 
         {/* Add Vehicle Button - Fixed at bottom */}
-        {/* <div className="px-4 "> */}
-          <button className="w-full  px-6 py-4 bg-green-400  hover:bg-green-500 text-white font-medium rounded-xl transition-colors shadow-lg">
+        <div className="flex items-center justify-center ">
+          <button className="font-inter w-[437px]  px-6 py-4 bg-[#2FEB009E] border border-[#38EF0A] hover:bg-[#2FEB00] text-white font-medium rounded-[12px] transition-colors box-shadow: 0px 2px 4.9px 0px #00000033;
+ ">
             Add Vehicle
           </button>
-        {/* </div> */}
+        </div>
       </div>
     </div>
   );
