@@ -35,12 +35,13 @@ const handleCompanyClick = (companyName: string) => {
 
 
   return (
-    <div className="min-h-screen bg-white pb-20">
+    <div className="bg-white pb-12 ">
       <div className="max-w-7xl mx-auto xl:px-8 px-2">
         {/* Header */}
         <div className="pt-24 py-2 flex items-center gap-4 mb-5 ">
           <button className="text-[#1E1E1E]">
-            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg  onClick={() => window.history.back()}
+            className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
           </button>
@@ -129,7 +130,7 @@ const handleCompanyClick = (companyName: string) => {
         </div>
 
         {/* Vehicle Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 py-4 px-2 mb-6 mx-8 max-h-[500px] overflow-y-auto no-scrollbar ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 py-4 px-2 mb-6 mx-8 xl:max-h-[500px] sm:max-h-[930px] overflow-y-auto no-scrollbar ">
           {filteredVehicles.length === 0 ? (
             // Not Found UI
             <div className="col-span-full flex flex-col items-center justify-center text-center py-16">

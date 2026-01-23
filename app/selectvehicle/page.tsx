@@ -5,11 +5,13 @@ import Footer from "../components/Footer";
 
 const VehicleSelectorePage = () => {
   return(
-    <>
-    <Navbar  />
-    <SelectVehicle  />
-    <Footer />  
-    </>
+    <div className="min-h-screen flex flex-col">
+  <Navbar />
+  <main className="flex-1">
+    <SelectVehicle />
+  </main>
+  <Footer />
+</div>
   )
 }
 
