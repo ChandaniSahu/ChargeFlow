@@ -97,7 +97,7 @@ export default function HeroSection() {
 
             {/* LEFT : MAP */}
             <div className="flex items-end">
-              <div className="bg-[#87807b] mx-auto xl:mx-0 rounded-2xl py-2 px-6 xl:min-w-[400px] shadow-xl">
+              <div className="bg-[#87807b] mx-auto xl:mx-0 rounded-2xl py-2 px-4 xl:px-6 xl:min-w-[400px] shadow-xl">
 
                 {/* Search */}
                 <div className="flex items-center gap-2 mt-3 mb-4 ">
@@ -126,7 +126,7 @@ export default function HeroSection() {
                     Tata Nexon EV
                   </span>
 
-                  <span className="flex items-center gap-1 bg-white px-3 py-1 rounded-lg ">
+                  <span className="flex items-center gap-1 bg-white px-2 xl:px-3 xl:py-1 rounded-lg ">
                     <OfferIcon/>
                     Offers
                   </span>
