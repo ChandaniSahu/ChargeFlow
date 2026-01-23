@@ -121,12 +121,12 @@ export default function HeroSection() {
                 {/* Pills */}
                 <div className="flex gap-2 mb-4 flex-wrap text-[12px] font-medium desktop:justify-between ">
                   <span onClick={() => setIsOpenModal(true)}
-                  className="flex items-center gap-2 bg-white px-1 xl:px-3  xl:py-1 rounded-lg cursor-pointer">
+                  className="flex items-center gap-2 bg-white px-1 xl:px-3  py-1 rounded-lg cursor-pointer">
                     <Icon icon="simple-icons:tata" className="w-5 h-5 text-[#1E59C7]" />
                     Tata Nexon EV
                   </span>
 
-                  <span className="flex items-center gap-1 bg-white px-2 xl:px-3 xl:py-1 rounded-lg ">
+                  <span className="flex items-center gap-1 bg-white px-2 xl:px-3 py-1 rounded-lg ">
                     <OfferIcon/>
                     Offers
                   </span>
