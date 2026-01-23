@@ -1,21 +1,37 @@
 "use client";
-import { useState ,useEffect } from 'react';
-import {carsData , companies} from '../components/cars' 
+import { useState, useEffect } from 'react';
+import { useRef } from 'react';
+import { carsData, companies } from '../components/cars'
 import Typewriter from 'typewriter-effect';
 
 
 export default function SelectVehicle() {
   const [selectedCompany, setSelectedCompany] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+ 
 
   // Filter vehicles based on selected company and search query
   const filteredVehicles = carsData.filter(vehicle => {
     const matchesCompany = selectedCompany === "All" || vehicle.company === selectedCompany;
     const matchesSearch = vehicle.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         vehicle.company.toLowerCase().includes(searchQuery.toLowerCase());
+      vehicle.company.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCompany && matchesSearch;
   });
 
+const handleCompanyClick = (companyName: string) => {
+  setSelectedCompany(companyName);
+
+  const btn = buttonRefs.current[companyName];
+  if (btn) {
+    btn.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+  }
+};
 
 
   return (
@@ -24,7 +40,7 @@ export default function SelectVehicle() {
         {/* Header */}
         <div className="pt-24 py-2 flex items-center gap-4 mb-5 ">
           <button className="text-[#1E1E1E]">
-            <svg  className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
           </button>
@@ -32,50 +48,50 @@ export default function SelectVehicle() {
             Select Your Vehicle
           </h1>
         </div>
-        
+
 
 
         {/* Company Filter Tabs */}
         <div className="mb-6">
-          <div className="flex items-center gap-4 overflow-x-auto no-scrollbar py-1 border-b-[1px] border-[#00000029] xl:mx-10 px-1 ">
-  {companies.map((company) => (
-    <button
-      key={company.name}
-      onClick={() => setSelectedCompany(company.name)}
-      className={`relative flex justify-center items-center gap-2  min-h-[50px] min-w-[180px] transition-all rounded-[8px]       ${
-          selectedCompany === company.name
-            ? ""
-            : "shadow-[0px_2px_5.9px_0px_rgba(0,0,0,0.18)] hover:bg-green-50   hover:scale-103 cursor-pointer"
-        }`}
-    >
-      {company.name === "All" ? (
-        <div className={`font-roboto text-[20px] font-[500] ${selectedCompany === "All" ? 'text-black' : 'text-[#848484]'}`}>All</div>
-      ) : (
-        <div className="flex items-center gap-3">
-          {typeof company.logo === "string" ? (
-            <img
-              src={company.logo}
-              alt={company.name}
-              className="h-8 w-auto object-contain"
-            />
-          ) : (
-            company.logo
-          )}
-          <span className= {`font-medium font-roboto text-[20px] ${
-                selectedCompany === company.name 
-                  ? 'text-black' 
-                  : 'text-[#848484]'
-              }`}>
-            {company.name}
-          </span>
-        </div>
-      )}
-      {selectedCompany === company.name && (
-                <div className="absolute -bottom-[3px] left-0 right-0 h-[6px] bg-[#38EF0A] rounded-[6px]" />
-              )}
-    </button>
-  ))}
-</div>
+          <div ref={containerRef} className="flex items-center gap-4 overflow-x-auto no-scrollbar py-1 border-b-[1px] border-[#00000029] xl:mx-10 px-1 ">
+            {companies.map((company) => (
+              <button
+                key={company.name}
+                onClick={() => {setSelectedCompany(company.name) ,handleCompanyClick(company.name)}}
+                  ref={(el) => (buttonRefs.current[company.name] = el)}
+
+                className={`relative flex justify-center items-center gap-2  min-h-[50px] min-w-[180px] transition-all rounded-[8px]       ${selectedCompany === company.name
+                    ? ""
+                    : "shadow-[0px_2px_5.9px_0px_rgba(0,0,0,0.18)] hover:bg-green-50   hover:scale-103 cursor-pointer"
+                  }`}
+              >
+                {company.name === "All" ? (
+                  <div className={`font-roboto text-[20px] font-[500] ${selectedCompany === "All" ? 'text-black' : 'text-[#848484]'}`}>All</div>
+                ) : (
+                  <div className="flex items-center gap-3">
+                    {typeof company.logo === "string" ? (
+                      <img
+                        src={company.logo}
+                        alt={company.name}
+                        className="h-8 w-auto object-contain"
+                      />
+                    ) : (
+                      company.logo
+                    )}
+                    <span className={`font-medium font-roboto text-[20px] ${selectedCompany === company.name
+                        ? 'text-black'
+                        : 'text-[#848484]'
+                      }`}>
+                      {company.name}
+                    </span>
+                  </div>
+                )}
+                {selectedCompany === company.name && (
+                  <div className="absolute -bottom-[3px] left-0 right-0 h-[6px] bg-[#38EF0A] rounded-[6px]" />
+                )}
+              </button>
+            ))}
+          </div>
 
 
           {/* Search Bar */}
@@ -86,27 +102,27 @@ export default function SelectVehicle() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
-                {/* Fake Placeholder with Typewriter */}
-  {!searchQuery && (
-    <div className="absolute left-27 top-1/2 -translate-y-1/2 text-[#bdbbbb]">
-      <Typewriter
-        options={{
-          strings: ["for vehicle model","for company"],
-          autoStart: true,
-          loop: true,
-          delay: 80,
-          deleteSpeed: 50,
-        }}
-      />
-    </div>
-  )}
+              {/* Fake Placeholder with Typewriter */}
+              {!searchQuery && (
+                <div className="absolute left-27 top-1/2 -translate-y-1/2 text-[#bdbbbb]">
+                  <Typewriter
+                    options={{
+                      strings: ["for vehicle model", "for company"],
+                      autoStart: true,
+                      loop: true,
+                      delay: 80,
+                      deleteSpeed: 50,
+                    }}
+                  />
+                </div>
+              )}
               <input
                 type="text"
                 placeholder='Search'
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full text-[#797979] pl-12 pr-4 py-4  rounded-[55px] border border-[#B7B7B7] hover:border-[#38EF0A] shadow-[0px_3px_8.8px_0px_rgba(0,0,0,0.17)]
- focus:outline-none focus:ring focus:ring-[#38EF0A] focus:border-transparent bg-white"
+               focus:outline-none focus:ring focus:ring-[#38EF0A] focus:border-transparent bg-white"
               />
             </div>
           </div>
@@ -114,37 +130,64 @@ export default function SelectVehicle() {
 
         {/* Vehicle Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 py-4 px-2 mb-6 mx-8 max-h-[500px] overflow-y-auto no-scrollbar ">
-          {filteredVehicles.map((vehicle) => (
-            <div
-              key={vehicle.id}
-              className="group bg-white hover:bg-[#e3ffdb] border-2 border-transparent hover:border-[#38ef0a] rounded-2xl py-4 px-2 shadow-[0px_4.76px_12.85px_0px_rgba(0,0,0,0.21)] transition-all duration-300 ease-in-out cursor-pointer"
-            >
-              {/* Vehicle Image */}
-              <div className="rounded-xl mb-3 overflow-hidden xl:w-[300px] xl:h-[200px] mx-auto flex items-center justify-center">
-                <img 
-                  // src={vehicle.image}
-                  src='/vehicletype/car.png' 
-                  alt={vehicle.name}
-                  className="w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = `<div class="flex items-center justify-center h-full text-gray-400 text-sm">${vehicle.name}</div>`;
-                    }
-                  }}
-                />
-              </div>
+          {filteredVehicles.length === 0 ? (
+            // Not Found UI
+            <div className="col-span-full flex flex-col items-center justify-center text-center py-16">
+              <svg
+                className="w-24 h-24 mb-4 text-gray-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                <line x1="9" y1="9" x2="13" y2="13" />
+                <line x1="13" y1="9" x2="9" y2="13" />
+              </svg>
 
-              {/* Vehicle Info */}
-              <div className="text-center">
-                <h3 className="text-[27px] font-semibold font-inter text-[#121212] transition-colors duration-300">
-                  {vehicle.name}
-                </h3>
-              </div>
+              <p className="text-[18px] font-inter text-[#777]">
+                No vehicle found
+              </p>
+              <p className="text-sm text-[#999] mt-1">
+                Please check what you searched
+              </p>
             </div>
-          ))}
+          ) : (
+            filteredVehicles.map((vehicle) => (
+              <div
+                key={vehicle.id}
+                className="group bg-white hover:bg-[#e3ffdb] border-2 border-transparent hover:border-[#38ef0a] rounded-2xl py-4 px-2 shadow-[0px_4.76px_12.85px_0px_rgba(0,0,0,0.21)] transition-all duration-300 ease-in-out cursor-pointer"
+              >
+                {/* Vehicle Image */}
+                <div className="rounded-xl mb-3 overflow-hidden xl:w-[300px] xl:h-[200px] mx-auto flex items-center justify-center">
+                  <img
+                    // src={vehicle.image}
+                    src='/vehicletype/car.png'
+                    alt={vehicle.name}
+                    className="w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.innerHTML = `<div class="flex items-center justify-center h-full text-gray-400 text-sm">${vehicle.name}</div>`;
+                      }
+                    }}
+                  />
+                </div>
+
+                {/* Vehicle Info */}
+                <div className="text-center">
+                  <h3 className="text-[27px] font-semibold font-inter text-[#121212] transition-colors duration-300">
+                    {vehicle.name}
+                  </h3>
+                </div>
+              </div>
+            ))
+          )}
         </div>
 
         {/* Add Vehicle Button - Fixed at bottom */}
