@@ -1,47 +1,64 @@
 "use client";
-import { useState, useEffect } from 'react';
-import { useRef } from 'react';
-import { carsData, companies } from '../components/cars'
+import { useState, useEffect, useRef } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { carsData, companies } from '../components/cars';
 import Typewriter from 'typewriter-effect';
 
-
 export default function SelectVehicle() {
+  const searchParams = useSearchParams();
+  const vehicleType = searchParams.get("type");
+  
   const [selectedCompany, setSelectedCompany] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const containerRef = useRef<HTMLDivElement | null>(null);
   const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
- 
 
-  // Filter vehicles based on selected company and search query
+  const availableCompanies = companies.filter(company => {
+  if (company.name === "All") return true;
+
+  return carsData.some(vehicle => {
+    const matchesType = vehicleType ? vehicle.type === vehicleType : true;
+    return matchesType && vehicle.company === company.name;
+  });
+});
+
+const vehicleTypeImageMap: Record<string, string> = {
+  twowheeler: "/vehicletype/scooter.png",
+  threewheeler: "/vehicletype/rickshaw.png",
+  fourwheeler: "/vehicletype/car.png",
+  commercial: "/vehicletype/truck.png",
+};
+
+  // Filter vehicles based on type, selected company and search query
   const filteredVehicles = carsData.filter(vehicle => {
+    const matchesType = vehicleType ? vehicle.type === vehicleType : true;
     const matchesCompany = selectedCompany === "All" || vehicle.company === selectedCompany;
     const matchesSearch = vehicle.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       vehicle.company.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCompany && matchesSearch;
+    return matchesType && matchesCompany && matchesSearch;
   });
 
-const handleCompanyClick = (companyName: string) => {
-  setSelectedCompany(companyName);
+  const handleCompanyClick = (companyName: string) => {
+    setSelectedCompany(companyName);
 
-  const btn = buttonRefs.current[companyName];
-  if (btn) {
-    btn.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest",
-    });
-  }
-};
-
+    const btn = buttonRefs.current[companyName];
+    if (btn) {
+      btn.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest",
+      });
+    }
+  };
 
   return (
     <div className="bg-white pb-12 ">
       <div className="max-w-7xl mx-auto xl:px-8 px-2">
         {/* Header */}
         <div className="pt-24 py-2 flex items-center gap-4 mb-5 ">
-          <button className="text-[#1E1E1E]">
-            <svg  onClick={() => window.history.back()}
-            className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <button className="text-[#1E1E1E] cursor-pointer">
+            <svg onClick={() => window.location.href = "/"}
+              className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
           </button>
@@ -50,48 +67,39 @@ const handleCompanyClick = (companyName: string) => {
           </h1>
         </div>
 
-
-
         {/* Company Filter Tabs */}
         <div className="mb-6">
           <div ref={containerRef} className="flex items-center gap-4 overflow-x-auto no-scrollbar py-1 border-b-[1px] border-[#00000029] xl:mx-10 px-1 ">
-            {companies.map((company) => (
-              <button
-                key={company.name}
-                onClick={() => {setSelectedCompany(company.name) ,handleCompanyClick(company.name)}}
-                  ref={(el) => (buttonRefs.current[company.name] = el)}
+{availableCompanies.map((company) => (
+  <button
+    key={company.name}
+    onClick={() => handleCompanyClick(company.name)}
+    ref={(el) => (buttonRefs.current[company.name] = el)}
+    className={`relative flex justify-center items-center gap-2 min-h-[50px] min-w-[185px] transition-all rounded-[8px]
+      ${selectedCompany === company.name
+        ? "text-black"
+        : "text-gray-400 shadow-[0px_2px_5.9px_0px_rgba(0,0,0,0.18)] hover:bg-green-50 hover:scale-103 cursor-pointer"
+      }`}
+  >
+    {company.name === "All" ? (
+      <span className="text-[20px] font-medium">All</span>
+    ) : (
+      <div className="flex items-center gap-3">
+        {typeof company.logo === "string" ? (
+          <img src={company.logo} className="h-8 w-auto" />
+        ) : (
+          company.logo
+        )}
+        <span className="text-[20px] font-medium">{company.name}</span>
+      </div>
+    )}
 
-                className={`relative flex justify-center items-center gap-2  min-h-[50px] min-w-[180px] transition-all rounded-[8px]       ${selectedCompany === company.name
-                    ? ""
-                    : "shadow-[0px_2px_5.9px_0px_rgba(0,0,0,0.18)] hover:bg-green-50   hover:scale-103 cursor-pointer"
-                  }`}
-              >
-                {company.name === "All" ? (
-                  <div className={`font-roboto text-[20px] font-[500] ${selectedCompany === "All" ? 'text-black' : 'text-[#848484]'}`}>All</div>
-                ) : (
-                  <div className="flex items-center gap-3">
-                    {typeof company.logo === "string" ? (
-                      <img
-                        src={company.logo}
-                        alt={company.name}
-                        className="h-8 w-auto object-contain"
-                      />
-                    ) : (
-                      company.logo
-                    )}
-                    <span className={`font-medium font-roboto text-[20px] ${selectedCompany === company.name
-                        ? 'text-black'
-                        : 'text-[#848484]'
-                      }`}>
-                      {company.name}
-                    </span>
-                  </div>
-                )}
-                {selectedCompany === company.name && (
-                  <div className="absolute -bottom-[3px] left-0 right-0 h-[6px] bg-[#38EF0A] rounded-[6px]" />
-                )}
-              </button>
-            ))}
+    {selectedCompany === company.name && (
+      <div className="absolute -bottom-[3px] left-0 right-0 h-[6px] bg-[#38EF0A] rounded-[6px]" />
+    )}
+  </button>
+))}
+
           </div>
 
 
@@ -130,7 +138,7 @@ const handleCompanyClick = (companyName: string) => {
         </div>
 
         {/* Vehicle Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 py-4 px-2 mb-6 mx-8 xl:max-h-[500px] sm:max-h-[930px] overflow-y-auto no-scrollbar ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 py-4 px-2 mb-6 mx-8 max-h-[500px] overflow-y-auto no-scrollbar ">
           {filteredVehicles.length === 0 ? (
             // Not Found UI
             <div className="col-span-full flex flex-col items-center justify-center text-center py-16">
@@ -164,20 +172,12 @@ const handleCompanyClick = (companyName: string) => {
               >
                 {/* Vehicle Image */}
                 <div className="rounded-xl mb-3 overflow-hidden xl:w-[300px] xl:h-[200px] mx-auto flex items-center justify-center">
-                  <img
-                    // src={vehicle.image}
-                    src='/vehicletype/car.png'
-                    alt={vehicle.name}
-                    className="w-full h-full object-contain transition-transform duration-300 ease-in-out group-hover:scale-105"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const parent = target.parentElement;
-                      if (parent) {
-                        parent.innerHTML = `<div class="flex items-center justify-center h-full text-gray-400 text-sm">${vehicle.name}</div>`;
-                      }
-                    }}
-                  />
+               <img
+  src={vehicleTypeImageMap[vehicle.type] || "/vehicletype/car.png"}
+  alt={vehicle.name}
+  className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+/>
+
                 </div>
 
                 {/* Vehicle Info */}
