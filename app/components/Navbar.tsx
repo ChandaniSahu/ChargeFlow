@@ -106,6 +106,8 @@ function ProfileDropdown() {
             alt="logo"
             width={90}
             height={90}
+            priority
+            loading="eager"
             className="hover:scale-90 transition-transform duration-200 ease-in-out"
           />
 
@@ -147,9 +149,9 @@ function ProfileDropdown() {
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="xl:hidden p-2 rounded-md border border-black"
+              className="xl:hidden p-2 rounded-md border border-black text-black text-xl font-bold"
             >
-              <span className="text-black text-xl font-bold">&#9776;</span>
+              &#9776;
 
             </button>
 
@@ -182,12 +184,12 @@ function ProfileDropdown() {
         {menuOpen && (
           <div 
           className="md:w-[30%] w-[70%] flex items-center absolute top-0 right-0 xl:hidden bg-white/20 backdrop-blur-md shadow-md px-4 py-4 flex flex-col gap-4 text-black font-[600]">
-            <span
+            <button
               className="self-end text-2xl font-bold cursor-pointer"
               onClick={() => setMenuOpen(false)}
             >
               &times;
-            </span>
+            </button>
                         <div className="md:hidden block gap-3 flex items-center text-white">
               <div className="rounded-full bg-white text-[#38EF0A] p-2 cursor-pointer">
              {isLightMode ? <span onClick={() => setIsLightMode(!isLightMode)}><LightModeIcon/></span> :

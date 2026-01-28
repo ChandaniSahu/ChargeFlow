@@ -6,8 +6,7 @@ import { FaPlay } from "react-icons/fa6";
 import { FiSearch } from "react-icons/fi";
 import { RiEqualizerLine } from "react-icons/ri";
 import { TbLocationFilled } from "react-icons/tb";
-import {OfferIcon } from "./icons";
-import { Icon } from "@iconify/react";
+import {OfferIcon, TataIcon } from "./icons";
 import VehicleTypeModal from "./VehicleTypeModal";
 
 
@@ -120,21 +119,23 @@ export default function HeroSection() {
 
                 {/* Pills */}
                 <div className="flex gap-2 mb-4 flex-wrap text-[12px] font-medium desktop:justify-between ">
-                  <span onClick={() => setIsOpenModal(true)}
+                  <button
+                   onClick={() => setIsOpenModal(true)}
                   className="flex items-center gap-2 bg-white px-1 xl:px-3  py-1 rounded-lg cursor-pointer">
-                    <Icon icon="simple-icons:tata" className="w-5 h-5 text-[#1E59C7]" />
+                    <TataIcon />
                     Tata Nexon EV
-                  </span>
+                  </button>
 
-                  <span className="flex items-center gap-1 bg-white px-2 xl:px-3 py-1 rounded-lg ">
+                  <button className="flex items-center gap-1 bg-white px-2 xl:px-3 py-1 rounded-lg ">
                     <OfferIcon/>
                     Offers
-                  </span>
+                  </button>
 
-                  <span className="flex items-center  bg-white pl-1 pr-3 py-1 rounded-lg ">
+                  <button 
+                  className="flex items-center  bg-white pl-1 pr-3 py-1 rounded-lg ">
                     <span className="text-[18px]">📍</span>
                     Nearest
-                  </span>
+                  </button>
                 </div>
 
 

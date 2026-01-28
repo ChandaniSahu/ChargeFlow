@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { TataIcon } from "./icons";
 
 export const carsData = [
   { id: 1, name: "Tata Nexon EV", company: "Tata", type: "fourwheeler" },
@@ -213,7 +214,7 @@ export const companies = [
 
   {
     name: "Tata",
-    logo: <Icon icon="simple-icons:tata" className="w-6 h-6 text-[#1E59C7]" />,
+    logo: <TataIcon/>,
   },
 
   { name: "MG", logo: "/logos/mg.svg" },
