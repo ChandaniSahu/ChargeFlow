@@ -48,7 +48,7 @@ const VehicleTypeModal = ({ open, onClose }: { open: boolean; onClose: () => voi
               </h1>
             </div>
 
-            <p className="text-[#8E8E93] text-[14px] sm:text-[20px] mt-1">
+            <p className="text-[#8E8E93] font-[500] text-[12px] sm:text-[16px] mt-1 ml-0 xl:ml-12">
               Please Select The Type Of Vehicle You Want To Charge
             </p>
           </div>

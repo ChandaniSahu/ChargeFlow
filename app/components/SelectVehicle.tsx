@@ -116,7 +116,7 @@ const vehicleTypeImageMap: Record<string, string> = {
                 <div className="absolute left-27 top-1/2 -translate-y-1/2 text-[#bdbbbb]">
                   <Typewriter
                     options={{
-                      strings: ["for vehicle model", "for company"],
+                      strings: ["for vehicle model"],
                       autoStart: true,
                       loop: true,
                       delay: 80,
