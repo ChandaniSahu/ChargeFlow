@@ -87,6 +87,9 @@
   .font-open-sans {
     font-family: var(--font-inter);
   }
+    .font-arial {
+   font-family: Arial;
+  }
 
   .font-inter {
     font-family: var(--font-inter);
