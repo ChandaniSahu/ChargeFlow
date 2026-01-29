@@ -26,14 +26,14 @@ const menu = [
 
 export default function Sidebar() {
   return (
-    <aside className="hidden lg:block w-[290px] m-4 py-4 px-2 bg-white rounded-[20px] shadow-xl overflow-y-auto no-scrollbar">
+    <aside className="hidden lg:block w-[253px] m-4 py-4 px-2 bg-white rounded-[20px] shadow-xl overflow-y-auto no-scrollbar">
       <div className="space-y-2">
         {menu.map((item, i) => {
           const Icon = item.icon;
           return (
             <div
               key={i}
-              className={`flex items-center gap-3 px-2 py-3 w-[250px] rounded-[7px] cursor-pointer transition shadow-[0px_0px_4.8px_0px_#0000002E]
+              className={`flex items-center gap-1 px-2 py-3 w-[236px] rounded-[7px] cursor-pointer transition shadow-[0px_0px_4.8px_0px_#0000002E]
               ${
                 item.active
                   ? "bg-gradient-to-r from-[#30EF0A] to-[#25D402] text-white"
