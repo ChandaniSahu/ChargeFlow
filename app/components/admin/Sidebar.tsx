@@ -9,6 +9,9 @@ import {
   BarChart2,
   Settings,
 } from "lucide-react";
+import { LuBadgeIndianRupee } from "react-icons/lu";
+import { FaChargingStation } from "react-icons/fa6";
+import { RiChargingPileLine } from "react-icons/ri";
 import { BiSupport } from "react-icons/bi";
 import { LuLayoutDashboard } from "react-icons/lu";
 
@@ -16,9 +19,9 @@ const menu = [
   { title: "Dashboard", icon: LuLayoutDashboard, active: true },
   { title: "User Management", icon: Users },
   { title: "Host Management", icon: Home },
-  { title: "Charger Management", icon: Plug },
+  { title: "Charger Management", icon: RiChargingPileLine   },
   { title: "Booking Management", icon: Calendar },
-  { title: "Payments & Revenue", icon: CreditCard },
+  { title: "Payments & Revenue", icon: LuBadgeIndianRupee},
   { title: "Support Tickets", icon: BiSupport },
   { title: "Analytics & Reports", icon: BarChart2 },
   { title: "Settings", icon: Settings },
@@ -26,7 +29,7 @@ const menu = [
 
 export default function Sidebar() {
   return (
-    <aside className="hidden lg:block w-[253px] m-4 py-4 px-2 bg-white rounded-[20px] shadow-xl overflow-y-auto no-scrollbar">
+    <aside className="hidden lg:block w-[258px] m-4 py-4 px-2 bg-white rounded-[20px] shadow-xl overflow-y-auto no-scrollbar">
       <div className="space-y-2">
         {menu.map((item, i) => {
           const Icon = item.icon;
