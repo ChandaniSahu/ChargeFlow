@@ -1,96 +1,3 @@
-// import Sidebar from "./Sidebar";
-// import Navbar from "./Navbar";
-
-// const stats = [
-//   { title: "Total Users", value: "12,459", growth: "+12.5%" },
-//   { title: "Total Hosts", value: "847", growth: "+8.2%" },
-//   { title: "Active Chargers", value: "3,284", growth: "+12.5%" },
-//   { title: "Total Revenue", value: "₹78,450", growth: "+12.5%" },
-// ];
-
-// const actions = [
-//   { title: "KYC Verifications", sub: "25 Pending Approvals", btn: "Review Now" },
-//   { title: "Add New Chargers", sub: "Setup & Configure", btn: "Configure" },
-//   { title: "Booking Overview", sub: "Upcoming: 40 | Cancelled: 8", btn: "View All" },
-//   { title: "Payout Transactions", sub: "₹12,500 Pending", btn: "Manage Payout" },
-//   { title: "Support Tickets", sub: "Open: 10 | Resolved: 45", btn: "View Tickets" },
-// ];
-
-// export default function Dashboard() {
-//   return (
-//     <div className=" my-4 mr-4 overflow-y-auto no-scrollbar">
-//       <h1 className=" font-inter font-semibold text-[36px] text-white leading-[100%]
-//     tracking-[0%] capitalize mb-1">Dashboard</h1>
-//        <p className="font-arial font-[400] text-[20px] text-white leading-[100%] tracking-[0%] mb-3">Welcome back! Here's what's happening with ChargeFlow today.</p>
-//         <div className="space-y-6">
-//           {/* STATS */}
-//           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-//             {stats.map((s, i) => (
-//               <div
-//                 key={i}
-//                 className="bg-white rounded-2xl shadow-lg p-4 flex justify-between items-center"
-//               >
-//                 <div>
-//                   <p className="text-sm text-gray-500">{s.title}</p>
-//                   <h2 className="text-2xl font-bold">{s.value}</h2>
-//                   <p className="text-green-500 text-xs mt-1">{s.growth} vs last month</p>
-//                 </div>
-//                 <div className="w-12 h-12 bg-green-100 rounded-full" />
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* ACTION CARDS */}
-//           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
-//             {actions.map((a, i) => (
-//               <div key={i} className="bg-white p-4 rounded-2xl shadow-lg">
-//                 <h3 className="font-semibold text-sm">{a.title}</h3>
-//                 <p className="text-xs text-gray-500 mt-1">{a.sub}</p>
-//                 <button className="mt-3 px-4 py-2 text-xs bg-green-500 text-white rounded-lg">
-//                   {a.btn}
-//                 </button>
-//               </div>
-//             ))}
-//           </div>
-
-//           {/* CHARTS + STATUS */}
-//           <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-//             {/* Revenue Graph */}
-//             <div className="xl:col-span-2 bg-white rounded-2xl shadow-lg p-4">
-//               <h3 className="font-semibold mb-3">Revenue Trend</h3>
-//               <div className="h-56 bg-green-50 rounded-xl flex items-center justify-center text-gray-400">
-//                 Graph Placeholder
-//               </div>
-//             </div>
-
-//             {/* Booking Status */}
-//             <div className="bg-white rounded-2xl shadow-lg p-4">
-//               <h3 className="font-semibold mb-3">Booking Status</h3>
-//               <div className="h-56 rounded-full border-[12px] border-green-400 border-r-blue-400 border-b-red-400 mx-auto w-40" />
-//               <div className="mt-4 text-sm space-y-1">
-//                 <p className="text-green-500">● Completed</p>
-//                 <p className="text-blue-500">● Upcoming</p>
-//                 <p className="text-red-500">● Cancelled</p>
-//               </div>
-//             </div>
-//           </div>
-
-//           {/* CHARGER STATUS */}
-//           <div className="bg-white rounded-2xl shadow-lg p-4 max-w-md">
-//             <h3 className="font-semibold mb-3">Charger Status</h3>
-//             <div className="h-40 rounded-full border-[12px] border-green-500 border-r-yellow-400 border-b-red-400 mx-auto w-32" />
-//             <div className="flex justify-between text-sm mt-4">
-//               <span className="text-green-500">Active: 220</span>
-//               <span className="text-red-500">Offline: 45</span>
-//               <span className="text-yellow-500">Maintenance: 65</span>
-//             </div>
-//           </div>
-//         </div>
-    
-//     </div>
-//   );
-// }
-
 // "use client";
 
 // import {
@@ -281,8 +188,17 @@ import {
   Headphones,
   TrendingUp,
   Car,
+   BarChart2,
+    Settings,
+  MessageCircleQuestionMark,
 } from "lucide-react";
-
+import { TbCalendarTime } from "react-icons/tb";
+import { FaChargingStation } from "react-icons/fa6";
+import { SiSimpleanalytics } from "react-icons/si";
+import { RiMoneyRupeeCircleFill } from "react-icons/ri";
+import { MdOutlinePeopleAlt } from "react-icons/md";
+import { AiOutlineArrowRight } from "react-icons/ai";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import {
   LineChart,
   Line,
@@ -299,19 +215,106 @@ import {
 
 /* ---------- DATA ---------- */
 
+
 const stats = [
-  { title: "Total Users", value: "12,459", growth: "+12.5%", icon: Users },
-  { title: "Total Hosts", value: "847", growth: "+8.2%", icon: Home },
-  { title: "Active Chargers", value: "3,284", growth: "+12.5%", icon: Car },
-  { title: "Total Revenue", value: "₹78,450", growth: "+12.5%", icon: TrendingUp },
+  {
+    topIcon: MdOutlinePeopleAlt,
+    title: "Total Users",
+    value: "12,459",
+    growth: "+12.5%",
+    bottomIcon: MdOutlinePeopleAlt,
+  },
+  {
+    topIcon: Home,
+    title: "Total Hosts",
+    value: "847",
+    growth: "+8.2%",
+    bottomIcon: Home,
+  },
+  {
+    topIcon: FaChargingStation ,
+    title: "Active Chargers",
+    value: "3,284",
+    growth: "+12.5%",
+    bottomIcon: Car,
+  },
+  {
+    topIcon: RiMoneyRupeeCircleFill,
+    title: "Total Revenue",
+    value: "₹78,450",
+    growth: "+12.5%",
+    bottomIcon: SiSimpleanalytics,
+  },
 ];
 
 const actions = [
-  { title: "KYC Verifications", sub: "25 Pending Approvals", btn: "Review Now", icon: CheckCircle },
-  { title: "Add New Chargers", sub: "Setup & Configure", btn: "Configure", icon: Plug },
-  { title: "Booking Overview", sub: "Upcoming: 40 | Cancelled: 8", btn: "View All", icon: Calendar },
-  { title: "Payouts Transactions", sub: "₹12,500 Pending Payout", btn: "Manage Payout", icon: CreditCard },
-  { title: "Support Tickets", sub: "Open: 10 | Resolved: 45", btn: "View Tickets", icon: Headphones },
+  {
+    title: "KYC Verifications",
+    sub: (
+      <>
+      <div className=" flex items-center gap-[0.3rem] ">
+        <span className="text-[15px] font-semibold ">25</span>{" "}
+        <span className="font-medium  text-[10px]">Pending Approvals</span>
+      </div>
+      </>
+    ),
+    btn: "Review Now",
+    btnIcon: AiOutlineArrowRight,
+    icon: CheckCircle,
+  },
+  {
+    title: "Add New Chargers",
+    sub: <span className="text-[11px]">Setup & Configure</span>,
+    btn: "Configure",
+    btnIcon: Settings,
+    icon: FaChargingStation,
+  },
+  {
+    title: "Booking Overview",
+    sub: (
+      <>
+      <div className="flex items-center gap-[0.3rem]">
+        <span className="text-[8px]">Upcoming:</span>{" "}
+        <span className="font-semibold text-[#EA4335]">40</span>{" "}
+        <span className="text-[8px]">| Cancelled:</span>{" "}
+        <span className="font-semibold text-[#EA4335]">8</span>
+      </div>
+     
+      </>
+    ),
+    btn: "View All",
+    btnIcon:MdOutlineKeyboardArrowRight,
+    icon: TbCalendarTime,
+  },
+  {
+    title: "Payouts Transactions",
+    sub: (
+      <>
+        <span className="font-semibold text-[14px]">₹12,500</span>&nbsp;
+        <span className="text-[10px]">Pending Payout</span>
+      </>
+    ),
+    btn: "Manage Payout",
+    btnIcon:MdOutlineKeyboardArrowRight,
+    icon: CreditCard,
+  },
+  {
+    title: "Support Tickets",
+    sub: (
+      <>
+        <div className="flex items-center gap-[0.3rem]">
+          <span className="text-[9px]">Open{" "}:</span>{" "}
+        <span className="font-semibold text-[#EA4335]">10</span>{" "}
+        <span className="text-[9px]">| Resolved{" "}:</span>{" "}
+        <span className="font-semibold text-[#EA4335]">45</span> 
+        </div>
+       
+      </>
+    ),
+    btn: "View Tickets",
+    btnIcon:MdOutlineKeyboardArrowRight,
+    icon: MessageCircleQuestionMark,
+  },
 ];
 
 const revenueData = [
@@ -347,158 +350,161 @@ const bookingStatus = [
 export default function Dashboard() {
   return (
     <div className="flex-1 my-4 mr-4 overflow-y-auto no-scrollbar">
-      {/* Top section with stats and booking status */}
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-3 mb-3">
-        {/* Stats Cards - 4 columns */}
-        {stats.map((s, i) => {
-          const Icon = s.icon;
-          return (
-            <div key={i} className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 shadow-md border border-gray-100">
-              <div className="flex items-start justify-between mb-3">
-                <div className="bg-green-50 p-2 rounded-lg">
-                  <Icon className="text-green-500" size={20} />
-                </div>
-              </div>
-              <p className="text-xs text-gray-500 mb-1 font-medium">{s.title}</p>
-              <h2 className="text-2xl font-bold text-gray-900 mb-1">{s.value}</h2>
-              <div className="flex items-center gap-1">
-                <TrendingUp className="text-green-500" size={12} />
-                <span className="text-green-500 text-xs font-semibold">{s.growth}</span>
-                <span className="text-gray-400 text-xs">Vs Last Month</span>
-              </div>
-            </div>
-          );
-        })}
+  
+  {/* LEFT SIDE: Stats + Actions (4 columns) */}
+  <div className="lg:col-span-4 space-y-3">
 
-        {/* Booking Status - 1 column */}
-        <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 shadow-md border border-gray-100">
-          <h3 className="text-sm font-bold text-gray-700 mb-2">Booking Status</h3>
-          <div className="flex items-center justify-center mb-2">
-            <PieChart width={120} height={120}>
-              <Pie
-                data={bookingStatus}
-                dataKey="value"
-                innerRadius={35}
-                outerRadius={55}
-                paddingAngle={0}
-              >
-                {bookingStatus.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
-                ))}
-              </Pie>
-            </PieChart>
-          </div>
-          <div className="space-y-1">
-            {bookingStatus.map((s, i) => (
-              <div key={i} className="flex items-center gap-2 text-xs">
-                <div 
-                  className="w-2.5 h-2.5 rounded-full" 
-                  style={{ backgroundColor: s.color }}
-                />
-                <span className="text-gray-600 font-medium">{s.name}</span>
-              </div>
-            ))}
-          </div>
+    {/* Stats Cards */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[0.5rem]">
+  {stats.map((s, i) => {
+    const TopIcon = s.topIcon;
+    const BottomIcon = s.bottomIcon;
+
+    return (
+      <div
+        key={i}
+        className="relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
+      >
+        {/* TOP ICON */}
+        <div className="flex gap-[1rem] items-center mb-2 ">
+          
+            <TopIcon className="text-[#38EF0A]" size={30} />
+            <p className="font-inter text-[13px] text-[#364153] font-medium">{s.title}</p>
+        </div>
+        
+        {/* TEXT */}
+        
+        <h2 className="font-inter text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">{s.value}</h2>
+
+        {/* GROWTH */}
+        <div className="flex flex-col  gap-1 mt-1">
+          
+          <span className="font-inter text-[#25BB00] text-[14px] font-regular flex items-center gap-[0.5rem] ">
+            <TrendingUp size={15} className="text-green-500" />
+            {s.growth}
+          </span>
+          <span className="font-inter font-regular text-[#757575] text-[10px]">Vs Last Month</span>
+        </div>
+
+        {/* BOTTOM ICON (LIGHT GREEN, ROUNDED) */}
+        <div className="absolute -bottom-6 -right-4 w-24 h-24 bg-[#2CDE0026] rounded-full flex items-center justify-center">
+          <BottomIcon className="text-[#38EF0A]" size={40} />
         </div>
       </div>
+    );
+  })}
+</div>
 
-      {/* Quick Actions */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-3">
-        {actions.map((a, i) => {
-          const Icon = a.icon;
-          return (
-            <div key={i} className="bg-white p-4 rounded-xl shadow-md border border-gray-100">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="bg-green-50 p-1.5 rounded-md">
-                  <Icon size={14} className="text-green-500" />
-                </div>
-                <h3 className="font-bold text-xs text-gray-800">{a.title}</h3>
-              </div>
-              <p className="text-[10px] text-gray-500 mb-3 leading-tight">{a.sub}</p>
-              <button className="w-full px-3 py-1.5 text-[11px] font-semibold bg-green-500 hover:bg-green-600 text-white rounded-md transition-colors">
-                {a.btn}
-              </button>
-            </div>
-          );
-        })}
+    {/* Actions Cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[0.3rem]">
+      {actions.map((a, i) => {
+  const TopIcon = a.icon;
+  const BtnIcon = a.btnIcon;
+
+  return (
+    <div
+      key={i}
+      className="bg-white p-2 rounded-xl shadow-md border border-gray-100"
+    >
+      {/* TOP ICON + TITLE */}
+      <div className="flex items-center gap-1 mb-2">
+        <TopIcon size={17} className="text-[#2CDE00]" />
+        <h3 className="font-inter font-semibold text-[11px] text-[#364153]">
+          {a.title}
+        </h3>
       </div>
+
+      {/* SUB TEXT */}
+      <p className="font-inter font-medium text-[#333333] mb-3">
+        {a.sub}
+      </p>
+
+      {/* BUTTON */}
+      <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] hover:bg-green-600 text-white rounded-md">
+        {a.btn}
+        {BtnIcon && <BtnIcon size={14} />}
+      </button>
+    </div>
+  );
+})}
+    </div>
+
+  </div>
+
+  {/* RIGHT SIDE: Booking Status (1 column) */}
+  <div className="lg:col-span-1 bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 shadow-md border border-gray-100">
+    <h3 className="text-sm font-bold text-gray-700 mb-2">Booking Status</h3>
+    <div className="flex justify-center mb-2">
+      <PieChart width={120} height={120}>
+        <Pie data={bookingStatus} dataKey="value" innerRadius={35} outerRadius={55}>
+          {bookingStatus.map((e, i) => (
+            <Cell key={i} fill={e.color} stroke="none" />
+          ))}
+        </Pie>
+      </PieChart>
+    </div>
+    <div className="space-y-1">
+      {bookingStatus.map((s, i) => (
+        <div key={i} className="flex items-center gap-2 text-xs">
+          <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: s.color }} />
+          <span className="text-gray-600 font-medium">{s.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+</div>
+
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-        {/* Revenue Trend */}
-        <div className="lg:col-span-2 bg-white rounded-xl shadow-md p-4 border border-gray-100">
-          <h3 className="font-bold text-sm text-gray-700 mb-3">Revenue Trend</h3>
-          <ResponsiveContainer width="100%" height={200}>
-            <LineChart data={revenueData}>
-              <XAxis 
-                dataKey="month" 
-                stroke="#9ca3af"
-                style={{ fontSize: '11px' }}
-                tickLine={false}
-              />
-              <YAxis 
-                stroke="#9ca3af"
-                style={{ fontSize: '11px' }}
-                tickFormatter={(value) => `${value/1000}k`}
-                tickLine={false}
-              />
-              <Tooltip 
-                contentStyle={{ 
-                  backgroundColor: 'white',
-                  border: '1px solid #e5e7eb',
-                  borderRadius: '6px',
-                  fontSize: '11px',
-                  padding: '6px 10px'
-                }}
-                formatter={(value) => [`₹${value.toLocaleString()}`, 'Revenue']}
-              />
-              <Line 
-                type="monotone"
-                dataKey="revenue" 
-                stroke="#22c55e" 
-                strokeWidth={2.5}
-                dot={false}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
 
-        {/* Charger Status */}
-        <div className="bg-white rounded-xl shadow-md p-4 border border-gray-100">
-          <h3 className="font-bold text-sm text-gray-700 mb-3">Charger Status</h3>
-          <div className="flex items-center justify-center mb-3">
-            <PieChart width={180} height={180}>
-              <Pie
-                data={chargerStatus}
-                dataKey="value"
-                innerRadius={50}
-                outerRadius={75}
-                paddingAngle={0}
-              >
-                {chargerStatus.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} stroke="none" />
-                ))}
-              </Pie>
-            </PieChart>
-          </div>
-          <div className="flex justify-between text-[11px] font-medium">
-            {chargerStatus.map((s, i) => (
-              <div key={i} className="flex items-center gap-1.5">
-                <div 
-                  className="w-2.5 h-2.5 rounded-full" 
-                  style={{ backgroundColor: s.color }}
-                />
-                <span style={{ color: s.color }}>
-                  {s.name}: {s.value}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+  {/* Revenue Trend - 2/4 width */}
+  <div className="lg:col-span-2 bg-white rounded-xl shadow-md p-4 border border-gray-100">
+    <h3 className="font-bold text-sm text-gray-700 mb-3">Revenue Trend</h3>
+    <ResponsiveContainer width="100%" height={200}>
+      <LineChart data={revenueData}>
+        <XAxis dataKey="month" tickLine={false} />
+        <YAxis tickLine={false} tickFormatter={(v) => `${v / 1000}k`} />
+        <Tooltip />
+        <Line type="monotone" dataKey="revenue" stroke="#22c55e" strokeWidth={2.5} dot={false} />
+      </LineChart>
+    </ResponsiveContainer>
+  </div>
+
+  {/* Charger Utilization - 1/4 width */}
+  <div className="bg-white rounded-2xl shadow p-4">
+    <h3 className="font-semibold mb-3">Charger Utilization</h3>
+    <ResponsiveContainer width="100%" height={220}>
+      <BarChart data={utilizationData}>
+        <XAxis dataKey="level" />
+        <YAxis />
+        <Tooltip />
+        <Bar dataKey="value" fill="#22c55e" />
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+
+  {/* Charger Status - 1/4 width */}
+  <div className="bg-white rounded-xl shadow-md p-4 border border-gray-100">
+    <h3 className="font-bold text-sm text-gray-700 mb-3">Charger Status</h3>
+    <div className="flex justify-center mb-3">
+      <PieChart width={160} height={160}>
+        <Pie data={chargerStatus} dataKey="value" innerRadius={45} outerRadius={70}>
+          {chargerStatus.map((e, i) => (
+            <Cell key={i} fill={e.color} stroke="none" />
+          ))}
+        </Pie>
+      </PieChart>
+    </div>
+  </div>
+
+</div>
+
 
       {/* Charger Utilization */}
-      <div className="mt-3 bg-white rounded-xl shadow-md p-4 border border-gray-100">
+      {/* <div className="mt-3 bg-white rounded-xl shadow-md p-4 border border-gray-100">
         <h3 className="font-bold text-sm text-gray-700 mb-3">Charger Utilization</h3>
         <ResponsiveContainer width="100%" height={200}>
           <BarChart data={utilizationData}>
@@ -530,7 +536,7 @@ export default function Dashboard() {
             />
           </BarChart>
         </ResponsiveContainer>
-      </div>
+      </div> */}
     </div>
   );
 }

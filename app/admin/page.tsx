@@ -22,8 +22,8 @@ export default function Page() {
         <Navbar />
 
         {/* Main Area */}
-        <div className="flex overflow-hidden    backdrop-blur-[23.700000762939453px]
-    bg-[linear-gradient(123.84deg,rgba(255,255,255,0.49)_0%,rgba(124,124,124,0.42)_100%)] py-2  mx-4 rounded-[30px] mb-2">
+        <div className="flex w-[1285px] overflow-hidden    backdrop-blur-[23.700000762939453px]
+    bg-[linear-gradient(123.84deg,rgba(255,255,255,0.49)_0%,rgba(124,124,124,0.42)_100%)] py-2  mx-auto rounded-[30px] mb-2">
           <Sidebar />
           <Dashboard />
         </div>
