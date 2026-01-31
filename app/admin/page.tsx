@@ -8,7 +8,7 @@ export default function Page() {
     <div className="relative h-screen overflow-hidden">
       {/* Background */}
       <Image
-        src="/images/adminbg.jpg"
+        src="/images/adminbgcut.jpg"
         alt="EV Station"
         fill
         priority
@@ -20,10 +20,14 @@ export default function Page() {
       <div className="relative z-10 flex flex-col h-full">
         {/* Navbar (fixed height) */}
         <Navbar />
-
+        <div className="desktop:hidden pb-1 border-b-[1px] border-gray-50 max-w-max mx-1 ">
+          <Sidebar/>
+        </div>
+        
         {/* Main Area */}
-        <div className="flex w-[1285px] overflow-hidden    backdrop-blur-[23.700000762939453px]
-    bg-[linear-gradient(123.84deg,rgba(255,255,255,0.49)_0%,rgba(124,124,124,0.42)_100%)]   mx-auto rounded-[30px] mb-2">
+        <div className="mt-5 desktop:flex-row flex flex-col max-w-[1220px] w-full overflow-y-auto backdrop-blur-[23.700000762939453px]
+    bg-[linear-gradient(123.84deg,rgba(255,255,255,0.49)_0%,rgba(124,124,124,0.42)_100%)] mx-auto rounded-[30px] mb-2">
+          
           <Sidebar />
           <Dashboard />
         </div>

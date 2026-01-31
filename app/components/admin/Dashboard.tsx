@@ -215,6 +215,7 @@ import {
 
 import { Clock, Zap, FileText, DollarSign } from 'lucide-react';
 import Image from 'next/image';
+import Sidebar from "./Sidebar";
 
 /* ---------- DATA ---------- */
 
@@ -466,7 +467,7 @@ const getStatusIcon = (status: ActivityItem['status']) => {
 export default function Dashboard() {
   return (
 
-    <div className="mt-2 mr-4  flex flex-col">
+    <div className="mt-2 mr-2  flex flex-col">
       {/* HEADER */}
       <h1 className="font-inter font-semibold text-[36px] text-white ">
         Dashboard
