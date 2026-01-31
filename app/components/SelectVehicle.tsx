@@ -74,7 +74,9 @@ const vehicleTypeImageMap: Record<string, string> = {
   <button
     key={company.name}
     onClick={() => handleCompanyClick(company.name)}
-    ref={(el) => (buttonRefs.current[company.name] = el)}
+    ref={(el) => {
+  buttonRefs.current[company.name] = el;
+}}
     className={`relative flex justify-center items-center gap-2 min-h-[50px] min-w-[185px] transition-all rounded-[8px]
       ${selectedCompany === company.name
         ? "text-black"
