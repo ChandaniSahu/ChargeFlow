@@ -1,4 +1,5 @@
-import React from "react";
+import React  from "react";
+import { Suspense } from "react";
 import SelectVehicle from "../components/SelectVehicle";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -8,7 +9,9 @@ const VehicleSelectorePage = () => {
     <div className="min-h-screen flex flex-col">
   <Navbar />
   <main className="flex-1">
-    <SelectVehicle />
+      <Suspense fallback={null}>
+      <SelectVehicle />
+    </Suspense>
   </main>
   <Footer />
 </div>
