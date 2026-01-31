@@ -119,8 +119,8 @@ export default function Sidebar() {
                       : "hover:bg-green-50 text-gray-700"
                   }`}
               >
-                <Icon className="h-6 w-6" />
-                <span className="text-[16px] font-medium">{item.title}</span>
+                <Icon className="h-5 w-5" />
+                <span className="text-[14.5px] font-medium">{item.title}</span>
               </div>
             );
           })}

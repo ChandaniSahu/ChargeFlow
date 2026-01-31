@@ -1,180 +1,3 @@
-// "use client";
-
-// import {
-//   Users,
-//   Home,
-//   Plug,
-//   IndianRupee,
-//   CheckCircle,
-//   Calendar,
-//   CreditCard,
-//   Headphones,
-// } from "lucide-react";
-
-// import {
-//   LineChart,
-//   Line,
-//   XAxis,
-//   YAxis,
-//   Tooltip,
-//   ResponsiveContainer,
-//   BarChart,
-//   Bar,
-//   PieChart,
-//   Pie,
-//   Cell,
-// } from "recharts";
-
-// /* ---------- DATA ---------- */
-
-// const stats = [
-//   { title: "Total Users", value: "12,459", growth: "+12.5%", icon: Users },
-//   { title: "Total Hosts", value: "847", growth: "+8.2%", icon: Home },
-//   { title: "Active Chargers", value: "3,284", growth: "+12.5%", icon: Plug },
-//   { title: "Total Revenue", value: "₹78,450", growth: "+12.5%", icon: IndianRupee },
-// ];
-
-// const actions = [
-//   { title: "KYC Verifications", sub: "25 Pending Approvals", btn: "Review Now", icon: CheckCircle },
-//   { title: "Add New Chargers", sub: "Setup & Configure", btn: "Configure", icon: Plug },
-//   { title: "Booking Overview", sub: "Upcoming: 40 | Cancelled: 8", btn: "View All", icon: Calendar },
-//   { title: "Payout Transactions", sub: "₹12,500 Pending", btn: "Manage Payout", icon: CreditCard },
-//   { title: "Support Tickets", sub: "Open: 10 | Resolved: 45", btn: "View Tickets", icon: Headphones },
-// ];
-
-// const revenueData = [
-//   { month: "Jan", revenue: 20000 },
-//   { month: "Feb", revenue: 32000 },
-//   { month: "Mar", revenue: 28000 },
-//   { month: "Apr", revenue: 45000 },
-//   { month: "May", revenue: 40000 },
-//   { month: "Jun", revenue: 60000 },
-// ];
-
-// const utilizationData = [
-//   { level: "25%", value: 40 },
-//   { level: "50%", value: 65 },
-//   { level: "75%", value: 85 },
-//   { level: "100%", value: 70 },
-// ];
-
-// const chargerStatus = [
-//   { name: "Active", value: 220, color: "#22c55e" },
-//   { name: "Offline", value: 45, color: "#ef4444" },
-//   { name: "Maintenance", value: 65, color: "#eab308" },
-// ];
-
-// /* ---------- COMPONENT ---------- */
-
-// export default function Dashboard() {
-//   return (
-//     <div className="flex-1 my-4 mr-4 overflow-y-auto no-scrollbar">
-// {/* HEADER */}
-// <h1 className="font-inter font-semibold text-[36px] text-white mb-1">
-//   Dashboard
-// </h1>
-// <p className="text-white text-[20px] mb-4">
-//   Welcome back! Here's what's happening with ChargeFlow today.
-// </p>
-
-//       <div className="space-y-6">
-//         {/* STATS */}
-//         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-//           {stats.map((s, i) => {
-//             const Icon = s.icon;
-//             return (
-//               <div key={i} className="bg-white rounded-2xl p-4 shadow flex justify-between">
-//                 <div>
-//                   <p className="text-sm text-gray-500">{s.title}</p>
-//                   <h2 className="text-2xl font-bold">{s.value}</h2>
-//                   <p className="text-green-500 text-xs">{s.growth} vs last month</p>
-//                 </div>
-//                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-//                   <Icon className="text-green-600" size={20} />
-//                 </div>
-//               </div>
-//             );
-//           })}
-//         </div>
-
-//         {/* ACTIONS */}
-//         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
-//           {actions.map((a, i) => {
-//             const Icon = a.icon;
-//             return (
-//               <div key={i} className="bg-white p-4 rounded-2xl shadow">
-//                 <div className="flex items-center gap-2 mb-2">
-//                   <Icon size={16} className="text-green-500" />
-//                   <h3 className="font-semibold text-sm">{a.title}</h3>
-//                 </div>
-//                 <p className="text-xs text-gray-500">{a.sub}</p>
-//                 <button className="mt-3 px-4 py-2 text-xs bg-green-500 text-white rounded-lg">
-//                   {a.btn}
-//                 </button>
-//               </div>
-//             );
-//           })}
-//         </div>
-
-//         {/* CHARTS */}
-//         <div className="grid grid-cols-1 xl:grid-cols-3 gap-4">
-//           {/* Revenue */}
-//           <div className="xl:col-span-2 bg-white rounded-2xl shadow p-4">
-//             <h3 className="font-semibold mb-3">Revenue Trend</h3>
-//             <ResponsiveContainer width="100%" height={220}>
-//               <LineChart data={revenueData}>
-//                 <XAxis dataKey="month" />
-//                 <YAxis />
-//                 <Tooltip />
-//                 <Line dataKey="revenue" stroke="#22c55e" strokeWidth={3} />
-//               </LineChart>
-//             </ResponsiveContainer>
-//           </div>
-
-//           {/* Charger Utilization */}
-//           <div className="bg-white rounded-2xl shadow p-4">
-//             <h3 className="font-semibold mb-3">Charger Utilization</h3>
-//             <ResponsiveContainer width="100%" height={220}>
-//               <BarChart data={utilizationData}>
-//                 <XAxis dataKey="level" />
-//                 <YAxis />
-//                 <Tooltip />
-//                 <Bar dataKey="value" fill="#22c55e" />
-//               </BarChart>
-//             </ResponsiveContainer>
-//           </div>
-//         </div>
-
-//         {/* CHARGER STATUS */}
-//         <div className="bg-white rounded-2xl shadow p-4 max-w-md">
-//           <h3 className="font-semibold mb-3">Charger Status</h3>
-//           <PieChart width={220} height={220} className="mx-auto">
-//             <Pie
-//               data={chargerStatus}
-//               dataKey="value"
-//               innerRadius={60}
-//               outerRadius={90}
-//             >
-//               {chargerStatus.map((s, i) => (
-//                 <Cell key={i} fill={s.color} />
-//               ))}
-//             </Pie>
-//           </PieChart>
-
-//           <div className="flex justify-between text-sm mt-4">
-//             {chargerStatus.map((s, i) => (
-//               <span key={i} style={{ color: s.color }}>
-//                 {s.name}: {s.value}
-//               </span>
-//             ))}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-
 "use client";
 
 import {
@@ -467,14 +290,17 @@ const getStatusIcon = (status: ActivityItem['status']) => {
 export default function Dashboard() {
   return (
 
-    <div className="mt-2 mr-2  flex flex-col">
+    <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2  flex flex-col">
       {/* HEADER */}
-      <h1 className="font-inter font-semibold text-[36px] text-white ">
+      <div className="desktop:text-left text-center">
+        <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 mb-1 text-[30px] text-white ">
         Dashboard
       </h1>
-      <p className="text-white text-[20px] mb-2 -mt-2">
-        Welcome back! Here's what's happening with ChargeFlow today.
-      </p>
+      <p className="font-arial text-white desktop:text-[20px] text-[15px] mb-3 -mt-2 leading-[19px] desktop:leading-tight">
+        Welcome Back! Here's What's Happening With ChargeFlow today.
+      </p> 
+      </div>
+     
       {/* <div className="space-y-2 flex-1 h-[82vh] overflow-y-auto no-scrollbar mb-4 red "> */}
 
       <div className="space-y-2 flex-1 h-[82vh] overflow-y-auto no-scrollbar mb-4">
@@ -483,7 +309,7 @@ export default function Dashboard() {
 
           {/* COLUMN 1: Stats + Actions (4 columns) */}
           <div className="lg:col-span-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[0.5rem]">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.5rem]">
               {stats.map((s, i) => {
                 const TopIcon = s.topIcon;
                 const BottomIcon = s.bottomIcon;
@@ -521,7 +347,7 @@ export default function Dashboard() {
             </div>
 
             {/* Actions Cards - Added margin-top for spacing between Stats and Actions */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[0.3rem] mt-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[0.3rem] mt-3 ">
               {actions.map((a, i) => {
                 const TopIcon = a.icon;
                 const BtnIcon = a.btnIcon;
@@ -671,7 +497,7 @@ export default function Dashboard() {
               const Icon = getStatusIcon(activity.status);
               return(<div
                 key={activity.id}
-                className="px-6 py-4 hover:bg-gray-50 transition-colors duration-200 border border-gray-300 rounded-[10px] mb-2"
+                className="relative px-6 py-4 hover:bg-gray-50 transition-colors duration-200 border border-gray-300 rounded-[10px] mb-2"
               >
                 <div className="flex items-center justify-between gap-4">
                   {/* Left: Avatar/Logo */}
@@ -705,7 +531,13 @@ export default function Dashboard() {
                   </div>
 
                   {/* Right: Status Badge */}
-                  <div className="flex-shrink-0">
+                  <div className="hidden sm:block flex-shrink-0">
+                    <span className={`font-inter inline-flex items-center justify-center py-2 w-[125px] gap-[0.4rem] rounded-[10px] text-[15px] font-medium border ${getStatusStyles(activity.status)}`}>
+                      <Icon size={14} />
+                      {getStatusText(activity.status)}
+                    </span>
+                  </div>
+                  <div className="sm:hidden absolute right-0 bottom-0 flex-shrink-0">
                     <span className={`font-inter inline-flex items-center justify-center py-2 w-[125px] gap-[0.4rem] rounded-[10px] text-[15px] font-medium border ${getStatusStyles(activity.status)}`}>
                       <Icon size={14} />
                       {getStatusText(activity.status)}
