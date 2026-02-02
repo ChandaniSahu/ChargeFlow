@@ -132,7 +132,7 @@ export default function HeroSection() {
                   </button>
 
                   <button 
-                  onClick={() => window.location.href = "/admin"}
+                  onClick={() => window.location.href = "/admin/dashboard"}
                   className="flex items-center  bg-white pl-1 pr-3 py-1 rounded-lg  cursor-pointer">
                     <span className="text-[18px]">📍</span>
                     Nearest

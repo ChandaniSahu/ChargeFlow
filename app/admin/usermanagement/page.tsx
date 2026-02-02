@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import {
+  MdOutlineKeyboardArrowRight,
   MdOutlinePeopleAlt,
 } from "react-icons/md";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
@@ -58,7 +59,7 @@ const actionCards = [
     sub: (
       <div className="flex items-center gap-[0.3rem]">
         <span className="text-[15px] font-semibold">28</span>
-        <span className="text-[10px] font-medium">Pending Approvals</span>
+        <span className="text-[12px] font-medium">Pending Approvals</span>
       </div>
     ),
     btn: "Review Now",
@@ -69,36 +70,36 @@ const actionCards = [
     title: "Wallet",
     sub: (
       <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[14px] font-semibold">₹45,200</span>
-        <span className="text-[10px]">Success</span>
+        <span className="text-[15px] font-semibold">₹45,200</span>
+        <span className="text-[12px]">Success</span>
       </div>
     ),
     btn: "View All",
-    btnIcon: AiOutlineArrowRight,
+    btnIcon: MdOutlineKeyboardArrowRight,
     icon: Wallet,
   },
   {
     title: "Payment History",
     sub: (
       <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[14px] font-semibold">145</span>
-        <span className="text-[10px]">Successful Payments</span>
+        <span className="text-[15px] font-semibold">145</span>
+        <span className="text-[12px]">Successful Payments</span>
       </div>
     ),
     btn: "View Reports",
-    btnIcon: AiOutlineArrowRight,
+    btnIcon: MdOutlineKeyboardArrowRight,
     icon: FileText,
   },
   {
     title: "Blocked Users",
     sub: (
       <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[14px] font-semibold text-[#EA4335]">07</span>
-        <span className="text-[10px]">Blocked Accounts</span>
+        <span className="text-[15px] font-semibold">07</span>
+        <span className="text-[12px]">Blocked Accounts</span>
       </div>
     ),
     btn: "Manage List",
-    btnIcon: AiOutlineArrowRight,
+    btnIcon: MdOutlineKeyboardArrowRight,
     icon: UserX,
   },
 ];
@@ -267,11 +268,11 @@ const getStatusIcon = (status: ActivityItem['status']) => {
 
 // 1. DATA ARRAY
 const userData = [
-  { id: 1, name: 'Priya Singh', email: 'priyasingh@gmail.com', contact: '+91 5678903488', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success' },
-  { id: 2, name: 'Rohit Singh', email: 'rohitsingh@gmail.com', contact: '+91 5778433390', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending' },
-  { id: 3, name: 'Sneha Kapoor', email: 'snehakapoor@gmail.com', contact: '+91 1258444907', status: 'Inactive', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending' },
-  { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Blocked', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Failed' },
-  { id: 5, name: 'Rahul Sharma', email: 'rahulsharma@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success' },
+  { id: 1, name: 'Priya Singh', email: 'priyasingh@gmail.com', contact: '+91 5678903488', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success' ,imageUrl: "/images/user.jpg", },
+  { id: 2, name: 'Rohit Singh', email: 'rohitsingh@gmail.com', contact: '+91 5778433390', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending' ,imageUrl: "/images/user3.jpg", },
+  { id: 3, name: 'Sneha Kapoor', email: 'snehakapoor@gmail.com', contact: '+91 1258444907', status: 'Inactive', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending',imageUrl: "/images/user1.jpg", },
+  { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Blocked', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Failed',imageUrl: "/images/user2.jpg", },
+  { id: 5, name: 'Rahul Sharma', email: 'rahulsharma@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success',imageUrl: "/images/user.jpg", },
 ];
 
 // 2. ICON SWITCH CASE HELPER
@@ -311,15 +312,15 @@ const filteredUsers = userData.filter(user => {
     <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2 flex flex-col desktop:w-[1010px]">
       {/* HEADER */}
       <div className="mb-3">
-        <h1 className="text-[32px] font-semibold text-white">User Management</h1>
-        <p className="text-[16px] text-white/90">
+        <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 mb-1 text-[30px] text-white">User Management</h1>
+        <p className="font-arial text-white desktop:text-[20px] text-[15px] mb-3 -mt-2 leading-[19px] desktop:leading-tight">
           Manage and monitor all platform users
         </p>
       </div>
 
-      <div className="space-y-3 flex-1 overflow-y-auto no-scrollbar green">
+      <div className="space-y-3 flex-1 overflow-y-auto no-scrollbar">
         {/* STATS + ACTIONS + CHARGER STATUS */}
-        <div className="flex flex-col lg:flex-row gap-3 items-stretch  w-full red">
+        <div className="flex flex-col lg:flex-row gap-3 items-stretch  w-full">
           {/* LEFT COLUMN */}
           <div className="flex-1 space-y-3 h-full">
             {/* STATS */}
@@ -331,12 +332,12 @@ const filteredUsers = userData.filter(user => {
                 return (
                   <div
                     key={i}
-                    className="relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
+                    className="font-inter relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
                   >
                     {/* TOP ICON */}
                     <div className="flex gap-4 items-center mb-2">
                       <TopIcon className="text-[#38EF0A]" size={30} />
-                      <p className="text-[13px] text-[#364153] font-medium">
+                      <p className=" text-[13px] text-[#364153] font-medium">
                         {s.title}
                       </p>
                     </div>
@@ -348,7 +349,7 @@ const filteredUsers = userData.filter(user => {
 
                     {/* GROWTH */}
                     <div className="flex flex-col gap-1 mt-2">
-                      <span className="text-[#25BB00] text-[14px] flex items-center gap-2">
+                      <span className="font-regular  text-[#25BB00] text-[14px] flex items-center gap-2">
                         <TrendingUp size={15} />
                         {s.growth}
                       </span>
@@ -375,7 +376,7 @@ const filteredUsers = userData.filter(user => {
                 return (
                   <div
                     key={i}
-                    className="bg-white p-2 rounded-xl shadow-md border border-gray-100"
+                    className="font-inter bg-white p-2 rounded-xl shadow-md border border-gray-100"
                   >
                     {/* TOP ICON + TITLE */}
                     <div className="flex items-center gap-1 mb-2">
@@ -386,7 +387,7 @@ const filteredUsers = userData.filter(user => {
                     </div>
 
                     {/* SUB TEXT */}
-                    <div className="text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF] pt-1 text-sm">
+                    <div className="font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF] pt-1 text-sm">
                       {a.sub}
                     </div>
 
@@ -403,7 +404,7 @@ const filteredUsers = userData.filter(user => {
 
           {/* CHARGER STATUS */}
           <div className="w-full lg:w-[220px]  bg-white rounded-xl shadow border px-3 py-2 h-full flex flex-col">
-            <h3 className="text-lg font-semibold text-gray-700 mb-1">
+            <h3 className="font-inter text-[20px] font-semibold text-[#434343] mb-1">
               Charger Status
             </h3>
 
@@ -441,10 +442,10 @@ const filteredUsers = userData.filter(user => {
         </div>
 
         {/* RECENT ACTIVITY + REVENUE CONTRIBUTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,60%)_minmax(0,40%)] gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,70%)_minmax(0,30%)] gap-3">
           {/* RECENT ACTIVITY */}
           <div className="bg-white rounded-xl p-4 shadow">
-            <h3 className="text-lg font-semibold mb-3">Recent Activity</h3>
+            <h3 className="font-inter text-[24px] font-semibold text-[#364153] mb-3">Recent Activity</h3>
 
             {/* LIST WRAPPER */}
             <div className="max-h-[260px] overflow-y-auto no-scrollbar -mx-4 border-t border-[#DEDEDE]">
@@ -461,23 +462,23 @@ const filteredUsers = userData.filter(user => {
                       <img
                         src={a.imageUrl}
                         alt={a.name}
-                        className="w-10 h-10 rounded-full object-cover"
+                        className="w-12 h-12 rounded-full object-cover"
                       />
 
                       <div>
-                        <p className="font-semibold text-sm text-gray-900">{a.name}</p>
-                        <p className="text-xs text-gray-600">{a.title}</p>
-                        <p className="text-xs text-gray-400">{a.subTitle}</p>
+                        <p className="font-roboto font-semibold text-[16px] text-[#364153]">{a.name}</p>
+                        <p className="font-roboto font-regular text-[15px] text-[#848484]">{a.title}</p>
+                        <p className="font-inter font-regular text-[14px] text-[#707274]">{a.subTitle}</p>
                       </div>
                     </div>
 
                     {/* RIGHT */}
                     <div className="flex items-center gap-4">
                       <div className="text-right">
-                        {a.amount && <p className="text-green-600 font-semibold text-sm">
+                        {a.amount && <p className="font-roboot text-[#29B605] font-semibold text-[15px]">
                           {a.amount}
                         </p>}
-                        <p className="text-xs text-gray-400">{a.time}</p>
+                        <p className="font-inter text-[12px] text-[#707274]">{a.time}</p>
                       </div>
 
                       <span
@@ -497,8 +498,8 @@ const filteredUsers = userData.filter(user => {
 
 
           {/* USER REVENUE CONTRIBUTION */}
-          <div className="bg-white rounded-xl p-4 shadow border">
-            <h3 className="text-lg font-semibold mb-3">User Revenue Contribution</h3>
+          <div className="bg-white rounded-xl p-4 shadow">
+            <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3">User Revenue Contribution</h3>
             <ResponsiveContainer width="100%" height={260}>
               <LineChart data={revenueData}>
                 <XAxis dataKey="month" />
@@ -511,14 +512,14 @@ const filteredUsers = userData.filter(user => {
         </div>
 
         {/* search & filter functionality */}
-        <div className="bg-white p-4 w-[973px]">
+        <div className="bg-white p-4 w-[973px] rounded-[16px]">
         <div className="flex flex-col md:flex-row gap-4 mb-6 items-center">
         <div className="relative flex-1 ">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
           <input 
             type="text"
             placeholder="Search by name or email..."
-            className="w-full pl-8 pr-4 py-2.5 rounded-lg border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-200"
+            className="w-full pl-8 pr-4 py-2.5 rounded-[10px] border border-[#B7B7B7] shadow-[0px_2px_6.3px_0px_#00000026] focus:outline-none focus:ring-2 focus:ring-green-200"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
@@ -574,7 +575,7 @@ const filteredUsers = userData.filter(user => {
                 <tr key={user.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gray-200 flex-shrink-0" />
+                      <img src={user.imageUrl} className="w-12 h-12 rounded-full"/>
                       <div>
                         <div className="font-semibold text-gray-800 text-sm">{user.name}</div>
                         <div className="text-xs text-gray-400">{user.email}</div>
