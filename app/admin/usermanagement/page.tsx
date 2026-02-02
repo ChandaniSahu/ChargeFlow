@@ -509,13 +509,16 @@ const filteredUsers = userData.filter(user => {
             </ResponsiveContainer>
           </div>
         </div>
+
+        {/* search & filter functionality */}
+        <div className="bg-white p-4 w-[973px]">
         <div className="flex flex-col md:flex-row gap-4 mb-6 items-center">
-        <div className="relative flex-1 w-full">
+        <div className="relative flex-1 ">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
           <input 
             type="text"
             placeholder="Search by name or email..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-200"
+            className="w-full pl-8 pr-4 py-2.5 rounded-lg border border-green-400 focus:outline-none focus:ring-2 focus:ring-green-200"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
@@ -552,8 +555,8 @@ const filteredUsers = userData.filter(user => {
       {/* TABLE CONTAINER */}
       <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
         {/* Horizontal Scroll wrapper */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+        <div className="overflow-x-auto no-scrollbar">
+          <table className="min-w-max w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-gray-100 bg-white">
                 <th className="px-6 py-4 text-[#364153] font-bold text-sm">User Name</th>
@@ -615,6 +618,7 @@ const filteredUsers = userData.filter(user => {
             </tbody>
           </table>
         </div>
+      </div>
       </div>
       </div>
     </div>

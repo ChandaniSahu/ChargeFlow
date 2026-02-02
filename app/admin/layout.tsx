@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative h-screen">
       {/* Background */}
       <Image
         src="/images/adminbgcut.jpg"
