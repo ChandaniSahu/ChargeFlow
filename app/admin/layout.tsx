@@ -3,7 +3,7 @@ import Navbar from "../components/admin/Navbar";
 import Dashboard from "../components/admin/Dashboard";
 import Image from "next/image";
 
-export default function Page() {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative h-screen overflow-hidden">
       {/* Background */}
@@ -29,7 +29,8 @@ export default function Page() {
     bg-[linear-gradient(123.84deg,rgba(255,255,255,0.49)_0%,rgba(124,124,124,0.42)_100%)] mx-auto desktop:rounded-[30px] rounded-[10px]  mb-2">
           
           <Sidebar />
-          <Dashboard />
+          {/* <Dashboard /> */}
+          {children}
         </div>
       </div>
     </div>
