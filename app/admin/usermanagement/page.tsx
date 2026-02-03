@@ -422,6 +422,7 @@ const filteredUsers = userData.filter(user => {
                     <Cell key={i} fill={e.color} />
                   ))}
                 </Pie>
+                <Tooltip />
               </PieChart>
             </div>
 

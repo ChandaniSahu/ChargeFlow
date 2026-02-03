@@ -398,6 +398,7 @@ export default function Dashboard() {
                         <Cell key={i} fill={e.color} stroke="none" />
                       ))}
                     </Pie>
+                    <Tooltip />
                   </PieChart>
                 </div>
                 <div className="space-y-1 mt-2">
@@ -439,7 +440,7 @@ export default function Dashboard() {
                   <BarChart data={utilizationData}>
                     <XAxis dataKey="level" />
                     <YAxis />
-                    <Tooltip />
+                    <Tooltip cursor={false} />
                     <Bar dataKey="value" fill="#22c55e" />
                   </BarChart>
                 </ResponsiveContainer>
@@ -453,21 +454,30 @@ export default function Dashboard() {
               <h3 className="font-inter text-[20px] font-semibold text-gray-700 mb-1">Charger Status</h3>
               <div className="flex-1 flex flex-col justify-center">
                 <div className="flex justify-center mb-3">
-                  <PieChart width={160} height={160}>
-                    <Pie
-                      data={chargerStatus}
-                      dataKey="value"
-                      innerRadius={45}
-                      outerRadius={70}
-                      startAngle={-90}
-                      endAngle={-460}   // 👈 clockwise
-                      paddingAngle={4}  // 👈 gap between slices
-                    >
-                      {chargerStatus.map((e, i) => (
-                        <Cell key={i} fill={e.color} stroke="none" />
-                      ))}
-                    </Pie>
-                  </PieChart>
+                  <PieChart width={160} height={160} className="outline-none">
+  <Pie
+    data={chargerStatus}
+    dataKey="value"
+    innerRadius={45}
+    outerRadius={70}
+    startAngle={-90}
+    endAngle={-460}
+    paddingAngle={4}
+    isAnimationActive={false}
+  >
+    {chargerStatus.map((e, i) => (
+      <Cell
+        key={i}
+        fill={e.color}
+        stroke="none"
+        tabIndex={-1}
+        style={{ outline: "none" }}
+      />
+    ))}
+  </Pie>
+  <Tooltip />
+</PieChart>
+
                 </div>
                 <div className="space-y-1">
                   {chargerStatus.map((s, i) => (

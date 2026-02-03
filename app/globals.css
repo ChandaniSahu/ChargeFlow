@@ -83,6 +83,11 @@
 
 }
 
+svg *:focus {
+  outline: none;
+}
+
+
 @layer utilities {
   .font-open-sans {
     font-family: var(--font-inter);
