@@ -9,8 +9,10 @@ import {
   Unlock,
   Search,
   Filter,
+  PlusSquare,
+  Wrench,
 } from "lucide-react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from "recharts";
 import {
   MdOutlineKeyboardArrowRight,
   MdOutlinePeopleAlt,
@@ -112,15 +114,35 @@ export const chargerStatus = [
   { name: "Maintenance", value: 65, color: "#facc15" },
 ];
 
-export const revenueData = [
-  { month: "Jan", revenue: 20000 },
-  { month: "Feb", revenue: 28000 },
-  { month: "Mar", revenue: 24000 },
-  { month: "Apr", revenue: 35000 },
-  { month: "May", revenue: 38000 },
-  { month: "Jun", revenue: 45000 },
-  { month: "Jul", revenue: 50000 },
+export const chartdata = [
+  {
+    name: "Patel Net",
+    earnings: 58000,
+    chargers: 24,
+  },
+  {
+    name: "Patel Net",
+    earnings: 42000,
+    chargers: 18,
+  },
+  {
+    name: "Patel Net",
+    earnings: 26000,
+    chargers: 12,
+  },
+  {
+    name: "Patel Net",
+    earnings: 18000,
+    chargers: 9,
+  },
+  {
+    name: "Eco Charge",
+    earnings: 0,
+    chargers: 6,
+  },
+
 ];
+
 
 
 
@@ -131,117 +153,117 @@ export interface ActivityItem {
   title: string;
   subTitle: string;
   time: string;
-  status: "booking" | "payment" | "profile" | "login" | "registration";
+  status:
+  | "charger_added"
+  | "payment"
+  | "kyc"
+  | "booking"
+  | "maintenance"
+  | "registration";
   amount?: string;
   imageUrl: string;
 }
 
+
 const activities: ActivityItem[] = [
   {
     id: 1,
-    name: "Priya Sharma",
-    title: "Completed Charging Session",
-    subTitle: "DC fast charger · 45 kWh",
-    time: "5 minutes ago",
-    amount: "₹350.00",
-    status: "booking",
-    imageUrl: "/images/user.jpg"
+    name: "Sharma Power Solutions",
+    title: "KYC Approved",
+    subTitle: "3 chargers activated successfully",
+    time: "2 hours ago",
+    amount: "+3 Chargers",
+    status: "charger_added",
+    imageUrl: "/images/host1.jpg",
   },
   {
     id: 2,
-    name: "Rahul Kumar",
-    title: "New Booking Created",
-    subTitle: "AC 22kW charger · scheduled for tomorrow",
-    time: "12 minutes ago",
-    amount: "₹220.00",
-    status: "booking",
-    imageUrl: "/images/user1.jpg"
+    name: "Kumar EV Solutions",
+    title: "Payout Completed",
+    subTitle: "Weekly Earnings Payout - ₹2,450",
+    time: "1 hour ago",
+    amount: "₹2,450",
+    status: "payment",
+    imageUrl: "/images/host2.jpg",
   },
   {
     id: 3,
-    name: "Anjali Patel",
-    title: "Payment Successful",
-    subTitle: "Booking #bk-2456 · ₹3,240",
-    time: "28 minutes ago",
-    amount: "₹450.00",
-    status: "payment",
-    imageUrl: "/images/user2.jpg"
-
+    name: "Reddy Fast Charge",
+    title: "KYC Approved",
+    subTitle: "3 chargers activated successfully",
+    time: "2 hours ago",
+    amount: "+8 Chargers",
+    status: "kyc",
+    imageUrl: "/images/host3.jpg",
   },
-
-  /* 🔽 Added from uploaded image */
-
   {
     id: 4,
-    name: "Vikram Singh",
-    title: "Profile Updated",
-    subTitle: "Updated payment method and address",
-    time: "1 hour ago",
-    status: "profile",
-    imageUrl: "/images/user3.jpg"
-
+    name: "Kumar EV Solutions",
+    title: "New Booking Received",
+    subTitle: "AC 22kW charger · downtown mumbai",
+    time: "3 hours ago",
+    amount: "₹250",
+    status: "booking",
+    imageUrl: "/images/host2.jpg",
   },
   {
     id: 5,
-    name: "Neha Reddy",
-    title: "Logged In",
-    subTitle: "Active on web",
-    time: "1 hour ago",
-    status: "login",
-    imageUrl: "/images/user.jpg"
+    name: "Reddy Fast Charge",
+    title: "Charger Maintenance",
+    subTitle: "DC charger · offline for scheduled maintenance",
+    time: "4 hours ago",
+    amount: "1 Offline",
+    status: "maintenance",
+    imageUrl: "/images/host1.jpg",
   },
   {
     id: 6,
-    name: "Arjun Verma",
-    title: "Booking Cancelled",
-    subTitle: "Refund processed · ₹550",
-    time: "2 hours ago",
-    amount: "₹550.00",
-    status: "booking",
-    imageUrl: "/images/user1.jpg"
-  },
-  {
-    id: 7,
-    name: "Kavya Nair",
-    title: "New Account Created",
-    subTitle: "Registered via email",
-    time: "3 hours ago",
+    name: "Verma Energy Station",
+    title: "New Host Registration",
+    subTitle: "New Host Registration",
+    time: "6 hours ago",
+    amount: "Pending",
     status: "registration",
-    imageUrl: "/images/user3.jpg"
+    imageUrl: "/images/host3.jpg",
   },
-  
 ];
 
 
 
-const getStatusStyles = (status: ActivityItem['status']) => {
+
+const getStatusStyles = (status: ActivityItem["status"]) => {
   switch (status) {
-    case "booking":
-      return "bg-[#3771C81A] text-[#1877F2] border-[#1877F23D]";
+    case "charger_added":
+      return "bg-[#E8F4FF] text-[#1877F2] border-[#B6D6FF]";
     case "payment":
-      return "bg-[#96FF7B30] text-[#29B605] border-[#38EF0A66]";
-    case "profile":
-      return "bg-[#fff0e5] text-[#b45309] border-[#e8bfa0]";
-    case "login":
-      return "bg-[#f2f2f2] text-[#757575] border-[#d6d6d7]";
+      return "bg-[#ECFDF3] text-[#29B605] border-[#A6F4C5]";
+    case "kyc":
+      return "bg-[#E9F9EF] text-[#16A34A] border-[#B7E4C7]";
+    case "booking":
+      return "bg-[#E8F1FF] text-[#2563EB] border-[#BFDBFE]";
+    case "maintenance":
+      return "bg-[#FFF1E6] text-[#C2410C] border-[#FED7AA]";
     case "registration":
-      return "bg-[#f3ebfe] text-[#8a38f5] border-[#e2cefd]";
+      return "bg-[#F3EBFF] text-[#7C3AED] border-[#DDD6FE]";
     default:
       return "bg-gray-50 text-gray-600 border-gray-200";
   }
 };
 
 
-const getStatusText = (status: ActivityItem['status']) => {
+
+const getStatusText = (status: ActivityItem["status"]) => {
   switch (status) {
-    case "booking":
-      return "Booking";
+    case "charger_added":
+      return "Charger Added";
     case "payment":
       return "Payment";
-    case "profile":
-      return "Profile";
-    case "login":
-      return "Login";
+    case "kyc":
+      return "KYC Approved";
+    case "booking":
+      return "Booking";
+    case "maintenance":
+      return "Maintenance";
     case "registration":
       return "Registration";
     default:
@@ -250,20 +272,23 @@ const getStatusText = (status: ActivityItem['status']) => {
 };
 
 
-const getStatusIcon = (status: ActivityItem['status']) => {
+
+const getStatusIcon = (status: ActivityItem["status"]) => {
   switch (status) {
-    case "booking":
-      return Calendar;
+    case "charger_added":
+      return PlusSquare;        // + Charger Added
     case "payment":
-      return Wallet;
-    case "profile":
-      return User;
-    case "login":
-      return LogIn;
+      return Wallet;            // Payment / Payout
+    case "kyc":
+      return CheckCircle;       // KYC Approved
+    case "booking":
+      return Calendar;          // New Booking
+    case "maintenance":
+      return Wrench;            // Maintenance
     case "registration":
-      return UserPlus;
+      return UserPlus;          // New Registration
     default:
-      return Clock;
+      return Clock;             // Fallback
   }
 };
 
@@ -271,21 +296,21 @@ const getStatusIcon = (status: ActivityItem['status']) => {
 
 // 1. DATA ARRAY
 const userData = [
-  { id: 1, name: 'Priya Singh', email: 'priyasingh@gmail.com', contact: '+91 5678903488', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
-  { id: 2, name: 'Rohit Singh', email: 'rohitsingh@gmail.com', contact: '+91 5778433390', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
-  { id: 3, name: 'Sneha Kapoor', email: 'snehakapoor@gmail.com', contact: '+91 1258444907', status: 'Inactive', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user1.jpg", },
-  { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Failed', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Failed', imageUrl: "/images/user2.jpg", },
-  { id: 5, name: 'Rahul Sharma', email: 'rahulsharma@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
-  { id: 5, name: 'Krishna Thakur', email: 'krishna@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
-  { id: 5, name: 'Antara Mishra', email: 'antaramishra@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user1.jpg", },
+  { id: 1, name: 'Priya Singh', email: 'priyasingh@gmail.com', contact: '+91 5678903488', status: 'Approved', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
+  { id: 2, name: 'Rohit Singh', email: 'rohitsingh@gmail.com', contact: '+91 5778433390', status: 'Approved', date: '2024-11-15', bookings: 14, amount: '₹2450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
+  { id: 3, name: 'Sneha Kapoor', email: 'snehakapoor@gmail.com', contact: '+91 1258444907', status: 'Pending', date: '2024-11-15', bookings: 9, amount: '₹4550', paymentStatus: 'Pending', imageUrl: "/images/user1.jpg", },
+  { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Failed', date: '2024-11-15', bookings: 30, amount: '₹4950', paymentStatus: 'Failed', imageUrl: "/images/user2.jpg", },
+  { id: 5, name: 'Rahul Sharma', email: 'rahulsharma@gmail.com', contact: '+91 7576329420', status: 'Approved', date: '2024-11-15', bookings: 23, amount: '₹6450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
+  { id: 5, name: 'Krishna Thakur', email: 'krishna@gmail.com', contact: '+91 7576329420', status: 'Approved', date: '2024-11-15', bookings: 40, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
+  { id: 5, name: 'Antara Mishra', email: 'antaramishra@gmail.com', contact: '+91 7576329420', status: 'Approved', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user1.jpg", },
 ];
 
 // 2. ICON SWITCH CASE HELPER
 const GetStatusIcon = (type: string, status: string) => {
   switch (status.toLowerCase()) {
+    case 'approved':
     case 'success':
-    case 'active':
-      return <CheckCircle size={16} className="text-[#29b605]" />;
+      return <CheckCircle size={16} className="text-green-500" />;
     case 'pending':
       return <Clock size={16} className="text-[#b45309]" />;
     case 'failed':
@@ -319,9 +344,9 @@ export default function UserManagementDashboard() {
     <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2 flex flex-col desktop:w-[1010px]">
       {/* HEADER */}
       <div className="desktop:text-left text-center">
-        <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 mb-1 text-[30px] text-white">User Management</h1>
+        <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 mb-1 text-[30px] text-white">Host Management</h1>
         <p className="font-arial text-white desktop:text-[20px] text-[15px] mb-3 -mt-2 leading-[19px] desktop:leading-tight">
-          Manage and monitor all platform users
+          Monitor and manage all charging stations
         </p>
       </div>
 
@@ -497,11 +522,11 @@ export default function UserManagementDashboard() {
                       </div>
 
                       <span
-                        className={`hidden desktop:flex font-roboto items-center gap-2 desktop:w-[133px] justify-center py-1.5 text-[16px] border rounded-md ${getStatusStyles(
+                        className={`hidden desktop:flex font-roboto items-center gap-2 desktop:w-[133px] justify-center py-1.5 text-[14px] border rounded-md ${getStatusStyles(
                           a.status
                         )}`}
                       >
-                        <StatusIcon size={19} />
+                        <StatusIcon size={16} />
                         {getStatusText(a.status)}
                       </span>
                       <span
@@ -522,16 +547,54 @@ export default function UserManagementDashboard() {
 
 
           {/* USER REVENUE CONTRIBUTION */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3">User Revenue Contribution</h3>
-            <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={revenueData}>
-                <XAxis dataKey="month" />
-                <YAxis tickFormatter={(v) => `${v / 1000}k`} />
-                <Tooltip />
-                <Line type="monotone" dataKey="revenue" stroke="#22c55e" strokeWidth={3} dot={false} />
-              </LineChart>
+          <div className="bg-white rounded-xl pt-2 shadow">
+            <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3 text-center">User Revenue Contribution</h3>
+            <ResponsiveContainer width="105%" height={260} className="flex items-center">
+              <BarChart data={chartdata} barGap={6} >
+                <XAxis dataKey="name" />
+
+                {/* Left Y axis – Earnings */}
+                <YAxis
+                  yAxisId="left"
+                  tickFormatter={(v) => `${v / 1000}k`}
+                />
+
+                {/* Right Y axis – Chargers */}
+                <YAxis
+                  yAxisId="right"
+                  orientation="right"
+                />
+
+                <Tooltip cursor={false} />
+
+                {/* Earnings – Green */}
+                <Bar
+                  yAxisId="left"
+                  dataKey="earnings"
+                  fill="#03DF48"
+                  radius={[6, 6, 0, 0]}
+                />
+
+                {/* Chargers – Blue */}
+                <Bar
+                  yAxisId="right"
+                  dataKey="chargers"
+                  fill="#2886FF"
+                  radius={[6, 6, 0, 0]}
+                />
+              </BarChart>
             </ResponsiveContainer>
+<div className="font-inter text-[#434343] justify-center flex gap-6">
+  <div className="flex items-center gap-2 ">
+    <span className="w-3 h-3 rounded-full bg-[#03DF48]"></span>
+    <span>Earnings</span>
+  </div>
+
+  <div className="flex items-center gap-2 ">
+    <span className="w-3 h-3 rounded-full bg-[#2886FF]"></span>
+    <span>Chargers</span>
+  </div>
+</div>
           </div>
         </div>
 
@@ -590,13 +653,13 @@ export default function UserManagementDashboard() {
                     <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Contact</th>
                     <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Status</th>
                     <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Date</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Bookings</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Chargers</th>
                     <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Amount</th>
                     <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Payment Status</th>
                     <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Actions</th>
                   </tr>
                 </thead>
-         
+
                 <tbody className="font-arial divide-y-[1.3px] divide-gray-100 overflow-y-auto">
                   {filteredUsers.map((user) => (
                     <tr key={user.id} className="hover:bg-green-50 transition-colors">
@@ -611,11 +674,11 @@ export default function UserManagementDashboard() {
                       </td>
                       <td className="px-6 py-4 text-[14px] text-gray-600 text-center font-medium">{user.contact}</td>
                       <td className="px-6 py-4 text-center">
-                        <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md ${user.status === "Active"
-                            ? "bg-[#e1ffd9] text-[#29b605]"
-                            : user.status === "Inactive"
-                              ? "bg-gray-100 text-gray-600"
-                              : "bg-[#ffdbd6] text-[#fb2c2f]"
+                        <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md ${user.status === "Approved"
+                          ? "bg-green-100 text-green-600"
+                          : user.status === "Pending"
+                            ? "bg-[#f9e8db] text-[#b45309]"
+                            : "bg-[#ffdbd6] text-[#fb2c2f]"
                           }`}>
                           {GetStatusIcon('status', user.status)}
                           {user.status}
@@ -625,9 +688,9 @@ export default function UserManagementDashboard() {
                       <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.bookings}</td>
                       <td className="px-6 py-4 text-[14px] text-gray-800 text-center">{user.amount}</td>
                       <td className="px-6 py-4 text-center">
-                        <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md  ${user.paymentStatus === 'Success' ? 'bg-[#e1ffd9] text-[#29b605] ' :
-                            user.paymentStatus === 'Pending' ? 'bg-[#f9e8db] text-[#b45309]' :
-                              'bg-[#ffdbd6] text-[#fb2c2f]'
+                        <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md  ${user.paymentStatus === 'Success' ? 'bg-green-100 text-green-600 ' :
+                          user.paymentStatus === 'Pending' ? 'bg-[#f9e8db] text-[#b45309]' :
+                            'bg-[#ffdbd6] text-[#fb2c2f]'
                           }`}>
                           {GetStatusIcon('payment', user.paymentStatus)}
                           {user.paymentStatus}
@@ -635,10 +698,10 @@ export default function UserManagementDashboard() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="font-roboto flex items-center gap-2 justify-center">
-                          <button className="flex items-center gap-1 w-[90px] justify-center text-[14px] py-1.5 bg-[#ffdbd6] text-[#fb2c2f] rounded-md ">
+                          <button className="flex items-center gap-1 w-[90px] justify-center text-[14px] py-1.5 bg-[#ffdbd6] text-[#fb2c2f] hover:bg-red-500 hover:text-white  rounded-md text-xs  hover:bg-red-100">
                             <Ban size={14} /> Blocked
                           </button>
-                          <button className="flex items-center gap-1 w-[90px] justify-center text-[14px] py-1.5 bg-[#e1ffd9] text-[#29b605] rounded-md">
+                          <button className="flex items-center gap-1 w-[90px] justify-center text-[14px] py-1.5 bg-green-100 hover:bg-green-500 hover:text-white text-green-600 rounded-md text-xs  hover:bg-green-100">
                             <Unlock size={14} /> Unblock
                           </button>
                         </div>
@@ -646,7 +709,7 @@ export default function UserManagementDashboard() {
                     </tr>
                   ))}
                 </tbody>
-               
+
               </table>
             </div>
           </div>
