@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import {
-  Users, CheckCircle, Radio, DollarSign, FileCheck, Wallet, FileText, UserX, Calendar, CreditCard, TrendingUp, Clock, User,
+  Users, CircleDashed, ChevronDown, CheckCircle, Radio, DollarSign, FileCheck, Wallet, FileText, UserX, Calendar, CreditCard, TrendingUp, Clock, User,
   LogIn,
   UserPlus,
   XCircle,
@@ -15,6 +15,7 @@ import {
   MdOutlineKeyboardArrowRight,
   MdOutlinePeopleAlt,
 } from "react-icons/md";
+import { IoCheckmarkSharp } from "react-icons/io5";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
@@ -207,6 +208,7 @@ const activities: ActivityItem[] = [
     status: "registration",
     imageUrl: "/images/user3.jpg"
   },
+  
 ];
 
 
@@ -214,15 +216,15 @@ const activities: ActivityItem[] = [
 const getStatusStyles = (status: ActivityItem['status']) => {
   switch (status) {
     case "booking":
-      return "bg-blue-50 text-blue-600 border-blue-200";
+      return "bg-[#3771C81A] text-[#1877F2] border-[#1877F23D]";
     case "payment":
-      return "bg-green-50 text-green-600 border-green-200";
+      return "bg-[#96FF7B30] text-[#29B605] border-[#38EF0A66]";
     case "profile":
-      return "bg-purple-50 text-purple-600 border-purple-200";
+      return "bg-[#fff0e5] text-[#b45309] border-[#e8bfa0]";
     case "login":
-      return "bg-amber-50 text-amber-600 border-amber-200";
+      return "bg-[#f2f2f2] text-[#757575] border-[#d6d6d7]";
     case "registration":
-      return "bg-indigo-50 text-indigo-600 border-indigo-200";
+      return "bg-[#f3ebfe] text-[#8a38f5] border-[#e2cefd]";
     default:
       return "bg-gray-50 text-gray-600 border-gray-200";
   }
@@ -268,11 +270,13 @@ const getStatusIcon = (status: ActivityItem['status']) => {
 
 // 1. DATA ARRAY
 const userData = [
-  { id: 1, name: 'Priya Singh', email: 'priyasingh@gmail.com', contact: '+91 5678903488', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success' ,imageUrl: "/images/user.jpg", },
-  { id: 2, name: 'Rohit Singh', email: 'rohitsingh@gmail.com', contact: '+91 5778433390', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending' ,imageUrl: "/images/user3.jpg", },
-  { id: 3, name: 'Sneha Kapoor', email: 'snehakapoor@gmail.com', contact: '+91 1258444907', status: 'Inactive', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending',imageUrl: "/images/user1.jpg", },
-  { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Blocked', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Failed',imageUrl: "/images/user2.jpg", },
-  { id: 5, name: 'Rahul Sharma', email: 'rahulsharma@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success',imageUrl: "/images/user.jpg", },
+  { id: 1, name: 'Priya Singh', email: 'priyasingh@gmail.com', contact: '+91 5678903488', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
+  { id: 2, name: 'Rohit Singh', email: 'rohitsingh@gmail.com', contact: '+91 5778433390', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
+  { id: 3, name: 'Sneha Kapoor', email: 'snehakapoor@gmail.com', contact: '+91 1258444907', status: 'Inactive', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user1.jpg", },
+  { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Blocked', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Failed', imageUrl: "/images/user2.jpg", },
+  { id: 5, name: 'Rahul Sharma', email: 'rahulsharma@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
+  { id: 5, name: 'Krishna Thakur', email: 'krishna@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
+  { id: 5, name: 'Antara Mishra', email: 'antaramishra@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user1.jpg", },
 ];
 
 // 2. ICON SWITCH CASE HELPER
@@ -285,8 +289,9 @@ const GetStatusIcon = (type: string, status: string) => {
       return <Clock size={16} className="text-orange-400" />;
     case 'failed':
     case 'blocked':
-    case 'inactive':
       return <XCircle size={16} className="text-red-500" />;
+    case 'inactive':
+      return <CircleDashed size={16} className="text-[#7d7d7d]" />
     default:
       return null;
   }
@@ -297,21 +302,21 @@ const GetStatusIcon = (type: string, status: string) => {
 /* ================= COMPONENT ================= */
 export default function UserManagementDashboard() {
   const [filterStatus, setFilterStatus] = useState('All Status');
-const [searchTerm, setSearchTerm] = useState('');
-const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-// 3. FILTER LOGIC
-const filteredUsers = userData.filter(user => {
-  const matchesFilter = filterStatus === 'All Status' || user.status === filterStatus;
-  const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase());
-  return matchesFilter && matchesSearch;
-});
+  // 3. FILTER LOGIC
+  const filteredUsers = userData.filter(user => {
+    const matchesFilter = filterStatus === 'All Status' || user.status === filterStatus;
+    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
 
   return (
     <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2 flex flex-col desktop:w-[1010px]">
       {/* HEADER */}
-      <div className="mb-3">
+      <div className="">
         <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 mb-1 text-[30px] text-white">User Management</h1>
         <p className="font-arial text-white desktop:text-[20px] text-[15px] mb-3 -mt-2 leading-[19px] desktop:leading-tight">
           Manage and monitor all platform users
@@ -403,7 +408,7 @@ const filteredUsers = userData.filter(user => {
           </div>
 
           {/* CHARGER STATUS */}
-          <div className="w-full lg:w-[220px]  bg-white rounded-xl shadow border px-3 py-2 h-full flex flex-col">
+          <div className="w-full lg:w-[220px]  bg-white rounded-xl shadow px-3 py-2 h-full flex flex-col">
             <h3 className="font-inter text-[20px] font-semibold text-[#434343] mb-1">
               Charger Status
             </h3>
@@ -456,10 +461,10 @@ const filteredUsers = userData.filter(user => {
                 return (
                   <div
                     key={a.id}
-                    className="flex items-center justify-between border-b-2 border-[#DEDEDE] py-4 px-4 last:border-b-0"
+                    className="relative flex items-center  justify-between border-b-2 border-[#DEDEDE] py-4 px-4 last:border-b-0"
                   >
                     {/* LEFT */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 pl-2 desktop:pl-0">
                       <img
                         src={a.imageUrl}
                         alt={a.name}
@@ -470,26 +475,42 @@ const filteredUsers = userData.filter(user => {
                         <p className="font-roboto font-semibold text-[16px] text-[#364153]">{a.name}</p>
                         <p className="font-roboto font-regular text-[15px] text-[#848484]">{a.title}</p>
                         <p className="font-inter font-regular text-[14px] text-[#707274]">{a.subTitle}</p>
+                        <div className="desktop:hidden">
+                          {a.amount && <p className="font-roboto text-[#29B605] text-[15px]">
+                            {a.amount}
+                          </p>}
+                          <p className="font-inter text-[12px] text-[#707274]">{a.time}</p>
+                        </div>
                       </div>
+
                     </div>
 
                     {/* RIGHT */}
                     <div className="flex items-center gap-4">
-                      <div className="text-right">
-                        {a.amount && <p className="font-roboot text-[#29B605] font-semibold text-[15px]">
+                      <div className="hidden desktop:block text-right">
+                        {a.amount && <p className="font-roboto text-[#29B605] text-[15px]">
                           {a.amount}
                         </p>}
                         <p className="font-inter text-[12px] text-[#707274]">{a.time}</p>
                       </div>
 
                       <span
-                        className={`flex items-center gap-1 px-3 py-1.5 text-xs font-medium border rounded-md ${getStatusStyles(
+                        className={`hidden desktop:flex font-roboto items-center gap-2 desktop:w-[133px] justify-center py-1.5 text-[16px] border rounded-md ${getStatusStyles(
                           a.status
                         )}`}
                       >
-                        <StatusIcon size={14} />
+                        <StatusIcon size={19} />
                         {getStatusText(a.status)}
                       </span>
+                      <span
+                        className={`desktop:hidden absolute bottom-0 right-1 font-roboto flex items-center gap-2 w-[120px] justify-center py-1.5 text-[14px] border rounded-md ${getStatusStyles(
+                          a.status
+                        )}`}
+                      >
+                        <StatusIcon size={16} />
+                        {getStatusText(a.status)}
+                      </span>
+
                     </div>
                   </div>
                 );
@@ -513,115 +534,121 @@ const filteredUsers = userData.filter(user => {
         </div>
 
         {/* search & filter functionality */}
-        <div className="bg-white p-4 w-[973px] rounded-[16px]">
-        <div className="flex flex-col md:flex-row gap-4 mb-6 items-center">
-        <div className="relative flex-1 ">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-          <input 
-            type="text"
-            placeholder="Search by name or email..."
-            className="w-full pl-8 pr-4 py-2.5 rounded-[10px] border border-[#B7B7B7] shadow-[0px_2px_6.3px_0px_#00000026] focus:outline-none focus:ring-2 focus:ring-green-200"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        
-        <div className="relative">
-          <button 
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-50 min-w-[140px] justify-between"
-          >
-            <div className="flex items-center gap-2">
-              <Filter size={18} className="text-gray-500" />
-              <span className="font-medium text-gray-700">{filterStatus}</span>
+        <div className="bg-white p-4 desktop:w-[973px] sm:min-w-[920px] rounded-[16px]">
+          <div className="flex flex-col md:flex-row gap-4 mb-6 items-center">
+            <div className="relative flex-1 w-full">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search by name or email..."
+                className="w-full pl-8 pr-4 py-2.5 rounded-[10px] border border-[#B7B7B7] shadow-[0px_2px_6.3px_0px_#00000026] focus:outline-none focus:ring-2 focus:ring-green-200"
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
-            <span className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>▼</span>
-          </button>
 
-          {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-xl shadow-xl z-20 overflow-hidden">
-              {['All Status', 'Active', 'Inactive', 'Blocked'].map((status) => (
-                <button
-                  key={status}
-                  className={`w-full text-left px-4 py-3 hover:bg-green-50 flex items-center justify-between ${filterStatus === status ? 'bg-green-50 text-green-600 font-semibold' : 'text-gray-600'}`}
-                  onClick={() => { setFilterStatus(status); setIsDropdownOpen(false); }}
-                >
-                  {status}
-                  {filterStatus === status && <CheckCircle size={14} />}
-                </button>
-              ))}
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-green-500 min-w-[140px] justify-between"
+              >
+                <div className="flex items-center gap-2">
+                  <Filter size={18} className="text-gray-500" />
+                  <span className="font-medium text-gray-700 font-inter text-[20px] ">{filterStatus}</span>
+                </div>
+                < ChevronDown className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                {/* <span >▼</span> */}
+              </button>
+
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]
+">
+                  {['All Status', 'Active', 'Inactive', 'Blocked'].map((status) => (
+                    <button
+                      key={status}
+                      className={`font-inter text-[20px] font-medium w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${filterStatus === status ? 'bg-[#e1ffd9] font-semibold' : 'text-black'}`}
+                      onClick={() => { setFilterStatus(status); setIsDropdownOpen(false); }}
+                    >
+                      {status}
+                      {filterStatus === status && <IoCheckmarkSharp size={20} />}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </div>
+          </div>
 
-      {/* TABLE CONTAINER */}
-      <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
-        {/* Horizontal Scroll wrapper */}
-        <div className="overflow-x-auto no-scrollbar">
-          <table className="min-w-max w-full text-left border-collapse">
-            <thead>
-              <tr className="border-b border-gray-100 bg-white">
-                <th className="px-6 py-4 text-[#364153] font-bold text-sm">User Name</th>
-                <th className="px-6 py-4 text-[#364153] font-bold text-sm text-center">Contact</th>
-                <th className="px-6 py-4 text-[#364153] font-bold text-sm text-center">Status</th>
-                <th className="px-6 py-4 text-[#364153] font-bold text-sm text-center">Date</th>
-                <th className="px-6 py-4 text-[#364153] font-bold text-sm text-center">Total Bookings</th>
-                <th className="px-6 py-4 text-[#364153] font-bold text-sm text-center">Total Amount</th>
-                <th className="px-6 py-4 text-[#364153] font-bold text-sm text-center">Payment Status</th>
-                <th className="px-6 py-4 text-[#364153] font-bold text-sm text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-50">
-              {filteredUsers.map((user) => (
-                <tr key={user.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <img src={user.imageUrl} className="w-12 h-12 rounded-full"/>
-                      <div>
-                        <div className="font-semibold text-gray-800 text-sm">{user.name}</div>
-                        <div className="text-xs text-gray-400">{user.email}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-600 text-center font-medium">{user.contact}</td>
-                  <td className="px-6 py-4 text-center">
-                    <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-md text-xs font-semibold ${
-                      user.status === 'Active' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'
-                    }`}>
-                      {GetStatusIcon('status', user.status)}
-                      {user.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-500 text-center">{user.date}</td>
-                  <td className="px-6 py-4 text-sm text-gray-500 text-center">{user.bookings}</td>
-                  <td className="px-6 py-4 text-sm text-gray-800 font-semibold text-center">{user.amount}</td>
-                  <td className="px-6 py-4 text-center">
-                    <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-md text-xs font-semibold border ${
-                      user.paymentStatus === 'Success' ? 'bg-green-50 text-green-600 border-green-200' :
-                      user.paymentStatus === 'Pending' ? 'bg-orange-50 text-orange-600 border-orange-200' :
-                      'bg-red-50 text-red-600 border-red-200'
-                    }`}>
-                      {GetStatusIcon('payment', user.paymentStatus)}
-                      {user.paymentStatus}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2 justify-center">
-                      <button className="flex items-center gap-1 px-3 py-1.5 bg-red-50 text-red-500 rounded-md text-xs font-bold hover:bg-red-100">
-                        <Ban size={14} /> Blocked
-                      </button>
-                      <button className="flex items-center gap-1 px-3 py-1.5 bg-green-50 text-green-500 rounded-md text-xs font-bold hover:bg-green-100">
-                        <Unlock size={14} /> Unblock
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          {/* TABLE CONTAINER */}
+          <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+            {/* Horizontal Scroll wrapper */}
+            <div className="overflow-x-auto no-scrollbar max-h-[420px] overflow-y-auto">
+              <table className="min-w-max w-full text-left border-collapse">
+                <thead className="sticky top-0 z-10 bg-white">
+                  <tr className="font-inter border-b-[1.6px] border-[#E9E9E9] bg-white">
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">User Name</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Contact</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Status</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Date</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Bookings</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Amount</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Payment Status</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Actions</th>
+                  </tr>
+                </thead>
+         
+                <tbody className="font-arial divide-y-[1.3px] divide-gray-100 overflow-y-auto">
+                  {filteredUsers.map((user) => (
+                    <tr key={user.id} className="hover:bg-green-50 transition-colors">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <img src={user.imageUrl} className="w-12 h-12 rounded-full" />
+                          <div>
+                            <div className="text-gray-800 text-[14px]">{user.name}</div>
+                            <div className="text-[12px] text-gray-400">{user.email}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-[14px] text-gray-600 text-center font-medium">{user.contact}</td>
+                      <td className="px-6 py-4 text-center">
+                        <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md ${user.status === "Active"
+                            ? "bg-green-100 text-green-600"
+                            : user.status === "Inactive"
+                              ? "bg-gray-100 text-gray-600"
+                              : "bg-red-100 text-red-600"
+                          }`}>
+                          {GetStatusIcon('status', user.status)}
+                          {user.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.date}</td>
+                      <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.bookings}</td>
+                      <td className="px-6 py-4 text-[14px] text-gray-800 text-center">{user.amount}</td>
+                      <td className="px-6 py-4 text-center">
+                        <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md  ${user.paymentStatus === 'Success' ? 'bg-green-100 text-green-600 ' :
+                            user.paymentStatus === 'Pending' ? 'bg-orange-100 text-orange-600' :
+                              'bg-red-100 text-red-600'
+                          }`}>
+                          {GetStatusIcon('payment', user.paymentStatus)}
+                          {user.paymentStatus}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="font-roboto flex items-center gap-2 justify-center">
+                          <button className="flex items-center gap-1 w-[90px] justify-center text-[14px] py-1.5 bg-red-100 text-red-600 rounded-md text-xs  hover:bg-red-100">
+                            <Ban size={14} /> Blocked
+                          </button>
+                          <button className="flex items-center gap-1 w-[90px] justify-center text-[14px] py-1.5 bg-green-100 text-green-600 rounded-md text-xs  hover:bg-green-100">
+                            <Unlock size={14} /> Unblock
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+               
+              </table>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
       </div>
     </div>
   );
