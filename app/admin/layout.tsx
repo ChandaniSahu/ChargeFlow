@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative h-screen">
+    <div className="relative desktop:h-[120vh]">
       {/* Background */}
       <Image
         src="/images/adminbgcut.jpg"
@@ -25,7 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         </div>
         
         {/* Main Area */}
-        <div className="mt-5 desktop:flex-row flex flex-col max-w-[1220px] w-full overflow-y-auto backdrop-blur-[23.700000762939453px]
+        <div className="mt-5 desktop:flex-row flex flex-col max-w-[1220px] w-full overflow-auto backdrop-blur-[23.700000762939453px]
     bg-[linear-gradient(123.84deg,rgba(255,255,255,0.49)_0%,rgba(124,124,124,0.42)_100%)] mx-auto desktop:rounded-[30px] rounded-[10px]  mb-2">
           
           <Sidebar />

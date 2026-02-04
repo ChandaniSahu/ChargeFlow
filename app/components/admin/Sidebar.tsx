@@ -56,7 +56,7 @@ export default function Sidebar() {
       </div>
 
       {/* 🔹 Desktop Vertical Sidebar */}
-      <aside className="desktop:block hidden min-w-[220px] mx-2 my-4 py-4 px-1 bg-white rounded-[20px] shadow-xl overflow-y-auto no-scrollbar">
+      <div className="desktop:block hidden min-w-[212px] mx-2 my-4 py-4 px-1 bg-white overflow-auto no-scrollbar rounded-[20px] shadow-xl">
         <div className="space-y-2">
           {menu.map((item, i) => {
             const Icon = item.icon;
@@ -78,7 +78,7 @@ export default function Sidebar() {
             );
           })}
         </div>
-      </aside>
+      </div>
     </>
   );
 }

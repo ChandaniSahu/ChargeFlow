@@ -564,10 +564,10 @@ export default function UserManagementDashboard() {
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]
 ">
-                  {['All Status', 'Active', 'Inactive', 'Blocked'].map((status) => (
+                  {['All Status', 'Active', 'Inactive', 'Failed'].map((status) => (
                     <button
                       key={status}
-                      className={`font-inter text-[20px] font-medium w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${filterStatus === status ? 'bg-[#e1ffd9] font-semibold' : 'text-black'}`}
+                      className={`font-inter text-[20px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${filterStatus === status ? 'bg-[#e1ffd9] font-semibold' : 'text-black'}`}
                       onClick={() => { setFilterStatus(status); setIsDropdownOpen(false); }}
                     >
                       {status}

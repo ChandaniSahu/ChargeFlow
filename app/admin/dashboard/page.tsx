@@ -302,7 +302,7 @@ export default function Dashboard() {
      
       {/* <div className="space-y-2 flex-1 h-[82vh] overflow-y-auto no-scrollbar mb-4 red "> */}
 
-      <div className="space-y-2 flex-1 h-[82vh] overflow-y-auto no-scrollbar mb-4">
+      <div className="space-y-2 flex-1  overflow-y-auto no-scrollbar mb-4">
         {/* ROW 1: Stats/Actions + Booking Status */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-3">
 
