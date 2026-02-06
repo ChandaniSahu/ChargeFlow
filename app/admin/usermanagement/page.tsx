@@ -497,7 +497,7 @@ export default function UserManagementDashboard() {
                       </div>
 
                       <span
-                        className={`hidden desktop:flex font-roboto items-center gap-2 desktop:w-[133px] justify-center py-1.5 text-[16px] border rounded-md ${getStatusStyles(
+                        className={`hidden desktop:flex font-roboto  items-center gap-2 desktop:w-[133px] justify-center py-2 text-[16px] border rounded-md ${getStatusStyles(
                           a.status
                         )}`}
                       >
@@ -505,7 +505,7 @@ export default function UserManagementDashboard() {
                         {getStatusText(a.status)}
                       </span>
                       <span
-                        className={`desktop:hidden absolute bottom-0 right-1 font-roboto flex items-center gap-2 w-[120px] justify-center py-1.5 text-[14px] border rounded-md ${getStatusStyles(
+                        className={`desktop:hidden absolute bottom-0 right-1 font-roboto  flex items-center gap-2 w-[120px] justify-center py-2 text-[14px] border rounded-md ${getStatusStyles(
                           a.status
                         )}`}
                       >

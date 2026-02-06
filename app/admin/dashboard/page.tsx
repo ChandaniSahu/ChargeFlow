@@ -346,38 +346,42 @@ export default function Dashboard() {
             </div>
 
             {/* Actions Cards - Added margin-top for spacing between Stats and Actions */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[0.3rem] mt-3 ">
-              {actions.map((a, i) => {
-                const TopIcon = a.icon;
-                const BtnIcon = a.btnIcon;
+<div className="flex flex-wrap items-center justify-center gap-[0.3rem] mt-3">
+  {actions.map((a, i) => {
+    const TopIcon = a.icon;
+    const BtnIcon = a.btnIcon;
 
-                return (
-                  <div
-                    key={i}
-                    className="bg-white p-2 rounded-xl shadow-md border border-gray-100"
-                  >
-                    {/* TOP ICON + TITLE */}
-                    <div className="flex items-center gap-1 mb-2">
-                      <TopIcon size={17} className="text-[#2CDE00]" />
-                      <h3 className="font-inter font-semibold text-[11px] text-[#364153]">
-                        {a.title}
-                      </h3>
-                    </div>
+    return (
+      <div
+        key={i}
+        className="bg-white p-2 rounded-xl shadow-md border border-gray-100
+        w-[calc(50%-0.15rem)] md:w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
+        "
+      >
+        {/* TOP ICON + TITLE */}
+        <div className="flex items-center gap-1 mb-2">
+          <TopIcon size={17} className="text-[#2CDE00]" />
+          <h3 className="font-inter font-semibold text-[11px] text-[#364153]">
+            {a.title}
+          </h3>
+        </div>
 
-                    {/* SUB TEXT */}
-                    <p className="font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF]">
-                      {a.sub}
-                    </p>
+        {/* SUB TEXT */}
+        <p className="font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF]">
+          {a.sub}
+        </p>
 
-                    {/* BUTTON */}
-                    <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A]  text-white rounded-md">
-                      {a.btn}
-                      {BtnIcon && <BtnIcon size={14} />}
-                    </button>
-                  </div>
-                );
-              })}
-            </div>
+        {/* BUTTON */}
+        <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] text-white rounded-md">
+          {a.btn}
+          {BtnIcon && <BtnIcon size={14} />}
+        </button>
+      </div>
+    );
+  })}
+</div>
+
+
           </div>
 
           {/* COLUMN 2: Booking Status (1 column) */}

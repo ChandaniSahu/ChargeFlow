@@ -15,6 +15,7 @@ import {
   Zap,
   Power,
   PowerCircle,
+  ZapOff,
 } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from "recharts";
 import {
@@ -26,9 +27,12 @@ import {
   MdOutlineWifiTethering,
   MdWarningAmber,
 } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
 import { FaChargingStation } from "react-icons/fa6";
 import { RiAlertFill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
+import { TiLocation } from "react-icons/ti";
+import { IoLocationSharp } from "react-icons/io5";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
@@ -42,25 +46,25 @@ export const StatsCards = [
     title: "Total Chargers",
     value: "850",
     meta: <>
-    <div className="max-w-[85px] font-inter font-medium flex flex-wrap gap-x-1 gap-y-1 text-[9px] text-[#7C7C7C] text-center mt-1">
-  <span className="whitespace-nowrap">
-    AC: <span className="font-semibold text-[#38EF0A]">560</span>
-  </span>
-  <span className="text-[#DFDFDF]">|</span>
-  <span className="whitespace-nowrap">
-    DC: <span className="font-semibold text-[#38EF0A]">210</span>
-  </span>
+      <div className="max-w-[85px] font-inter font-medium flex flex-wrap gap-x-1 gap-y-1 text-[9px] text-[#7C7C7C] text-center mt-1">
+        <span className="whitespace-nowrap">
+          AC: <span className="font-semibold text-[#38EF0A]">560</span>
+        </span>
+        <span className="text-[#DFDFDF]">|</span>
+        <span className="whitespace-nowrap">
+          DC: <span className="font-semibold text-[#38EF0A]">210</span>
+        </span>
 
-  <span className="whitespace-nowrap mx-auto">
-    Fast: <span className="font-semibold text-[#38EF0A]">80</span>
-  </span>
-</div>
+        <span className="whitespace-nowrap mx-auto">
+          Fast: <span className="font-semibold text-[#38EF0A]">80</span>
+        </span>
+      </div>
 
     </>,
     growth: null,
     icon: FaChargingStation,
     theme: "green",
-    bottomIcon : FaChargingStation,
+    bottomIcon: FaChargingStation,
   },
   {
     title: "Inactive Chargers",
@@ -69,7 +73,7 @@ export const StatsCards = [
     growth: "-2%",
     icon: RiAlertFill,
     theme: "orange",
-    bottomIcon :RiAlertFill,
+    bottomIcon: RiAlertFill,
   },
   {
     title: "Active Chargers",
@@ -78,7 +82,7 @@ export const StatsCards = [
     growth: "+8%",
     icon: Radio,
     theme: "green",
-    bottomIcon : Radio
+    bottomIcon: Radio
   },
   {
     title: "Total Revenue",
@@ -87,7 +91,7 @@ export const StatsCards = [
     growth: "+15%",
     icon: RiMoneyRupeeCircleFill,
     theme: "green",
-    bottomIcon : SiSimpleanalytics,
+    bottomIcon: SiSimpleanalytics,
   },
 ];
 
@@ -96,14 +100,14 @@ export const actionCards = [
     title: "Manage Chargers",
     sub1: (
       <div className="flex items-center gap-[0.3rem]">
-         <span className="text-[12px] font-medium">
+        <span className="text-[12px] font-medium">
           Total Chargers:
         </span>
         <span className="text-[15px] font-semibold">850</span>
-       
+
       </div>
     ),
-    sub2 : "aC / DC / Fast chargers",
+    sub2: "aC / DC / Fast chargers",
     btn: "Manage",
     btnIcon: MdOutlineKeyboardArrowRight,
     icon: MdEvStation,
@@ -121,10 +125,10 @@ export const actionCards = [
           Offline :
         </span>
         <span className="text-[15px] font-semibold text-[#38EF0A]">90</span>
-        
+
       </div>
     ),
-   
+
     btn: "View Status",
     btnIcon: MdOutlineKeyboardArrowRight,
     icon: MdOutlineWifiTethering,
@@ -137,10 +141,10 @@ export const actionCards = [
           Under Maintenance :
         </span>
         <span className="text-[15px] font-semibold">40</span>
-        
+
       </div>
     ),
-     sub2:"requires attention",
+    sub2: "requires attention",
     btn: "Manage",
     btnIcon: MdOutlineKeyboardArrowRight,
     icon: MdOutlineBuildCircle,
@@ -153,11 +157,11 @@ export const actionCards = [
         <span className="text-[12px] font-medium">
           Chargers Blocked
         </span>
-        
-        
+
+
       </div>
     ),
-    sub2:"offline / blocked",
+    sub2: "offline / blocked",
     btn: "Manage List",
     btnIcon: MdOutlineKeyboardArrowRight,
     icon: MdBlock,
@@ -209,12 +213,12 @@ export interface ActivityItem {
   subTitle: string;    // Description
   time: string;
   status:
-    | "alert"
-    | "session"
-    | "maintenance"
-    | "offline"
-    | "booking"
-    | "online";
+  | "alert"
+  | "session"
+  | "maintenance"
+  | "offline"
+  | "booking"
+  | "online";
   amount?: string;     // 92%, 45 kWh, Scheduled, etc.
   imageUrl: string;
 }
@@ -297,15 +301,15 @@ export const activities: ActivityItem[] = [
 export const getStatusStyles = (status: ActivityItem["status"]) => {
   switch (status) {
     case "alert":
-      return "bg-orange-50 text-orange-600 ";
+      return "bg-[#fff0e5] text-[#b45309] ";
     case "session":
-      return "bg-green-50 text-green-600 ";
+      return "bg-[#96FF7B30] text-[#29B605] ";
     case "maintenance":
-      return "bg-amber-50 text-amber-600 ";
+      return "bg-[#fff0e5] text-[#b45309]";
     case "offline":
-      return "bg-red-50 text-red-600 ";
+      return "bg-[#ffdbd6] text-[#fb2c2f] ";
     case "booking":
-      return "bg-purple-50 text-purple-600 ";
+      return "bg-[#f3ebfe] text-[#8a38f5] ";
     case "online":
       return "bg-blue-50 text-blue-600 ";
     default:
@@ -402,6 +406,7 @@ export interface ChargerCard {
   sub: string;
   location: string;
   capacity: string;
+  type1:string;
   type: "AC" | "DC";
   utilization: number;
   state: ChargerState;
@@ -415,100 +420,109 @@ export const chargers: ChargerCard[] = [
     sub: "Reddy Fast Charge",
     location: "MG Road Metro Station, Bengaluru, Karnataka",
     capacity: "150kW",
+    type1:"Type2",
     type: "DC",
     utilization: 92,
     state: "unblock",
     mode: "online",
-    image: "/images/host1.jpg",
+    image: "/images/charger1.png",
   },
   {
     title: "Standard AC - Viman Nagar",
     sub: "Kumar EV Solutions",
     location: "Viman Nagar, Pune, Maharashtra",
     capacity: "7kW",
+    type1:"CSS2",
     type: "AC",
     utilization: 38,
     state: "unblock",
     mode: "online",
-    image: "/images/host2.jpg",
+    image: "/images/charger2.png",
   },
   {
     title: "Fast Charger - Banjara Hills",
     sub: "Gupta Charging Hub",
     location: "Road No. 12, Banjara Hills, Hyderabad",
     capacity: "120kW",
+    type1:"CSS2",
     type: "DC",
     utilization: 78,
     state: "unblock",
     mode: "online",
-    image: "/images/host3.jpg",
+    image: "/images/charger3.png",
   },
   {
     title: "AC Charger - Indiranagar",
     sub: "Singh Charging Station",
     location: "100 Feet Road, Indiranagar, Bengaluru",
     capacity: "22kW",
+    type1:"Type2",
     type: "AC",
     utilization: 55,
     state: "unblock",
     mode: "online",
-    image: "/images/host2.jpg",
+    image: "/images/charger2.png",
   },
   {
     title: "DC SuperFast - Whitefield",
     sub: "Singh Charging Hub",
     location: "ITPL Road, Whitefield, Bengaluru",
     capacity: "60kW",
+    type1:"CSS2",
     type: "DC",
     utilization: 85,
     state: "unblock",
     mode: "online",
-    image: "/images/host1.jpg",
+    image: "/images/charger1.png",
   },
   {
     title: "AC Charger - Koramangala",
     sub: "Singh Smart Charge",
     location: "80 Feet Road, 4th Block, Koramangala, Bengaluru",
     capacity: "7.4kW",
+    type1:"Type2",
     type: "AC",
     utilization: 30,
     state: "unblock",
     mode: "online",
-    image: "/images/host3.jpg",
+    image: "/images/charger3.png",
   },
   {
-  title: "DC Fast - Electronic City",
-  sub: "GreenVolt Charging",
-  location: "Phase 1, Electronic City, Bengaluru",
-  capacity: "100kW",
-  type: "DC",
-  utilization: 88,
-  state: "unblock",
-  mode: "online",
-  image: "/images/host1.jpg",
-},
-{
-  title: "AC Charger - Andheri West",
-  sub: "Urban EV Network",
-  location: "Link Road, Andheri West, Mumbai",
-  capacity: "11kW",
-  type: "AC",
-  utilization: 42,
-  state: "unblock",
-  mode: "offline",
-  image: "/images/host2.jpg",
-},
-{
-  title: "DC Fast - Sector 62",
-  sub: "ChargeNow India",
-  location: "Sector 62, Noida, Uttar Pradesh",
-  capacity: "120kW",
-  type: "DC",
-  utilization: 67,
-  state: "block",
-  mode: "maintenance",
-  image: "/images/host3.jpg",
-},
+    title: "DC Fast - Electronic City",
+    sub: "GreenVolt Charging",
+    location: "Phase 1, Electronic City, Bengaluru",
+    capacity: "100kW",
+    type1:"Type1",
+    type: "DC",
+    utilization: 88,
+    state: "unblock",
+    mode: "online",
+    image: "/images/charger1.png",
+  },
+  {
+    title: "AC Charger - Andheri West",
+    sub: "Urban EV Network",
+    location: "Link Road, Andheri West, Mumbai",
+    capacity: "11kW",
+    type1:"CSS2",
+    type: "AC",
+    utilization: 42,
+    state: "unblock",
+    mode: "offline",
+    image: "/images/charger2.png",
+  },
+  {
+    title: "DC Fast - Sector 62",
+    sub: "ChargeNow India",
+    location: "Sector 62, Noida, Uttar Pradesh",
+    capacity: "120kW",
+    type1:"CSS2",
+    type: "DC",
+    utilization: 67,
+    state: "block",
+    mode: "maintenance",
+    image: "/images/charger3.png",
+  },
 
 ];
 
@@ -516,10 +530,16 @@ export const chargers: ChargerCard[] = [
 
 /* ================= COMPONENT ================= */
 export default function UserManagementDashboard() {
-    const [data, setData] = useState<ChargerCard[]>(chargers);
+  const [data, setData] = useState<ChargerCard[]>(chargers);
   const [search, setSearch] = useState("");
-  const [typeFilter, setTypeFilter] = useState("all");
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
+  const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
+
+  const [typeFilter, setTypeFilter] = useState("All Type");
+  const [statusFilter, setStatusFilter] = useState("All Status");
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+
 
   /* ---------------- FILTER LOGIC ---------------- */
   const filteredData = data.filter((c) => {
@@ -527,11 +547,12 @@ export default function UserManagementDashboard() {
       c.location.toLowerCase().includes(search.toLowerCase()) ||
       c.type.toLowerCase().includes(search.toLowerCase());
 
-    const matchType =
-      typeFilter === "all" || c.type.toLowerCase() === typeFilter;
+    const matchType = typeFilter === "All Type" || c.type === typeFilter;
+
 
     const matchStatus =
-      statusFilter === "all" || c.mode === statusFilter;
+      statusFilter === "All Status" || c.mode === statusFilter;
+
 
     return matchSearch && matchType && matchStatus;
   });
@@ -551,24 +572,24 @@ export default function UserManagementDashboard() {
       prev.map((c, i) => (i === index ? { ...c, mode } : c))
     );
   };
-  
-  const [filterStatus, setFilterStatus] = useState('All Status');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  // 3. FILTER LOGIC
-  const filteredUsers = userData.filter(user => {
-    const matchesFilter = filterStatus === 'All Status' || user.status === filterStatus;
-    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesFilter && matchesSearch;
-  });
+  // const [filterStatus, setFilterStatus] = useState('All Status');
+  // const [searchTerm, setSearchTerm] = useState('');
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // // 3. FILTER LOGIC
+  // const filteredUsers = userData.filter(user => {
+  //   const matchesFilter = filterStatus === 'All Status' || user.status === filterStatus;
+  //   const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  //     user.email.toLowerCase().includes(searchTerm.toLowerCase());
+  //   return matchesFilter && matchesSearch;
+  // });
 
   return (
     <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2 flex flex-col desktop:w-[1010px]">
       {/* HEADER */}
       <div className="desktop:text-left text-center">
-        <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 mb-1 text-[30px] text-white">Host Management</h1>
+        <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 mb-1 text-[30px] text-white">Charger Management</h1>
         <p className="font-arial text-white desktop:text-[20px] text-[15px] mb-3 -mt-2 leading-[19px] desktop:leading-tight">
           Monitor and manage all charging stations
         </p>
@@ -582,71 +603,69 @@ export default function UserManagementDashboard() {
             {/* STATS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.6rem]">
               {StatsCards.map((s, i) => {
-  const TopIcon = s.icon;
-  const BottomIcon = s.bottomIcon;
-  const isPositive = s.growth?.includes("+");
+                const TopIcon = s.icon;
+                const BottomIcon = s.bottomIcon;
+                const isPositive = s.growth?.includes("+");
 
-  return (
-    <div
-      key={i}
-      className="font-inter relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
-    >
-      {/* TOP ICON + TITLE */}
-      <div className="flex gap-2 items-center mb-2">
-        <TopIcon
-          size={30}
-          className={s.theme === "green" ? "text-[#38EF0A]" : "text-[#FF8A00]"}
-        />
-        <p className="text-[12px] text-[#364153] font-medium">
-          {s.title}
-        </p>
-      </div>
+                return (
+                  <div
+                    key={i}
+                    className="font-inter relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
+                  >
+                    {/* TOP ICON + TITLE */}
+                    <div className="flex gap-2 items-center mb-2">
+                      <TopIcon
+                        size={30}
+                        className={s.theme === "green" ? "text-[#38EF0A]" : "text-[#FF8A00]"}
+                      />
+                      <p className="text-[12px] text-[#364153] font-medium">
+                        {s.title}
+                      </p>
+                    </div>
 
-      {/* VALUE */}
-      <h2 className="text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">
-        {s.value}
-      </h2>
+                    {/* VALUE */}
+                    <h2 className="text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">
+                      {s.value}
+                    </h2>
 
-      {/* META / GROWTH */}
-      <div className="flex flex-col gap-1 mt-2">
-        {s.growth ? (
-          <>
-            <span
-              className={`text-[14px] flex items-center gap-2 font-medium ${
-                isPositive ? "text-[#25BB00]" : "text-red-500"
-              }`}
-            >
-              <TrendingUp size={15} />
-              {s.growth}
-            </span>
-            <span className="text-[#757575] text-[10px] -mt-1">
-              {s.meta}
-            </span>
-          </>
-        ) : (
-          <span className="text-[#757575] text-[11px] mt-1">
-            {s.meta}
-          </span>
-        )}
-      </div>
+                    {/* META / GROWTH */}
+                    <div className="flex flex-col gap-1 mt-2">
+                      {s.growth ? (
+                        <>
+                          <span
+                            className={`text-[14px] flex items-center gap-2 font-medium ${isPositive ? "text-[#25BB00]" : "text-red-500"
+                              }`}
+                          >
+                            <TrendingUp size={15} />
+                            {s.growth}
+                          </span>
+                          <span className="text-[#757575] text-[10px] -mt-1">
+                            {s.meta}
+                          </span>
+                        </>
+                      ) : (
+                        <span className="text-[#757575] text-[11px] mt-1">
+                          {s.meta}
+                        </span>
+                      )}
+                    </div>
 
-      {/* BOTTOM CIRCLE ICON */}
-      <div
-        className={`absolute -bottom-6 -right-4 w-24 h-24 rounded-full flex items-center justify-center
-        ${
-          s.theme === "green"
-            ? "bg-[#2CDE0026]"
-            : "bg-[#FF8A0026]"
-        }`}
-      >
-        <BottomIcon
-          size={40}
-          className={s.theme === "green" ? "text-[#38EF0A]" : "text-[#FF8A00]"}
-        />
-      </div>
-    </div>
-  );
-})}
+                    {/* BOTTOM CIRCLE ICON */}
+                    <div
+                      className={`absolute -bottom-6 -right-4 w-24 h-24 rounded-full flex items-center justify-center
+        ${s.theme === "green"
+                          ? "bg-[#2CDE0026]"
+                          : "bg-[#FF8A0026]"
+                        }`}
+                    >
+                      <BottomIcon
+                        size={40}
+                        className={s.theme === "green" ? "text-[#38EF0A]" : "text-[#FF8A00]"}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
 
             </div>
 
@@ -749,9 +768,13 @@ export default function UserManagementDashboard() {
                         className="w-12 h-12 rounded-full object-cover"
                       />
 
-                      <div>
+                      <div >
                         <p className="font-roboto font-semibold text-[16px] text-[#364153]">{a.name}</p>
-                        <p className="font-roboto font-regular text-[11px] text-[#848484]">{a.location}</p>
+                        <div className="flex items-center gap-[0.1rem]">
+                          <IoLocationSharp className="w-3 h-3  text-[#38EF0A]" />
+                          <span className="font-roboto font-regular text-[11px] text-[#848484]">{a.location}</span>
+                        </div>
+
                         <p className="font-roboto font-regular text-[13px] text-[#848484]">{a.title}</p>
                         <p className="font-inter font-regular text-[10px] text-[#707274]">{a.subTitle}</p>
                         <div className="desktop:hidden">
@@ -774,7 +797,7 @@ export default function UserManagementDashboard() {
                       </div>
 
                       <span
-                        className={`hidden desktop:flex font-roboto items-center gap-2 desktop:w-[133px] justify-center py-1.5 text-[14px] border rounded-md ${getStatusStyles(
+                        className={`hidden desktop:flex font-roboto items-center gap-2 desktop:w-[133px] justify-center py-1.5 text-[14px] rounded-md ${getStatusStyles(
                           a.status
                         )}`}
                       >
@@ -782,7 +805,7 @@ export default function UserManagementDashboard() {
                         {getStatusText(a.status)}
                       </span>
                       <span
-                        className={`desktop:hidden absolute bottom-0 right-1 font-roboto flex items-center gap-2 w-[120px] justify-center py-1.5 text-[14px] border rounded-md ${getStatusStyles(
+                        className={`desktop:hidden absolute bottom-0 right-1 font-roboto flex items-center gap-2 w-[120px] justify-center py-1.5 text-[14px] rounded-md ${getStatusStyles(
                           a.status
                         )}`}
                       >
@@ -802,175 +825,286 @@ export default function UserManagementDashboard() {
           <div className="bg-white rounded-xl pt-2 shadow">
             <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3 text-center">City-wise Charger Distribution</h3>
             <ResponsiveContainer width="100%" height={260}>
-      <BarChart data={chartData} barGap={6}>
-        
-        <XAxis dataKey="city" />
+              <BarChart data={chartData} barGap={6}>
 
-        {/* Left Y-Axis (Chargers) */}
-        <YAxis yAxisId="left" />
+                <XAxis dataKey="city" />
 
-        {/* Right Y-Axis (Utilization %) */}
-        <YAxis
-          yAxisId="right"
-          orientation="right"
-          domain={[0, 100]}
-          tickFormatter={(v) => `${v}%`}
-        />
+                {/* Left Y-Axis (Chargers) */}
+                <YAxis yAxisId="left" />
 
-        <Tooltip />
+                {/* Right Y-Axis (Utilization %) */}
+                <YAxis
+                  yAxisId="right"
+                  orientation="right"
+                  domain={[0, 100]}
+                  tickFormatter={(v) => `${v}%`}
+                />
 
-        <Bar
-          yAxisId="left"
-          dataKey="chargers"
-          name="Chargers"
-          fill="#3B82F6"
-          radius={[6, 6, 0, 0]}
-        />
+                <Tooltip />
 
-        <Bar
-          yAxisId="right"
-          dataKey="utilization"
-          name="Avg Utilization"
-          fill="#22C55E"
-          radius={[6, 6, 0, 0]}
-        />
-      </BarChart>
-    </ResponsiveContainer>
-<div className="font-inter text-[#434343] justify-center flex gap-6">
-  <div className="flex items-center gap-2 ">
-    <span className="w-3 h-3 rounded-full bg-[#03DF48]"></span>
-    <span>Chargers</span>
-  </div>
+                <Bar
+                  yAxisId="left"
+                  dataKey="chargers"
+                  name="Chargers"
+                  fill="#3B82F6"
+                  radius={[6, 6, 0, 0]}
+                />
 
-  <div className="flex items-center gap-2 ">
-    <span className="w-3 h-3 rounded-full bg-[#2886FF]"></span>
-    <span>Avg Utilization</span>
-  </div>
-</div>
+                <Bar
+                  yAxisId="right"
+                  dataKey="utilization"
+                  name="Avg Utilization"
+                  fill="#22C55E"
+                  radius={[6, 6, 0, 0]}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+            <div className="font-inter text-[#434343] justify-center flex gap-6">
+              <div className="flex items-center gap-2 ">
+                <span className="w-3 h-3 rounded-full bg-[#03DF48]"></span>
+                <span>Chargers</span>
+              </div>
+
+              <div className="flex items-center gap-2 ">
+                <span className="w-3 h-3 rounded-full bg-[#2886FF]"></span>
+                <span>Avg Utilization</span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* search & filter functionality */}
         <div className="bg-white  p-4 space-y-4 rounded-[20px]">
-      {/* ================= FILTER BAR ================= */}
-      <div className="desktop:flex-row flex flex-col gap-3">
-        <input
-          className="w-full px-4 py-2 border border-gray-200  rounded-xl"
-          placeholder="Search by location or type..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-
-        <select
-          className="px-4 py-2 border border-gray-200 rounded-xl"
-          onChange={(e) => setTypeFilter(e.target.value)}
-        >
-          <option value="all">All Type</option>
-          <option value="dc">DC</option>
-          <option value="ac">AC</option>
-        </select>
-
-        <select
-          className="px-4 py-2 border border-gray-200 rounded-xl"
-          onChange={(e) => setStatusFilter(e.target.value)}
-        >
-          <option value="all">All Status</option>
-          <option value="online">Online</option>
-          <option value="offline">Offline</option>
-          <option value="maintenance">Maintenance</option>
-        </select>
-      </div>
-
-      {/* ================= CARDS ================= */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {filteredData.map((c, i) => (
-          <div
-            key={i}
-            className="bg-white   rounded-2xl shadow-md p-3 relative"
-          >
-            {/* -------- MODE DROPDOWN -------- */}
-            <select
-              value={c.mode}
-              onChange={(e) =>
-                changeMode(i, e.target.value as any)
-              }
-              className={`absolute top-2 right-2 text-xs px-2 py-1 rounded-full
-                ${c.mode === "online" && "bg-green-500 text-white"}
-                ${c.mode === "offline" && "bg-gray-300"}
-                ${c.mode === "maintenance" && "bg-orange-200"}
-              `}
-            >
-              <option value="online">Online</option>
-              <option value="offline">Offline</option>
-              <option value="maintenance">Maintenance</option>
-            </select>
-
-            {/* -------- IMAGE -------- */}
-            <img
-              src={c.image}
-              className="h-28 mx-auto object-contain"
-              alt=""
+          {/* ================= FILTER BAR ================= */}
+          <div className="desktop:flex-row flex flex-col gap-3">
+            <input
+              className="w-full px-4 py-2 border border-[#B7B7B7] hover:border-[1.5px] hover:border-[#38EF0A] focus:outline-none focus:ring-[0.6px]  focus:ring-[#38EF0A] shadow-[0px_2px_6.3px_0px_#00000026] rounded-[10px]"
+              placeholder="Search by location or type..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
 
-            {/* -------- INFO -------- */}
-            <h3 className="font-semibold mt-2">{c.title}</h3>
-            <p className="text-sm text-gray-500">{c.sub}</p>
-            <p className="text-sm">{c.location}</p>
-
-            <div className="flex gap-2 text-sm mt-2">
-              <span className="px-2 py-1 bg-green-100 rounded">
-                {c.type} · {c.capacity}
-              </span>
-            </div>
-
-            {/* -------- UTILIZATION -------- */}
-            {c.utilization > 0 && (
-              <>
-                <div className="flex justify-between text-xs mt-3">
-                  <span>Utilization</span>
-                  <span>{c.utilization}%</span>
-                </div>
-                <div className="h-2 bg-gray-200 rounded-full">
-                  <div
-                    className="h-2 bg-green-500 rounded-full"
-                    style={{ width: `${c.utilization}%` }}
-                  />
-                </div>
-              </>
-            )}
-
-            {/* -------- ACTION BUTTONS -------- */}
-            <div className="flex gap-3 mt-4">
+            <div className="relative">
               <button
-                onClick={() => toggleState(i, "unblock")}
-                className={`w-full py-2 rounded-xl border
-                  ${
-                    c.state === "unblock"
-                      ? "bg-green-600 text-white"
-                      : "bg-white text-green-600"
-                  }
-                `}
+                onClick={() => setIsTypeDropdownOpen(!isTypeDropdownOpen)}
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-green-500 w-[200px]  justify-between"
               >
-                Unblock
+                <div className="flex items-center gap-2">
+                  <span className="font-medium text-gray-700 font-inter text-[20px]">
+                    {typeFilter}
+                  </span>
+                </div>
+
+                <ChevronDown
+                  className={`transition-transform ${isTypeDropdownOpen ? "rotate-180" : ""
+                    }`}
+                />
               </button>
 
-              <button
-                onClick={() => toggleState(i, "block")}
-                className={`w-full py-2 rounded-xl border
-                  ${
-                    c.state === "block"
-                      ? "bg-red-500 text-white"
-                      : "bg-white text-red-500"
-                  }
-                `}
-              >
-                Block
-              </button>
+              {isTypeDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
+
+                  {["All Type", "DC", "AC"].map((type) => (
+                    <button
+                      key={type}
+                      className={`font-inter text-[20px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${typeFilter === type
+                          ? "bg-[#e1ffd9] font-semibold"
+                          : "text-black"
+                        }`}
+                      onClick={() => {
+                        setTypeFilter(type);
+                        setIsTypeDropdownOpen(false);
+                      }}
+                    >
+                      {type}
+                      {typeFilter === type && <IoCheckmarkSharp size={20} />}
+                    </button>
+                  ))}
+
+                </div>
+              )}
             </div>
+
+
+
+            <div className="relative">
+              <button
+                onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-green-500 w-[200px] justify-between"
+              >
+                <span className="font-medium text-gray-700 font-inter text-[20px]">
+                  {statusFilter}
+                </span>
+
+                <ChevronDown
+                  className={`transition-transform ${isStatusDropdownOpen ? "rotate-180" : ""
+                    }`}
+                />
+              </button>
+
+              {isStatusDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
+                  {["All Status", "Online", "Offline", "Maintenance"].map((status) => (
+                    <button
+                      key={status}
+                      className={`font-inter text-[18px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
+                          ? "bg-[#e1ffd9] font-semibold"
+                          : "text-black"
+                        }`}
+                      onClick={() => {
+                        setStatusFilter(status);
+                        setIsStatusDropdownOpen(false);
+                      }}
+                    >
+                      {status}
+                      {statusFilter === status && <IoCheckmarkSharp size={20} />}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+
           </div>
-        ))}
+
+          {/* ================= CARDS ================= */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {filteredData.map((c, i) => (
+              <div
+                key={i}
+                className="bg-white   rounded-2xl shadow-md p-3 relative"
+              >
+                {/* -------- MODE DROPDOWN -------- */}
+{/* -------- MODE DROPDOWN -------- */}
+<div className="absolute top-2 right-2 text-xs font-roboto text-[10px] ">
+
+  {/* Selected Button */}
+  <div
+    onClick={() => setOpenIndex(openIndex === i ? null : i)}
+    className={`px-1 py-1.5 rounded-lg cursor-pointer flex justify-center items-center gap-1 w-[90px] shadow-sm
+
+    ${c.mode === "online" && "bg-[#2CDE00] text-white"}
+    ${c.mode === "offline" && "bg-[#DDE5D6] text-[#7B8573]"}
+    ${c.mode === "maintenance" && "bg-[#E6D9CC] text-[#B26A2E] text-[8px]"}
+    `}
+  >
+    {c.mode === "online" && <Zap size={12} className="shrink-0" />}
+    {c.mode === "offline" && <ZapOff size={12} className="shrink-0" />}
+    {c.mode === "maintenance" && <Wrench size={10} className="shrink-0" />}
+
+    <span className="capitalize ">{c.mode}</span>
+
+    <ChevronDown size={10} className="ml-1" />
+  </div>
+
+  {/* Dropdown Options */}
+  {openIndex === i && (
+    <div className="absolute right-0 mt-2 w-full bg-transparent space-y-1 overflow-hidden z-50">
+
+      <div
+        onClick={() => {
+          changeMode(i, "online");
+          setOpenIndex(null);
+        }}
+        className="text-[10px] px-4 py-1 bg-green-100 hover:bg-green-500 hover:text-white cursor-pointer flex gap-2 rounded-lg items-center text-gray-400"
+      >
+        <Zap size={12} className="shrink-0" />
+        Online
       </div>
+
+      <div
+        onClick={() => {
+          changeMode(i, "offline");
+          setOpenIndex(null);
+        }}
+        className="text-[10px] px-4 py-1 bg-gray-100 hover:bg-gray-200 hover:text-[11px]  cursor-pointer flex gap-2 rounded-lg items-center text-gray-400"
+      >
+        <ZapOff size={12} className="shrink-0" />
+        Offline
+      </div>
+
+      <div
+        onClick={() => {
+          changeMode(i, "maintenance");
+          setOpenIndex(null);
+        }}
+        className="text-[8px] hover:text-[8.5px] px-4 py-1  bg-[#D25B0026] hover:bg-[#D25B0032] hover:text-[#B45309] cursor-pointer flex gap-2 rounded-lg items-center text-[#B45309]"
+      >
+        <Wrench size={12} className="shrink-0" />
+        Maintenance
+      </div>
+
     </div>
+  )}
+</div>
+
+
+
+                {/* -------- IMAGE -------- */}
+                <img
+                  src={c.image}
+                  className="w-[266px] h-[120px] shadow-lg rounded-[9px] mx-auto object-contain "
+                  alt=""
+                />
+
+                {/* -------- INFO -------- */}
+                <h3 className="font-inter font-semibold text-[#757575] text-[16px] mt-2">{c.title}</h3>
+                <p className=" font-roboto font-medium text-[12px] text-gray-500">{c.sub}</p>
+                <p className="font-roboto text-[11px] text-[#8E8E93]">{c.location}</p>
+
+                <div className="font-arial text-[11px] text-[#8E8E93] flex gap-2 text-sm mt-2">
+                  <span className="">
+                    {c.type} · {c.capacity}
+                  </span>
+                </div>
+                <p className="font-roboto text-[11px] text-[#8E8E93]">{c.type1}</p>
+
+                {/* -------- UTILIZATION -------- */}
+                {c.utilization > 0 && c.mode !== "maintenance" && (
+                  <>
+                    <div className="flex justify-between text-xs mt-3">
+                      <span>Utilization</span>
+                      <span>{c.utilization}%</span>
+                    </div>
+                    <div className="h-2 bg-gray-200 rounded-full">
+                      <div
+                        className="h-2 bg-green-500 rounded-full"
+                        style={{ width: `${c.utilization}%` }}
+                      />
+                    </div>
+                  </>
+                )}
+
+                {/* -------- ACTION BUTTONS -------- */}
+                <div className="flex gap-3 mt-4">
+                  <button
+                    onClick={() => toggleState(i, "unblock")}
+                    className={`w-full py-1 text-[11px] rounded-xl border
+                  ${c.state === "unblock"
+                        ? "bg-green-600 text-white"
+                        : "bg-white text-green-600"
+                      }
+                `}
+                  >
+                    Unblock
+                  </button>
+
+                  <button
+                    onClick={() => toggleState(i, "block")}
+                    className={`w-full py-2 text-[11px] rounded-xl  
+                  ${c.state === "block"
+                        ? "bg-[#FA2023] text-white"
+                        : "bg-[#FA20232E] border-[#FA202354] border text-red-500"
+                      }
+                `}
+                  >
+                    Block
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
