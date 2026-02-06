@@ -17,6 +17,8 @@ import {
   PowerCircle,
   ZapOff,
 } from "lucide-react";
+import { FaBoltLightning } from "react-icons/fa6";
+import { BiSolidPlug } from "react-icons/bi";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, BarChart, Bar } from "recharts";
 import {
   MdBlock,
@@ -406,7 +408,7 @@ export interface ChargerCard {
   sub: string;
   location: string;
   capacity: string;
-  type1:string;
+  type1: string;
   type: "AC" | "DC";
   utilization: number;
   state: ChargerState;
@@ -420,7 +422,7 @@ export const chargers: ChargerCard[] = [
     sub: "Reddy Fast Charge",
     location: "MG Road Metro Station, Bengaluru, Karnataka",
     capacity: "150kW",
-    type1:"Type2",
+    type1: "Type2",
     type: "DC",
     utilization: 92,
     state: "unblock",
@@ -432,7 +434,7 @@ export const chargers: ChargerCard[] = [
     sub: "Kumar EV Solutions",
     location: "Viman Nagar, Pune, Maharashtra",
     capacity: "7kW",
-    type1:"CSS2",
+    type1: "CSS2",
     type: "AC",
     utilization: 38,
     state: "unblock",
@@ -444,7 +446,7 @@ export const chargers: ChargerCard[] = [
     sub: "Gupta Charging Hub",
     location: "Road No. 12, Banjara Hills, Hyderabad",
     capacity: "120kW",
-    type1:"CSS2",
+    type1: "CSS2",
     type: "DC",
     utilization: 78,
     state: "unblock",
@@ -456,7 +458,7 @@ export const chargers: ChargerCard[] = [
     sub: "Singh Charging Station",
     location: "100 Feet Road, Indiranagar, Bengaluru",
     capacity: "22kW",
-    type1:"Type2",
+    type1: "Type2",
     type: "AC",
     utilization: 55,
     state: "unblock",
@@ -468,7 +470,7 @@ export const chargers: ChargerCard[] = [
     sub: "Singh Charging Hub",
     location: "ITPL Road, Whitefield, Bengaluru",
     capacity: "60kW",
-    type1:"CSS2",
+    type1: "CSS2",
     type: "DC",
     utilization: 85,
     state: "unblock",
@@ -480,7 +482,7 @@ export const chargers: ChargerCard[] = [
     sub: "Singh Smart Charge",
     location: "80 Feet Road, 4th Block, Koramangala, Bengaluru",
     capacity: "7.4kW",
-    type1:"Type2",
+    type1: "Type2",
     type: "AC",
     utilization: 30,
     state: "unblock",
@@ -492,7 +494,7 @@ export const chargers: ChargerCard[] = [
     sub: "GreenVolt Charging",
     location: "Phase 1, Electronic City, Bengaluru",
     capacity: "100kW",
-    type1:"Type1",
+    type1: "Type1",
     type: "DC",
     utilization: 88,
     state: "unblock",
@@ -504,7 +506,7 @@ export const chargers: ChargerCard[] = [
     sub: "Urban EV Network",
     location: "Link Road, Andheri West, Mumbai",
     capacity: "11kW",
-    type1:"CSS2",
+    type1: "CSS2",
     type: "AC",
     utilization: 42,
     state: "unblock",
@@ -516,7 +518,7 @@ export const chargers: ChargerCard[] = [
     sub: "ChargeNow India",
     location: "Sector 62, Noida, Uttar Pradesh",
     capacity: "120kW",
-    type1:"CSS2",
+    type1: "CSS2",
     type: "DC",
     utilization: 67,
     state: "block",
@@ -573,17 +575,6 @@ export default function UserManagementDashboard() {
     );
   };
 
-  // const [filterStatus, setFilterStatus] = useState('All Status');
-  // const [searchTerm, setSearchTerm] = useState('');
-  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  // // 3. FILTER LOGIC
-  // const filteredUsers = userData.filter(user => {
-  //   const matchesFilter = filterStatus === 'All Status' || user.status === filterStatus;
-  //   const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  //     user.email.toLowerCase().includes(searchTerm.toLowerCase());
-  //   return matchesFilter && matchesSearch;
-  // });
 
   return (
     <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2 flex flex-col desktop:w-[1010px]">
@@ -874,20 +865,20 @@ export default function UserManagementDashboard() {
         </div>
 
         {/* search & filter functionality */}
-        <div className="bg-white  p-4 space-y-4 rounded-[20px]">
+        <div className="bg-white  px-4  rounded-[20px] overflow-hidden">
           {/* ================= FILTER BAR ================= */}
-          <div className="desktop:flex-row flex flex-col gap-3">
+          <div className="py-4 sticky top-0 z-10 bg-white desktop:flex-row flex flex-col gap-3">
             <input
               className="w-full px-4 py-2 border border-[#B7B7B7] hover:border-[1.5px] hover:border-[#38EF0A] focus:outline-none focus:ring-[0.6px]  focus:ring-[#38EF0A] shadow-[0px_2px_6.3px_0px_#00000026] rounded-[10px]"
               placeholder="Search by location or type..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-
+          
             <div className="relative">
               <button
                 onClick={() => setIsTypeDropdownOpen(!isTypeDropdownOpen)}
-                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-green-500 w-[200px]  justify-between"
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-green-500 desktop:w-[200px]  justify-between"
               >
                 <div className="flex items-center gap-2">
                   <span className="font-medium text-gray-700 font-inter text-[20px]">
@@ -902,14 +893,14 @@ export default function UserManagementDashboard() {
               </button>
 
               {isTypeDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
+                <div className="absolute right-0 mt-2 desktop:w-48  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
 
                   {["All Type", "DC", "AC"].map((type) => (
                     <button
                       key={type}
-                      className={`font-inter text-[20px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${typeFilter === type
-                          ? "bg-[#e1ffd9] font-semibold"
-                          : "text-black"
+                      className={`font-inter text-[20px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${typeFilter === type
+                        ? "bg-[#e1ffd9] font-semibold"
+                        : "text-black"
                         }`}
                       onClick={() => {
                         setTypeFilter(type);
@@ -930,7 +921,7 @@ export default function UserManagementDashboard() {
             <div className="relative">
               <button
                 onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
-                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-green-500 w-[200px] justify-between"
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-green-500 desktop:w-[200px]  justify-between"
               >
                 <span className="font-medium text-gray-700 font-inter text-[20px]">
                   {statusFilter}
@@ -943,13 +934,13 @@ export default function UserManagementDashboard() {
               </button>
 
               {isStatusDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
+                <div className="absolute right-0 mt-2 desktop:w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
                   {["All Status", "Online", "Offline", "Maintenance"].map((status) => (
                     <button
                       key={status}
                       className={`font-inter text-[18px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
-                          ? "bg-[#e1ffd9] font-semibold"
-                          : "text-black"
+                        ? "bg-[#e1ffd9] font-semibold"
+                        : "text-black"
                         }`}
                       onClick={() => {
                         setStatusFilter(status);
@@ -963,112 +954,123 @@ export default function UserManagementDashboard() {
                 </div>
               )}
             </div>
-
-
           </div>
+         
 
           {/* ================= CARDS ================= */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 overflow-y-auto max-h-[450px] no-scrollbar">
             {filteredData.map((c, i) => (
               <div
                 key={i}
-                className="bg-white   rounded-2xl shadow-md p-3 relative"
+                className="bg-white   rounded-2xl shadow-md p-3 relative border border-[#D4D4D4] shadow-[0px_2.41px_5.86px_0px_#00000036] hover:border-[#38EF0A] hover:border-[1.5px] transition duration-300"
               >
                 {/* -------- MODE DROPDOWN -------- */}
-{/* -------- MODE DROPDOWN -------- */}
-<div className="absolute top-2 right-2 text-xs font-roboto text-[10px] ">
+                {/* -------- MODE DROPDOWN -------- */}
+                <div className="absolute top-3 right-5 font-roboto text-[10px] ">
 
-  {/* Selected Button */}
-  <div
-    onClick={() => setOpenIndex(openIndex === i ? null : i)}
-    className={`px-1 py-1.5 rounded-lg cursor-pointer flex justify-center items-center gap-1 w-[90px] shadow-sm
+                  {/* Selected Button */}
+                  <div
+                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                    className={`px-1 py-1.5 rounded-[5px] cursor-pointer flex justify-center items-center gap-1 w-[90px] shadow-sm
 
-    ${c.mode === "online" && "bg-[#2CDE00] text-white"}
-    ${c.mode === "offline" && "bg-[#DDE5D6] text-[#7B8573]"}
-    ${c.mode === "maintenance" && "bg-[#E6D9CC] text-[#B26A2E] text-[8px]"}
-    `}
-  >
-    {c.mode === "online" && <Zap size={12} className="shrink-0" />}
-    {c.mode === "offline" && <ZapOff size={12} className="shrink-0" />}
-    {c.mode === "maintenance" && <Wrench size={10} className="shrink-0" />}
+                    ${c.mode === "online" && "bg-[#2CDE00] text-white"}
+                    ${c.mode === "offline" && "bg-[#DDE5D6] text-[#7B8573]"}
+                    ${c.mode === "maintenance" && "bg-[#E6D9CC] text-[#B26A2E] text-[8px]"}
+                  `}
+                  >
+                    {c.mode === "online" && <Zap size={12} className="shrink-0" />}
+                    {c.mode === "offline" && <ZapOff size={12} className="shrink-0" />}
+                    {c.mode === "maintenance" && <Wrench size={10} className="shrink-0" />}
 
-    <span className="capitalize ">{c.mode}</span>
+                    <span className="capitalize ">{c.mode}</span>
 
-    <ChevronDown size={10} className="ml-1" />
-  </div>
+                    <ChevronDown size={10} className="ml-1" />
+                  </div>
 
-  {/* Dropdown Options */}
-  {openIndex === i && (
-    <div className="absolute right-0 mt-2 w-full bg-transparent space-y-1 overflow-hidden z-50">
+                  {/* Dropdown Options */}
+                  {openIndex === i && (
+                    <div className="absolute right-0 mt-2 w-full bg-transparent space-y-1 overflow-hidden z-50">
 
-      <div
-        onClick={() => {
-          changeMode(i, "online");
-          setOpenIndex(null);
-        }}
-        className="text-[10px] px-4 py-1 bg-green-100 hover:bg-green-500 hover:text-white cursor-pointer flex gap-2 rounded-lg items-center text-gray-400"
-      >
-        <Zap size={12} className="shrink-0" />
-        Online
-      </div>
+                      <div
+                        onClick={() => {
+                          changeMode(i, "online");
+                          setOpenIndex(null);
+                        }}
+                        className="text-[10px] px-4 py-1 bg-green-100 hover:bg-green-500 hover:text-white cursor-pointer flex gap-2 rounded-[5px] items-center text-gray-400"
+                      >
+                        <Zap size={12} className="shrink-0" />
+                        Online
+                      </div>
 
-      <div
-        onClick={() => {
-          changeMode(i, "offline");
-          setOpenIndex(null);
-        }}
-        className="text-[10px] px-4 py-1 bg-gray-100 hover:bg-gray-200 hover:text-[11px]  cursor-pointer flex gap-2 rounded-lg items-center text-gray-400"
-      >
-        <ZapOff size={12} className="shrink-0" />
-        Offline
-      </div>
+                      <div
+                        onClick={() => {
+                          changeMode(i, "offline");
+                          setOpenIndex(null);
+                        }}
+                        className="text-[10px] px-4 py-1 bg-gray-100 hover:bg-gray-200 hover:text-[11px]  cursor-pointer flex gap-2 rounded-[5px] items-center text-gray-400"
+                      >
+                        <ZapOff size={12} className="shrink-0" />
+                        Offline
+                      </div>
 
-      <div
-        onClick={() => {
-          changeMode(i, "maintenance");
-          setOpenIndex(null);
-        }}
-        className="text-[8px] hover:text-[8.5px] px-4 py-1  bg-[#D25B0026] hover:bg-[#D25B0032] hover:text-[#B45309] cursor-pointer flex gap-2 rounded-lg items-center text-[#B45309]"
-      >
-        <Wrench size={12} className="shrink-0" />
-        Maintenance
-      </div>
+                      <div
+                        onClick={() => {
+                          changeMode(i, "maintenance");
+                          setOpenIndex(null);
+                        }}
+                        className="text-[8px] hover:text-[8.5px] px-4 py-1  bg-[#D25B0026] hover:bg-[#D25B0032] hover:text-[#B45309] cursor-pointer flex gap-2 rounded-[5px] items-center text-[#B45309]"
+                      >
+                        <Wrench size={12} className="shrink-0" />
+                        Maintenance
+                      </div>
 
-    </div>
-  )}
-</div>
+                    </div>
+                  )}
+                </div>
 
 
 
                 {/* -------- IMAGE -------- */}
                 <img
                   src={c.image}
-                  className="w-[266px] h-[120px] shadow-lg rounded-[9px] mx-auto object-contain "
+                  className="mt-8 w-[266px] h-[120px] shadow-[0px_1.61px_3.77px_0px_#0000002E] rounded-[9px] mx-auto object-contain "
                   alt=""
                 />
 
                 {/* -------- INFO -------- */}
                 <h3 className="font-inter font-semibold text-[#757575] text-[16px] mt-2">{c.title}</h3>
-                <p className=" font-roboto font-medium text-[12px] text-gray-500">{c.sub}</p>
-                <p className="font-roboto text-[11px] text-[#8E8E93]">{c.location}</p>
-
-                <div className="font-arial text-[11px] text-[#8E8E93] flex gap-2 text-sm mt-2">
-                  <span className="">
-                    {c.type} · {c.capacity}
-                  </span>
+                <p className=" font-roboto font-medium text-[12px] text-[#8E8E93] ">{c.sub}</p>
+                <div className="flex items-center gap-1 mt-2">
+                  <IoLocationSharp className="w-3 h-3  text-[#38EF0A]" />
+                  <p className="font-roboto text-[11px] text-[#8E8E93]">{c.location}</p>
                 </div>
-                <p className="font-roboto text-[11px] text-[#8E8E93]">{c.type1}</p>
+
+
+                <div className="font-arial text-[11px] text-[#8E8E93] flex items-center gap-1 mt-1">
+                  <div className="bg-[#00000012] rounded-full p-1 inline-flex items-center justify-center">
+                    <FaBoltLightning className="w-2 h-2 text-[#38EF0A]" />
+                  </div>
+                  {c.type}{" "}Fast - {c.capacity}
+                </div>
+
+                <div className="flex items-center mt-1 gap-1">
+                  <div className="bg-[#00000012] rounded-full p-1 inline-flex items-center justify-center">
+                  <BiSolidPlug className="w-[10px] h-[10px] text-[#38EF0A]" />
+                  </div>
+                  <p className="font-roboto text-[11px] text-[#8E8E93]">{c.type1}</p>
+                </div>
+
 
                 {/* -------- UTILIZATION -------- */}
                 {c.utilization > 0 && c.mode !== "maintenance" && (
                   <>
-                    <div className="flex justify-between text-xs mt-3">
+                    <div className="font-roboto flex justify-between text-[12px] text-[#8E8E93] mt-3">
                       <span>Utilization</span>
                       <span>{c.utilization}%</span>
                     </div>
-                    <div className="h-2 bg-gray-200 rounded-full">
+                    <div className="h-2 bg-[#C5FFB6] rounded-full">
                       <div
-                        className="h-2 bg-green-500 rounded-full"
+                        className="h-[8px] bg-[#2CDE00] rounded-full"
                         style={{ width: `${c.utilization}%` }}
                       />
                     </div>
@@ -1076,10 +1078,10 @@ export default function UserManagementDashboard() {
                 )}
 
                 {/* -------- ACTION BUTTONS -------- */}
-                <div className="flex gap-3 mt-4">
+                <div className="flex justify-center gap-3 mt-4">
                   <button
                     onClick={() => toggleState(i, "unblock")}
-                    className={`w-full py-1 text-[11px] rounded-xl border
+                    className={`w-[93px] py-1 text-[11px] rounded-xl border
                   ${c.state === "unblock"
                         ? "bg-green-600 text-white"
                         : "bg-white text-green-600"
@@ -1091,7 +1093,7 @@ export default function UserManagementDashboard() {
 
                   <button
                     onClick={() => toggleState(i, "block")}
-                    className={`w-full py-2 text-[11px] rounded-xl  
+                    className={`w-[93px] py-2 text-[11px] rounded-xl  
                   ${c.state === "block"
                         ? "bg-[#FA2023] text-white"
                         : "bg-[#FA20232E] border-[#FA202354] border text-red-500"
@@ -1104,8 +1106,8 @@ export default function UserManagementDashboard() {
               </div>
             ))}
           </div>
-        </div>
       </div>
+    </div>
     </div>
   );
 }
