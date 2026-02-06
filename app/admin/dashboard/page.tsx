@@ -18,7 +18,7 @@ import {
 import { TbCalendarTime } from "react-icons/tb";
 import { FaChargingStation } from "react-icons/fa6";
 import { SiSimpleanalytics } from "react-icons/si";
-import { RiMoneyRupeeCircleFill } from "react-icons/ri";
+import { RiChargingPileLine, RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
@@ -58,7 +58,7 @@ const stats = [
     bottomIcon: Home,
   },
   {
-    topIcon: FaChargingStation,
+    topIcon: RiChargingPileLine,
     title: "Active Chargers",
     value: "3,284",
     growth: "+12.5%",
@@ -370,7 +370,7 @@ export default function Dashboard() {
                     </p>
 
                     {/* BUTTON */}
-                    <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] hover:bg-green-600 text-white rounded-md">
+                    <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A]  text-white rounded-md">
                       {a.btn}
                       {BtnIcon && <BtnIcon size={14} />}
                     </button>
@@ -382,7 +382,7 @@ export default function Dashboard() {
 
           {/* COLUMN 2: Booking Status (1 column) */}
           <div className="lg:col-span-1">
-            <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl px-4 py-2 shadow-md border border-gray-100 h-full flex flex-col">
+            <div className="text-center bg-gradient-to-br from-gray-50 to-white rounded-xl px-4 py-2 shadow-md border border-gray-100 h-full flex flex-col">
               <h3 className="font-inter text-[20px] font-semibold text-gray-700 mb-1">Booking Status</h3>
               <div className="flex-1 flex flex-col justify-center">
                 <div className="flex justify-center mb-1">
@@ -450,7 +450,7 @@ export default function Dashboard() {
 
           {/* COLUMN 2: Charger Status (1 column) */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-md px-4 py-2 border border-gray-100 h-full flex flex-col">
+            <div className="text-center bg-white rounded-xl shadow-md px-4 py-2 border border-gray-100 h-full flex flex-col">
               <h3 className="font-inter text-[20px] font-semibold text-gray-700 mb-1">Charger Status</h3>
               <div className="flex-1 flex flex-col justify-center">
                 <div className="flex justify-center mb-3">
@@ -481,7 +481,7 @@ export default function Dashboard() {
                 </div>
                 <div className="space-y-1">
                   {chargerStatus.map((s, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs">
+                    <div key={i} className="flex items-center  gap-2  text-xs">
                       <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: s.color }} />
                       <span className="font-inter text-[15px] text-gray-600 font-medium">{s.name}{" : "}<span className="font-inter font-semibold text-[15px]">{s.value}</span></span>
                       {/* <span className="ml-auto font-bold">{s.value}</span> */}

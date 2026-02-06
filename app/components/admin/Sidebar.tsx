@@ -31,8 +31,8 @@ export default function Sidebar() {
   return (
     <>
       {/* 🔹 Mobile / Tablet Horizontal Menu */}
-      <div className="desktop:hidden overflow-x-auto no-scrollbar">
-        <div className="flex gap-3 min-w-max p-2">
+      <div className="desktop:hidden overflow-x-auto custom-scrollbar">
+        <div className="flex gap-3 min-w-max py-2">
           {menu.map((item, i) => {
             const Icon = item.icon;
             const isActive = pathname === item.path;
@@ -40,10 +40,10 @@ export default function Sidebar() {
               <Link
                 href={item.path}
                 key={i}
-                className={`flex flex-col items-center gap-1 px-4 py-2 rounded-lg cursor-pointer whitespace-nowrap
+                className={`flex flex-col items-center gap-1 min-w-[140px] py-2 rounded-lg cursor-pointer whitespace-nowrap
                   ${
                     isActive
-                      ? "bg-green-500 text-white"
+                      ? "bg-gradient-to-r from-[#30EF0A] to-[#25D402] text-white"
                       : "bg-white/80 text-gray-700"
                   }`}
               >

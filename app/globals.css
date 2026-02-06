@@ -88,6 +88,18 @@ svg *:focus {
 }
 
 
+
+
+
+
+
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #a1e1b6 rgba(0, 0, 0, 0.05);
+}
+
+
 @layer utilities {
   .font-open-sans {
     font-family: var(--font-inter);

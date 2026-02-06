@@ -424,7 +424,7 @@ export default function UserManagementDashboard() {
                     </div>
 
                     {/* BUTTON */}
-                    <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] hover:bg-green-600 text-white rounded-md">
+                    <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] text-white rounded-md">
                       {a.btn}
                       {BtnIcon && <BtnIcon size={14} />}
                     </button>

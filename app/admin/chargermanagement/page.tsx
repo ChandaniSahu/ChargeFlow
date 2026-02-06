@@ -297,19 +297,19 @@ export const activities: ActivityItem[] = [
 export const getStatusStyles = (status: ActivityItem["status"]) => {
   switch (status) {
     case "alert":
-      return "bg-orange-50 text-orange-600 border-orange-200";
+      return "bg-orange-50 text-orange-600 ";
     case "session":
-      return "bg-green-50 text-green-600 border-green-200";
+      return "bg-green-50 text-green-600 ";
     case "maintenance":
-      return "bg-amber-50 text-amber-600 border-amber-200";
+      return "bg-amber-50 text-amber-600 ";
     case "offline":
-      return "bg-red-50 text-red-600 border-red-200";
+      return "bg-red-50 text-red-600 ";
     case "booking":
-      return "bg-purple-50 text-purple-600 border-purple-200";
+      return "bg-purple-50 text-purple-600 ";
     case "online":
-      return "bg-blue-50 text-blue-600 border-blue-200";
+      return "bg-blue-50 text-blue-600 ";
     default:
-      return "bg-gray-50 text-gray-600 border-gray-200";
+      return "bg-gray-50 text-gray-600 ";
   }
 };
 
@@ -675,7 +675,7 @@ export default function UserManagementDashboard() {
                     </div>
                     <div className="font-medium text-[#8E8E93] text-[9px] mb-1 capitalize">{a.sub2}</div>
                     {/* BUTTON */}
-                    <button className="mt-auto flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] hover:bg-green-600 text-white rounded-md">
+                    <button className="mt-auto flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A]  text-white rounded-md">
                       {a.btn}
                       {BtnIcon && <BtnIcon size={14} />}
                     </button>
