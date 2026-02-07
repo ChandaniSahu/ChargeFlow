@@ -548,22 +548,26 @@ export default function UserManagementDashboard() {
 
 
   /* ---------------- FILTER LOGIC ---------------- */
-  const filteredData = data.filter((c) => {
-    const matchSearch =
-      c.location.toLowerCase().includes(search.toLowerCase()) ||
-      c.type.toLowerCase().includes(search.toLowerCase()) ||
-      c.type1.toLowerCase().includes(search.toLowerCase()) ||
-      c.capacity.toLowerCase().includes(search.toLowerCase());
+const filteredData = data.filter((c) => {
+  const searchText = search.toLowerCase();
 
-    const matchType = typeFilter === "All Type" || c.type === typeFilter;
+  const matchSearch =
+    c.location.toLowerCase().includes(searchText) ||
+    c.type.toLowerCase().includes(searchText) ||
+    c.type1.toLowerCase().includes(searchText) ||
+    c.capacity.toLowerCase().includes(searchText);
 
+  const matchType =
+    typeFilter === "All Type" ||
+    c.type.toLowerCase() === typeFilter.toLowerCase();
 
-    const matchStatus =
-      statusFilter === "All Status" || c.mode === statusFilter;
+  const matchStatus =
+    statusFilter === "All Status" ||
+    c.mode.toLowerCase() === statusFilter.toLowerCase();
 
+  return matchSearch && matchType && matchStatus;
+});
 
-    return matchSearch && matchType && matchStatus;
-  });
 
   /* ---------------- STATE HANDLERS ---------------- */
   const toggleState = (index: number, state: "block" | "unblock") => {
