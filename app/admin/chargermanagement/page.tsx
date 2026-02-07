@@ -1086,9 +1086,9 @@ const filteredData = data.filter((c) => {
                 {/* -------- INFO -------- */}
                 <h3 className="font-inter font-semibold text-[#757575] text-[16px] ">{c.title}</h3>
                 <p className=" font-roboto font-medium text-[12px] text-[#8E8E93] mb-2">{c.sub}</p>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 mb-1">
                   <IoLocationSharp className="w-3 h-3  text-[#38EF0A]" />
-                  <p className="font-roboto text-[11px] text-[#8E8E93] mb-1">{c.location}</p>
+                  <p className="font-roboto text-[11px] text-[#8E8E93] ">{c.location}</p>
                 </div>
 
 
