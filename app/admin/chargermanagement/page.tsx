@@ -891,7 +891,7 @@ const filteredData = data.filter((c) => {
             <div className="relative">
               <button
                 onClick={() => setIsTypeDropdownOpen(!isTypeDropdownOpen)}
-                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px]  justify-between"
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full  justify-between"
               >
                 <div className="flex items-center gap-2">
                   <span className="font-medium text-gray-700 font-inter text-[20px]">
@@ -906,7 +906,7 @@ const filteredData = data.filter((c) => {
               </button>
 
               {isTypeDropdownOpen && (
-                <div className="absolute right-0 mt-2 desktop:w-48  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
+                <div className="absolute right-0 mt-2 w-48   p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
 
                   {["All Type", "DC", "AC"].map((type) => (
                     <button
@@ -934,7 +934,7 @@ const filteredData = data.filter((c) => {
             <div className="relative">
               <button
                 onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
-                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px]  justify-between"
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full justify-between"
               >
                 <span className="font-medium text-gray-700 font-inter text-[20px]">
                   {statusFilter}
@@ -947,7 +947,7 @@ const filteredData = data.filter((c) => {
               </button>
 
               {isStatusDropdownOpen && (
-                <div className="absolute right-0 mt-2 desktop:w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
+                <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
                   {["All Status", "Online", "Offline", "Maintenance"].map((status) => (
                     <button
                       key={status}
