@@ -869,7 +869,7 @@ export default function UserManagementDashboard() {
           {/* ================= FILTER BAR ================= */}
           <div className="py-4 sticky top-0 z-10 bg-white desktop:flex-row flex flex-col gap-3">
             <input
-              className="w-full px-4 py-2 border border-[#B7B7B7] hover:border-[1.5px] hover:border-[#38EF0A] focus:outline-none focus:ring-[0.6px]  focus:ring-[#38EF0A] shadow-[0px_2px_6.3px_0px_#00000026] rounded-[10px]"
+              className="w-full px-4 py-2 border border-[#B7B7B7] hover:ring-[0.8px] hover:ring-[#38EF0A] focus:outline-none focus:ring-[0.6px]  focus:ring-[#38EF0A] shadow-[0px_2px_6.3px_0px_#00000026] rounded-[10px]"
               placeholder="Search by location or type..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -878,7 +878,7 @@ export default function UserManagementDashboard() {
             <div className="relative">
               <button
                 onClick={() => setIsTypeDropdownOpen(!isTypeDropdownOpen)}
-                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-green-500 desktop:w-[200px]  justify-between"
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px]  justify-between"
               >
                 <div className="flex items-center gap-2">
                   <span className="font-medium text-gray-700 font-inter text-[20px]">
@@ -921,7 +921,7 @@ export default function UserManagementDashboard() {
             <div className="relative">
               <button
                 onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
-                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-green-500 desktop:w-[200px]  justify-between"
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px]  justify-between"
               >
                 <span className="font-medium text-gray-700 font-inter text-[20px]">
                   {statusFilter}
@@ -962,7 +962,8 @@ export default function UserManagementDashboard() {
             {filteredData.map((c, i) => (
               <div
                 key={i}
-                className="bg-white   rounded-2xl shadow-md p-3 relative border border-[#D4D4D4] shadow-[0px_2.41px_5.86px_0px_#00000036] hover:border-[#38EF0A] hover:border-[1.5px] transition duration-300"
+                className="bg-white   rounded-2xl shadow-md p-3 relative border border-[#D4D4D4] shadow-[0px_2.41px_5.86px_0px_#00000036]
+                 hover:border-[#38EF0A] hover:border-[1.5px] transition duration-300 flex flex-col"
               >
                 {/* -------- MODE DROPDOWN -------- */}
                 {/* -------- MODE DROPDOWN -------- */}
@@ -972,10 +973,10 @@ export default function UserManagementDashboard() {
                   <div
                     onClick={() => setOpenIndex(openIndex === i ? null : i)}
                     className={`px-1 py-1.5 rounded-[5px] cursor-pointer flex justify-center items-center gap-1 w-[90px] shadow-sm
-
-                    ${c.mode === "online" && "bg-[#2CDE00] text-white"}
+                    ${c.state==="block" && c.mode==="online" && "bg-green-100 text-gray-400"}
+                    ${c.state==="unblock" && c.mode === "online" && "bg-[#38EF0A] text-white"}
                     ${c.mode === "offline" && "bg-[#DDE5D6] text-[#7B8573]"}
-                    ${c.mode === "maintenance" && "bg-[#E6D9CC] text-[#B26A2E] text-[8px]"}
+                    ${c.mode === "maintenance" && "bg-[#D25B0032] text-[#B45309] text-[8px]"}
                   `}
                   >
                     {c.mode === "online" && <Zap size={12} className="shrink-0" />}
@@ -996,7 +997,7 @@ export default function UserManagementDashboard() {
                           changeMode(i, "online");
                           setOpenIndex(null);
                         }}
-                        className="text-[10px] px-4 py-1 bg-green-100 hover:bg-green-500 hover:text-white cursor-pointer flex gap-2 rounded-[5px] items-center text-gray-400"
+                        className="text-[10px] px-4 py-1 bg-green-100 hover:bg-[#38EF0A] hover:text-white cursor-pointer flex gap-2 rounded-[5px] items-center text-gray-400"
                       >
                         <Zap size={12} className="shrink-0" />
                         Online
@@ -1033,27 +1034,27 @@ export default function UserManagementDashboard() {
                 {/* -------- IMAGE -------- */}
                 <img
                   src={c.image}
-                  className="mt-8 w-[266px] h-[120px] shadow-[0px_1.61px_3.77px_0px_#0000002E] rounded-[9px] mx-auto object-contain "
+                  className="mt-8 w-[266px] h-[120px] shadow-[0px_1.61px_3.77px_0px_#0000002E] rounded-[9px] mx-auto object-contain mb-2 "
                   alt=""
                 />
 
                 {/* -------- INFO -------- */}
-                <h3 className="font-inter font-semibold text-[#757575] text-[16px] mt-2">{c.title}</h3>
-                <p className=" font-roboto font-medium text-[12px] text-[#8E8E93] ">{c.sub}</p>
-                <div className="flex items-center gap-1 mt-2">
+                <h3 className="font-inter font-semibold text-[#757575] text-[16px] ">{c.title}</h3>
+                <p className=" font-roboto font-medium text-[12px] text-[#8E8E93] mb-2">{c.sub}</p>
+                <div className="flex items-center gap-1">
                   <IoLocationSharp className="w-3 h-3  text-[#38EF0A]" />
-                  <p className="font-roboto text-[11px] text-[#8E8E93]">{c.location}</p>
+                  <p className="font-roboto text-[11px] text-[#8E8E93] mb-1">{c.location}</p>
                 </div>
 
 
-                <div className="font-arial text-[11px] text-[#8E8E93] flex items-center gap-1 mt-1">
+                <div className="font-arial text-[11px] text-[#8E8E93] flex items-center gap-1 mb-1">
                   <div className="bg-[#00000012] rounded-full p-1 inline-flex items-center justify-center">
                     <FaBoltLightning className="w-2 h-2 text-[#38EF0A]" />
                   </div>
                   {c.type}{" "}Fast - {c.capacity}
                 </div>
 
-                <div className="flex items-center mt-1 gap-1">
+                <div className="flex items-center  gap-1 mb-3">
                   <div className="bg-[#00000012] rounded-full p-1 inline-flex items-center justify-center">
                   <BiSolidPlug className="w-[10px] h-[10px] text-[#38EF0A]" />
                   </div>
@@ -1062,9 +1063,9 @@ export default function UserManagementDashboard() {
 
 
                 {/* -------- UTILIZATION -------- */}
-                {c.utilization > 0 && c.mode !== "maintenance" && (
-                  <>
-                    <div className="font-roboto flex justify-between text-[12px] text-[#8E8E93] mt-3">
+               {c.utilization > 0 && c.mode !== "maintenance" && c.mode !== "offline" && (
+                  <div className="mb-3">
+                    <div className="font-roboto flex justify-between text-[12px] text-[#8E8E93] ">
                       <span>Utilization</span>
                       <span>{c.utilization}%</span>
                     </div>
@@ -1074,32 +1075,32 @@ export default function UserManagementDashboard() {
                         style={{ width: `${c.utilization}%` }}
                       />
                     </div>
-                  </>
+                  </div>
                 )}
 
                 {/* -------- ACTION BUTTONS -------- */}
-                <div className="flex justify-center gap-3 mt-4">
+                <div className="flex justify-center gap-3 mt-auto">
                   <button
                     onClick={() => toggleState(i, "unblock")}
-                    className={`w-[93px] py-1 text-[11px] rounded-xl border
+                    className={`w-[93px] py-1 font-inter font-medium text-[12px]  rounded-[6px] flex items-center justify-center gap-1
                   ${c.state === "unblock"
-                        ? "bg-green-600 text-white"
-                        : "bg-white text-green-600"
+                        ? "bg-[#38EF0A] text-white"
+                      : "bg-white text-[#38EF0A] border-[1.5px] border-[#38EF0A]"
                       }
                 `}
-                  >
+                  ><Ban size={14} />
                     Unblock
                   </button>
 
                   <button
                     onClick={() => toggleState(i, "block")}
-                    className={`w-[93px] py-2 text-[11px] rounded-xl  
+                    className={`w-[93px] py-1 font-inter font-medium text-[12px] rounded-[6px] flex items-center justify-center gap-1
                   ${c.state === "block"
                         ? "bg-[#FA2023] text-white"
-                        : "bg-[#FA20232E] border-[#FA202354] border text-red-500"
+                        : "bg-[#FA20232E] border-[#FA202354] border-[1.3px] text-[#FA2023]"
                       }
                 `}
-                  >
+                  ><Ban size={14} />
                     Block
                   </button>
                 </div>
