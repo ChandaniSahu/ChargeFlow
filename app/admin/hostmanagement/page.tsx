@@ -548,7 +548,7 @@ export default function UserManagementDashboard() {
 
           {/* USER REVENUE CONTRIBUTION */}
           <div className="bg-white rounded-xl pt-2 shadow">
-            <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3 text-center">User Revenue Contribution</h3>
+            <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3 text-center">Top Host Earnings & Chargers</h3>
             <ResponsiveContainer width="105%" height={260} className="flex items-center">
               <BarChart data={chartdata} barGap={6} >
                 <XAxis dataKey="name" />
@@ -600,13 +600,13 @@ export default function UserManagementDashboard() {
 
         {/* search & filter functionality */}
         <div className="bg-white p-4 desktop:w-[973px] sm:min-w-[920px] rounded-[16px]">
-          <div className="flex flex-col md:flex-row gap-4 mb-6 items-center">
+          <div className="flex flex-col md:flex-row gap-4 mb-6 items-center ">
             <div className="relative flex-1 w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
               <input
                 type="text"
                 placeholder="Search by name or email..."
-                className="w-full pl-8 pr-4 py-2.5 rounded-[10px] border border-[#B7B7B7] shadow-[0px_2px_6.3px_0px_#00000026] focus:outline-none focus:ring-2 focus:ring-green-200"
+                className="w-full pl-9 pr-4 py-3 rounded-[10px] border border-[#B7B7B7] shadow-[0px_2px_6.3px_0px_#00000026] hover:ring-[0.8px] hover:ring-[#38EF0A] focus:outline-none focus:ring-2 focus:ring-green-200"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
@@ -614,7 +614,7 @@ export default function UserManagementDashboard() {
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:border-green-500 min-w-[140px] justify-between"
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] min-w-[140px] justify-between"
               >
                 <div className="flex items-center gap-2">
                   <Filter size={18} className="text-gray-500" />
@@ -643,6 +643,38 @@ export default function UserManagementDashboard() {
           </div>
 
           {/* TABLE CONTAINER */}
+                    {filteredUsers.length === 0 ? (
+  <div className="flex flex-col items-center justify-center h-[300px] text-center">
+    
+    {/* SVG */}
+  <svg
+  width="120"
+  height="120"
+  viewBox="0 0 24 24"
+  fill="none"
+  className="mb-4 text-gray-300"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M21 21l-4.35-4.35M18 10.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+
+    {/* Text */}
+    <h3 className="text-sm font-semibold text-gray-600">
+      No items found
+    </h3>
+    <p className="text-xs text-gray-400 mt-1">
+      Try changing search or filter
+    </p>
+
+  </div>
+) : (
           <div className="bg-white rounded-2xl shadow-md border border-[#DDDDE1] shadow-[0px_2px_6.3px_0px_#00000026] overflow-hidden">
             {/* Horizontal Scroll wrapper */}
             <div className="overflow-x-auto no-scrollbar max-h-[420px] overflow-y-auto">
@@ -712,7 +744,7 @@ export default function UserManagementDashboard() {
 
               </table>
             </div>
-          </div>
+          </div>)}
         </div>
       </div>
     </div>

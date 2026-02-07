@@ -377,28 +377,6 @@ const userData = [
   { id: 7, name: 'Antara Mishra', email: 'antaramishra@gmail.com', contact: '+91 7576329420', status: 'Approved', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user1.jpg", },
 ];
 
-// 2. ICON SWITCH CASE HELPER
-const GetStatusIcon = (type: string, status: string) => {
-  switch (status.toLowerCase()) {
-    case 'approved':
-    case 'success':
-      return <CheckCircle size={16} className="text-green-500" />;
-    case 'pending':
-      return <Clock size={16} className="text-[#b45309]" />;
-    case 'failed':
-      return <RxCross2 size={16} className="text-[#fb2c2f]" />;
-    case 'blocked':
-      return <XCircle size={16} className="text-[#fb2c2f]" />;
-    case 'inactive':
-      return <CircleDashed size={16} className="text-[#7d7d7d]" />
-    default:
-      return null;
-  }
-};
-
-
-
-
 // chargerData.ts
 export type ChargerMode = "online" | "offline" | "maintenance";
 export type ChargerState = "block" | "unblock";
@@ -528,6 +506,32 @@ export const chargers: ChargerCard[] = [
 
 ];
 
+export const getAmountTextStyle = (status: ActivityItem["status"]) => {
+  switch (status) {
+    case "alert":
+      return "text-[#b45309]";      // same as alert
+
+    case "session":
+      return "text-[#29B605]";      // green
+
+    case "online":
+      return "text-[#29B605]";       // green/blue used for online
+
+    case "maintenance":
+      return "text-blue-600";       // blue
+
+    case "offline":
+      return "text-[#fb2c2f]";      // red
+
+    case "booking":
+      return "text-[#8a38f5]";      // purple
+
+    default:
+      return "text-gray-600";
+  }
+};
+
+
 
 
 /* ================= COMPONENT ================= */
@@ -547,7 +551,9 @@ export default function UserManagementDashboard() {
   const filteredData = data.filter((c) => {
     const matchSearch =
       c.location.toLowerCase().includes(search.toLowerCase()) ||
-      c.type.toLowerCase().includes(search.toLowerCase());
+      c.type.toLowerCase().includes(search.toLowerCase()) ||
+      c.type1.toLowerCase().includes(search.toLowerCase()) ||
+      c.capacity.toLowerCase().includes(search.toLowerCase());
 
     const matchType = typeFilter === "All Type" || c.type === typeFilter;
 
@@ -781,7 +787,7 @@ export default function UserManagementDashboard() {
                     {/* RIGHT */}
                     <div className="flex items-center gap-4">
                       <div className="hidden desktop:block text-right">
-                        {a.amount && <p className="font-roboto text-[#29B605] text-[15px]">
+                        {a.amount && <p className={`font-roboto ${getAmountTextStyle(a.status)}  text-[15px]`}>
                           {a.amount}
                         </p>}
                         <p className="font-inter text-[12px] text-[#707274]">{a.time}</p>
@@ -868,13 +874,15 @@ export default function UserManagementDashboard() {
         <div className="bg-white  px-4  rounded-[20px] overflow-hidden">
           {/* ================= FILTER BAR ================= */}
           <div className="py-4 sticky top-0 z-10 bg-white desktop:flex-row flex flex-col gap-3">
+            <div className="relative flex-1 flex items-center  w-full">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
             <input
-              className="w-full px-4 py-2 border border-[#B7B7B7] hover:ring-[0.8px] hover:ring-[#38EF0A] focus:outline-none focus:ring-[0.6px]  focus:ring-[#38EF0A] shadow-[0px_2px_6.3px_0px_#00000026] rounded-[10px]"
+              className="w-full px-4 pl-9  py-3 border border-[#B7B7B7] hover:ring-[0.8px] hover:ring-[#38EF0A] focus:outline-none focus:ring-[0.6px]  focus:ring-[#38EF0A] shadow-[0px_2px_6.3px_0px_#00000026] rounded-[10px]"
               placeholder="Search by location or type..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-          
+            </div>
             <div className="relative">
               <button
                 onClick={() => setIsTypeDropdownOpen(!isTypeDropdownOpen)}
@@ -958,6 +966,38 @@ export default function UserManagementDashboard() {
          
 
           {/* ================= CARDS ================= */}
+          {filteredData.length === 0 ? (
+  <div className="flex flex-col items-center justify-center h-[300px] text-center">
+    
+    {/* SVG */}
+  <svg
+  width="120"
+  height="120"
+  viewBox="0 0 24 24"
+  fill="none"
+  className="mb-4 text-gray-300"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M21 21l-4.35-4.35M18 10.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
+    stroke="currentColor"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+
+
+    {/* Text */}
+    <h3 className="text-sm font-semibold text-gray-600">
+      No chargers found
+    </h3>
+    <p className="text-xs text-gray-400 mt-1">
+      Try changing search or filter
+    </p>
+
+  </div>
+) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 overflow-y-auto max-h-[450px] no-scrollbar">
             {filteredData.map((c, i) => (
               <div
@@ -1106,7 +1146,7 @@ export default function UserManagementDashboard() {
                 </div>
               </div>
             ))}
-          </div>
+          </div>)}
       </div>
     </div>
     </div>
