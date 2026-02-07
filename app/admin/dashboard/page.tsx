@@ -356,7 +356,10 @@ export default function Dashboard() {
         key={i}
         className="bg-white p-2 rounded-xl shadow-md border border-gray-100
         w-[calc(50%-0.15rem)] md:w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
-        "
+      last:w-full
+  md:last:w-[calc(33.333%-0.2rem)]
+  lg:last:w-[calc(20%-0.24rem)]
+"
       >
         {/* TOP ICON + TITLE */}
         <div className="flex items-center gap-1 mb-2">
