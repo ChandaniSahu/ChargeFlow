@@ -22,7 +22,9 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
-
+import { PiBatteryChargingBold } from "react-icons/pi";
+import { LiaMoneyBillWaveSolid } from "react-icons/lia";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 // import Image from "next/image";
 
 /* ================= DATA ================= */
@@ -276,11 +278,11 @@ const getStatusText = (status: ActivityItem["status"]) => {
 const getStatusIcon = (status: ActivityItem["status"]) => {
   switch (status) {
     case "charger_added":
-      return PlusSquare;        // + Charger Added
+      return PiBatteryChargingBold;        // + Charger Added
     case "payment":
-      return Wallet;            // Payment / Payout
+      return LiaMoneyBillWaveSolid;            // Payment / Payout
     case "kyc":
-      return CheckCircle;       // KYC Approved
+      return IoMdCheckmarkCircleOutline;       // KYC Approved
     case "booking":
       return Calendar;          // New Booking
     case "maintenance":
@@ -501,7 +503,7 @@ export default function UserManagementDashboard() {
                       <div>
                         <p className="font-roboto font-semibold text-[16px] text-[#364153]">{a.name}</p>
                         <p className="font-roboto font-regular text-[15px] text-[#848484]">{a.title}</p>
-                        <p className="font-inter font-regular text-[14px] text-[#707274]">{a.subTitle}</p>
+                        <p className="font-inter font-regular text-[12px] text-[#707274]">{a.subTitle}</p>
                         <div className="desktop:hidden">
                           {a.amount && <p className="font-roboto text-[#29B605] text-[15px]">
                             {a.amount}
@@ -526,7 +528,7 @@ export default function UserManagementDashboard() {
                           a.status
                         )}`}
                       >
-                        <StatusIcon size={16} />
+                        <StatusIcon size={20} />
                         {getStatusText(a.status)}
                       </span>
                       <span

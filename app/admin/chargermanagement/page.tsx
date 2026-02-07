@@ -39,6 +39,7 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { IoMdSettings } from "react-icons/io";
 
 // import Image from "next/image";
 
@@ -112,7 +113,7 @@ export const actionCards = [
     sub2: "aC / DC / Fast chargers",
     btn: "Manage",
     btnIcon: MdOutlineKeyboardArrowRight,
-    icon: MdEvStation,
+    icon:IoMdSettings ,
   },
   {
     title: "Charger Status",
@@ -133,7 +134,7 @@ export const actionCards = [
 
     btn: "View Status",
     btnIcon: MdOutlineKeyboardArrowRight,
-    icon: MdOutlineWifiTethering,
+    icon: FaChargingStation,
   },
   {
     title: "Maintenance Mode",
@@ -841,7 +842,7 @@ const filteredData = data.filter((c) => {
                   tickFormatter={(v) => `${v}%`}
                 />
 
-                <Tooltip />
+                <Tooltip cursor={false}/>
 
                 <Bar
                   yAxisId="left"

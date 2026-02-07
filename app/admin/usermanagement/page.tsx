@@ -476,7 +476,7 @@ export default function UserManagementDashboard() {
                       <div>
                         <p className="font-roboto font-semibold text-[16px] text-[#364153]">{a.name}</p>
                         <p className="font-roboto font-regular text-[15px] text-[#848484]">{a.title}</p>
-                        <p className="font-inter font-regular text-[14px] text-[#707274]">{a.subTitle}</p>
+                        <p className="font-inter font-regular text-[12px] text-[#707274]">{a.subTitle}</p>
                         <div className="desktop:hidden">
                           {a.amount && <p className="font-roboto text-[#29B605] text-[15px]">
                             {a.amount}
