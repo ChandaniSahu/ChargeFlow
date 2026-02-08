@@ -128,7 +128,7 @@ const actions = [
     title: "Support Tickets",
     sub: (
       <>
-        <div className="flex items-center gap-[0.3rem]">
+        <div className="flex items-center desktop:justify-start justify-center gap-[0.3rem]">
           <span className="text-[9px]">Open{" "}:</span>{" "}
           <span className="font-semibold text-[#EA4335]">10</span>{" "}
           <span className="text-[9px]">| Resolved{" "}:</span>{" "}
@@ -293,13 +293,13 @@ export default function Dashboard() {
       {/* HEADER */}
       <div className="desktop:text-left text-center">
         <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 mb-1 text-[30px] text-white ">
-        Dashboard
-      </h1>
-      <p className="font-arial text-white desktop:text-[20px] text-[15px] mb-3 -mt-2 leading-[19px] desktop:leading-tight">
-        Welcome Back! Here's What's Happening With ChargeFlow today.
-      </p> 
+          Dashboard
+        </h1>
+        <p className="font-arial text-white desktop:text-[20px] text-[15px] mb-3 -mt-2 leading-[19px] desktop:leading-tight">
+          Welcome Back! Here's What's Happening With ChargeFlow today.
+        </p>
       </div>
-     
+
       {/* <div className="space-y-2 flex-1 h-[82vh] overflow-y-auto no-scrollbar mb-4 red "> */}
 
       <div className="space-y-2 flex-1  overflow-y-auto no-scrollbar mb-4">
@@ -346,43 +346,43 @@ export default function Dashboard() {
             </div>
 
             {/* Actions Cards - Added margin-top for spacing between Stats and Actions */}
-<div className="flex flex-wrap items-center justify-center gap-[0.3rem] mt-3">
-  {actions.map((a, i) => {
-    const TopIcon = a.icon;
-    const BtnIcon = a.btnIcon;
+            <div className="flex flex-wrap items-center justify-center gap-[0.3rem] mt-3">
+              {actions.map((a, i) => {
+                const TopIcon = a.icon;
+                const BtnIcon = a.btnIcon;
 
-    return (
-      <div
-        key={i}
-        className="bg-white p-2 rounded-xl shadow-md border border-gray-100
-        w-[calc(50%-0.15rem)] md:w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
-      last:w-full
-  md:last:w-[calc(33.333%-0.2rem)]
-  lg:last:w-[calc(20%-0.24rem)]
-"
-      >
-        {/* TOP ICON + TITLE */}
-        <div className="flex items-center gap-1 mb-2">
-          <TopIcon size={17} className="text-[#2CDE00]" />
-          <h3 className="font-inter font-semibold text-[11px] text-[#364153]">
-            {a.title}
-          </h3>
-        </div>
+                return (
+                  <div
+                    key={i}
+                    className="bg-white p-2 rounded-xl shadow-md border border-gray-100
+    w-[calc(50%-0.15rem)] md:w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
+    last:w-full md:last:w-[calc(33.333%-0.2rem)] lg:last:w-[calc(20%-0.24rem)] red"
+                  >
+                    {/* TOP ICON + TITLE */}
+                    <div className={`flex items-center gap-1 mb-2 ${i === actions.length - 1 ? 'justify-center md:justify-start' : ''}`}>
+                      <TopIcon size={17} className="text-[#2CDE00]" />
+                      <h3 className="font-inter font-semibold text-[11px] text-[#364153]">
+                        {a.title}
+                      </h3>
+                    </div>
 
-        {/* SUB TEXT */}
-        <p className="font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF]">
-          {a.sub}
-        </p>
+                    {/* SUB TEXT (The "Open/Resolved" part) */}
+                    <p className={`font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF] w-full
+    ${i === actions.length - 1 ? 'text-center md:text-left' : 'text-left'}`}>
+                      {a.sub}
+                    </p>
 
-        {/* BUTTON */}
-        <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] text-white rounded-md">
-          {a.btn}
-          {BtnIcon && <BtnIcon size={14} />}
-        </button>
-      </div>
-    );
-  })}
-</div>
+                    {/* BUTTON */}
+                    <div className={`flex ${i === actions.length - 1 ? 'justify-center md:justify-start' : ''}`}>
+                      <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] text-white rounded-md">
+                        {a.btn}
+                        {BtnIcon && <BtnIcon size={14} />}
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
 
 
           </div>
@@ -462,28 +462,28 @@ export default function Dashboard() {
               <div className="flex-1 flex flex-col justify-center">
                 <div className="flex justify-center mb-3">
                   <PieChart width={160} height={160} className="outline-none">
-  <Pie
-    data={chargerStatus}
-    dataKey="value"
-    innerRadius={45}
-    outerRadius={70}
-    startAngle={-90}
-    endAngle={-460}
-    paddingAngle={4}
-    isAnimationActive={false}
-  >
-    {chargerStatus.map((e, i) => (
-      <Cell
-        key={i}
-        fill={e.color}
-        stroke="none"
-        tabIndex={-1}
-        style={{ outline: "none" }}
-      />
-    ))}
-  </Pie>
-  <Tooltip />
-</PieChart>
+                    <Pie
+                      data={chargerStatus}
+                      dataKey="value"
+                      innerRadius={45}
+                      outerRadius={70}
+                      startAngle={-90}
+                      endAngle={-460}
+                      paddingAngle={4}
+                      isAnimationActive={false}
+                    >
+                      {chargerStatus.map((e, i) => (
+                        <Cell
+                          key={i}
+                          fill={e.color}
+                          stroke="none"
+                          tabIndex={-1}
+                          style={{ outline: "none" }}
+                        />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                  </PieChart>
 
                 </div>
                 <div className="space-y-1">
@@ -511,7 +511,7 @@ export default function Dashboard() {
           <div className="max-h-[300px] overflow-y-auto mt-1 no-scrollbar">
             {activities.map((activity) => {
               const Icon = getStatusIcon(activity.status);
-              return(<div
+              return (<div
                 key={activity.id}
                 className="relative px-6 py-4 hover:bg-gray-50 transition-colors duration-200 border border-gray-300 rounded-[10px] mb-2"
               >
@@ -561,7 +561,8 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
-)})}
+              )
+            })}
           </div>
           {/* </div> */}
         </div>
