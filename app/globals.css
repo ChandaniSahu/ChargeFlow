@@ -128,3 +128,31 @@ svg *:focus {
     border: 1px solid rgb(207, 69, 69);
   }
 }
+
+
+/* @media (min-width: 776px) and (max-width: 1024px) {
+  .half-md-only {
+    width: 50% !important;
+  }
+} */
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .actions-wrapper {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .half-md-only {
+    width: calc(50% - 0.15rem) !important;
+  }
+
+}
+
+
+@media (min-width: 0px) and (max-width: 767px) {
+ .rani{
+  width:calc(100% - 0.15rem)  !important;
+ }
+
+}
