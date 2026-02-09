@@ -128,7 +128,7 @@ const actions = [
     title: "Support Tickets",
     sub: (
       <>
-        <div className="flex items-center desktop:justify-start justify-center gap-[0.3rem]">
+        <div className="flex items-center tablat:justify-start desktop:justify-start justify-center gap-[0.3rem]">
           <span className="text-[9px]">Open{" "}:</span>{" "}
           <span className="font-semibold text-[#EA4335]">10</span>{" "}
           <span className="text-[9px]">| Resolved{" "}:</span>{" "}

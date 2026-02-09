@@ -556,7 +556,8 @@ const filteredData = data.filter((c) => {
     c.location.toLowerCase().includes(searchText) ||
     c.type.toLowerCase().includes(searchText) ||
     c.type1.toLowerCase().includes(searchText) ||
-    c.capacity.toLowerCase().includes(searchText);
+    c.capacity.toLowerCase().includes(searchText)||
+    c.title.toLowerCase().includes(searchText);
 
   const matchType =
     typeFilter === "All Type" ||
