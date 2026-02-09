@@ -577,7 +577,7 @@ ${(i == actions.length - 1) ? 'rani' : ''}
                     </span>
                   </div>
                   <div className="sm:hidden absolute right-0 bottom-0 flex-shrink-0">
-                    <span className={`font-inter inline-flex items-center justify-center py-2 w-[125px] gap-[0.4rem] rounded-[10px] text-[15px] font-medium border ${getStatusStyles(activity.status)}`}>
+                    <span className={`font-inter inline-flex items-center justify-center desktop:py-2 py-1 w-[120px] desktop:w-[125px] gap-[0.4rem] rounded-[10px] desktop:text-[15px] font-medium border ${getStatusStyles(activity.status)}`}>
                       <Icon size={14} />
                       {getStatusText(activity.status)}
                     </span>
