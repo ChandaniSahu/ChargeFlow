@@ -402,7 +402,7 @@ export default function UserManagementDashboard() {
             </div>
 
             {/* ACTION CARDS */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[0.6rem] mt-3">
+            <div className="grid grid-cols-2  lg:grid-cols-4 gap-[0.6rem] mt-3">
               {actionCards.map((a, i) => {
                 const TopIcon = a.icon;
                 const BtnIcon = a.btnIcon;
@@ -438,11 +438,12 @@ export default function UserManagementDashboard() {
 
           {/* CHARGER STATUS */}
           <div className="w-full lg:w-[220px]  bg-white rounded-xl shadow px-3 py-2 h-full flex flex-col">
-            <h3 className="font-inter text-[20px] font-semibold text-[#434343] mb-1">
+            <h3 className="font-inter text-center text-[20px] font-semibold text-[#434343] mb-1">
               Charger Status
             </h3>
 
-            <div className="flex flex-1 justify-center items-center">
+            <div className="flex flex-col fix-graph flex-1 justify-center items-center">
+              <div className="flex justify-center">
               <PieChart width={160} height={160}>
                 <Pie
                   data={chargerStatus}
@@ -458,9 +459,8 @@ export default function UserManagementDashboard() {
                 </Pie>
                 <Tooltip />
               </PieChart>
-            </div>
-
-            <div className="space-y-1 ">
+              </div>
+                      <div className="space-y-1 ">
               {chargerStatus.map((s, i) => (
                 <div key={i} className="flex items-center gap-2 text-sm">
                   <span
@@ -473,6 +473,9 @@ export default function UserManagementDashboard() {
                 </div>
               ))}
             </div>
+            </div>
+
+    
           </div>
         </div>
 

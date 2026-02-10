@@ -414,7 +414,7 @@ ${(i == actions.length - 1) ? 'rani' : ''}
           <div className="lg:col-span-1">
             <div className="text-center bg-gradient-to-br from-gray-50 to-white rounded-xl px-4 py-2 shadow-md border border-gray-100 h-full flex flex-col">
               <h3 className="font-inter text-[20px] font-semibold text-gray-700 mb-1">Booking Status</h3>
-              <div className="flex-1 flex flex-col tablat:flex-row justify-center tablat:items-center gap-0 tablat:gap-20">
+              <div className="flex-1 flex fix-graph flex-col justify-center items-center">
                 <div className="flex justify-center mb-1">
                   <PieChart width={140} height={140}>
                     <Pie data={bookingStatus}
@@ -482,7 +482,7 @@ ${(i == actions.length - 1) ? 'rani' : ''}
           <div className="lg:col-span-1">
             <div className="text-center bg-white rounded-xl shadow-md px-4 py-2 border border-gray-100 h-full flex flex-col">
               <h3 className="font-inter text-[20px] font-semibold text-gray-700 mb-1">Charger Status</h3>
-              <div className="flex-1 flex flex-col justify-center">
+              <div className="flex-1 flex flex-col fix-graph justify-center items-center">
                 <div className="flex justify-center mb-3">
                   <PieChart width={160} height={160} className="outline-none">
                     <Pie
@@ -511,7 +511,7 @@ ${(i == actions.length - 1) ? 'rani' : ''}
                 </div>
                 <div className="space-y-1">
                   {chargerStatus.map((s, i) => (
-                    <div key={i} className="flex items-center  gap-2  text-xs">
+                    <div key={i} className="flex items-center gap-2  text-xs">
                       <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: s.color }} />
                       <span className="font-inter text-[15px] text-gray-600 font-medium">{s.name}{" : "}<span className="font-inter font-semibold text-[15px]">{s.value}</span></span>
                       {/* <span className="ml-auto font-bold">{s.value}</span> */}

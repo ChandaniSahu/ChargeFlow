@@ -673,7 +673,7 @@ const filteredData = data.filter((c) => {
             </div>
 
             {/* ACTION CARDS */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[0.6rem] mt-3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-[0.6rem] mt-3">
               {actionCards.map((a, i) => {
                 const TopIcon = a.icon;
                 const BtnIcon = a.btnIcon;
@@ -709,12 +709,12 @@ const filteredData = data.filter((c) => {
 
           {/* CHARGER STATUS */}
           <div className="w-full lg:w-[220px]  bg-white rounded-xl shadow px-3 py-2 h-full flex flex-col">
-            <h3 className="font-inter text-[20px] font-semibold text-[#434343] mb-1">
+            <h3 className="text-center font-inter text-[20px] font-semibold text-[#434343] mb-1">
               Charger Status
             </h3>
 
-            <div className="flex flex-1 justify-center items-center">
-              <PieChart width={160} height={160}>
+            <div className="flex-1 flex flex-col justify-center items-center fix-graph">
+              <PieChart width={160} height={160} className="flex justify-center">
                 <Pie
                   data={chargerStatus}
                   dataKey="value"
@@ -729,9 +729,7 @@ const filteredData = data.filter((c) => {
                 </Pie>
                 <Tooltip />
               </PieChart>
-            </div>
-
-            <div className="space-y-1 ">
+<div className="space-y-1 ">
               {chargerStatus.map((s, i) => (
                 <div key={i} className="flex items-center gap-2 text-sm">
                   <span
@@ -744,6 +742,10 @@ const filteredData = data.filter((c) => {
                 </div>
               ))}
             </div>
+
+            </div>
+
+            
           </div>
         </div>
 
@@ -879,7 +881,7 @@ const filteredData = data.filter((c) => {
         {/* search & filter functionality */}
         <div className="bg-white  px-4  rounded-[20px] overflow-hidden">
           {/* ================= FILTER BAR ================= */}
-          <div className="py-4 sticky top-0 z-10 bg-white desktop:flex-row flex flex-col gap-3">
+          <div className="py-4 sticky top-0 z-10 bg-white desktop:flex-row tablat:flex-row flex flex-col gap-3">
             <div className="relative flex-1 flex items-center  w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
             <input
@@ -1018,7 +1020,8 @@ const filteredData = data.filter((c) => {
                   {/* Selected Button */}
                   <div
                     onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                    className={`px-1 py-1.5 rounded-[5px] cursor-pointer flex justify-center items-center gap-1 w-[90px] shadow-sm
+                    className={`px-1 py-1.5 rounded-[5px]  flex justify-center items-center gap-1 w-[90px] shadow-sm
+                    ${c.state==="block" ?'':'cursor-pointer'}
                     ${c.state==="block" && c.mode==="online" && "bg-green-100 text-gray-400"}
                     ${c.state==="unblock" && c.mode === "online" && "bg-[#38EF0A] text-white"}
                     ${c.mode === "offline" && "bg-[#DDE5D6] text-[#7B8573]"}
@@ -1035,7 +1038,7 @@ const filteredData = data.filter((c) => {
                   </div>
 
                   {/* Dropdown Options */}
-                  {openIndex === i && (
+                  {openIndex === i && c.state !=='block' &&(
                     <div className="absolute right-0 mt-2 w-full bg-transparent space-y-1 overflow-hidden z-50">
 
                       <div
