@@ -354,22 +354,6 @@ export default function Dashboard() {
                 return (
                   <div
                     key={i}
-                    //    className={`bg-white p-2 rounded-xl shadow-md border border-gray-100
-                    // w-[calc(50%-0.15rem)] md:w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
-                    // last:w-full md:last:w-[calc(33.333%-0.2rem)] lg:last:w-[calc(20%-0.24rem)]
-                    // charu
-                    // ${(i === actions.length - 1 || i === actions.length - 2)
-                    //   ? 'bg-black full-md-only'
-                    //   : ''}`}
-
-                    // className={`bg-white p-2 rounded-xl shadow-md border border-gray-100
-                    // w-[calc(50%-0.15rem)] md:w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
-                    // last:w-full md:last:w-[calc(33.333%-0.2rem)] lg:last:w-[calc(20%-0.24rem)]
-                    // charu
-                    // ${(i === actions.length - 1 || i === actions.length - 2)
-                    //   ? 'bg-black half-md-only'
-                    //   : ''}`}
-
                     className={`bg-white p-2 rounded-xl shadow-md border border-gray-100
 w-[calc(50%-0.15rem)] md:w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
 charu
