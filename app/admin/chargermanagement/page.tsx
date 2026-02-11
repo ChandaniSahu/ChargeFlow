@@ -881,7 +881,7 @@ const filteredData = data.filter((c) => {
         {/* search & filter functionality */}
         <div className="bg-white  px-4  rounded-[20px] overflow-hidden">
           {/* ================= FILTER BAR ================= */}
-          <div className="py-4 sticky top-0 z-10 bg-white desktop:flex-row tablat:flex-row flex flex-col gap-3">
+          <div className="py-4 sticky top-0 z-10 bg-white md:flex-row flex flex-col gap-3">
             <div className="relative flex-1 flex items-center  w-full">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
             <input
@@ -891,6 +891,7 @@ const filteredData = data.filter((c) => {
               onChange={(e) => setSearch(e.target.value)}
             />
             </div>
+            <div className="flex items-center justify-center gap-3">
             <div className="relative">
               <button
                 onClick={() => setIsTypeDropdownOpen(!isTypeDropdownOpen)}
@@ -909,7 +910,7 @@ const filteredData = data.filter((c) => {
               </button>
 
               {isTypeDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48   p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
+                <div className="absolute right-0 mt-2 md:w-48 w-40  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
 
                   {["All Type", "DC", "AC"].map((type) => (
                     <button
@@ -969,6 +970,7 @@ const filteredData = data.filter((c) => {
                   ))}
                 </div>
               )}
+            </div>
             </div>
           </div>
          

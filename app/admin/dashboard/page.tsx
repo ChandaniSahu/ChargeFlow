@@ -128,7 +128,7 @@ const actions = [
     title: "Support Tickets",
     sub: (
       <>
-        <div className="flex items-center tablat:justify-start desktop:justify-start justify-center gap-[0.3rem]">
+        <div className="flex items-center  gap-[0.3rem]">
           <span className="text-[9px]">Open{" "}:</span>{" "}
           <span className="font-semibold text-[#EA4335]">10</span>{" "}
           <span className="text-[9px]">| Resolved{" "}:</span>{" "}
@@ -366,7 +366,7 @@ ${(i == actions.length - 1) ? 'rani' : ''}
 
                   >
                     {/* TOP ICON + TITLE */}
-                    <div className={`flex items-center gap-1 mb-2 ${i === actions.length - 1 ? 'justify-center md:justify-start' : ''}`}>
+                    <div className={`flex items-center gap-1 mb-2 ${i === actions.length - 1 ? 'pl-5 tablat:pl-0 desktop:pl-0 md:justify-start' : ''}`}>
                       <TopIcon size={17} className="text-[#2CDE00]" />
                       <h3 className="font-inter font-semibold text-[11px] text-[#364153]">
                         {a.title}
@@ -375,12 +375,12 @@ ${(i == actions.length - 1) ? 'rani' : ''}
 
                     {/* SUB TEXT (The "Open/Resolved" part) */}
                     <p className={`font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF] w-full
-    ${i === actions.length - 1 ? 'text-center md:text-left' : 'text-left'}`}>
+    ${i === actions.length - 1 ? 'pl-5 tablat:pl-0 desktop:pl-0 md:text-left' : 'text-left'}`}>
                       {a.sub}
                     </p>
 
                     {/* BUTTON */}
-                    <div className={`flex ${i === actions.length - 1 ? 'justify-center md:justify-start' : ''}`}>
+                    <div className={`flex ${i === actions.length - 1 ? 'pl-5 md:pl-0 md:justify-start' : ''}`}>
                       <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] text-white rounded-md">
                         {a.btn}
                         {BtnIcon && <BtnIcon size={14} />}

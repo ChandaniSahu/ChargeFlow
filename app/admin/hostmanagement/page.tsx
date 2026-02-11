@@ -604,14 +604,16 @@ export default function UserManagementDashboard() {
         </div>
 
         {/* search & filter functionality */}
-        <div className="bg-white p-4 desktop:w-[973px] sm:min-w-[920px] rounded-[16px]">
-          <div className="flex flex-col md:flex-row gap-4 mb-6 items-center ">
+        <div className="bg-white p-2 md:p-4 w-full
+tablat:w-[750px]
+desktop:w-[973px] rounded-[16px]">
+          <div className="flex gap-2 md:gap-4 mb-6 items-center ">
             <div className="relative flex-1 w-full">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+              <Search className="absolute md:left-3 left-1 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
               <input
                 type="text"
                 placeholder="Search by name or email..."
-                className="w-full pl-9 pr-4 py-3 rounded-[10px] border border-[#B7B7B7] shadow-[0px_2px_6.3px_0px_#00000026] hover:ring-[0.8px] hover:ring-[#38EF0A] focus:outline-none focus:ring-2 focus:ring-green-200"
+                className="w-full md:pl-9 pl-7 pr-4 py-3 rounded-[10px] border border-[#B7B7B7] shadow-[0px_2px_6.3px_0px_#00000026] hover:ring-[0.8px] hover:ring-[#38EF0A] focus:outline-none focus:ring-2 focus:ring-green-200"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
@@ -619,11 +621,20 @@ export default function UserManagementDashboard() {
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] min-w-[140px] justify-between"
+                className="flex items-center gap-1 md:gap-4  md:px-4 px-1 py-2 md:py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] min-w-[70px] md:min-w-[140px] justify-between"
               >
-                <div className="flex items-center gap-2">
+                <div className="flex items-center md:gap-2 gap-1">
                   <Filter size={18} className="text-gray-500" />
-                  <span className="font-medium text-gray-700 font-inter text-[20px] ">{filterStatus}</span>
+                  <span className="font-medium text-gray-700 font-inter text-[20px]">
+  <span className="inline sm:hidden">
+    {filterStatus === 'All Status' ? 'All' : filterStatus}
+  </span>
+
+  <span className="hidden sm:inline">
+    {filterStatus}
+  </span>
+</span>
+
                 </div>
                 < ChevronDown className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
                 {/* <span >▼</span> */}
