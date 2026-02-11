@@ -343,7 +343,7 @@ export default function UserManagementDashboard() {
   });
 
   return (
-    <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2 flex flex-col desktop:w-[1010px]">
+    <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2 flex flex-col desktop:max-w-[1010px]">
       {/* HEADER */}
       <div className="desktop:text-left text-center">
         <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 mb-1 text-[30px] text-white">Host Management</h1>
@@ -352,7 +352,7 @@ export default function UserManagementDashboard() {
         </p>
       </div>
 
-      <div className="space-y-3 flex-1 h-[82vh] overflow-y-auto no-scrollbar mb-4">
+      <div className="space-y-3 flex-1 h-[82vh] overflow-y-auto no-scrollbar mb-4 ">
         {/* STATS + ACTIONS + CHARGER STATUS */}
         <div className="flex flex-col lg:flex-row gap-3 items-stretch  w-full">
           {/* LEFT COLUMN */}
@@ -527,7 +527,7 @@ export default function UserManagementDashboard() {
                       </div>
 
                       <span
-                        className={`hidden desktop:flex font-roboto items-center gap-2 desktop:w-[133px] justify-center py-1.5 text-[14px] border rounded-md ${getStatusStyles(
+                        className={`hidden md:flex font-roboto items-center gap-2 md:w-[133px] justify-center py-1.5 text-[14px] border rounded-md ${getStatusStyles(
                           a.status
                         )}`}
                       >
@@ -535,7 +535,7 @@ export default function UserManagementDashboard() {
                         {getStatusText(a.status)}
                       </span>
                       <span
-                        className={`desktop:hidden absolute bottom-0 right-1 font-roboto flex items-center gap-2 w-[120px] justify-center py-1.5 text-[14px] border rounded-md ${getStatusStyles(
+                        className={`md:hidden absolute bottom-0 right-1 font-roboto flex items-center gap-2 w-[125px] justify-center py-1 text-[14px] border rounded-md ${getStatusStyles(
                           a.status
                         )}`}
                       >
