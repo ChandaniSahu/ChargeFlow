@@ -352,7 +352,7 @@ export default function UserManagementDashboard() {
         </p>
       </div>
 
-      <div className="space-y-3 flex-1 h-[82vh] overflow-y-auto no-scrollbar mb-4 ">
+      <div className="space-y-3 flex-1 h-[82vh] overflow-y-auto overflow-x-hidden no-scrollbar mb-4 ">
         {/* STATS + ACTIONS + CHARGER STATUS */}
         <div className="flex flex-col lg:flex-row gap-3 items-stretch  w-full">
           {/* LEFT COLUMN */}
