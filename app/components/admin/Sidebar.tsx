@@ -18,7 +18,7 @@ const menu = [
   { title: "User Management", icon: Users, path: "/admin/usermanagement" },
   { title: "Host Management", icon: Home, path: "/admin/hostmanagement" },
   { title: "Charger Management", icon: RiChargingPileLine, path: "/admin/chargermanagement" },
-  { title: "Booking Management", icon: Calendar, path: "/admin/bookings" },
+  { title: "Booking Management", icon: Calendar, path: "/admin/bookingmanagement" },
   { title: "Payments & Revenue", icon: LuBadgeIndianRupee, path: "/admin/payments" },
   { title: "Support Tickets", icon: BiSupport, path: "/admin/support" },
   { title: "Analytics & Reports", icon: BarChart2, path: "/admin/analytics" },

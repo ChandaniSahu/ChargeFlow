@@ -209,7 +209,7 @@ const activities: ActivityItem[] = [
     status: "registration",
     imageUrl: "/images/user3.jpg"
   },
-  
+
 ];
 
 
@@ -417,37 +417,37 @@ export default function UserManagementDashboard() {
 
             <div className="flex flex-col flex-1 justify-center fix-graph items-center">
               <div className="flex justify-center">
-              <PieChart width={160} height={160}>
-                <Pie
-                  data={chargerStatus}
-                  dataKey="value"
-                  innerRadius={45}
-                  outerRadius={70}
-                  startAngle={-90}
-                  endAngle={-450}
-                >
-                  {chargerStatus.map((e, i) => (
-                    <Cell key={i} fill={e.color} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
+                <PieChart width={160} height={160}>
+                  <Pie
+                    data={chargerStatus}
+                    dataKey="value"
+                    innerRadius={45}
+                    outerRadius={70}
+                    startAngle={-90}
+                    endAngle={-450}
+                  >
+                    {chargerStatus.map((e, i) => (
+                      <Cell key={i} fill={e.color} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </div>
+              <div className="space-y-1 ">
+                {chargerStatus.map((s, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm">
+                    <span
+                      className="w-2.5 h-2.5 rounded-full"
+                      style={{ background: s.color }}
+                    />
+                    <span className="text-gray-600">
+                      {s.name}: <b>{s.value}</b>
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-                 <div className="space-y-1 ">
-              {chargerStatus.map((s, i) => (
-                <div key={i} className="flex items-center gap-2 text-sm">
-                  <span
-                    className="w-2.5 h-2.5 rounded-full"
-                    style={{ background: s.color }}
-                  />
-                  <span className="text-gray-600">
-                    {s.name}: <b>{s.value}</b>
-                  </span>
-                </div>
-              ))}
-            </div>
-            </div>
-       
+
           </div>
         </div>
 
@@ -539,8 +539,8 @@ export default function UserManagementDashboard() {
 
         {/* search & filter functionality */}
         <div className="bg-white p-2 md:p-4 w-full
-tablat:w-[750px]
-desktop:w-[973px]  rounded-[16px] ">
+        tablat:w-[750px]
+         desktop:w-[973px]  rounded-[16px] ">
           <div className="flex gap-2 md:gap-4 mb-6 items-center">
             <div className="relative flex-1  w-full">
               <Search className="absolute md:left-3 left-1 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
@@ -560,14 +560,14 @@ desktop:w-[973px]  rounded-[16px] ">
                 <div className="flex items-center md:gap-2 gap-1">
                   <Filter size={18} className="text-gray-500" />
                   <span className="font-medium text-gray-700 font-inter text-[20px]">
-  <span className="inline sm:hidden">
-    {filterStatus === 'All Status' ? 'All' : filterStatus}
-  </span>
+                    <span className="inline sm:hidden">
+                      {filterStatus === 'All Status' ? 'All' : filterStatus}
+                    </span>
 
-  <span className="hidden sm:inline">
-    {filterStatus}
-  </span>
-</span>
+                    <span className="hidden sm:inline">
+                      {filterStatus}
+                    </span>
+                  </span>
 
                 </div>
                 < ChevronDown className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -594,108 +594,108 @@ desktop:w-[973px]  rounded-[16px] ">
 
           {/* TABLE CONTAINER */}
           {filteredUsers.length === 0 ? (
-  <div className="flex flex-col items-center justify-center h-[300px] text-center">
-    
-    {/* SVG */}
-  <svg
-  width="120"
-  height="120"
-  viewBox="0 0 24 24"
-  fill="none"
-  className="mb-4 text-gray-300"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="M21 21l-4.35-4.35M18 10.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  />
-</svg>
+            <div className="flex flex-col items-center justify-center h-[300px] text-center">
+
+              {/* SVG */}
+              <svg
+                width="120"
+                height="120"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="mb-4 text-gray-300"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 21l-4.35-4.35M18 10.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
 
 
-    {/* Text */}
-    <h3 className="text-sm font-semibold text-gray-600">
-      No items found
-    </h3>
-    <p className="text-xs text-gray-400 mt-1">
-      Try changing search or filter
-    </p>
+              {/* Text */}
+              <h3 className="text-sm font-semibold text-gray-600">
+                No items found
+              </h3>
+              <p className="text-xs text-gray-400 mt-1">
+                Try changing search or filter
+              </p>
 
-  </div>
-) : (
-          <div className="bg-white rounded-2xl shadow-md border border-[#DDDDE1] shadow-[0px_2px_6.3px_0px_#00000026] overflow-hidden">
-            {/* Horizontal Scroll wrapper */}
-            <div className="overflow-x-auto no-scrollbar max-h-[420px] overflow-y-auto">
-              <table className="min-w-max w-full text-left border-collapse">
-                <thead className="sticky top-0 z-10 bg-white">
-                  <tr className="font-inter border-b-[1.6px] border-[#E9E9E9] bg-white">
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">User Name</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Contact</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Status</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Date</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Bookings</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Amount</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Payment Status</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Actions</th>
-                  </tr>
-                </thead>
-         
-              
-                <tbody className="font-arial divide-y-[1.3px] divide-gray-100 overflow-y-auto">
-                  {filteredUsers.map((user) => (
-                    <tr key={user.id} className="hover:bg-green-50 transition-colors">
-                      <td className="px-6 py-4">
-                        <div className="flex items-center gap-3">
-                          <img src={user.imageUrl} className="w-12 h-12 rounded-full" />
-                          <div>
-                            <div className="text-gray-800 text-[14px]">{user.name}</div>
-                            <div className="text-[12px] text-gray-400">{user.email}</div>
+            </div>
+          ) : (
+            <div className="bg-white rounded-2xl shadow-md border border-[#DDDDE1] shadow-[0px_2px_6.3px_0px_#00000026] overflow-hidden">
+              {/* Horizontal Scroll wrapper */}
+              <div className="overflow-x-auto no-scrollbar max-h-[420px] overflow-y-auto">
+                <table className="min-w-max w-full text-left border-collapse">
+                  <thead className="sticky top-0 z-10 bg-white">
+                    <tr className="font-inter border-b-[1.6px] border-[#E9E9E9] bg-white">
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">User Name</th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Contact</th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Status</th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Date</th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Bookings</th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Amount</th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Payment Status</th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Actions</th>
+                    </tr>
+                  </thead>
+
+
+                  <tbody className="font-arial divide-y-[1.3px] divide-gray-100 overflow-y-auto">
+                    {filteredUsers.map((user) => (
+                      <tr key={user.id} className="hover:bg-green-50 transition-colors">
+                        <td className="px-6 py-4">
+                          <div className="flex items-center gap-3">
+                            <img src={user.imageUrl} className="w-12 h-12 rounded-full" />
+                            <div>
+                              <div className="text-gray-800 text-[14px]">{user.name}</div>
+                              <div className="text-[12px] text-gray-400">{user.email}</div>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-[14px] text-gray-600 text-center font-medium">{user.contact}</td>
-                      <td className="px-6 py-4 text-center">
-                        <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md ${user.status === "Active"
+                        </td>
+                        <td className="px-6 py-4 text-[14px] text-gray-600 text-center font-medium">{user.contact}</td>
+                        <td className="px-6 py-4 text-center">
+                          <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md ${user.status === "Active"
                             ? "bg-[#e1ffd9] text-[#29b605]"
                             : user.status === "Inactive"
                               ? "bg-gray-100 text-gray-600"
                               : "bg-[#ffdbd6] text-[#fb2c2f]"
-                          }`}>
-                          {GetStatusIcon('status', user.status)}
-                          {user.status}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.date}</td>
-                      <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.bookings}</td>
-                      <td className="px-6 py-4 text-[14px] text-gray-800 text-center">{user.amount}</td>
-                      <td className="px-6 py-4 text-center">
-                        <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md  ${user.paymentStatus === 'Success' ? 'bg-[#e1ffd9] text-[#29b605] ' :
+                            }`}>
+                            {GetStatusIcon('status', user.status)}
+                            {user.status}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.date}</td>
+                        <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.bookings}</td>
+                        <td className="px-6 py-4 text-[14px] text-gray-800 text-center">{user.amount}</td>
+                        <td className="px-6 py-4 text-center">
+                          <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md  ${user.paymentStatus === 'Success' ? 'bg-[#e1ffd9] text-[#29b605] ' :
                             user.paymentStatus === 'Pending' ? 'bg-[#f9e8db] text-[#b45309]' :
                               'bg-[#ffdbd6] text-[#fb2c2f]'
-                          }`}>
-                          {GetStatusIcon('payment', user.paymentStatus)}
-                          {user.paymentStatus}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <div className="font-roboto flex items-center gap-2 justify-center">
-                          <button className="flex items-center gap-1 w-[90px] justify-center text-[14px] py-1.5 bg-[#ffdbd6] text-[#fb2c2f] rounded-md ">
-                            <Ban size={14} /> Blocked
-                          </button>
-                          <button className="flex items-center gap-1 w-[90px] justify-center text-[14px] py-1.5 bg-[#e1ffd9] text-[#29b605] rounded-md">
-                            <Unlock size={14} /> Unblock
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-               
-              </table>
-            </div>
-          </div>)}
+                            }`}>
+                            {GetStatusIcon('payment', user.paymentStatus)}
+                            {user.paymentStatus}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="font-roboto flex items-center gap-2 justify-center">
+                            <button className="flex items-center gap-1 w-[90px] justify-center text-[14px] py-1.5 bg-[#ffdbd6] text-[#fb2c2f] rounded-md ">
+                              <Ban size={14} /> Blocked
+                            </button>
+                            <button className="flex items-center gap-1 w-[90px] justify-center text-[14px] py-1.5 bg-[#e1ffd9] text-[#29b605] rounded-md">
+                              <Unlock size={14} /> Unblock
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+
+                </table>
+              </div>
+            </div>)}
         </div>
       </div>
     </div>
