@@ -16,7 +16,7 @@ import {
   ChevronRight,
   RotateCcw,
 } from "lucide-react";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell ,Area, CartesianGrid } from "recharts";
 import {
   MdOutlineKeyboardArrowRight,
   MdOutlinePeopleAlt,
@@ -29,24 +29,27 @@ import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { BsCalendarMonth  } from "react-icons/bs";
 import { Bolt } from "lucide-react";
+import { BiSolidZap } from "react-icons/bi";
+
+
 
 // import Image from "next/image";
 
 /* ================= DATA ================= */
 export const userStats = [
   {
-    topIcon: BsCalendarMonth,
+    topIcon: CalendarDays,
     title: "Total Booking",
     value: 1850,
     sub: "All-time count",
-    bottomIcon: BsCalendarMonth,
+    bottomIcon: CalendarDays,
   },
   {
-    topIcon: Bolt,
+    topIcon: BiSolidZap,
     title: "Active Sessions",
     value: 20,
     sub: "Currently Charging",
-    bottomIcon: Bolt,
+    bottomIcon: BiSolidZap,
   },
   {
     topIcon: CheckCircle,
@@ -423,6 +426,15 @@ const getBadge = (value: string) => {
 
 
 
+const bookingTrendData = [
+  { date: "25 Jan", bookings: 17, revenue: 50000 },
+  { date: "26 Jan", bookings: 20, revenue: 65000 },
+  { date: "27 Jan", bookings: 20, revenue: 63000 },
+  { date: "28 Jan", bookings: 25, revenue: 78000 },
+  { date: "29 Jan", bookings: 28, revenue: 86000 },
+  { date: "30 Jan", bookings: 26, revenue: 82000 },
+  { date: "31 Jan", bookings: 32, revenue: 100000 },
+];
 
 
 // 2. ICON SWITCH CASE HELPER
@@ -680,7 +692,7 @@ console.log('dates',matchesDate)
             </div>
 
             <div>
-              <p className="font-semibold text-[16px] text-[#364153]">
+              <p className="font-medium font-roboto text-[16px] text-[#364153]">
                 {a.heading}
               </p>
               <p className="text-[14px] text-[#6B7280]">{a.name}</p>
@@ -710,17 +722,87 @@ console.log('dates',matchesDate)
 
 
           {/* USER REVENUE CONTRIBUTION */}
-          <div className="bg-white rounded-xl p-4 shadow">
-            <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3">User Revenue Contribution</h3>
-            <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={revenueData}>
-                <XAxis dataKey="month" />
-                <YAxis tickFormatter={(v) => `${v / 1000}k`} />
-                <Tooltip />
-                <Line type="monotone" dataKey="revenue" stroke="#22c55e" strokeWidth={3} dot={false} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+     <div className="bg-white rounded-2xl p-5 shadow-md">
+  <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-4">
+    Daily Booking Trend
+  </h3>
+
+  <ResponsiveContainer width="110%" height={260} className="flex items-center ">
+    <LineChart data={bookingTrendData}>
+      
+      {/* Gradient */}
+      <defs>
+        <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#22c55e" stopOpacity={0.6} />
+          <stop offset="100%" stopColor="#22c55e" stopOpacity={0.05} />
+        </linearGradient>
+      </defs>
+
+      {/* Grid */}
+      <CartesianGrid strokeDasharray="3 3" vertical={false} />
+
+      {/* X Axis */}
+      <XAxis
+        dataKey="date"
+        tick={{ fontSize: 12 }}
+        axisLine={{ stroke: "#d1d5db" }}
+        tickLine={{ stroke: "#d1d5db" }}
+      />
+
+      {/* Left Y Axis */}
+      <YAxis
+        yAxisId="left"
+        tick={{ fontSize: 12 }}
+        axisLine={{ stroke: "#d1d5db" }}
+        tickLine={{ stroke: "#d1d5db" }}
+      />
+
+      {/* Right Y Axis */}
+      <YAxis
+        yAxisId="right"
+        orientation="right"
+        tickFormatter={(v) => `${v / 1000}k`}
+        tick={{ fontSize: 12 }}
+        axisLine={{ stroke: "#d1d5db" }}
+        tickLine={{ stroke: "#d1d5db" }}
+      />
+
+      <Tooltip />
+
+      {/* Area (Revenue Background) */}
+      <Area
+        yAxisId="right"
+        type="monotone"
+        dataKey="revenue"
+        stroke="none"
+        fill="url(#greenGradient)"
+      />
+
+      {/* Blue Line (Bookings) */}
+      <Line
+        yAxisId="left"
+        type="monotone"
+        dataKey="bookings"
+        stroke="#3b82f6"
+        strokeWidth={3}
+        dot={{ r: 5, fill: "#3b82f6", stroke: "#3b82f6" }}
+        activeDot={{ r: 7 }}
+      />
+
+      {/* Green Line (Revenue) */}
+      <Line
+        yAxisId="right"
+        type="monotone"
+        dataKey="revenue"
+        stroke="#22c55e"
+        strokeWidth={3}
+        dot={{ r: 5, fill: "#22c55e", stroke: "#22c55e" }}
+        activeDot={{ r: 7 }}
+      />
+    </LineChart>
+  </ResponsiveContainer>
+</div>
+
         </div>
 
         {/* search & filter functionality */}
@@ -732,7 +814,7 @@ desktop:w-[973px] rounded-[16px]">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
             <input
               className="w-full px-4 pl-9  py-3 border border-[#B7B7B7] hover:ring-[0.8px] hover:ring-[#38EF0A] focus:outline-none focus:ring-[0.6px]  focus:ring-[#38EF0A] shadow-[0px_2px_6.3px_0px_#00000026] rounded-[10px]"
-              placeholder="Search by location or type..."
+              placeholder="Search by Booking Id , user or charger..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -860,13 +942,14 @@ desktop:w-[973px] rounded-[16px]">
                 <thead className="sticky top-0  bg-white">
                   <tr className="font-inter border-b-[1.6px] border-[#E9E9E9] bg-white">
                     <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">User Name</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Contact</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Status</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Booking ID</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Charger</th>
                     <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Date</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Chargers</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Total Amount</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Time</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Duration</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Amount</th>
                     <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Payment Status</th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Actions</th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">Status</th>
                   </tr>
                 </thead>
 
@@ -876,7 +959,7 @@ desktop:w-[973px] rounded-[16px]">
     const status = getBadge(item.status);
 
     return (
-      <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+      <tr key={item.id} className="hover:bg-gray-50 text-gray-800 transition-colors">
 
         {/* USER NAME */}
         <td className="px-6 py-4">
