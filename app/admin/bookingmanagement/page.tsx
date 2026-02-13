@@ -107,19 +107,6 @@ export const chargerStatus = [
   { name: "Maintenance", value: 65, color: "#facc15" },
 ];
 
-export const revenueData = [
-  { month: "Jan", revenue: 20000 },
-  { month: "Feb", revenue: 28000 },
-  { month: "Mar", revenue: 24000 },
-  { month: "Apr", revenue: 35000 },
-  { month: "May", revenue: 38000 },
-  { month: "Jun", revenue: 45000 },
-  { month: "Jul", revenue: 50000 },
-];
-
-
-
-
 export interface ActivityItem {
   id: number;
   name: string;
@@ -213,63 +200,6 @@ const getIconBg = (heading: string) => {
       return "bg-gray-100 text-gray-500";
   }
 };
-
-
-
-const getStatusStyles = (status: ActivityItem['status']) => {
-  switch (status) {
-    case "booking":
-      return "bg-[#3771C81A] text-[#1877F2] border-[#1877F23D]";
-    case "payment":
-      return "bg-[#96FF7B30] text-[#29B605] border-[#38EF0A66]";
-    case "profile":
-      return "bg-[#fff0e5] text-[#b45309] border-[#e8bfa0]";
-    case "login":
-      return "bg-[#f2f2f2] text-[#757575] border-[#d6d6d7]";
-    case "registration":
-      return "bg-[#f3ebfe] text-[#8a38f5] border-[#e2cefd]";
-    default:
-      return "bg-gray-50 text-gray-600 border-gray-200";
-  }
-};
-
-
-const getStatusText = (status: ActivityItem['status']) => {
-  switch (status) {
-    case "booking":
-      return "Booking";
-    case "payment":
-      return "Payment";
-    case "profile":
-      return "Profile";
-    case "login":
-      return "Login";
-    case "registration":
-      return "Registration";
-    default:
-      return status;
-  }
-};
-
-
-const getStatusIcon = (status: ActivityItem['status']) => {
-  switch (status) {
-    case "booking":
-      return Calendar;
-    case "payment":
-      return Wallet;
-    case "profile":
-      return User;
-    case "login":
-      return LogIn;
-    case "registration":
-      return UserPlus;
-    default:
-      return Clock;
-  }
-};
-
-
 
 const bookingData = [
   {
@@ -437,27 +367,6 @@ const bookingTrendData = [
 ];
 
 
-// 2. ICON SWITCH CASE HELPER
-const GetStatusIcon = (type: string, status: string) => {
-  switch (status.toLowerCase()) {
-    case 'success':
-    case 'active':
-      return <CheckCircle size={16} className="text-[#29b605]" />;
-    case 'pending':
-      return <Clock size={16} className="text-[#b45309]" />;
-    case 'failed':
-      return <RxCross2 size={16} className="text-[#fb2c2f]" />;
-    case 'blocked':
-      return <XCircle size={16} className="text-[#fb2c2f]" />;
-    case 'inactive':
-      return <CircleDashed size={16} className="text-[#7d7d7d]" />
-    default:
-      return null;
-  }
-};
-
-
-
 /* ================= COMPONENT ================= */
 export default function UserManagementDashboard() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -468,13 +377,7 @@ export default function UserManagementDashboard() {
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  // 3. FILTER LOGIC
-//   const filteredUsers = userData.filter(user => {
-//     const matchesFilter = filterStatus === 'All Status' || user.status === filterStatus;
-//     const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-//       user.email.toLowerCase().includes(searchTerm.toLowerCase());
-//     return matchesFilter && matchesSearch;
-//   });
+
 
  const filteredUsers = bookingData.filter((item) => {
   const search = searchTerm.toLowerCase();
@@ -520,17 +423,14 @@ if (typeFilter !== "All Dates") {
   }
 }
 
-console.log('dates',matchesDate)
   return matchesSearch && matchesStatus && matchesDate;
 });
 
 
-    // function setStatusFilter(status: string) {
-    //     throw new Error("Function not implemented.");
-    // }
+
 
   return (
-    <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2 flex flex-col desktop:w-[1010px]">
+    <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2 flex flex-col desktop:w-[1010px] ">
       {/* HEADER */}
       <div className="desktop:text-left text-center">
         <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 mb-1 text-[30px] text-white">Booking Management</h1>
@@ -539,7 +439,7 @@ console.log('dates',matchesDate)
         </p>
       </div>
 
-      <div className="space-y-3 flex-1 h-[82vh] overflow-y-auto no-scrollbar mb-4">
+      <div className="space-y-3 flex-1 h-[82vh] overflow-y-auto overflow-x-hidden no-scrollbar mb-4">
         {/* STATS + ACTIONS + CHARGER STATUS */}
         <div className="flex flex-col lg:flex-row gap-3 items-stretch  w-full">
           {/* LEFT COLUMN */}
