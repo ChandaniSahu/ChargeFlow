@@ -273,7 +273,7 @@ const transactionData = [
     platformFees: 562.5,
     gst: 675,
     netToHost: 2325,
-    date: "31/01/2025",
+    date: "12/01/2026",
     paymentMethod: "UPI",
     paymentStatus: "Completed",
     otpStatus: "Verified",
@@ -292,7 +292,7 @@ const transactionData = [
     platformFees: 405,
     gst: 486,
     netToHost: 1674,
-    date: "31/01/2025",
+    date: "05/01/2026",
     paymentMethod: "Credit Card",
     paymentStatus: "Completed",
     otpStatus: "Verified",
@@ -311,7 +311,7 @@ const transactionData = [
     platformFees: 352.5,
     gst: 423,
     netToHost: 1457,
-    date: "30/01/2025",
+    date: "13/02/2026",
     paymentMethod: "Debit Card",
     paymentStatus: "Pending",
     otpStatus: "Verified",
@@ -330,7 +330,7 @@ const transactionData = [
   platformFees: 0,
   gst: 0,
   netToHost: 0,
-  date: "30/01/2025",
+  date: "12/02/2026",
   paymentMethod: "UPI",
   paymentStatus: "Refunded",
   otpStatus: "Verified",
@@ -349,7 +349,7 @@ const transactionData = [
   platformFees: 652.5,
   gst: 783,
   netToHost: 2697,
-  date: "30/01/2025",
+  date: "14/02/2026",
   paymentMethod: "Net Banking",
   paymentStatus: "Completed",
   otpStatus: "Verified",
@@ -368,7 +368,7 @@ const transactionData = [
   platformFees: 472.5,
   gst: 567,
   netToHost: 2110,
-  date: "29/01/2025",
+  date: "18/02/2026",
   paymentMethod: "PhonePe",
   paymentStatus: "Completed",
   otpStatus: "Verified",
@@ -387,7 +387,7 @@ const transactionData = [
   platformFees: 270,
   gst: 324,
   netToHost: 1206,
-  date: "29/01/2025",
+  date: "29/02/2026",
   paymentMethod: "Credit Card",
   paymentStatus: "Pending",
   otpStatus: "Verified",
@@ -406,7 +406,7 @@ const transactionData = [
   platformFees: 442.5,
   gst: 531,
   netToHost: 1976,
-  date: "28/01/2025",
+  date: "28/02/2026",
   paymentMethod: "Debit Card",
   paymentStatus: "Completed",
   otpStatus: "Verified",
@@ -476,7 +476,12 @@ const getPhoneIcon = (method: string) => {
   return null;
 };
 
-
+const paymentMethodData = [
+  { name: "UPI", value: 45, color: "#39A935" },
+  { name: "Debit Card", value: 25, color: "#2F80C9" },
+  { name: "Credit Card", value: 20, color: "#F7931E" },
+  { name: "Net Banking", value: 10, color: "#5A4EA3" },
+];
 
 // 2. ICON SWITCH CASE HELPER
 const GetStatusIcon = (type: string, status: string) => {
@@ -611,12 +616,12 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
                 return (
                   <div
                     key={i}
-                    className="font-inter relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
+                    className="font-inter relative bg-white rounded-xl py-4 px-2 shadow-md border border-gray-100 overflow-hidden"
                   >
                     {/* TOP ICON */}
-                    <div className="flex gap-4 items-center mb-2">
+                    <div className="flex gap-1 items-center mb-2">
                       <TopIcon className="text-[#38EF0A]" size={30} />
-                      <p className=" text-[13px] text-[#364153] font-medium">
+                      <p className=" text-[14px] text-[#364153] font-medium">
                         {s.title}
                       </p>
                     </div>
@@ -654,22 +659,22 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
     return (
       <div
         key={i}
-        className="font-inter bg-white px-3 py-2 rounded-xl shadow-md border border-gray-100"
+        className="font-inter bg-white px-2 py-3 rounded-xl shadow-md border border-gray-100"
       >
         {/* TOP ICON + TITLE */}
         <div className="flex items-center gap-2 mb-2">
           <Icon size={18} className="text-[#2CDE00]" />
-          <h3 className="text-[13px] font-semibold text-[#364153]">
+          <h3 className="text-[12px] font-semibold text-[#364153]">
             {a.title}
           </h3>
         </div>
 
         {/* VALUE + SUB */}
-        <div className="flex items-center gap-1 border-t-[1.5px] border-[#DFDFDF] pt-1 mb-1">
+        <div className="flex items-center gap-1 border-t-[1.5px] border-[#DFDFDF] pt-1 mb-2">
           <div className="text-[20px] font-bold text-[#333333]">
             {a.title === "Upcoming Booking" ? `₹${a.value}` : a.value}
           </div>
-          <div className="text-[12px] text-[#666666]">
+          <div className="text-[10px] text-[#666666]">
             {a.sub}
           </div>
         </div>
@@ -728,10 +733,10 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
         </div>
 
         {/* RECENT ACTIVITY + REVENUE CONTRIBUTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,65%)_minmax(0,35%)] gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,55%)_minmax(0,45%)] gap-3">
           {/* RECENT ACTIVITY */}
           <div className="bg-white rounded-xl p-4 shadow">
-            <h3 className="font-inter text-[24px] font-semibold text-[#364153] mb-3">Recent Activity</h3>
+            <h3 className="font-inter text-[24px] font-semibold text-[#364153] mb-3">Revenue Trend</h3>
 
             {/* LIST WRAPPER */}
                       <ResponsiveContainer width="100%" height={260}>
@@ -757,13 +762,13 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
            
                <XAxis
                  dataKey="month"
-                 axisLine={false}
+                 axisLine={{ stroke: "#d1d5db" }}
                  tickLine={false}
                  tick={{ fill: "#6B7280", fontSize: 13 }}
                />
            
                <YAxis
-                 axisLine={false}
+                 axisLine={{ stroke: "#d1d5db" }}
                  tickLine={false}
                  tick={{ fill: "#9CA3AF", fontSize: 12 }}
                  tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`}
@@ -826,15 +831,63 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
 
           {/* USER REVENUE CONTRIBUTION */}
           <div className="bg-white rounded-xl p-4 shadow">
-            <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3">User Revenue Contribution</h3>
-            <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={revenueData}>
-                <XAxis dataKey="month" />
-                <YAxis tickFormatter={(v) => `${v / 1000}k`} />
-                <Tooltip />
-                <Line type="monotone" dataKey="revenue" stroke="#22c55e" strokeWidth={3} dot={false} />
-              </LineChart>
-            </ResponsiveContainer>
+            <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3">Payment Methods</h3>
+<div className="flex flex-col lg:flex-row gap-4  items-center">
+<ResponsiveContainer width="100%" height={260}>
+  <PieChart>
+    <Pie
+      data={paymentMethodData}
+      dataKey="value"
+      cx="50%"
+      cy="50%"
+      innerRadius={18}
+      outerRadius={100}
+      stroke="none"
+      labelLine={false}
+      label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+        const RADIAN = Math.PI / 180;
+        const radius =
+          innerRadius + (outerRadius - innerRadius) * 0.6;
+
+        const x = cx + radius * Math.cos(-midAngle * RADIAN);
+        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+        return (
+          <text
+            x={x}
+            y={y}
+            fill="#ffffff"
+            textAnchor="middle"
+            dominantBaseline="central"
+            fontSize={22}
+            fontWeight={600}
+          >
+            {(percent * 100).toFixed(0)}%
+          </text>
+        );
+      }}
+    >
+      {paymentMethodData.map((entry, index) => (
+        <Cell key={`cell-${index}`} fill={entry.color} />
+      ))}
+    </Pie>
+  </PieChart>
+</ResponsiveContainer>
+<div className="space-y-4">
+  {paymentMethodData.map((item, i) => (
+    <div key={i} className="flex items-center gap-3">
+      <div
+        className="w-5 h-5 rounded-md"
+        style={{ backgroundColor: item.color }}
+      />
+      <span className="whitespace-nowrap text-[#4A4A4A] text-[18px] font-medium">
+        {item.name}
+      </span>
+    </div>
+  ))}
+</div>
+
+</div>
           </div>
         </div>
 
