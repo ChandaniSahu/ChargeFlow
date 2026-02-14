@@ -19,12 +19,14 @@ import {
   RotateCcw,
   X,
 } from "lucide-react";
+import { FaUsers } from "react-icons/fa";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, CartesianGrid, Area } from "recharts";
 import {
   MdOutlineKeyboardArrowRight,
   MdOutlinePeopleAlt,
 } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
+import { BsGraphUpArrow } from "react-icons/bs";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
@@ -43,18 +45,18 @@ export const userStats = [
     bottomIcon: TrendingUp,
   },
   {
-    topIcon: TrendingUp,           // graph arrow
+    topIcon: BsGraphUpArrow,           // graph arrow
     title: "Admin Commission",
     amount: 280500,
     growthValue: 15,
-    bottomIcon: TrendingUp,
+    bottomIcon: BsGraphUpArrow,
   },
   {
-    topIcon: Users,                // group icon
+    topIcon: FaUsers,                // group icon
     title: "Total Host",
     amount: 965200,
     growthValue: 10,
-    bottomIcon: Users,
+    bottomIcon: FaUsers,
   },
   {
     topIcon: Wallet,               // wallet icon
@@ -520,46 +522,66 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
   // Date filter handler
   const handleDateFilterChange = (filter: 'today' | 'week' | 'month') => {
     setDateFilter(filter);
-    const today = new Date();
-    let from = new Date();
-
-    if (filter === 'today') {
-      from = today;
-    } else if (filter === 'week') {
-      from.setDate(today.getDate() - 7);
-    } else if (filter === 'month') {
-      from.setMonth(today.getMonth() - 1);
-    }
-
-    setDateRange({
-      from: from.toISOString().split('T')[0],
-      to: today.toISOString().split('T')[0],
-    });
+      // ❌ Clear custom range UI
+  setDateRange({ from: '', to: '' });
   };
-
-  const handleCustomDateChange = (field: 'from' | 'to', value: string) => {
-    setDateFilter('custom');
-    setDateRange({
-      ...dateRange,
-      [field]: value,
-    });
-  };
+const handleCustomDateChange = (field: 'from' | 'to', value: string) => {
+  setDateFilter('custom');
+  setDateRange(prev => ({
+    ...prev,
+    [field]: value,
+  }));
+};
 
   // Helper function to check if date is within range
   const isDateInRange = (itemDate: string) => {
-    if (!dateRange.from || !dateRange.to) return true;
-    
-    const date = new Date(itemDate);
+  const [day, month, year] = itemDate.split("/");
+  const date = new Date(Number(year), Number(month) - 1, Number(day));
+  date.setHours(0, 0, 0, 0);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // TODAY
+  if (dateFilter === 'today') {
+    return date.getTime() === today.getTime();
+  }
+
+  // THIS WEEK
+  if (dateFilter === 'week') {
+    const firstDay = new Date(today);
+    firstDay.setDate(today.getDate() - today.getDay());
+    firstDay.setHours(0, 0, 0, 0);
+
+    const lastDay = new Date(firstDay);
+    lastDay.setDate(firstDay.getDate() + 6);
+    lastDay.setHours(23, 59, 59, 999);
+
+    return date >= firstDay && date <= lastDay;
+  }
+
+  // THIS MONTH
+  if (dateFilter === 'month') {
+    return (
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
+  }
+
+  // CUSTOM RANGE
+  if (dateFilter === 'custom' && dateRange.from && dateRange.to) {
     const fromDate = new Date(dateRange.from);
     const toDate = new Date(dateRange.to);
-    
-    // Set time to start of day for accurate comparison
-    date.setHours(0, 0, 0, 0);
+
     fromDate.setHours(0, 0, 0, 0);
     toDate.setHours(23, 59, 59, 999);
-    
+
     return date >= fromDate && date <= toDate;
-  };
+  }
+
+  return true;
+};
+
 
   // Updated filter function with date filtering
   const filteredTransactions = transactionData.filter((item) => {
@@ -733,7 +755,7 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
         </div>
 
         {/* RECENT ACTIVITY + REVENUE CONTRIBUTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,55%)_minmax(0,45%)] gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,60%)_minmax(0,40%)] gap-3">
           {/* RECENT ACTIVITY */}
           <div className="bg-white rounded-xl p-4 shadow">
             <h3 className="font-inter text-[24px] font-semibold text-[#364153] mb-3">Revenue Trend</h3>
@@ -892,7 +914,7 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
         </div>
 
         {/* search & filter functionality */}
-        <div className="bg-white p-2 md:p-4 w-full
+        <div className="bg-white p-2 md:p-4 w-full desktop:min-h-[500px]
         tablat:w-[750px]
          desktop:w-[973px]  rounded-[16px] ">
           <div className="flex gap-2 md:gap-4 mb-6 items-center ">
@@ -923,158 +945,206 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
               </button>
 
 {showFilter && (
-                <div className="absolute top-10 right-0 flex justify-end z-[999]">
-                  <div className="w-[273px] h-[507px] bg-white h-full overflow-y-auto">
-                    {/* Header */}
-                    <div className="flex justify-between items-center p-6 pb-4">
-                      <h2 className="font-inter text-[20px] font-semibold">Filter</h2>
-                      <X
-                        onClick={() => setShowFilter(false)}
-                        className="cursor-pointer w-6 h-6"
-                        strokeWidth={2}
-                      />
-                    </div>
+<div className="absolute top-0 right-0 flex justify-end z-[999]">
+    <div className="w-[273px] h-[507px] shadow-[0px_4px_20px_rgba(0,0,0,0.12)] rounded-[8px] bg-white h-full overflow-y-auto">
 
-                    <div className="px-4 space-y-6">
-                      {/* Date Range Section */}
-                      <div>
-                        <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">Date Range</h3>
-                        
-                        {/* Radio buttons */}
-                        <div className="space-y-1 mb-3 font-roboto font-medium text-[12px] text-[#757575]">
-                          <label className="flex items-center gap-3 cursor-pointer ">
-                            <input
-                              type="radio"
-                              name="dateRange"
-                              checked={dateFilter === 'today'}
-                              onChange={() => handleDateFilterChange('today')}
-                              className="w-3 h-3 cursor-pointer text-[#757575] accent-gray-400"
-                            />
-                            Today
-                          </label>
+      {/* Header */}
+      <div className="flex justify-between items-center py-1 px-2 ">
+        <h2 className="font-inter text-[20px] font-semibold">Filter</h2>
+        <X
+          onClick={() => setShowFilter(false)}
+          className="cursor-pointer w-6 h-6"
+          strokeWidth={2}
+        />
+      </div>
 
-                          <label className="flex items-center gap-3 cursor-pointer">
-                            <input
-                              type="radio"
-                              name="dateRange"
-                              checked={dateFilter === 'week'}
-                              onChange={() => handleDateFilterChange('week')}
-                              className="w-3 h-3 cursor-pointer accent-gray-400"
-                            />
-                            This Week
-                          </label>
+      {/* ✅ FULL WIDTH LINE BELOW HEADER */}
+      <div className="w-full h-[1px] bg-[#D9D7D7]" />
 
-                          <label className="flex items-center gap-3 cursor-pointer">
-                            <input
-                              type="radio"
-                              name="dateRange"
-                              checked={dateFilter === 'month'}
-                              onChange={() => handleDateFilterChange('month')}
-                              className="w-3 h-3 cursor-pointer accent-gray-400"
-                            />
-                            This Month
-                          </label>
-                        </div>
+      <div className="px-4">
 
-                        {/* Date pickers */}
-                        <div className="flex items-center gap-1 font-roboto font-medium text-[11px] text-[#757575]">
-                          <div className="flex-1 flex items-center gap-2">
-                            <label className="mb-1 block">From</label>
-                            <div className="relative">
-                              <input
-                                type="date"
-                                value={dateRange.from}
-                                onChange={(e) => handleCustomDateChange('from', e.target.value)}
-                                className="w-[90px] px-1 py-1 border border-gray-300 rounded font-roboto font-medium text-[10px] text-[#757575]"
-                              />
-                            </div>
-                          </div>
+        {/* Date Range Section */}
+        <div className="pb-2 pt-1">
+          <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
+            Date Range
+          </h3>
 
-                          <div className="flex-1 flex items-center gap-2">
-                            <label className="mb-1 block">To</label>
-                            <div className="relative">
-                              <input
-                                type="date"
-                                value={dateRange.to}
-                                onChange={(e) => handleCustomDateChange('to', e.target.value)}
-                                className="w-[90px] px-1 py-1 border border-gray-300 rounded font-roboto font-medium text-[10px] text-[#757575]"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+          {/* Radio buttons */}
+          <div className="space-y-1 mb-3 font-roboto font-medium text-[12px] text-[#757575]">
+            <label className="flex items-center gap-3 cursor-pointer hover:text-black">
+              <input
+                type="radio"
+                name="dateRange"
+                checked={dateFilter === "today"}
+                onChange={() => handleDateFilterChange("today")}
+                className="w-3 h-3 cursor-pointer "
+              />
+              Today
+            </label>
 
-                      {/* Payment Status Section */}
-                      <div>
-                        <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">Payment Status</h3>
-                        <div className="space-y-1">
-                          {["All","Pending", "Completed", "Refunded", "Failed"].map((status) => (
-                            <label key={status} className="flex items-center gap-3 cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={filterPaymentStatus.includes(status)}
-                                onChange={(e) => {
-                                  if (e.target.checked) {
-                                    setFilterPaymentStatus([...filterPaymentStatus, status]);
-                                  } else {
-                                    setFilterPaymentStatus(
-                                      filterPaymentStatus.filter((s) => s !== status)
-                                    );
-                                  }
-                                }}
-                                className="w-3 h-3 cursor-pointer accent-gray-400"
-                              />
-                              <span className="font-roboto font-medium text-[12px] text-[#757575]">{status}</span>
-                            </label>
-                          ))}
-                        </div>
-                      </div>
+            <label className="flex items-center gap-3 cursor-pointer hover:text-black">
+              <input
+                type="radio"
+                name="dateRange"
+                checked={dateFilter === "week"}
+                onChange={() => handleDateFilterChange("week")}
+                className="w-3 h-3 cursor-pointer "
+              />
+              This Week
+            </label>
 
-                      {/* Chargers Status Section */}
-                      <div className="pb-6">
-                        <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">Chargers Status</h3>
-                        <div className="space-y-1">
-                          {["All" ,"Success", "Pending", "Failed"].map((status) => (
-                            <label key={status} className="flex items-center gap-3 cursor-pointer">
-                              <input
-                                type="checkbox"
-                                checked={filterChargerStatus.includes(status)}
-                                onChange={(e) => {
-                                  if (e.target.checked) {
-                                    setFilterChargerStatus([...filterChargerStatus, status]);
-                                  } else {
-                                    setFilterChargerStatus(
-                                      filterChargerStatus.filter((s) => s !== status)
-                                    );
-                                  }
-                                }}
-                                className="w-3 h-3 cursor-pointer accent-gray-400"
-                              />
-                              <span className="font-roboto font-medium text-[12px] text-[#757575]">{status}</span>
-                            </label>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+            <label className="flex items-center gap-3 cursor-pointer hover:text-black">
+              <input
+                type="radio"
+                name="dateRange"
+                checked={dateFilter === "month"}
+                onChange={() => handleDateFilterChange("month")}
+                className="w-3 h-3 cursor-pointer "
+              />
+              This Month
+            </label>
+          </div>
 
-                    {/* Footer Buttons */}
-                    <div className="flex gap-3 px-6 py-4 border-t bg-white sticky bottom-0">
-                      <button
-                        onClick={handleClearAll}
-                        className="flex-1 px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors"
-                      >
-                        Clear All
-                      </button>
+          {/* Date pickers */}
+          <div className="flex items-center gap-1 font-roboto font-medium text-[11px] text-[#757575]">
+            <div className="flex-1 flex items-center gap-2">
+              <label className="mb-1 block">From</label>
+              <input
+                type="date"
+                value={dateFilter === "custom" ? dateRange.from : ""}
+                onChange={(e) =>
+                  handleCustomDateChange("from", e.target.value)
+                }
+                className="w-[90px] px-1 py-1 border border-gray-300 rounded text-[10px]"
+              />
+            </div>
 
-                      <button
-                        onClick={() => setShowFilter(false)}
-                        className="flex-1 px-6 py-3 bg-[#38EF0A] text-white rounded-lg font-medium hover:bg-[#2dd909] transition-colors"
-                      >
-                        Apply Filters
-                      </button>
-                    </div>
-                  </div>
-                </div>
+            <div className="flex-1 flex items-center gap-2">
+              <label className="mb-1 block">To</label>
+              <input
+                type="date"
+                value={dateFilter === "custom" ? dateRange.to : ""}
+                onChange={(e) =>
+                  handleCustomDateChange("to", e.target.value)
+                }
+                className="w-[90px] px-1 py-1 border border-gray-300 rounded text-[10px]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ✅ FULL WIDTH LINE BEFORE PAYMENT STATUS */}
+      <div className="w-full h-[1px] bg-[#D9D7D7]" />
+
+      <div className="px-4 pb-2 pt-1">
+
+        {/* Payment Status Section */}
+        <div>
+          <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
+            Payment Status
+          </h3>
+
+          <div className="space-y-1">
+            {["All", "Pending", "Completed", "Refunded", "Failed"].map(
+              (status) => (
+                <label
+                  key={status}
+                  className="group flex items-center gap-3 cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    checked={filterPaymentStatus.includes(status)}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setFilterPaymentStatus([
+                          ...filterPaymentStatus,
+                          status,
+                        ]);
+                      } else {
+                        setFilterPaymentStatus(
+                          filterPaymentStatus.filter(
+                            (s) => s !== status
+                          )
+                        );
+                      }
+                    }}
+                    className="w-3 h-3 cursor-pointer "
+                  />
+                  <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black ">
+                    {status}
+                  </span>
+                </label>
+              )
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* ✅ FULL WIDTH LINE BEFORE CHARGERS STATUS */}
+      <div className="w-full h-[1px] bg-[#D9D7D7]" />
+
+      <div className="px-4 pb-2 pt-1">
+
+        {/* Chargers Status Section */}
+        <div>
+          <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
+            Chargers Status
+          </h3>
+
+          <div className="space-y-1">
+            {["All", "Success", "Pending", "Failed"].map((status) => (
+              <label
+                key={status}
+                className="group flex items-center gap-3 cursor-pointer"
+              >
+                <input
+                  type="checkbox"
+                  checked={filterChargerStatus.includes(status)}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setFilterChargerStatus([
+                        ...filterChargerStatus,
+                        status,
+                      ]);
+                    } else {
+                      setFilterChargerStatus(
+                        filterChargerStatus.filter(
+                          (s) => s !== status
+                        )
+                      );
+                    }
+                  }}
+                  className="w-3 h-3 cursor-pointer "
+                />
+                <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black">
+                  {status}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Buttons */}
+      <div className="font-inter font-medium flex gap-3 px-6 pb-3 bg-white sticky bottom-0">
+        <button
+          onClick={handleClearAll}
+          className=" flex-1 px-2 py-1 border  border-[#848484] rounded-[5px] text-[#7C7C7C]  hover:bg-gray-50 transition-colors"
+        >
+          Clear All
+        </button>
+
+        <button
+          onClick={() => setShowFilter(false)}
+          className="flex-1 px-2 py-1  text-[#38EF0A] border border-[#38EF0A] whitespace-nowrap rounded-[5px]  hover:bg-[#38EF0A] hover:text-white transition-colors"
+        >
+          Apply Filters
+        </button>
+      </div>
+
+    </div>
+  </div>
               )}
 
             </div>
@@ -1119,19 +1189,20 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
                 <table className="min-w-max w-full text-left border-collapse">
 <thead className="sticky top-0 z-10 bg-white">
   <tr className="font-inter border-b-[1.6px] border-[#E9E9E9] bg-white">
-    <th className="px-6 py-4 text-[#364153] text-[18px]">User Name</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">Customer ID</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">Transaction ID</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">Booking ID</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">Chargers</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">Amount</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">Platform Fees</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">GST (18%)</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">Net To Host</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">Payment Method</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">Payment Status</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">OTP Status</th>
-    <th className="px-6 py-4 text-center text-[#364153] text-[18px]">Chargers Status</th>
+    <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">User Name</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Customer ID</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Transaction ID</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Booking ID</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Chargers</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Amount</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Platform Fees</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">GST (18%)</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Date</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Net To Host</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Payment Method</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Payment Status</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">OTP Status</th>
+    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Chargers Status</th>
   </tr>
 </thead>
 
@@ -1195,6 +1266,11 @@ const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
         {/* GST */}
         <td className="px-6 py-4 text-center text-[14px] text-[#FB2C2F] font-medium">
           ₹{item.gst.toLocaleString()}
+        </td>
+
+        {/*date*/}
+        <td className="px-6 py-4 text-center text-[14px] font-medium">
+          ₹{item.date}
         </td>
 
         {/* NET TO HOST */}
