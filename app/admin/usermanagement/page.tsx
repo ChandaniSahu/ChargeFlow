@@ -539,7 +539,6 @@ export default function UserManagementDashboard() {
 
         {/* search & filter functionality */}
         <div className="bg-white p-2 md:p-4 w-full
-        tablat:w-[750px]
          desktop:w-[973px]  rounded-[16px] ">
           <div className="flex gap-2 md:gap-4 mb-6 items-center">
             <div className="relative flex-1  w-full">

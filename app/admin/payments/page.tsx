@@ -38,11 +38,11 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 
 export const userStats = [
   {
-    topIcon: IndianRupee,          // ₹ icon
+    topIcon: RiMoneyRupeeCircleFill,          // ₹ icon
     title: "Total Revenue",
     amount: 1245600,
     growthValue: 12,
-    bottomIcon: TrendingUp,
+    bottomIcon: SiSimpleanalytics,
   },
   {
     topIcon: BsGraphUpArrow,           // graph arrow
@@ -321,100 +321,100 @@ const transactionData = [
     imageUrl: "/images/user3.jpg",
   },
   {
-  id: 4,
-  userName: "Neha Gupta",
-  email: "nehagupta@gmail.com",
-  customerId: "CUST-7834",
-  transactionId: "TXN-2025-0453",
-  bookingId: "#BK001232",
-  charger: "Mike's EV - Charger 2",
-  amount: 0,
-  platformFees: 0,
-  gst: 0,
-  netToHost: 0,
-  date: "12/02/2026",
-  paymentMethod: "UPI",
-  paymentStatus: "Refunded",
-  otpStatus: "Verified",
-  chargerStatus: "Success",
-  imageUrl: "/images/user.jpg",
-},
-{
-  id: 5,
-  userName: "Vikram Singh",
-  email: "vikramsingh@gmail.com",
-  customerId: "CUST-5647",
-  transactionId: "TXN-2025-0452",
-  bookingId: "#BK001231",
-  charger: "QuickCharge - Unit 5",
-  amount: 4350,
-  platformFees: 652.5,
-  gst: 783,
-  netToHost: 2697,
-  date: "14/02/2026",
-  paymentMethod: "Net Banking",
-  paymentStatus: "Completed",
-  otpStatus: "Verified",
-  chargerStatus: "Success",
-  imageUrl: "/images/user1.jpg",
-},
-{
-  id: 6,
-  userName: "Sneha Kapoor",
-  email: "snehakapoor@gmail.com",
-  customerId: "CUST-9021",
-  transactionId: "TXN-2025-0451",
-  bookingId: "#BK001230",
-  charger: "Premium AC Charger",
-  amount: 3150,
-  platformFees: 472.5,
-  gst: 567,
-  netToHost: 2110,
-  date: "18/02/2026",
-  paymentMethod: "PhonePe",
-  paymentStatus: "Completed",
-  otpStatus: "Verified",
-  chargerStatus: "Success",
-  imageUrl: "/images/user2.jpg",
-},
-{
-  id: 7,
-  userName: "Rahul Mehta",
-  email: "rahulmehta@gmail.com",
-  customerId: "CUST-6678",
-  transactionId: "TXN-2025-0450",
-  bookingId: "#BK001229",
-  charger: "Tesla Supercharger #21",
-  amount: 1800,
-  platformFees: 270,
-  gst: 324,
-  netToHost: 1206,
-  date: "29/02/2026",
-  paymentMethod: "Credit Card",
-  paymentStatus: "Pending",
-  otpStatus: "Verified",
-  chargerStatus: "Pending",
-  imageUrl: "/images/user3.jpg",
-},
-{
-  id: 8,
-  userName: "Arjun Verma",
-  email: "arjunverma@gmail.com",
-  customerId: "CUST-3456",
-  transactionId: "TXN-2025-0449",
-  bookingId: "#BK001228",
-  charger: "Downtown Hub - B",
-  amount: 2950,
-  platformFees: 442.5,
-  gst: 531,
-  netToHost: 1976,
-  date: "28/02/2026",
-  paymentMethod: "Debit Card",
-  paymentStatus: "Completed",
-  otpStatus: "Verified",
-  chargerStatus: "Success",
-  imageUrl: "/images/user2.jpg",
-}
+    id: 4,
+    userName: "Neha Gupta",
+    email: "nehagupta@gmail.com",
+    customerId: "CUST-7834",
+    transactionId: "TXN-2025-0453",
+    bookingId: "#BK001232",
+    charger: "Mike's EV - Charger 2",
+    amount: 0,
+    platformFees: 0,
+    gst: 0,
+    netToHost: 0,
+    date: "12/02/2026",
+    paymentMethod: "UPI",
+    paymentStatus: "Refunded",
+    otpStatus: "Verified",
+    chargerStatus: "Success",
+    imageUrl: "/images/user.jpg",
+  },
+  {
+    id: 5,
+    userName: "Vikram Singh",
+    email: "vikramsingh@gmail.com",
+    customerId: "CUST-5647",
+    transactionId: "TXN-2025-0452",
+    bookingId: "#BK001231",
+    charger: "QuickCharge - Unit 5",
+    amount: 4350,
+    platformFees: 652.5,
+    gst: 783,
+    netToHost: 2697,
+    date: "14/02/2026",
+    paymentMethod: "Net Banking",
+    paymentStatus: "Completed",
+    otpStatus: "Verified",
+    chargerStatus: "Success",
+    imageUrl: "/images/user1.jpg",
+  },
+  {
+    id: 6,
+    userName: "Sneha Kapoor",
+    email: "snehakapoor@gmail.com",
+    customerId: "CUST-9021",
+    transactionId: "TXN-2025-0451",
+    bookingId: "#BK001230",
+    charger: "Premium AC Charger",
+    amount: 3150,
+    platformFees: 472.5,
+    gst: 567,
+    netToHost: 2110,
+    date: "18/02/2026",
+    paymentMethod: "PhonePe",
+    paymentStatus: "Completed",
+    otpStatus: "Verified",
+    chargerStatus: "Success",
+    imageUrl: "/images/user2.jpg",
+  },
+  {
+    id: 7,
+    userName: "Rahul Mehta",
+    email: "rahulmehta@gmail.com",
+    customerId: "CUST-6678",
+    transactionId: "TXN-2025-0450",
+    bookingId: "#BK001229",
+    charger: "Tesla Supercharger #21",
+    amount: 1800,
+    platformFees: 270,
+    gst: 324,
+    netToHost: 1206,
+    date: "29/02/2026",
+    paymentMethod: "Credit Card",
+    paymentStatus: "Pending",
+    otpStatus: "Verified",
+    chargerStatus: "Pending",
+    imageUrl: "/images/user3.jpg",
+  },
+  {
+    id: 8,
+    userName: "Arjun Verma",
+    email: "arjunverma@gmail.com",
+    customerId: "CUST-3456",
+    transactionId: "TXN-2025-0449",
+    bookingId: "#BK001228",
+    charger: "Downtown Hub - B",
+    amount: 2950,
+    platformFees: 442.5,
+    gst: 531,
+    netToHost: 1976,
+    date: "28/02/2026",
+    paymentMethod: "Debit Card",
+    paymentStatus: "Completed",
+    otpStatus: "Verified",
+    chargerStatus: "Success",
+    imageUrl: "/images/user2.jpg",
+  }
 
 ];
 
@@ -511,84 +511,92 @@ export default function UserManagementDashboard() {
   const [filterStatus, setFilterStatus] = useState('All Status');
   const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
   const [filterPaymentStatus, setFilterPaymentStatus] = useState<string[]>([]);
-const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
+  const [filterChargerStatus, setFilterChargerStatus] = useState<string[]>([]);
 
-// Date filter states
+  // Date filter states
   const [dateFilter, setDateFilter] = useState<'today' | 'week' | 'month' | 'custom' | null>(null);
   const [dateRange, setDateRange] = useState({ from: '', to: '' });
+
+  // ADD THIS INSIDE COMPONENT (above return)
+
+  const activeFilterCount =
+    (dateFilter ? 1 : 0) +
+    filterPaymentStatus.length +
+    filterChargerStatus.length;
 
   // Date filter handler
   const handleDateFilterChange = (filter: 'today' | 'week' | 'month') => {
     setDateFilter(filter);
-      // ❌ Clear custom range UI
-  setDateRange({ from: '', to: '' });
+    // ❌ Clear custom range UI
+    setDateRange({ from: '', to: '' });
   };
-const handleCustomDateChange = (field: 'from' | 'to', value: string) => {
-  setDateFilter('custom');
-  setDateRange(prev => ({
-    ...prev,
-    [field]: value,
-  }));
-};
+  const handleCustomDateChange = (field: 'from' | 'to', value: string) => {
+    setDateFilter('custom');
+    setDateRange(prev => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
 
   // Helper function to check if date is within range
   const isDateInRange = (itemDate: string) => {
-  const [day, month, year] = itemDate.split("/");
-  const date = new Date(Number(year), Number(month) - 1, Number(day));
-  date.setHours(0, 0, 0, 0);
+    const [day, month, year] = itemDate.split("/");
+    const date = new Date(Number(year), Number(month) - 1, Number(day));
+    date.setHours(0, 0, 0, 0);
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-  // TODAY
-  if (dateFilter === 'today') {
-    return date.getTime() === today.getTime();
-  }
+    // TODAY
+    if (dateFilter === 'today') {
+      return date.getTime() === today.getTime();
+    }
 
-  // THIS WEEK
-  if (dateFilter === 'week') {
-    const firstDay = new Date(today);
-    firstDay.setDate(today.getDate() - today.getDay());
-    firstDay.setHours(0, 0, 0, 0);
+    // THIS WEEK
+    if (dateFilter === 'week') {
+      const firstDay = new Date(today);
+      firstDay.setDate(today.getDate() - today.getDay());
+      firstDay.setHours(0, 0, 0, 0);
 
-    const lastDay = new Date(firstDay);
-    lastDay.setDate(firstDay.getDate() + 6);
-    lastDay.setHours(23, 59, 59, 999);
+      const lastDay = new Date(firstDay);
+      lastDay.setDate(firstDay.getDate() + 6);
+      lastDay.setHours(23, 59, 59, 999);
 
-    return date >= firstDay && date <= lastDay;
-  }
+      return date >= firstDay && date <= lastDay;
+    }
 
-  // THIS MONTH
-  if (dateFilter === 'month') {
-    return (
-      date.getMonth() === today.getMonth() &&
-      date.getFullYear() === today.getFullYear()
-    );
-  }
+    // THIS MONTH
+    if (dateFilter === 'month') {
+      return (
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === today.getFullYear()
+      );
+    }
 
-  // CUSTOM RANGE
-  if (dateFilter === 'custom' && dateRange.from && dateRange.to) {
-    const fromDate = new Date(dateRange.from);
-    const toDate = new Date(dateRange.to);
+    // CUSTOM RANGE
+    if (dateFilter === 'custom' && dateRange.from && dateRange.to) {
+      const fromDate = new Date(dateRange.from);
+      const toDate = new Date(dateRange.to);
 
-    fromDate.setHours(0, 0, 0, 0);
-    toDate.setHours(23, 59, 59, 999);
+      fromDate.setHours(0, 0, 0, 0);
+      toDate.setHours(23, 59, 59, 999);
 
-    return date >= fromDate && date <= toDate;
-  }
+      return date >= fromDate && date <= toDate;
+    }
 
-  return true;
-};
+    return true;
+  };
 
 
   // Updated filter function with date filtering
   const filteredTransactions = transactionData.filter((item) => {
     // Search filter
-    const matchesSearch = 
+    const matchesSearch =
       item.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.email.toLowerCase().includes(searchTerm.toLowerCase());
+      item.bookingId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.chargerStatus.toLowerCase().includes(searchTerm.toLowerCase());
 
     // Payment status filter
     const matchesPayment =
@@ -676,39 +684,39 @@ const handleCustomDateChange = (field: 'from' | 'to', value: string) => {
             {/* ACTION CARDS */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-[0.6rem] mt-3">
               {actionCards.map((a, i) => {
-    const Icon = a.icon;
+                const Icon = a.icon;
 
-    return (
-      <div
-        key={i}
-        className="font-inter bg-white px-2 py-3 rounded-xl shadow-md border border-gray-100"
-      >
-        {/* TOP ICON + TITLE */}
-        <div className="flex items-center gap-2 mb-2">
-          <Icon size={18} className="text-[#2CDE00]" />
-          <h3 className="text-[12px] font-semibold text-[#364153]">
-            {a.title}
-          </h3>
-        </div>
+                return (
+                  <div
+                    key={i}
+                    className="font-inter bg-white px-2 py-3 rounded-xl shadow-md border border-gray-100"
+                  >
+                    {/* TOP ICON + TITLE */}
+                    <div className="flex items-center gap-2 mb-2">
+                      <Icon size={18} className="text-[#2CDE00]" />
+                      <h3 className="text-[12px] font-semibold text-[#364153]">
+                        {a.title}
+                      </h3>
+                    </div>
 
-        {/* VALUE + SUB */}
-        <div className="flex items-center gap-1 border-t-[1.5px] border-[#DFDFDF] pt-1 mb-2">
-          <div className="text-[20px] font-bold text-[#333333]">
-            {a.title === "Upcoming Booking" ? `₹${a.value}` : a.value}
-          </div>
-          <div className="text-[10px] text-[#666666]">
-            {a.sub}
-          </div>
-        </div>
+                    {/* VALUE + SUB */}
+                    <div className="flex items-center gap-1 border-t-[1.5px] border-[#DFDFDF] pt-1 mb-2">
+                      <div className="text-[20px] font-bold text-[#333333]">
+                        {a.title === "Upcoming Booking" ? `₹${a.value}` : a.value}
+                      </div>
+                      <div className="text-[10px] text-[#666666]">
+                        {a.sub}
+                      </div>
+                    </div>
 
-        {/* BUTTON */}
-        <button className="flex items-center justify-center gap-1 w-[130px] py-1.5 text-[12px] font-semibold bg-[#38EF0A] text-white rounded-md">
-          {a.btn}
-          <ChevronRight size={14} />
-        </button>
-      </div>
-    );
-  })}
+                    {/* BUTTON */}
+                    <button className="flex items-center justify-center gap-1 w-[130px] py-1.5 text-[12px] font-semibold bg-[#38EF0A] text-white rounded-md">
+                      {a.btn}
+                      <ChevronRight size={14} />
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -761,168 +769,167 @@ const handleCustomDateChange = (field: 'from' | 'to', value: string) => {
             <h3 className="font-inter text-[24px] font-semibold text-[#364153] mb-3">Revenue Trend</h3>
 
             {/* LIST WRAPPER */}
-                      <ResponsiveContainer width="100%" height={260}>
-             <LineChart
-               data={revenueData}
-               margin={{ top: 30, right: 20, left: -10, bottom: 0 }}
-             >
-               <defs>
-                 {/* Area Gradient */}
-                 <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
-                   <stop offset="0%" stopColor="#22c55e" stopOpacity={0.45} />
-                   <stop offset="80%" stopColor="#22c55e" stopOpacity={0.05} />
-                 </linearGradient>
-               </defs>
-           
-               {/* Vertical dotted lines only */}
-               <CartesianGrid
-                 strokeDasharray="4 4"
-                 vertical={true}
-                 horizontal={false}
-                 stroke="#E5E7EB"
-               />
-           
-               <XAxis
-                 dataKey="month"
-                 axisLine={{ stroke: "#d1d5db" }}
-                 tickLine={false}
-                 tick={{ fill: "#6B7280", fontSize: 13 }}
-               />
-           
-               <YAxis
-                 axisLine={{ stroke: "#d1d5db" }}
-                 tickLine={false}
-                 tick={{ fill: "#9CA3AF", fontSize: 12 }}
-                 tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`}
-               />
-           
-               <Tooltip
-                 cursor={{ stroke: "#D1D5DB", strokeDasharray: "4 4" }}
-                 contentStyle={{
-                   backgroundColor: "#fff",
-                   borderRadius: "10px",
-                   border: "1px solid #E5E7EB",
-                   fontSize: "13px",
-                 }}
-                 formatter={(value: number) =>
-                   `₹${(value / 100000).toFixed(1)}L`
-                 }
-               />
-           
-               {/* AREA */}
-               <Area
-                 type="monotone"
-                 dataKey="revenue"
-                 stroke="none"
-                 fill="url(#greenGradient)"
-               />
-           
-               {/* Soft shadow line (background glow effect) */}
-               <Line
-                 type="monotone"
-                 dataKey="revenue"
-                 stroke="#22c55e"
-                 strokeWidth={8}
-                 dot={false}
-                 opacity={0.15}
-               />
-           
-               {/* Main sharp line */}
-               <Line
-                 type="monotone"
-                 dataKey="revenue"
-                 stroke="#16a34a"
-                 strokeWidth={3}
-                 dot={{
-                   r: 7,
-                   stroke: "#16a34a",
-                   strokeWidth: 3,
-                   fill: "#ffffff",
-                 }}
-                 activeDot={{
-                   r: 9,
-                   stroke: "#16a34a",
-                   strokeWidth: 3,
-                   fill: "#ffffff",
-                 }}
-               />
-             </LineChart>
-           </ResponsiveContainer>
+            <ResponsiveContainer width="100%" height={260}>
+              <LineChart
+                data={revenueData}
+                margin={{ top: 30, right: 20, left: -10, bottom: 0 }}
+              >
+                <defs>
+                  {/* Area Gradient */}
+                  <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#22c55e" stopOpacity={0.45} />
+                    <stop offset="80%" stopColor="#22c55e" stopOpacity={0.05} />
+                  </linearGradient>
+                </defs>
+
+                {/* Vertical dotted lines only */}
+                <CartesianGrid
+                  strokeDasharray="4 4"
+                  vertical={true}
+                  horizontal={false}
+                  stroke="#E5E7EB"
+                />
+
+                <XAxis
+                  dataKey="month"
+                  axisLine={{ stroke: "#d1d5db" }}
+                  tickLine={false}
+                  tick={{ fill: "#6B7280", fontSize: 13 }}
+                />
+
+                <YAxis
+                  axisLine={{ stroke: "#d1d5db" }}
+                  tickLine={false}
+                  tick={{ fill: "#9CA3AF", fontSize: 12 }}
+                  tickFormatter={(v) => `₹${(v / 100000).toFixed(0)}L`}
+                />
+
+                <Tooltip
+                  cursor={{ stroke: "#D1D5DB", strokeDasharray: "4 4" }}
+                  contentStyle={{
+                    backgroundColor: "#fff",
+                    borderRadius: "10px",
+                    border: "1px solid #E5E7EB",
+                    fontSize: "13px",
+                  }}
+                  formatter={(value: number) =>
+                    `₹${(value / 100000).toFixed(1)}L`
+                  }
+                />
+
+                {/* AREA */}
+                <Area
+                  type="monotone"
+                  dataKey="revenue"
+                  stroke="none"
+                  fill="url(#greenGradient)"
+                />
+
+                {/* Soft shadow line (background glow effect) */}
+                <Line
+                  type="monotone"
+                  dataKey="revenue"
+                  stroke="#22c55e"
+                  strokeWidth={8}
+                  dot={false}
+                  opacity={0.15}
+                />
+
+                {/* Main sharp line */}
+                <Line
+                  type="monotone"
+                  dataKey="revenue"
+                  stroke="#16a34a"
+                  strokeWidth={3}
+                  dot={{
+                    r: 7,
+                    stroke: "#16a34a",
+                    strokeWidth: 3,
+                    fill: "#ffffff",
+                  }}
+                  activeDot={{
+                    r: 9,
+                    stroke: "#16a34a",
+                    strokeWidth: 3,
+                    fill: "#ffffff",
+                  }}
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
 
 
           {/* USER REVENUE CONTRIBUTION */}
           <div className="bg-white rounded-xl p-4 shadow">
             <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3">Payment Methods</h3>
-<div className="flex flex-col lg:flex-row gap-4  items-center">
-<ResponsiveContainer width="100%" height={260}>
-  <PieChart>
-    <Pie
-      data={paymentMethodData}
-      dataKey="value"
-      cx="50%"
-      cy="50%"
-      innerRadius={18}
-      outerRadius={100}
-      stroke="none"
-      labelLine={false}
-      label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-        const RADIAN = Math.PI / 180;
-        const radius =
-          innerRadius + (outerRadius - innerRadius) * 0.6;
+            <div className="flex flex-col md:flex-row gap-4  md:mx-25 sm:mx-0 lg:mx-0 items-center">
+              <ResponsiveContainer width="100%" height={260}>
+                <PieChart>
+                  <Pie
+                    data={paymentMethodData}
+                    dataKey="value"
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={18}
+                    outerRadius={100}
+                    stroke="none"
+                    labelLine={false}
+                    label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+                      const RADIAN = Math.PI / 180;
+                      const radius =
+                        innerRadius + (outerRadius - innerRadius) * 0.6;
 
-        const x = cx + radius * Math.cos(-midAngle * RADIAN);
-        const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                      const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                      const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-        return (
-          <text
-            x={x}
-            y={y}
-            fill="#ffffff"
-            textAnchor="middle"
-            dominantBaseline="central"
-            fontSize={22}
-            fontWeight={600}
-          >
-            {(percent * 100).toFixed(0)}%
-          </text>
-        );
-      }}
-    >
-      {paymentMethodData.map((entry, index) => (
-        <Cell key={`cell-${index}`} fill={entry.color} />
-      ))}
-    </Pie>
-  </PieChart>
-</ResponsiveContainer>
-<div className="space-y-4">
-  {paymentMethodData.map((item, i) => (
-    <div key={i} className="flex items-center gap-3">
-      <div
-        className="w-5 h-5 rounded-md"
-        style={{ backgroundColor: item.color }}
-      />
-      <span className="whitespace-nowrap text-[#4A4A4A] text-[18px] font-medium">
-        {item.name}
-      </span>
-    </div>
-  ))}
-</div>
+                      return (
+                        <text
+                          x={x}
+                          y={y}
+                          fill="#ffffff"
+                          textAnchor="middle"
+                          dominantBaseline="central"
+                          fontSize={22}
+                          fontWeight={600}
+                        >
+                          {(percent * 100).toFixed(0)}%
+                        </text>
+                      );
+                    }}
+                  >
+                    {paymentMethodData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="space-y-4">
+                {paymentMethodData.map((item, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div
+                      className="w-5 h-5 rounded-md"
+                      style={{ backgroundColor: item.color }}
+                    />
+                    <span className="whitespace-nowrap text-[#4A4A4A] text-[18px] font-medium">
+                      {item.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
 
-</div>
+            </div>
           </div>
         </div>
 
         {/* search & filter functionality */}
         <div className="bg-white p-2 md:p-4 w-full desktop:min-h-[500px]
-        tablat:w-[750px]
          desktop:w-[973px]  rounded-[16px] ">
           <div className="flex gap-2 md:gap-4 mb-6 items-center ">
             <div className="relative flex-1 w-full">
               <Search className="absolute md:left-3 left-1 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
               <input
                 type="text"
-                placeholder="Search by name or email..."
+                placeholder="Search by Booking ID, user, or Charger..."
                 className="w-full md:pl-9 pl-7 pr-4 py-3 rounded-[10px] border border-[#B7B7B7] shadow-[0px_2px_6.3px_0px_#00000026] hover:ring-[0.8px] hover:ring-[#38EF0A] focus:outline-none focus:ring-2 focus:ring-green-200"
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -930,221 +937,261 @@ const handleCustomDateChange = (field: 'from' | 'to', value: string) => {
 
             <div className="relative">
               <button
-                 onClick={() => setShowFilter(true)}
-                className="flex items-center gap-1 md:gap-4  md:px-4 px-1 py-2 md:py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] min-w-[70px] md:min-w-[140px] justify-between"
+                onClick={() => setShowFilter(true)}
+                className="relative flex items-center gap-1 md:gap-4 md:px-4 px-1 py-2 md:py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] min-w-[70px] md:min-w-[140px] justify-between"
               >
-                <div className="flex items-center md:gap-2 gap-1">
-                  <Filter size={18} className="text-gray-500" />
+                <div className="flex items-center md:gap-2 gap-1 relative">
+
+                  {/* FILTER ICON WRAPPER */}
+                  <div className="relative">
+                    <Filter size={18} className="text-gray-500" />
+
+                    {/* 🔔 Notification Badge (Top Right of Icon) */}
+                    {activeFilterCount > 0 && (
+                      <span className="absolute -top-2 -right-2 flex items-center justify-center min-w-[16px] h-[16px] px-[4px] text-[9px] font-bold text-white bg-[#FB2C2F] rounded-full">
+                        {activeFilterCount}
+                      </span>
+                    )}
+                  </div>
+
                   <span className="font-medium text-gray-700 font-inter text-[20px]">
                     Filter
                   </span>
-
                 </div>
-                < ChevronDown className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-                {/* <span >▼</span> */}
+
+                <ChevronDown
+                  className={`transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
+                />
               </button>
 
-{showFilter && (
-<div className="absolute top-0 right-0 flex justify-end z-[999]">
-    <div className="w-[273px] h-[507px] shadow-[0px_4px_20px_rgba(0,0,0,0.12)] rounded-[8px] bg-white h-full overflow-y-auto">
 
-      {/* Header */}
-      <div className="flex justify-between items-center py-1 px-2 ">
-        <h2 className="font-inter text-[20px] font-semibold">Filter</h2>
-        <X
-          onClick={() => setShowFilter(false)}
-          className="cursor-pointer w-6 h-6"
-          strokeWidth={2}
-        />
-      </div>
+              {showFilter && (
+                <div className="absolute top-0 right-0 flex justify-end z-[999]">
+                  <div className="w-[273px] h-[507px] shadow-[0px_4px_20px_rgba(0,0,0,0.12)] rounded-[8px] bg-white h-full overflow-y-auto">
 
-      {/* ✅ FULL WIDTH LINE BELOW HEADER */}
-      <div className="w-full h-[1px] bg-[#D9D7D7]" />
+                    {/* Header */}
+                    <div className="flex justify-between items-center py-1 px-2 ">
+                      <h2 className="font-inter text-[20px] font-semibold">Filter</h2>
+                      <X
+                        onClick={() => setShowFilter(false)}
+                        className="cursor-pointer w-6 h-6"
+                        strokeWidth={2}
+                      />
+                    </div>
 
-      <div className="px-4">
+                    {/* ✅ FULL WIDTH LINE BELOW HEADER */}
+                    <div className="w-full h-[1px] bg-[#D9D7D7]" />
 
-        {/* Date Range Section */}
-        <div className="pb-2 pt-1">
-          <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
-            Date Range
-          </h3>
+                    <div className="px-4">
 
-          {/* Radio buttons */}
-          <div className="space-y-1 mb-3 font-roboto font-medium text-[12px] text-[#757575]">
-            <label className="flex items-center gap-3 cursor-pointer hover:text-black">
-              <input
-                type="radio"
-                name="dateRange"
-                checked={dateFilter === "today"}
-                onChange={() => handleDateFilterChange("today")}
-                className="w-3 h-3 cursor-pointer "
-              />
-              Today
-            </label>
+                      {/* Date Range Section */}
+                      <div className="pb-2 pt-1">
+                        <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
+                          Date Range
+                        </h3>
 
-            <label className="flex items-center gap-3 cursor-pointer hover:text-black">
-              <input
-                type="radio"
-                name="dateRange"
-                checked={dateFilter === "week"}
-                onChange={() => handleDateFilterChange("week")}
-                className="w-3 h-3 cursor-pointer "
-              />
-              This Week
-            </label>
+                        {/* Radio buttons */}
+                        <div className="space-y-1 mb-3 font-roboto font-medium text-[12px] text-[#757575]">
+                          <label className="flex items-center gap-3 cursor-pointer hover:text-black">
+                            <input
+                              type="radio"
+                              name="dateRange"
+                              checked={dateFilter === "today"}
+                              onChange={() => handleDateFilterChange("today")}
+                              className="w-3 h-3 cursor-pointer "
+                            />
+                            Today
+                          </label>
 
-            <label className="flex items-center gap-3 cursor-pointer hover:text-black">
-              <input
-                type="radio"
-                name="dateRange"
-                checked={dateFilter === "month"}
-                onChange={() => handleDateFilterChange("month")}
-                className="w-3 h-3 cursor-pointer "
-              />
-              This Month
-            </label>
-          </div>
+                          <label className="flex items-center gap-3 cursor-pointer hover:text-black">
+                            <input
+                              type="radio"
+                              name="dateRange"
+                              checked={dateFilter === "week"}
+                              onChange={() => handleDateFilterChange("week")}
+                              className="w-3 h-3 cursor-pointer "
+                            />
+                            This Week
+                          </label>
 
-          {/* Date pickers */}
-          <div className="flex items-center gap-1 font-roboto font-medium text-[11px] text-[#757575]">
-            <div className="flex-1 flex items-center gap-2">
-              <label className="mb-1 block">From</label>
-              <input
-                type="date"
-                value={dateFilter === "custom" ? dateRange.from : ""}
-                onChange={(e) =>
-                  handleCustomDateChange("from", e.target.value)
-                }
-                className="w-[90px] px-1 py-1 border border-gray-300 rounded text-[10px]"
-              />
-            </div>
+                          <label className="flex items-center gap-3 cursor-pointer hover:text-black">
+                            <input
+                              type="radio"
+                              name="dateRange"
+                              checked={dateFilter === "month"}
+                              onChange={() => handleDateFilterChange("month")}
+                              className="w-3 h-3 cursor-pointer "
+                            />
+                            This Month
+                          </label>
+                        </div>
 
-            <div className="flex-1 flex items-center gap-2">
-              <label className="mb-1 block">To</label>
-              <input
-                type="date"
-                value={dateFilter === "custom" ? dateRange.to : ""}
-                onChange={(e) =>
-                  handleCustomDateChange("to", e.target.value)
-                }
-                className="w-[90px] px-1 py-1 border border-gray-300 rounded text-[10px]"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+                        {/* Date pickers */}
+                        <div className="flex items-center gap-1 font-roboto font-medium text-[11px] text-[#757575]">
+                          <div className="flex-1 flex items-center gap-2">
+                            <label className="mb-1 block">From</label>
+                            <input
+                              type="date"
+                              value={dateFilter === "custom" ? dateRange.from : ""}
+                              onChange={(e) =>
+                                handleCustomDateChange("from", e.target.value)
+                              }
+                              className="w-[90px] px-1 py-1 border border-gray-300 rounded text-[10px]"
+                            />
+                          </div>
 
-      {/* ✅ FULL WIDTH LINE BEFORE PAYMENT STATUS */}
-      <div className="w-full h-[1px] bg-[#D9D7D7]" />
+                          <div className="flex-1 flex items-center gap-2">
+                            <label className="mb-1 block">To</label>
+                            <input
+                              type="date"
+                              value={dateFilter === "custom" ? dateRange.to : ""}
+                              onChange={(e) =>
+                                handleCustomDateChange("to", e.target.value)
+                              }
+                              className="w-[90px] px-1 py-1 border border-gray-300 rounded text-[10px]"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-      <div className="px-4 pb-2 pt-1">
+                    {/* ✅ FULL WIDTH LINE BEFORE PAYMENT STATUS */}
+                    <div className="w-full h-[1px] bg-[#D9D7D7]" />
 
-        {/* Payment Status Section */}
-        <div>
-          <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
-            Payment Status
-          </h3>
+                    <div className="px-4 pb-2 pt-1">
 
-          <div className="space-y-1">
-            {["All", "Pending", "Completed", "Refunded", "Failed"].map(
-              (status) => (
-                <label
-                  key={status}
-                  className="group flex items-center gap-3 cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    checked={filterPaymentStatus.includes(status)}
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        setFilterPaymentStatus([
-                          ...filterPaymentStatus,
-                          status,
-                        ]);
-                      } else {
-                        setFilterPaymentStatus(
-                          filterPaymentStatus.filter(
-                            (s) => s !== status
-                          )
-                        );
-                      }
-                    }}
-                    className="w-3 h-3 cursor-pointer "
-                  />
-                  <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black ">
-                    {status}
-                  </span>
-                </label>
-              )
-            )}
-          </div>
-        </div>
-      </div>
+                      {/* Payment Status Section */}
+                      <div>
+                        <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
+                          Payment Status
+                        </h3>
 
-      {/* ✅ FULL WIDTH LINE BEFORE CHARGERS STATUS */}
-      <div className="w-full h-[1px] bg-[#D9D7D7]" />
+                        <div className="space-y-1">
+                          <label className="flex items-center gap-3 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={filterPaymentStatus.length === 0}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setFilterPaymentStatus([]);
+                                }
+                              }}
+                              className="w-3 h-3 cursor-pointer"
+                            />
+                            <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black ">All</span>
+                          </label>
+                          {["Pending", "Completed", "Refunded", "Failed"].map(
+                            (status) => (
+                              <label
+                                key={status}
+                                className="group flex items-center gap-3 cursor-pointer"
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={filterPaymentStatus.includes(status)}
+                                  onChange={(e) => {
+                                    if (e.target.checked) {
+                                      setFilterPaymentStatus([
+                                        ...filterPaymentStatus,
+                                        status,
+                                      ]);
+                                    } else {
+                                      setFilterPaymentStatus(
+                                        filterPaymentStatus.filter(
+                                          (s) => s !== status
+                                        )
+                                      );
+                                    }
+                                  }}
+                                  className="w-3 h-3 cursor-pointer "
+                                />
+                                <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black ">
+                                  {status}
+                                </span>
+                              </label>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </div>
 
-      <div className="px-4 pb-2 pt-1">
+                    {/* ✅ FULL WIDTH LINE BEFORE CHARGERS STATUS */}
+                    <div className="w-full h-[1px] bg-[#D9D7D7]" />
 
-        {/* Chargers Status Section */}
-        <div>
-          <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
-            Chargers Status
-          </h3>
+                    <div className="px-4 pb-2 pt-1">
 
-          <div className="space-y-1">
-            {["All", "Success", "Pending", "Failed"].map((status) => (
-              <label
-                key={status}
-                className="group flex items-center gap-3 cursor-pointer"
-              >
-                <input
-                  type="checkbox"
-                  checked={filterChargerStatus.includes(status)}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setFilterChargerStatus([
-                        ...filterChargerStatus,
-                        status,
-                      ]);
-                    } else {
-                      setFilterChargerStatus(
-                        filterChargerStatus.filter(
-                          (s) => s !== status
-                        )
-                      );
-                    }
-                  }}
-                  className="w-3 h-3 cursor-pointer "
-                />
-                <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black">
-                  {status}
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
-      </div>
+                      {/* Chargers Status Section */}
+                      <div>
+                        <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
+                          Chargers Status
+                        </h3>
 
-      {/* Footer Buttons */}
-      <div className="font-inter font-medium flex gap-3 px-6 pb-3 bg-white sticky bottom-0">
-        <button
-          onClick={handleClearAll}
-          className=" flex-1 px-2 py-1 border  border-[#848484] rounded-[5px] text-[#7C7C7C]  hover:bg-gray-50 transition-colors"
-        >
-          Clear All
-        </button>
+                        <div className="space-y-1">
+                          <label className="flex items-center gap-3 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              checked={filterChargerStatus.length === 0}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setFilterChargerStatus([]);
+                                }
+                              }}
+                              className="w-3 h-3 cursor-pointer"
+                            />
+                            <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black ">All</span>
+                          </label>
+                          {["Success", "Pending", "Failed"].map((status) => (
+                            <label
+                              key={status}
+                              className="group flex items-center gap-3 cursor-pointer"
+                            >
+                              <input
+                                type="checkbox"
+                                checked={filterChargerStatus.includes(status)}
+                                onChange={(e) => {
+                                  if (e.target.checked) {
+                                    setFilterChargerStatus([
+                                      ...filterChargerStatus,
+                                      status,
+                                    ]);
+                                  } else {
+                                    setFilterChargerStatus(
+                                      filterChargerStatus.filter(
+                                        (s) => s !== status
+                                      )
+                                    );
+                                  }
+                                }}
+                                className="w-3 h-3 cursor-pointer "
+                              />
+                              <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black">
+                                {status}
+                              </span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
 
-        <button
-          onClick={() => setShowFilter(false)}
-          className="flex-1 px-2 py-1  text-[#38EF0A] border border-[#38EF0A] whitespace-nowrap rounded-[5px]  hover:bg-[#38EF0A] hover:text-white transition-colors"
-        >
-          Apply Filters
-        </button>
-      </div>
+                    {/* Footer Buttons */}
+                    <div className="font-inter font-medium flex gap-3 px-6 pb-3 bg-white sticky bottom-0">
+                      <button
+                        onClick={handleClearAll}
+                        className=" flex-1 px-2 py-1 border  border-[#848484] rounded-[5px] text-[#7C7C7C]  hover:bg-gray-50 transition-colors"
+                      >
+                        Clear All
+                      </button>
 
-    </div>
-  </div>
+                      <button
+                        onClick={() => setShowFilter(false)}
+                        className="flex-1 px-2 py-1  text-[#38EF0A] border border-[#38EF0A] whitespace-nowrap rounded-[5px]  hover:bg-[#38EF0A] hover:text-white transition-colors"
+                      >
+                        Apply Filters
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
               )}
 
             </div>
@@ -1187,133 +1234,133 @@ const handleCustomDateChange = (field: 'from' | 'to', value: string) => {
               {/* Horizontal Scroll wrapper */}
               <div className="overflow-x-auto no-scrollbar max-h-[420px] overflow-y-auto">
                 <table className="min-w-max w-full text-left border-collapse">
-<thead className="sticky top-0 z-10 bg-white">
-  <tr className="font-inter border-b-[1.6px] border-[#E9E9E9] bg-white">
-    <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">User Name</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Customer ID</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Transaction ID</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Booking ID</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Chargers</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Amount</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Platform Fees</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">GST (18%)</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Date</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Net To Host</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Payment Method</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Payment Status</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">OTP Status</th>
-    <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Chargers Status</th>
-  </tr>
-</thead>
+                  <thead className="sticky top-0 z-10 bg-white">
+                    <tr className="font-inter border-b-[1.6px] border-[#E9E9E9] bg-white">
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">User Name</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Customer ID</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Transaction ID</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Booking ID</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Chargers</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Amount</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Platform Fees</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">GST (18%)</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Date</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Net To Host</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Payment Method</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Payment Status</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">OTP Status</th>
+                      <th className="px-6 py-4 text-center text-[#364153] font-medium text-[20px]">Chargers Status</th>
+                    </tr>
+                  </thead>
 
 
 
-<tbody className="font-arial divide-y-[1.3px] divide-gray-100">
-  {filteredTransactions.map((item) => {
+                  <tbody className="font-arial divide-y-[1.3px] divide-gray-100">
+                    {filteredTransactions.map((item) => {
 
-    const payment = getBadgeConfig(item.paymentStatus);
-    const otp = getBadgeConfig(item.otpStatus);
-    const charger = getBadgeConfig(item.chargerStatus);
+                      const payment = getBadgeConfig(item.paymentStatus);
+                      const otp = getBadgeConfig(item.otpStatus);
+                      const charger = getBadgeConfig(item.chargerStatus);
 
-    return (
-      <tr key={item.id} className="hover:bg-[#F9FFF5] text-gray-700 transition-colors">
+                      return (
+                        <tr key={item.id} className="hover:bg-[#F9FFF5] text-gray-700 transition-colors">
 
-        {/* USER NAME */}
-        <td className="px-6 py-4">
-          <div className="flex items-center gap-3">
-            <img src={item.imageUrl} className="w-12 h-12 rounded-full" />
-            <div>
-              <div className="text-[#364153] text-[14px] font-medium">
-                {item.userName}
-              </div>
-              <div className="text-[12px] text-gray-400">
-                {item.email}
-              </div>
-            </div>
-          </div>
-        </td>
+                          {/* USER NAME */}
+                          <td className="px-6 py-4">
+                            <div className="flex items-center gap-3">
+                              <img src={item.imageUrl} className="w-12 h-12 rounded-full" />
+                              <div>
+                                <div className="text-[#364153] text-[14px] font-medium">
+                                  {item.userName}
+                                </div>
+                                <div className="text-[12px] text-gray-400">
+                                  {item.email}
+                                </div>
+                              </div>
+                            </div>
+                          </td>
 
-        {/* CUSTOMER ID */}
-        <td className="px-6 py-4 text-center text-[14px]">
-          {item.customerId}
-        </td>
+                          {/* CUSTOMER ID */}
+                          <td className="px-6 py-4 text-center text-[14px]">
+                            {item.customerId}
+                          </td>
 
-        {/* TRANSACTION ID */}
-        <td className="px-6 py-4 text-center text-[14px]">
-          {item.transactionId}
-        </td>
+                          {/* TRANSACTION ID */}
+                          <td className="px-6 py-4 text-center text-[14px]">
+                            {item.transactionId}
+                          </td>
 
-        {/* BOOKING ID */}
-        <td className="px-6 py-4 text-center text-[14px] text-[#1877F2] font-medium">
-          {item.bookingId}
-        </td>
+                          {/* BOOKING ID */}
+                          <td className="px-6 py-4 text-center text-[14px] text-[#1877F2] font-medium">
+                            {item.bookingId}
+                          </td>
 
-        {/* CHARGER */}
-        <td className="px-6 py-4 text-center text-[14px]">
-          {item.charger}
-        </td>
+                          {/* CHARGER */}
+                          <td className="px-6 py-4 text-center text-[14px]">
+                            {item.charger}
+                          </td>
 
-        {/* AMOUNT */}
-        <td className="px-6 py-4 text-center text-[14px] font-medium">
-          ₹{item.amount.toLocaleString()}
-        </td>
+                          {/* AMOUNT */}
+                          <td className="px-6 py-4 text-center text-[14px] font-medium">
+                            ₹{item.amount.toLocaleString()}
+                          </td>
 
-        {/* PLATFORM FEES */}
-        <td className="px-6 py-4 text-center text-[14px] font-medium">
-          ₹{item.platformFees.toLocaleString()}
-        </td>
+                          {/* PLATFORM FEES */}
+                          <td className="px-6 py-4 text-center text-[14px] font-medium">
+                            ₹{item.platformFees.toLocaleString()}
+                          </td>
 
-        {/* GST */}
-        <td className="px-6 py-4 text-center text-[14px] text-[#FB2C2F] font-medium">
-          ₹{item.gst.toLocaleString()}
-        </td>
+                          {/* GST */}
+                          <td className="px-6 py-4 text-center text-[14px] text-[#FB2C2F] font-medium">
+                            ₹{item.gst.toLocaleString()}
+                          </td>
 
-        {/*date*/}
-        <td className="px-6 py-4 text-center text-[14px] font-medium">
-          ₹{item.date}
-        </td>
+                          {/*date*/}
+                          <td className="px-6 py-4 text-center text-[14px] font-medium">
+                            ₹{item.date}
+                          </td>
 
-        {/* NET TO HOST */}
-        <td className="px-6 py-4 text-center text-[14px] text-[#29B605] font-medium">
-          ₹{item.netToHost.toLocaleString()}
-        </td>
+                          {/* NET TO HOST */}
+                          <td className="px-6 py-4 text-center text-[14px] text-[#29B605] font-medium">
+                            ₹{item.netToHost.toLocaleString()}
+                          </td>
 
-        {/* PAYMENT METHOD */}
-        <td className="px-6 py-4 text-center">
-          <span className="inline-flex items-center gap-2 px-3 py-1 border border-gray-300 rounded-md text-[14px]">
-            {getPhoneIcon(item.paymentMethod)}
-            {item.paymentMethod}
-          </span>
-        </td>
+                          {/* PAYMENT METHOD */}
+                          <td className="px-6 py-4 text-center ">
+                            <span className="inline-flex items-center gap-2 px-3 py-1 text-[#757575] bg-[#ededee] border border-[#a1a1a5] rounded-md text-[14px]">
+                              {getPhoneIcon(item.paymentMethod)}
+                              {item.paymentMethod}
+                            </span>
+                          </td>
 
-        {/* PAYMENT STATUS */}
-        <td className="px-6 py-4 text-center">
-          <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] ${payment.className}`}>
-            {payment.icon}
-            {payment.text}
-          </span>
-        </td>
+                          {/* PAYMENT STATUS */}
+                          <td className="px-6 py-4 text-center">
+                            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] ${payment.className}`}>
+                              {payment.icon}
+                              {payment.text}
+                            </span>
+                          </td>
 
-        {/* OTP STATUS */}
-        <td className="px-6 py-4 text-center">
-          <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] ${otp.className}`}>
-            {otp.icon}
-            {otp.text}
-          </span>
-        </td>
+                          {/* OTP STATUS */}
+                          <td className="px-6 py-4 text-center">
+                            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] ${otp.className}`}>
+                              {otp.icon}
+                              {otp.text}
+                            </span>
+                          </td>
 
-        {/* CHARGER STATUS */}
-        <td className="px-6 py-4 text-center">
-          <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] ${charger.className}`}>
-            {charger.icon}
-            {charger.text}
-          </span>
-        </td>
+                          {/* CHARGER STATUS */}
+                          <td className="px-6 py-4 text-center">
+                            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] ${charger.className}`}>
+                              {charger.icon}
+                              {charger.text}
+                            </span>
+                          </td>
 
-      </tr>
-    );
-  })}
-</tbody>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
 
 
                 </table>
