@@ -16,7 +16,7 @@ export default function Navbar() {
                   className="hover:scale-90 transition-transform duration-200 ease-in-out"
                 />
 
-      <div className="font-inter flex items-center bg-white gap-2 py-3 pl-5 md:w-[600px]    rounded-[77px] text-[#7C7C7C] md:text-[20px] text-sm">
+      <div className="font-inter flex items-center bg-white gap-2 py-3 pl-5 md:w-[600px] w-[200px]   rounded-[77px] text-[#7C7C7C] md:text-[20px] text-sm">
         <Search size={20} className="text-[#7C7C7C]" />
         <input
           placeholder="Search..."

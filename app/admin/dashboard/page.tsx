@@ -79,8 +79,8 @@ const actions = [
     sub: (
       <>
         <div className=" flex items-center gap-[0.3rem] ">
-          <span className="text-[15px] font-semibold ">25</span>{" "}
-          <span className="font-medium  text-[10px]">Pending Approvals</span>
+          <span className="text-[15px] font-semibold text-small">25</span>{" "}
+          <span className="font-medium  text-[10px] text-small">Pending Approvals</span>
         </div>
       </>
     ),
@@ -90,7 +90,7 @@ const actions = [
   },
   {
     title: "Add New Chargers",
-    sub: <span className="text-[11px]">Setup & Configure</span>,
+    sub: <span className="text-[11px] text-small">Setup & Configure</span>,
     btn: "Configure",
     btnIcon: Settings,
     icon: FaChargingStation,
@@ -99,11 +99,11 @@ const actions = [
     title: "Booking Overview",
     sub: (
       <>
-        <div className="flex items-center gap-[0.3rem]">
-          <span className="text-[8px]">Upcoming:</span>{" "}
-          <span className="font-semibold text-[#EA4335]">40</span>{" "}
-          <span className="text-[8px]">| Cancelled:</span>{" "}
-          <span className="font-semibold text-[#EA4335]">8</span>
+        <div className="flex items-center gap-[0.3rem] reduce-gap">
+          <span className="text-[8px] text-small ">Upcoming:</span>
+          <span className="font-semibold text-[#EA4335] num-reduce">40</span>
+          <span className="text-[8px] text-small ">| Cancelled:</span>
+          <span className="font-semibold text-[#EA4335] num-reduce">8</span>
         </div>
 
       </>
@@ -354,34 +354,33 @@ export default function Dashboard() {
                 return (
                   <div
                     key={i}
-                    className={`bg-white p-2 rounded-xl shadow-md border border-gray-100
-w-[calc(50%-0.15rem)] md:w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
-charu
-${(i === actions.length - 1 || i === actions.length - 2)
-                        ? 'bg-black half-md-only'
+                    className={`bg-white p-2 rounded-xl shadow-md border border-gray-100 text-[11px]
+w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
+ ${(i === actions.length - 1 || i === actions.length - 2)
+                        ? 'half-width'
                         : ''}
-${(i == actions.length - 1) ? 'rani' : ''}  
+       ${(i<=2 ? 'text-small':'')}                 
   `}
 
 
                   >
                     {/* TOP ICON + TITLE */}
-                    <div className={`flex items-center gap-1 mb-2 ${i === actions.length - 1 ? 'pl-5 tablat:pl-0 desktop:pl-0 md:justify-start' : ''}`}>
+                    <div className={`flex items-center gap-1 mb-2 `}>
                       <TopIcon size={17} className="text-[#2CDE00]" />
-                      <h3 className="font-inter font-semibold text-[11px] text-[#364153]">
+                      <h3 className={`font-inter font-semibold text-[#364153] `}>
                         {a.title}
                       </h3>
                     </div>
 
                     {/* SUB TEXT (The "Open/Resolved" part) */}
-                    <p className={`font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF] w-full
-    ${i === actions.length - 1 ? 'pl-5 tablat:pl-0 desktop:pl-0 md:text-left' : 'text-left'}`}>
+                    <p className={`font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] pt-1 border-[#DFDFDF] w-full
+    `}>
                       {a.sub}
                     </p>
 
                     {/* BUTTON */}
-                    <div className={`flex ${i === actions.length - 1 ? 'pl-5 md:pl-0 md:justify-start' : ''}`}>
-                      <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] text-white rounded-md">
+                    <div className={`flex `}>
+                      <button className="flex items-center justify-center gap-1 w-[110px] py-1.5  font-semibold bg-[#38EF0A] text-white rounded-md">
                         {a.btn}
                         {BtnIcon && <BtnIcon size={14} />}
                       </button>
