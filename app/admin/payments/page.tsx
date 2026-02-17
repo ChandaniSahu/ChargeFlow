@@ -33,6 +33,9 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import toast from "react-hot-toast";
+
+
 
 // import Image from "next/image";
 
@@ -621,6 +624,7 @@ export default function UserManagementDashboard() {
     setFilterChargerStatus([]);
     setDateFilter(null);
     setDateRange({ from: '', to: '' });
+     toast.success("Filters cleared successfully!");
   };
 
 

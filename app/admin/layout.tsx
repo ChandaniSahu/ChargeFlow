@@ -2,10 +2,13 @@ import Sidebar from "../components/admin/Sidebar";
 import Navbar from "../components/admin/Navbar";
 import Dashboard from "../components/admin/Dashboard";
 import Image from "next/image";
+import { Toaster } from "react-hot-toast";
+
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative desktop:h-[120vh]">
+      <Toaster position="top-right" />
       {/* Background */}
       <Image
         src="/images/adminbgcut.jpg"

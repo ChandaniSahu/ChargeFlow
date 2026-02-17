@@ -645,7 +645,7 @@ desktop:w-[973px] rounded-[16px]">
                   {['All Status', 'Approved', 'Pending', 'Failed'].map((status) => (
                     <button
                       key={status}
-                      className={`font-inter text-[20px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${filterStatus === status ? 'bg-[#e1ffd9] font-semibold' : 'text-black'}`}
+                      className={`font-inter text-[20px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${filterStatus === status ? 'bg-[#e1ffd9] font-medium' : 'text-black'}`}
                       onClick={() => { setFilterStatus(status); setIsDropdownOpen(false); }}
                     >
                       {status}

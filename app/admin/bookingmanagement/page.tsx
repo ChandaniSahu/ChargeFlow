@@ -752,7 +752,7 @@ desktop:w-[973px] rounded-[16px]">
                     <button
                       key={type}
                       className={`font-inter text-[20px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${typeFilter === type
-                        ? "bg-[#e1ffd9] font-semibold"
+                        ? "bg-[#e1ffd9] font-medium"
                         : "text-black"
                         }`}
                       onClick={() => {
@@ -792,7 +792,7 @@ desktop:w-[973px] rounded-[16px]">
                     <button
                       key={status}
                       className={`font-inter text-[18px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
-                        ? "bg-[#e1ffd9] font-semibold"
+                        ? "bg-[#e1ffd9] font-medium"
                         : "text-black"
                         }`}
                       onClick={() => {
