@@ -83,6 +83,12 @@
 
 }
 
+.recharts-wrapper:focus,
+.recharts-surface:focus {
+  outline: none !important;
+}
+
+
 svg *:focus {
   outline: none;
 }

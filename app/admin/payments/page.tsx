@@ -19,12 +19,14 @@ import {
   RotateCcw,
   X,
 } from "lucide-react";
+import { BanknoteArrowDown } from 'lucide-react';
 import { FaUsers } from "react-icons/fa";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, CartesianGrid, Area } from "recharts";
 import {
   MdOutlineKeyboardArrowRight,
   MdOutlinePeopleAlt,
 } from "react-icons/md";
+import { FaWallet } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { BsGraphUpArrow } from "react-icons/bs";
 import { IoCheckmarkSharp } from "react-icons/io5";
@@ -59,11 +61,11 @@ export const userStats = [
     bottomIcon: FaUsers,
   },
   {
-    topIcon: Wallet,               // wallet icon
+    topIcon: FaWallet,               // wallet icon
     title: "Total Revenue",
     amount: 540000,
     growthValue: 8,
-    bottomIcon: Wallet,
+    bottomIcon: FaWallet,
   },
 ];
 
@@ -77,7 +79,7 @@ export const actionCards = [
     btn: "View Details",
   },
   {
-    icon: Wallet,
+    icon: BanknoteArrowDown,
     title: "Payout Requests",
     value: null,
     sub: "Manage pending payout requests",
@@ -106,13 +108,13 @@ export const chargerStatus = [
 ];
 
 export const revenueData = [
-  { month: "Jan", revenue: 20000 },
-  { month: "Feb", revenue: 28000 },
-  { month: "Mar", revenue: 24000 },
-  { month: "Apr", revenue: 35000 },
-  { month: "May", revenue: 38000 },
-  { month: "Jun", revenue: 45000 },
-  { month: "Jul", revenue: 50000 },
+  { month: "Jan", revenue: 200000 },
+  { month: "Feb", revenue: 200000 },
+  { month: "Mar", revenue: 200000 },
+  { month: "Apr", revenue: 300000 },
+  { month: "May", revenue: 300000 },
+  { month: "Jun", revenue: 400000 },
+  { month: "Jul", revenue: 500000 },
 ];
 
 
@@ -823,6 +825,7 @@ export default function UserManagementDashboard() {
                   dataKey="revenue"
                   stroke="none"
                   fill="url(#greenGradient)"
+                   tooltipType="none"
                 />
 
                 {/* Soft shadow line (background glow effect) */}
@@ -833,6 +836,7 @@ export default function UserManagementDashboard() {
                   strokeWidth={8}
                   dot={false}
                   opacity={0.15}
+                   tooltipType="none"
                 />
 
                 {/* Main sharp line */}
@@ -901,7 +905,9 @@ export default function UserManagementDashboard() {
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
+                  <Tooltip/>
                 </PieChart>
+                
               </ResponsiveContainer>
               <div className="space-y-4">
                 {paymentMethodData.map((item, i) => (

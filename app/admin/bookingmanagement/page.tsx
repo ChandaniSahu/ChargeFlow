@@ -357,13 +357,13 @@ const getBadge = (value: string) => {
 
 
 const bookingTrendData = [
-  { date: "25 Jan", bookings: 17, revenue: 50000 },
-  { date: "26 Jan", bookings: 20, revenue: 65000 },
-  { date: "27 Jan", bookings: 20, revenue: 63000 },
-  { date: "28 Jan", bookings: 25, revenue: 78000 },
-  { date: "29 Jan", bookings: 28, revenue: 86000 },
-  { date: "30 Jan", bookings: 26, revenue: 82000 },
-  { date: "31 Jan", bookings: 32, revenue: 100000 },
+  { date: "25 Jan", bookings: "17", revenue: 50000 },
+  { date: "26 Jan", bookings: "20", revenue: 65000 },
+  { date: "27 Jan", bookings: "20", revenue: 63000 },
+  { date: "28 Jan", bookings: "25", revenue: 78000 },
+  { date: "29 Jan", bookings: "28", revenue: 86000 },
+  { date: "30 Jan", bookings: "26", revenue: 82000 },
+  { date: "31 Jan", bookings: "32", revenue: 100000 },
 ];
 
 
@@ -652,6 +652,7 @@ if (typeFilter !== "All Dates") {
       {/* Left Y Axis */}
       <YAxis
         yAxisId="left"
+         domain={['dataMin - 14', 'dataMax + 14']}
         tick={{ fontSize: 12 }}
         axisLine={{ stroke: "#d1d5db" }}
         tickLine={{ stroke: "#d1d5db" }}
@@ -661,13 +662,20 @@ if (typeFilter !== "All Dates") {
       <YAxis
         yAxisId="right"
         orientation="right"
+        domain={['dataMin - 10000', 'dataMax + 10000']}
         tickFormatter={(v) => `${v / 1000}k`}
         tick={{ fontSize: 12 }}
         axisLine={{ stroke: "#d1d5db" }}
         tickLine={{ stroke: "#d1d5db" }}
       />
 
-      <Tooltip />
+      <Tooltip
+      formatter={(value: number, name: string) => {
+    if (name === "revenue") {
+      return `₹${(value / 1000).toFixed(1)}K`;
+    }
+    return value; // bookings normal
+    }} />
 
       {/* Area (Revenue Background) */}
       <Area
@@ -676,6 +684,7 @@ if (typeFilter !== "All Dates") {
         dataKey="revenue"
         stroke="none"
         fill="url(#greenGradient)"
+         tooltipType="none"
       />
 
       {/* Blue Line (Bookings) */}
