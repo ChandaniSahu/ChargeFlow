@@ -769,7 +769,7 @@ export default function UserManagementDashboard() {
         </div>
 
         {/* RECENT ACTIVITY + REVENUE CONTRIBUTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,60%)_minmax(0,40%)] gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-[minmax(0,50%)_minmax(0,50%)] xl:grid-cols-[minmax(0,60%)_minmax(0,40%)] gap-3">
           {/* RECENT ACTIVITY */}
           <div className="bg-white rounded-xl p-4 shadow">
             <h3 className="font-inter text-[24px] font-semibold text-[#364153] mb-3">Revenue Trend</h3>
@@ -870,7 +870,7 @@ export default function UserManagementDashboard() {
           {/* USER REVENUE CONTRIBUTION */}
           <div className="bg-white rounded-xl p-4 shadow">
             <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3">Payment Methods</h3>
-            <div className="flex flex-col md:flex-row gap-4  md:mx-25 sm:mx-0 lg:mx-0 items-center">
+            <div className="flex flex-col md:flex-row xl:gap-4 md:gap-2 items-center ">
               <ResponsiveContainer width="100%" height={260}>
                 <PieChart>
                   <Pie
@@ -917,10 +917,10 @@ export default function UserManagementDashboard() {
                 {paymentMethodData.map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
                     <div
-                      className="w-5 h-5 rounded-md"
+                      className="lg:w-5 w-3 lg:h-5 h-3 rounded-md"
                       style={{ backgroundColor: item.color }}
                     />
-                    <span className="whitespace-nowrap text-[#4A4A4A] text-[18px] font-medium">
+                    <span className="whitespace-nowrap text-[#4A4A4A] lg:textw-3 -[18px] font-medium">
                       {item.name}
                     </span>
                   </div>
