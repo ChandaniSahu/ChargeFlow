@@ -964,7 +964,7 @@ export default function UserManagementDashboard() {
                     )}
                   </div>
 
-                  <span className="font-medium text-gray-700 font-inter text-[20px]">
+                  <span className="font-medium text-gray-700 font-inter md:text-[20px] text-[16px]">
                     Filter
                   </span>
                 </div>
@@ -977,7 +977,7 @@ export default function UserManagementDashboard() {
 
               {showFilter && (
                 <div className="absolute top-0 right-0 flex justify-end z-[999]">
-                  <div className="w-[273px] h-[507px] shadow-[0px_4px_20px_rgba(0,0,0,0.12)] rounded-[8px] bg-white h-full overflow-y-auto">
+                  <div className="md:w-[273px] h-[507px] shadow-[0px_4px_20px_rgba(0,0,0,0.12)] rounded-[8px] bg-white h-full overflow-y-auto">
 
                     {/* Header */}
                     <div className="flex justify-between items-center py-1 px-2 ">
@@ -992,16 +992,16 @@ export default function UserManagementDashboard() {
                     {/* ✅ FULL WIDTH LINE BELOW HEADER */}
                     <div className="w-full h-[1px] bg-[#D9D7D7]" />
 
-                    <div className="px-4">
+                    <div className="md:px-4 px-2">
 
                       {/* Date Range Section */}
-                      <div className="pb-2 pt-1">
-                        <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
+                      <div className="md:pb-2 pb-1 pt-1">
+                        <h3 className="md:text-[15px] text-[11px] font-inter font-medium md:mb-2 mb-1 text-[#364153]">
                           Date Range
                         </h3>
 
                         {/* Radio buttons */}
-                        <div className="space-y-1 mb-3 font-roboto font-medium text-[12px] text-[#757575]">
+                        <div className="space-y-1 md:mb-3 mb-1 font-roboto font-medium md:text-[12px] text-[10px] text-[#757575]">
                           <label className="flex items-center gap-3 cursor-pointer hover:text-black">
                             <input
                               type="radio"
@@ -1068,11 +1068,11 @@ export default function UserManagementDashboard() {
                     {/* ✅ FULL WIDTH LINE BEFORE PAYMENT STATUS */}
                     <div className="w-full h-[1px] bg-[#D9D7D7]" />
 
-                    <div className="px-4 pb-2 pt-1">
+                    <div className="md:px-4 px-2 md:pb-2 pb-1 pt-1">
 
                       {/* Payment Status Section */}
                       <div>
-                        <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
+                        <h3 className="md:text-[15px] text-[11px] font-inter font-medium md:mb-2 mb-1 text-[#364153]">
                           Payment Status
                         </h3>
 
@@ -1088,7 +1088,7 @@ export default function UserManagementDashboard() {
                               }}
                               className="w-3 h-3 cursor-pointer"
                             />
-                            <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black ">All</span>
+                            <span className="font-roboto font-medium md:text-[12px] text-[10px] text-[#757575] group-hover:text-black ">All</span>
                           </label>
                           {["Pending", "Completed", "Refunded", "Failed"].map(
                             (status) => (
@@ -1115,7 +1115,7 @@ export default function UserManagementDashboard() {
                                   }}
                                   className="w-3 h-3 cursor-pointer "
                                 />
-                                <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black ">
+                                <span className="font-roboto font-medium md:text-[12px] text-[10px] text-[#757575] group-hover:text-black ">
                                   {status}
                                 </span>
                               </label>
@@ -1128,16 +1128,16 @@ export default function UserManagementDashboard() {
                     {/* ✅ FULL WIDTH LINE BEFORE CHARGERS STATUS */}
                     <div className="w-full h-[1px] bg-[#D9D7D7]" />
 
-                    <div className="px-4 pb-2 pt-1">
+                    <div className="md:px-4 px-2 md:pb-2 pb-1 pt-1">
 
                       {/* Chargers Status Section */}
                       <div>
-                        <h3 className="text-[15px] font-inter font-medium mb-2 text-[#364153]">
+                        <h3 className="md:text-[15px] text-[11px] font-inter font-medium md:mb-2 mb-1 text-[#364153]">
                           Chargers Status
                         </h3>
 
                         <div className="space-y-1">
-                          <label className="flex items-center gap-3 cursor-pointer">
+                          <label className="flex items-center md:gap-3 gap-1 cursor-pointer">
                             <input
                               type="checkbox"
                               checked={filterChargerStatus.length === 0}
@@ -1148,7 +1148,7 @@ export default function UserManagementDashboard() {
                               }}
                               className="w-3 h-3 cursor-pointer"
                             />
-                            <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black ">All</span>
+                            <span className="font-roboto font-medium md:text-[12px] text-[10px] text-[#757575] group-hover:text-black ">All</span>
                           </label>
                           {["Success", "Pending", "Failed"].map((status) => (
                             <label
@@ -1174,7 +1174,7 @@ export default function UserManagementDashboard() {
                                 }}
                                 className="w-3 h-3 cursor-pointer "
                               />
-                              <span className="font-roboto font-medium text-[12px] text-[#757575] group-hover:text-black">
+                              <span className="font-roboto font-medium md:text-[12px] text-[10px] text-[#757575] group-hover:text-black">
                                 {status}
                               </span>
                             </label>
@@ -1184,17 +1184,17 @@ export default function UserManagementDashboard() {
                     </div>
 
                     {/* Footer Buttons */}
-                    <div className="font-inter font-medium flex gap-3 px-6 pb-3 bg-white sticky bottom-0">
+                    <div className="font-inter font-medium flex md:justify-start justify-center items-center gap-3 md:px-6  px-3 md:text-[15px] text-[11px] pb-3 bg-white  sticky bottom-0">
                       <button
                         onClick={handleClearAll}
-                        className=" flex-1 px-2 py-1 border  border-[#848484] rounded-[5px] text-[#7C7C7C]  hover:bg-gray-50 transition-colors"
+                        className=" md:flex-1  md:px-2 px-1 py-1 border  border-[#848484] rounded-[5px] text-[#7C7C7C]  hover:bg-gray-50 transition-colors"
                       >
                         Clear All
                       </button>
 
                       <button
                         onClick={() => setShowFilter(false)}
-                        className="flex-1 px-2 py-1  text-[#38EF0A] border border-[#38EF0A] whitespace-nowrap rounded-[5px]  hover:bg-[#38EF0A] hover:text-white transition-colors"
+                        className="md:flex-1  md:px-2 px-1 py-1  text-[#38EF0A] border border-[#38EF0A] whitespace-nowrap rounded-[5px]  hover:bg-[#38EF0A] hover:text-white transition-colors"
                       >
                         Apply Filters
                       </button>
