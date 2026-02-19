@@ -10,6 +10,17 @@ import {
   Search,
   Filter,
   AlertTriangle,
+  RotateCcw,
+  Mail,
+  Hourglass,
+  ArrowRightLeft,
+  BanknoteArrowDown,
+  RefreshCcw,
+  BarChart3,
+  ClipboardList,
+  MessageSquareMore,
+  Tags,
+  ChevronRight,
 } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import {
@@ -27,87 +38,76 @@ import { BsChatDots } from "react-icons/bs";
 // import Image from "next/image";
 
 /* ================= DATA ================= */
+
 export const userStats = [
   {
-    topIcon: MdOutlinePeopleAlt,
-    title: "Total Users",
-    value: "1,459",
-    growth: "+12.5%",
-    bottomIcon: MdOutlinePeopleAlt,
+    topIcon: Mail,
+    title: "New Tickets",
+    value: "24",
+    subText: "vs yesterday",
+    trend: "+6%",
+    trendType: "positive",
+    bottomIcon: Mail,
+  },
+  {
+    topIcon: Clock,
+    title: "In Progress",
+    value: "15",
+    subText: "unassigned",
+    trend: "3",
+    trendType: "neutral",
+    bottomIcon: Hourglass,
+  },
+  {
+    topIcon: AlertTriangle,
+    title: "Critical Area",
+    value: "Payment",
+    subText: "High priority cases",
+    trend: "8",
+    trendType: "warning",
+    bottomIcon: CreditCard,
   },
   {
     topIcon: CheckCircle,
-    title: "User Verified",
-    value: "1,120",
-    growth: "+10%",
+    title: "Resolved",
+    value: "40",
+    subText: "Resolution rate",
+    trend: "92%",
+    trendType: "positive",
     bottomIcon: CheckCircle,
-  },
-  {
-    topIcon: Radio,
-    title: "Active User",
-    value: "156",
-    growth: "+10%",
-    bottomIcon: Radio,
-  },
-  {
-    topIcon: RiMoneyRupeeCircleFill,
-    title: "Total Revenue",
-    value: "₹2,85,450",
-    growth: "+14.5%",
-    bottomIcon: SiSimpleanalytics,
   },
 ];
 
-const actionCards = [
+
+
+
+export const actionCards = [
   {
-    title: "KYC Verifications",
-    sub: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[15px] font-semibold">28</span>
-        <span className="text-[12px] font-medium">Pending Approvals</span>
-      </div>
-    ),
-    btn: "Review Now",
-    btnIcon: AiOutlineArrowRight,
-    icon: CheckCircle,
+    icon: ClipboardList, // list icon (All tickets)
+    title: "All Ticket Management",
+    sub: "View and manage all tickets",
+    btn: "View List",
   },
   {
-    title: "Wallet",
-    sub: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[15px] font-semibold">₹45,200</span>
-        <span className="text-[12px]">Success</span>
-      </div>
-    ),
-    btn: "View All",
-    btnIcon: MdOutlineKeyboardArrowRight,
-    icon: Wallet,
+    icon: MessageSquareMore, // chat icon
+    title: "Assign & Chat System",
+    sub: "Assign ticket and chat with user",
+    btn: "Open Chat",
   },
   {
-    title: "Payment History",
-    sub: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[15px] font-semibold">145</span>
-        <span className="text-[12px]">Successful Payments</span>
-      </div>
-    ),
-    btn: "View Reports",
-    btnIcon: MdOutlineKeyboardArrowRight,
-    icon: FileText,
+    icon: Tags, // tag/issue categories
+    title: "Issue Categories",
+    sub: "Manage payment & charger tags",
+    btn: "Manage Issue",
   },
   {
-    title: "Blocked Users",
-    sub: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[15px] font-semibold">07</span>
-        <span className="text-[12px]">Blocked Accounts</span>
-      </div>
-    ),
-    btn: "Manage List",
-    btnIcon: MdOutlineKeyboardArrowRight,
-    icon: UserX,
+    icon: CheckCircle, // resolution board
+    title: "Resolution Board",
+    sub: "Track team success & solve rate",
+    btn: "View Report",
   },
 ];
+
 
 export const chargerStatus = [
   { name: "Active", value: 220, color: "#22c55e" },
@@ -115,102 +115,135 @@ export const chargerStatus = [
   { name: "Maintenance", value: 65, color: "#facc15" },
 ];
 
-export const revenueData = [
-  { month: "Jan", revenue: 20000 },
-  { month: "Feb", revenue: 28000 },
-  { month: "Mar", revenue: 24000 },
-  { month: "Apr", revenue: 35000 },
-  { month: "May", revenue: 38000 },
-  { month: "Jun", revenue: 45000 },
-  { month: "Jul", revenue: 50000 },
-];
-
 export interface ActivityItem {
   id: number;
   name: string;
-  title: string;
-  subTitle: string;
-  time: string;
-  status: "booking" | "payment" | "profile" | "login" | "registration";
-  amount?: string;
-  imageUrl: string;
+  action:
+  | "created"
+  | "escalated"
+  | "replied"
+  | "assigned"
+  | "updated"
+  | "resolved";
+  ticketId: string;
+  description: string;
+  timeAgo: string;
+  date: string;
 }
 
-const activities: ActivityItem[] = [
+export const activities: ActivityItem[] = [
   {
     id: 1,
-    name: "Priya Sharma",
-    title: "Completed Charging Session",
-    subTitle: "DC fast charger · 45 kWh",
-    time: "5 minutes ago",
-    amount: "₹350.00",
-    status: "booking",
-    imageUrl: "/images/user.jpg"
+    name: "Sneha Reddy",
+    action: "created",
+    ticketId: "TKT-0043",
+    description: "New ticket created by customer",
+    timeAgo: "1 hour ago",
+    date: "11/02/2026",
   },
   {
     id: 2,
-    name: "Rahul Kumar",
-    title: "New Booking Created",
-    subTitle: "AC 22kW charger · scheduled for tomorrow",
-    time: "12 minutes ago",
-    amount: "₹220.00",
-    status: "booking",
-    imageUrl: "/images/user1.jpg"
+    name: "Vikram Singh",
+    action: "escalated",
+    ticketId: "TKT-0039",
+    description: "Escalated to senior support team",
+    timeAgo: "2 hour ago",
+    date: "10/02/2026",
   },
   {
     id: 3,
-    name: "Anjali Patel",
-    title: "Payment Successful",
-    subTitle: "Booking #bk-2456 · ₹3,240",
-    time: "28 minutes ago",
-    amount: "₹450.00",
-    status: "payment",
-    imageUrl: "/images/user2.jpg"
-
+    name: "Ananya Gupta",
+    action: "replied",
+    ticketId: "TKT-0038",
+    description: "Requested additional information",
+    timeAgo: "5 hour ago",
+    date: "10/02/2026",
   },
-
-  /* 🔽 Added from uploaded image */
-
   {
     id: 4,
-    name: "Vikram Singh",
-    title: "Profile Updated",
-    subTitle: "Updated payment method and address",
-    time: "1 hour ago",
-    status: "profile",
-    imageUrl: "/images/user3.jpg"
-
+    name: "Divya Nair",
+    action: "assigned",
+    ticketId: "TKT-0036",
+    description: "Assigned to technical support team",
+    timeAgo: "6 hour ago",
+    date: "10/02/2026",
   },
   {
     id: 5,
-    name: "Neha Reddy",
-    title: "Logged In",
-    subTitle: "Active on web",
-    time: "1 hour ago",
-    status: "login",
-    imageUrl: "/images/user.jpg"
+    name: "Priya Sharma",
+    action: "replied",
+    ticketId: "TKT-0042",
+    description: "Added a response to high priority ticket",
+    timeAgo: "15 min ago",
+    date: "11/02/2026",
   },
   {
     id: 6,
-    name: "Arjun Verma",
-    title: "Booking Cancelled",
-    subTitle: "Refund processed · ₹550",
-    time: "2 hours ago",
-    amount: "₹550.00",
-    status: "booking",
-    imageUrl: "/images/user1.jpg"
+    name: "Rahul Verma",
+    action: "updated",
+    ticketId: "TKT-0041",
+    description: "Changed ticket status to in progress",
+    timeAgo: "28 min ago",
+    date: "11/02/2026",
   },
   {
     id: 7,
-    name: "Kavya Nair",
-    title: "New Account Created",
-    subTitle: "Registered via email",
-    time: "3 hours ago",
-    status: "registration",
-    imageUrl: "/images/user3.jpg"
+    name: "Amit Patel",
+    action: "resolved",
+    ticketId: "TKT-0040",
+    description: "Marked ticket as resolved and closed",
+    timeAgo: "45 min ago",
+    date: "11/02/2026",
   },
-
 ];
+
+const getActivityConfig = (action: string) => {
+  switch (action) {
+    case "created":
+    case "assigned":
+      return {
+        icon: <UserPlus size={20} className="group-hover:text-white" />,
+        className:
+          "bg-[#f3ebfe] text-[#8a38f5] group-hover:bg-[#8a38f5]",
+      };
+
+    case "escalated":
+      return {
+        icon: <AlertTriangle size={20} className="group-hover:text-white" />,
+        className:
+          "bg-[#ffdbd6] text-[#fb2c2f] group-hover:bg-[#fb2c2f]",
+      };
+
+    case "replied":
+      return {
+        icon: <RotateCcw size={20} className="group-hover:text-white" />,
+        className:
+          "bg-[#dbeafe] text-[#3b82f6] group-hover:bg-[#3b82f6]",
+      };
+
+    case "updated":
+      return {
+        icon: <Clock size={20} className="group-hover:text-white" />,
+        className:
+          "bg-[#fff0e5] text-[#b45309] group-hover:bg-[#b45309]",
+      };
+
+    case "resolved":
+      return {
+        icon: <CheckCircle size={20} className="group-hover:text-white" />,
+        className:
+          "bg-[#e1ffd9] text-[#29b605] group-hover:bg-[#29b605]",
+      };
+
+    default:
+      return {
+        icon: <Clock size={20} className="group-hover:text-white" />,
+        className:
+          "bg-[#f2f2f2] text-[#757575] group-hover:bg-[#757575]",
+      };
+  }
+};
+
 
 
 export interface SupportTicket {
@@ -219,12 +252,12 @@ export interface SupportTicket {
   email: string;
   ticketId: string;
   description: string;
-  category: 
-    | "Technical Issue"
-    | "Payment Issue"
-    | "App Issue"
-    | "Refund"
-    | "Account Issue";   // ✅ Added
+  category:
+  | "Technical Issue"
+  | "Payment Issue"
+  | "App Issue"
+  | "Refund"
+  | "Account Issue";   // ✅ Added
 
   status: "Open" | "In Progress" | "Resolved";
   priority: "Low" | "Medium" | "High";
@@ -359,95 +392,6 @@ export const supportTickets: SupportTicket[] = [
   },
 ];
 
-
-
-
-
-const getStatusStyles = (status: ActivityItem['status']) => {
-  switch (status) {
-    case "booking":
-      return "bg-[#3771C81A] text-[#1877F2] border-[#1877F23D]";
-    case "payment":
-      return "bg-[#96FF7B30] text-[#29B605] border-[#38EF0A66]";
-    case "profile":
-      return "bg-[#fff0e5] text-[#b45309] border-[#e8bfa0]";
-    case "login":
-      return "bg-[#f2f2f2] text-[#757575] border-[#d6d6d7]";
-    case "registration":
-      return "bg-[#f3ebfe] text-[#8a38f5] border-[#e2cefd]";
-    default:
-      return "bg-gray-50 text-gray-600 border-gray-200";
-  }
-};
-
-
-const getStatusText = (status: ActivityItem['status']) => {
-  switch (status) {
-    case "booking":
-      return "Booking";
-    case "payment":
-      return "Payment";
-    case "profile":
-      return "Profile";
-    case "login":
-      return "Login";
-    case "registration":
-      return "Registration";
-    default:
-      return status;
-  }
-};
-
-
-const getStatusIcon = (status: ActivityItem['status']) => {
-  switch (status) {
-    case "booking":
-      return Calendar;
-    case "payment":
-      return Wallet;
-    case "profile":
-      return User;
-    case "login":
-      return LogIn;
-    case "registration":
-      return UserPlus;
-    default:
-      return Clock;
-  }
-};
-
-
-
-// 1. DATA ARRAY
-const userData = [
-  { id: 1, name: 'Priya Singh', email: 'priyasingh@gmail.com', contact: '+91 5678903488', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
-  { id: 2, name: 'Rohit Singh', email: 'rohitsingh@gmail.com', contact: '+91 5778433390', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
-  { id: 3, name: 'Sneha Kapoor', email: 'snehakapoor@gmail.com', contact: '+91 1258444907', status: 'Inactive', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user1.jpg", },
-  { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Failed', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Failed', imageUrl: "/images/user2.jpg", },
-  { id: 5, name: 'Rahul Sharma', email: 'rahulsharma@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
-  { id: 6, name: 'Krishna Thakur', email: 'krishna@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
-  { id: 7, name: 'Antara Mishra', email: 'antaramishra@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user1.jpg", },
-];
-
-// 2. ICON SWITCH CASE HELPER
-const GetStatusIcon = (type: string, status: string) => {
-  switch (status.toLowerCase()) {
-    case 'success':
-    case 'active':
-      return <CheckCircle size={16} className="text-[#29b605]" />;
-    case 'pending':
-      return <Clock size={16} className="text-[#b45309]" />;
-    case 'failed':
-      return <RxCross2 size={16} className="text-[#fb2c2f]" />;
-    case 'blocked':
-      return <XCircle size={16} className="text-[#fb2c2f]" />;
-    case 'inactive':
-      return <CircleDashed size={16} className="text-[#7d7d7d]" />
-    default:
-      return null;
-  }
-};
-
 const getStatusBadgeConfig = (value: string) => {
   const v = value.toLowerCase();
 
@@ -533,7 +477,7 @@ export default function UserManagementDashboard() {
     const matchesFilter = statusFilter === 'All Status' || ticket.status === statusFilter;
     const matchesPriority = priorityFilter === 'All Priority' || ticket.priority === priorityFilter;
     const matchesSearch = ticket.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      ticket.email.toLowerCase().includes(searchTerm.toLowerCase())||ticket.ticketId.toLowerCase().includes(searchTerm.toLowerCase());
+      ticket.category.toLowerCase().includes(searchTerm.toLowerCase()) || ticket.ticketId.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesPriority && matchesSearch;
   });
 
@@ -553,10 +497,13 @@ export default function UserManagementDashboard() {
           {/* LEFT COLUMN */}
           <div className="flex-1 space-y-3 h-full">
             {/* STATS */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.6rem]">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.4rem]">
               {userStats.map((s, i) => {
                 const TopIcon = s.topIcon;
                 const BottomIcon = s.bottomIcon;
+
+                const isPositive = s.trendType === "positive";
+                const isWarning = s.trendType === "warning";
 
                 return (
                   <div
@@ -565,8 +512,11 @@ export default function UserManagementDashboard() {
                   >
                     {/* TOP ICON */}
                     <div className="flex gap-4 items-center mb-2">
-                      <TopIcon className="text-[#38EF0A]" size={30} />
-                      <p className=" text-[13px] text-[#364153] font-medium">
+                      <TopIcon
+                        className={isWarning ? "text-[#facc15]" : "text-[#38EF0A]"}
+                        size={30}
+                      />
+                      <p className="text-[16px] text-[#364153] font-medium">
                         {s.title}
                       </p>
                     </div>
@@ -576,63 +526,80 @@ export default function UserManagementDashboard() {
                       {s.value}
                     </h2>
 
-                    {/* GROWTH */}
+                    {/* TREND */}
                     <div className="flex flex-col gap-1 mt-2">
-                      <span className="font-regular  text-[#25BB00] text-[14px] flex items-center gap-2">
+                      <span
+                        className={`text-[14px] flex items-center gap-2 ${isWarning
+                          ? "text-[#f97316]"
+                          : isPositive
+                            ? "text-[#25BB00]"
+                            : "text-[#25BB00]"
+                          }`}
+                      >
                         <TrendingUp size={15} />
-                        {s.growth}
+                        {s.trend}
                       </span>
+
                       <span className="text-[#757575] text-[10px] -mt-1">
-                        Vs Last Month
+                        {s.subText}
                       </span>
                     </div>
 
                     {/* BOTTOM ICON */}
-                    <div className="absolute -bottom-6 -right-4 w-24 h-24 bg-[#2CDE0026] rounded-full flex items-center justify-center">
-                      <BottomIcon className="text-[#38EF0A]" size={40} />
+                    <div
+                      className={`absolute -bottom-6 -right-4 w-24 h-24 rounded-full flex items-center justify-center ${isWarning
+                        ? "bg-[#facc1526]"
+                        : "bg-[#2CDE0026]"
+                        }`}
+                    >
+                      <BottomIcon
+                        className={isWarning ? "text-[#facc15]" : "text-[#38EF0A]"}
+                        size={40}
+                      />
                     </div>
                   </div>
                 );
               })}
             </div>
 
+
             {/* ACTION CARDS */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-[0.6rem] mt-3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-[0.4rem] mt-3">
               {actionCards.map((a, i) => {
                 const TopIcon = a.icon;
-                const BtnIcon = a.btnIcon;
 
                 return (
                   <div
                     key={i}
-                    className="font-inter bg-white p-2 rounded-xl shadow-md border border-gray-100"
+                    className="font-inter bg-white p-2 rounded-xl shadow-md border border-gray-100 hover:shadow-lg transition-all duration-200"
                   >
                     {/* TOP ICON + TITLE */}
                     <div className="flex items-center gap-1 mb-2">
                       <TopIcon size={17} className="text-[#2CDE00]" />
-                      <h3 className="text-[11px] font-semibold text-[#364153]">
+                      <h3 className="text-[13px] font-semibold text-[#364153]">
                         {a.title}
                       </h3>
                     </div>
 
                     {/* SUB TEXT */}
-                    <div className="font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF] pt-1 text-sm">
+                    <div className="font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF] pt-1 text-[11px]">
                       {a.sub}
                     </div>
 
-                    {/* BUTTON */}
-                    <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A]  text-white rounded-md">
+                   {/* BUTTON */}
+                    <button className="flex items-center justify-center gap-1 w-[130px] py-1.5 text-[12px] font-semibold bg-[#38EF0A] text-white rounded-md">
                       {a.btn}
-                      {BtnIcon && <BtnIcon size={14} />}
+                      <ChevronRight size={14} />
                     </button>
                   </div>
                 );
               })}
             </div>
+
           </div>
 
           {/* CHARGER STATUS */}
-          <div className="w-full lg:w-[220px]  bg-white rounded-xl shadow px-3 py-2 h-full flex flex-col">
+          <div className="w-full lg:w-[190px]  bg-white rounded-xl shadow px-3 py-2 h-full flex flex-col">
             <h3 className="font-inter text-center text-[20px] font-semibold text-[#434343] mb-1">
               Charger Status
             </h3>
@@ -674,348 +641,330 @@ export default function UserManagementDashboard() {
         </div>
 
         {/* RECENT ACTIVITY + REVENUE CONTRIBUTION */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,65%)_minmax(0,35%)] gap-3">
-          <div className="bg-white rounded-xl p-4 shadow">
-            <h3 className="font-inter text-[24px] font-semibold text-[#364153] mb-3">Recent Activity</h3>
+        <div className="bg-white rounded-xl p-4 shadow">
+          <h3 className="font-inter text-[24px] font-semibold text-[#364153] mb-3">Recent Activity</h3>
 
-            <div className="max-h-[260px] overflow-y-auto no-scrollbar -mx-4 border-t border-[#DEDEDE]">
-              {activities.map((a) => {
-                const StatusIcon = getStatusIcon(a.status);
+          <div className="max-h-[260px] overflow-y-auto no-scrollbar space-y-2 -mx-2">
+            {activities.map((a) => {
+              const config = getActivityConfig(a.action);
 
-                return (
-                  <div
-                    key={a.id}
-                    className="relative flex items-center  justify-between border-b-2 border-[#DEDEDE] py-4 px-4 last:border-b-0"
-                  >
-                    <div className="flex items-center gap-3 pl-2 desktop:pl-0">
-                      <img
-                        src={a.imageUrl}
-                        alt={a.name}
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
-
-                      <div>
-                        <p className="font-roboto font-semibold text-[16px] text-[#364153]">{a.name}</p>
-                        <p className="font-roboto font-regular text-[15px] text-[#848484]">{a.title}</p>
-                        <p className="font-inter font-regular text-[12px] text-[#707274]">{a.subTitle}</p>
-                        <div className="desktop:hidden">
-                          {a.amount && <p className="font-roboto text-[#29B605] text-[15px]">
-                            {a.amount}
-                          </p>}
-                          <p className="font-inter text-[12px] text-[#707274]">{a.time}</p>
-                        </div>
-                      </div>
-
+              return (
+                <div
+                  key={a.id}
+                  className="group hover:bg-green-50 border border-[#DEDEDE] rounded-[4px] flex md:flex-row flex-col items-start md:items-center justify-between py-4 px-4 transition-all duration-200"
+                >
+                  {/* LEFT */}
+                  <div className="flex items-center gap-4 pl-0  ">
+                    <div
+                      className={`w-[50px] h-[50px] flex items-center justify-center rounded-full transition-all duration-200 ${config.className}`}
+                    >
+                      {config.icon}
                     </div>
 
-                    <div className="flex items-center gap-4">
-                      <div className="hidden desktop:block text-right">
-                        {a.amount && <p className="font-roboto text-[#29B605] text-[15px]">
-                          {a.amount}
-                        </p>}
-                        <p className="font-inter text-[12px] text-[#707274]">{a.time}</p>
-                      </div>
+                    <div>
+                      <p className="font-semibold text-[16px] text-[#364153]">
+                        {a.name}
+                      </p>
 
-                      <span
-                        className={`hidden md:flex font-roboto  items-center gap-2 md:w-[133px] justify-center py-2 text-[16px] border rounded-md ${getStatusStyles(
-                          a.status
-                        )}`}
-                      >
-                        <StatusIcon size={19} />
-                        {getStatusText(a.status)}
-                      </span>
-                      <span
-                        className={`md:hidden absolute bottom-0 right-1 font-roboto  flex items-center gap-2 w-[120px] justify-center py-2 text-[14px] border rounded-md ${getStatusStyles(
-                          a.status
-                        )}`}
-                      >
-                        <StatusIcon size={16} />
-                        {getStatusText(a.status)}
-                      </span>
+                      <p className="text-[14px] text-[#6B7280]">
+                        {a.action.charAt(0).toUpperCase() + a.action.slice(1)}{" "}
+                        <span className="text-[#29B605] font-medium">
+                          {a.ticketId}
+                        </span>
+                      </p>
 
+                      <p className="text-[13px] text-[#9CA3AF]">
+                        {a.description}
+                      </p>
+                       <div className="md:hidden">
+                    <p className="text-[14px] text-[#6B7280]">
+                      {a.timeAgo}
+                    </p>
+                    <p className="text-[13px] text-[#9CA3AF]">
+                      {a.date}
+                    </p>
+                  </div>
                     </div>
                   </div>
-                );
-              })}
-            </div>
+
+                  {/* RIGHT */}
+                  <div className="hidden md:block  text-right">
+                    <p className="text-[14px] text-[#6B7280]">
+                      {a.timeAgo}
+                    </p>
+                    <p className="text-[13px] text-[#9CA3AF]">
+                      {a.date}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+
           </div>
-
-
-        {/* USER REVENUE CONTRIBUTION */}
-        <div className="bg-white rounded-xl p-4 shadow">
-          <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3">User Revenue Contribution</h3>
-          <ResponsiveContainer width="100%" height={260}>
-            <LineChart data={revenueData}>
-              <XAxis dataKey="month" />
-              <YAxis tickFormatter={(v) => `${v / 1000}k`} />
-              <Tooltip />
-              <Line type="monotone" dataKey="revenue" stroke="#22c55e" strokeWidth={3} dot={false} />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
-
-      {/* search & filter functionality */}
-      <div className="bg-white p-2 md:p-4 w-full
-         desktop:w-[973px]  rounded-[16px] ">
-        <div className="flex gap-2 md:gap-4 mb-6 items-center">
-          <div className="relative flex-1  w-full">
-            <Search className="absolute md:left-3 left-1 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-            <input
-              type="text"
-              placeholder="Search by name or email..."
-              className="w-full md:pl-9 pl-7 pr-4 py-2.5 rounded-[10px] border border-[#B7B7B7] shadow-[0px_2px_6.3px_0px_#00000026] hover:ring-[0.8px] hover:ring-[#38EF0A] focus:outline-none focus:ring-2 focus:ring-green-200"
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-
-          <div className="flex items-center justify-center gap-3">
-                       <div className="relative">
-              <button
-                onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
-                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full justify-between"
-              >
-                <span className="font-medium text-gray-700 font-inter text-[20px]">
-                  {statusFilter}
-                </span>
-
-                <ChevronDown
-                  className={`transition-transform ${isStatusDropdownOpen ? "rotate-180" : ""
-                    }`}
-                />
-              </button>
-
-              {isStatusDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
-                  {["All Status", "Open", "In Progress", "Resolved"].map((status) => (
-                    <button
-                      key={status}
-                      className={`font-inter text-[18px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
-                        ? "bg-[#e1ffd9] font-medium"
-                        : "text-black"
-                        }`}
-                      onClick={() => {
-                        setStatusFilter(status);
-                        setIsStatusDropdownOpen(false);
-                      }}
-                    >
-                      {status}
-                      {statusFilter === status && <IoCheckmarkSharp size={20} />}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div className="relative">
-              <button
-                onClick={() => setIsPriorityDropdownOpen(!isPriorityDropdownOpen)}
-                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full  justify-between"
-              >
-                <div className="flex items-center gap-2">
-                  <span className="font-medium text-gray-700 font-inter text-[20px]">
-                    {priorityFilter}
-                  </span>
-                </div>
-
-                <ChevronDown
-                  className={`transition-transform ${isPriorityDropdownOpen ? "rotate-180" : ""
-                    }`}
-                />
-              </button>
-
-              {isPriorityDropdownOpen && (
-                <div className="absolute right-0 mt-2 md:w-48 w-40  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-[999] overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
-
-                  {["All Priority", "High", "Medium" , "Low"].map((type) => (
-                    <button
-                      key={type}
-                      className={`font-inter text-[20px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${priorityFilter === type
-                        ? "bg-[#e1ffd9] font-medium"
-                        : "text-black"
-                        }`}
-                      onClick={() => {
-                        setPriorityFilter(type);
-                        setIsPriorityDropdownOpen(false);
-                      }}
-                    >
-                      {type}
-                      {priorityFilter === type && <IoCheckmarkSharp size={20} />}
-                    </button>
-                  ))}
-
-                </div>
-              )}
-            </div>
-
-
-
- 
-            </div>
         </div>
 
-        {/* TABLE CONTAINER */}
-        {filteredTickets.length === 0 ? (
-          <div className="flex flex-col items-center justify-center h-[300px] text-center">
 
-            {/* SVG */}
-            <svg
-              width="120"
-              height="120"
-              viewBox="0 0 24 24"
-              fill="none"
-              className="mb-4 text-gray-300"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M21 21l-4.35-4.35M18 10.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+        {/* search & filter functionality */}
+        <div className="bg-white p-2 md:p-4 w-full
+         desktop:w-[984px]  rounded-[16px] ">
+          <div className="flex gap-2 md:gap-4 mb-6 items-center md:flex-row flex flex-col">
+            <div className="relative flex-1  w-full">
+              <Search className="absolute md:left-3 left-1 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search by Ticket ID, User or Category..."
+                className="w-full md:pl-9 pl-7 pr-4 py-3 rounded-[10px] border border-[#B7B7B7] shadow-[0px_2px_6.3px_0px_#00000026] hover:ring-[0.8px] hover:ring-[#38EF0A] focus:outline-none focus:ring-2 focus:ring-green-200"
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
-            </svg>
-
-
-            {/* Text */}
-            <h3 className="text-sm font-semibold text-gray-600">
-              No items found
-            </h3>
-            <p className="text-xs text-gray-400 mt-1">
-              Try changing search or filter
-            </p>
-
-          </div>
-        ) : (
-          <div className="bg-white rounded-2xl shadow-md border border-[#DDDDE1] shadow-[0px_2px_6.3px_0px_#00000026] overflow-hidden">
-            {/* Horizontal Scroll wrapper */}
-            <div className="overflow-x-auto no-scrollbar max-h-[420px] overflow-y-auto">
-              <table className="min-w-max w-full text-left border-collapse">
-                <thead className="sticky top-0 z-10 bg-white">
-                  <tr className="font-inter border-b-[1.6px] border-[#E9E9E9] bg-white">
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">
-                      User Name
-                    </th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
-                      Ticket ID
-                    </th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">
-                      Description
-                    </th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
-                      Category
-                    </th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
-                      Status
-                    </th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
-                      Priority
-                    </th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
-                      Date
-                    </th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
-                      Time
-                    </th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
-                      Screenshot
-                    </th>
-                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
-                      Chat
-                    </th>
-                  </tr>
-                </thead>
-
-
-
-                <tbody className="font-arial divide-y-[1.3px] divide-gray-100">
-                  {filteredTickets.map((ticket) => {
-                    const statusBadge = getStatusBadgeConfig(ticket.status);
-                    const priorityBadge = getPriorityBadgeConfig(ticket.priority);
-
-                    return (
-                      <tr key={ticket.id} className="hover:bg-[#f4fff1] transition-colors">
-                        {/* User */}
-                        <td className="px-6 py-4">
-                          <div className="flex items-center gap-3">
-                            <img
-                              src={ticket.imageUrl}
-                              className="w-12 h-12 rounded-full object-cover"
-                            />
-                            <div>
-                              <div className="text-gray-800 text-[14px]">{ticket.userName}</div>
-                              <div className="text-[12px] text-gray-400">{ticket.email}</div>
-                            </div>
-                          </div>
-                        </td>
-
-                        {/* Ticket ID */}
-                        <td className="px-6 py-4 text-center text-[14px] text-[#364153]">
-                          {ticket.ticketId}
-                        </td>
-
-                        {/* Description */}
-                        <td className="px-6 py-4 text-[14px] text-[#707274]">
-                          {ticket.description}
-                        </td>
-
-                        {/* Category */}
-                        <td className="px-6 py-4 text-center text-[14px] text-[#364153]">
-                          {ticket.category}
-                        </td>
-
-                        {/* Status Badge */}
-                        <td className="px-6 py-4 text-center">
-                          <span
-                            className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto ${statusBadge.className}`}
-                          >
-                            {statusBadge.icon}
-                            {statusBadge.text}
-                          </span>
-                        </td>
-
-                        {/* Priority Badge */}
-                        <td className="px-6 py-4 text-center">
-                          <span
-                            className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto ${priorityBadge.className}`}
-                          >
-                            {priorityBadge.icon}
-                            {priorityBadge.text}
-                          </span>
-                        </td>
-
-                        {/* Date */}
-                        <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
-                          {ticket.date}
-                        </td>
-                        {/* Time*/}
-                        <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
-                          {ticket.time}
-                        </td>
-                        {/* Screenshot */}
-                        <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
-                          <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto `}>
-                          <IoEye className="text-gray-400 hover:text-gray-600 cursor-pointer" />
-                          <span className="">View</span>
-                          </span>
-                        </td>
-                        {/*Chat */}
-                        <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
-                          <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto `}>
-                          <BsChatDots className="text-gray-400 hover:text-gray-600 cursor-pointer" />
-                          <span className="">Chat</span>
-                          </span>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-
-
-              </table>
             </div>
-          </div>)}
+
+            <div className="flex items-center justify-center gap-3">
+              <div className="relative">
+                <button
+                  onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
+                  className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full justify-between"
+                >
+                  <span className="font-medium text-gray-700 font-inter text-[20px]">
+                    {statusFilter}
+                  </span>
+
+                  <ChevronDown
+                    className={`transition-transform ${isStatusDropdownOpen ? "rotate-180" : ""
+                      }`}
+                  />
+                </button>
+
+                {isStatusDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
+                    {["All Status", "Open", "In Progress", "Resolved"].map((status) => (
+                      <button
+                        key={status}
+                        className={`font-inter text-[18px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
+                          ? "bg-[#e1ffd9] font-medium"
+                          : "text-black"
+                          }`}
+                        onClick={() => {
+                          setStatusFilter(status);
+                          setIsStatusDropdownOpen(false);
+                        }}
+                      >
+                        {status}
+                        {statusFilter === status && <IoCheckmarkSharp size={20} />}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="relative">
+                <button
+                  onClick={() => setIsPriorityDropdownOpen(!isPriorityDropdownOpen)}
+                  className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full  justify-between"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium text-gray-700 font-inter text-[20px]">
+                      {priorityFilter}
+                    </span>
+                  </div>
+
+                  <ChevronDown
+                    className={`transition-transform ${isPriorityDropdownOpen ? "rotate-180" : ""
+                      }`}
+                  />
+                </button>
+
+                {isPriorityDropdownOpen && (
+                  <div className="absolute right-0 mt-2 md:w-48 w-40  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-[999] overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
+
+                    {["All Priority", "High", "Medium", "Low"].map((type) => (
+                      <button
+                        key={type}
+                        className={`font-inter text-[20px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${priorityFilter === type
+                          ? "bg-[#e1ffd9] font-medium"
+                          : "text-black"
+                          }`}
+                        onClick={() => {
+                          setPriorityFilter(type);
+                          setIsPriorityDropdownOpen(false);
+                        }}
+                      >
+                        {type}
+                        {priorityFilter === type && <IoCheckmarkSharp size={20} />}
+                      </button>
+                    ))}
+
+                  </div>
+                )}
+              </div>
+
+
+
+
+            </div>
+          </div>
+
+          {/* TABLE CONTAINER */}
+          {filteredTickets.length === 0 ? (
+            <div className="flex flex-col items-center justify-center h-[300px] text-center">
+
+              {/* SVG */}
+              <svg
+                width="120"
+                height="120"
+                viewBox="0 0 24 24"
+                fill="none"
+                className="mb-4 text-gray-300"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M21 21l-4.35-4.35M18 10.5a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+
+
+              {/* Text */}
+              <h3 className="text-sm font-semibold text-gray-600">
+                No items found
+              </h3>
+              <p className="text-xs text-gray-400 mt-1">
+                Try changing search or filter
+              </p>
+
+            </div>
+          ) : (
+            <div className="bg-white rounded-2xl shadow-md border border-[#DDDDE1] shadow-[0px_2px_6.3px_0px_#00000026] overflow-hidden">
+              {/* Horizontal Scroll wrapper */}
+              <div className="overflow-x-auto no-scrollbar max-h-[420px] overflow-y-auto">
+                <table className="min-w-max w-full text-left border-collapse">
+                  <thead className="sticky top-0 z-10 bg-white">
+                    <tr className="font-inter border-b-[1.6px] border-[#E9E9E9] bg-white">
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">
+                        User Name
+                      </th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                        Ticket ID
+                      </th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px]">
+                        Description
+                      </th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                        Category
+                      </th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                        Status
+                      </th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                        Priority
+                      </th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                        Date
+                      </th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                        Time
+                      </th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                        Screenshot
+                      </th>
+                      <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                        Chat
+                      </th>
+                    </tr>
+                  </thead>
+
+
+
+                  <tbody className="font-arial divide-y-[1.3px] divide-gray-100">
+                    {filteredTickets.map((ticket) => {
+                      const statusBadge = getStatusBadgeConfig(ticket.status);
+                      const priorityBadge = getPriorityBadgeConfig(ticket.priority);
+
+                      return (
+                        <tr key={ticket.id} className="hover:bg-[#f4fff1] transition-colors">
+                          {/* User */}
+                          <td className="px-6 py-4">
+                            <div className="flex items-center gap-3">
+                              <img
+                                src={ticket.imageUrl}
+                                className="w-12 h-12 rounded-full object-cover"
+                              />
+                              <div>
+                                <div className="text-gray-800 text-[14px]">{ticket.userName}</div>
+                                <div className="text-[12px] text-gray-400">{ticket.email}</div>
+                              </div>
+                            </div>
+                          </td>
+
+                          {/* Ticket ID */}
+                          <td className="px-6 py-4 text-center text-[14px] text-[#364153]">
+                            {ticket.ticketId}
+                          </td>
+
+                          {/* Description */}
+                          <td className="px-6 py-4 text-[14px] text-[#707274]">
+                            {ticket.description}
+                          </td>
+
+                          {/* Category */}
+                          <td className="px-6 py-4 text-center text-[14px] text-[#364153]">
+                            {ticket.category}
+                          </td>
+
+                          {/* Status Badge */}
+                          <td className="px-6 py-4 text-center">
+                            <span
+                              className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto ${statusBadge.className}`}
+                            >
+                              {statusBadge.icon}
+                              {statusBadge.text}
+                            </span>
+                          </td>
+
+                          {/* Priority Badge */}
+                          <td className="px-6 py-4 text-center">
+                            <span
+                              className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto ${priorityBadge.className}`}
+                            >
+                              {priorityBadge.icon}
+                              {priorityBadge.text}
+                            </span>
+                          </td>
+
+                          {/* Date */}
+                          <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
+                            {ticket.date}
+                          </td>
+                          {/* Time*/}
+                          <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
+                            {ticket.time}
+                          </td>
+                          {/* Screenshot */}
+                          <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
+                            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto `}>
+                              <IoEye className="text-gray-400 hover:text-gray-600 cursor-pointer" />
+                              <span className="">View</span>
+                            </span>
+                          </td>
+                          {/*Chat */}
+                          <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
+                            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto `}>
+                              <BsChatDots className="text-gray-400 hover:text-gray-600 cursor-pointer" />
+                              <span className="">Chat</span>
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+
+
+                </table>
+              </div>
+            </div>)}
+        </div>
       </div>
-    </div>
     </div >
   );
 }
