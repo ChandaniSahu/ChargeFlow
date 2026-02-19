@@ -21,6 +21,8 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { IoEye } from "react-icons/io5";
+import { BsChatDots } from "react-icons/bs";
 
 // import Image from "next/image";
 
@@ -217,12 +219,22 @@ export interface SupportTicket {
   email: string;
   ticketId: string;
   description: string;
-  category: "Technical Issue" | "Payment Issue" | "App Issue" | "Refund";
+  category: 
+    | "Technical Issue"
+    | "Payment Issue"
+    | "App Issue"
+    | "Refund"
+    | "Account Issue";   // ✅ Added
+
   status: "Open" | "In Progress" | "Resolved";
   priority: "Low" | "Medium" | "High";
   date: string;
+  time: string;          // ✅ Added
+  screenshot: boolean;   // ✅ Added
+  chat: boolean;         // ✅ Added
   imageUrl: string;
 }
+
 
 export const supportTickets: SupportTicket[] = [
   {
@@ -235,6 +247,9 @@ export const supportTickets: SupportTicket[] = [
     status: "Open",
     priority: "High",
     date: "12/02/2026",
+    time: "10:45 AM",
+    screenshot: true,
+    chat: true,
     imageUrl: "/images/user.jpg",
   },
   {
@@ -247,6 +262,9 @@ export const supportTickets: SupportTicket[] = [
     status: "In Progress",
     priority: "High",
     date: "11/02/2026",
+    time: "02:15 PM",
+    screenshot: true,
+    chat: true,
     imageUrl: "/images/user1.jpg",
   },
   {
@@ -259,6 +277,9 @@ export const supportTickets: SupportTicket[] = [
     status: "Resolved",
     priority: "Low",
     date: "10/02/2026",
+    time: "09:30 AM",
+    screenshot: true,
+    chat: true,
     imageUrl: "/images/user2.jpg",
   },
   {
@@ -271,11 +292,11 @@ export const supportTickets: SupportTicket[] = [
     status: "In Progress",
     priority: "High",
     date: "10/02/2026",
+    time: "04:20 PM",
+    screenshot: true,
+    chat: true,
     imageUrl: "/images/user3.jpg",
   },
-
-  // ✅ New Added Tickets
-
   {
     id: 5,
     userName: "Rahul Sharma",
@@ -286,6 +307,9 @@ export const supportTickets: SupportTicket[] = [
     status: "Open",
     priority: "Medium",
     date: "09/02/2026",
+    time: "11:10 AM",
+    screenshot: true,
+    chat: true,
     imageUrl: "/images/user.jpg",
   },
   {
@@ -298,6 +322,9 @@ export const supportTickets: SupportTicket[] = [
     status: "Resolved",
     priority: "Low",
     date: "08/02/2026",
+    time: "03:25 PM",
+    screenshot: true,
+    chat: true,
     imageUrl: "/images/user1.jpg",
   },
   {
@@ -306,10 +333,13 @@ export const supportTickets: SupportTicket[] = [
     email: "vikramsingh@gmail.com",
     ticketId: "TKT-1007",
     description: "Unable to login to account",
-    category: "App Issue",
+    category: "Account Issue",   // ✅ New Category Used Here
     status: "In Progress",
     priority: "High",
     date: "07/02/2026",
+    time: "01:40 PM",
+    screenshot: true,
+    chat: true,
     imageUrl: "/images/user2.jpg",
   },
   {
@@ -322,9 +352,13 @@ export const supportTickets: SupportTicket[] = [
     status: "Open",
     priority: "Medium",
     date: "06/02/2026",
+    time: "05:50 PM",
+    screenshot: true,
+    chat: true,
     imageUrl: "/images/user3.jpg",
   },
 ];
+
 
 
 
@@ -487,16 +521,20 @@ const getPriorityBadgeConfig = (value: string) => {
 
 /* ================= COMPONENT ================= */
 export default function UserManagementDashboard() {
-  const [filterStatus, setFilterStatus] = useState('All Status');
   const [searchTerm, setSearchTerm] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
+  const [isPriorityDropdownOpen, setIsPriorityDropdownOpen] = useState(false);
+  const [statusFilter, setStatusFilter] = useState("All Status");
+  const [priorityFilter, setPriorityFilter] = useState("All Priority");
+
 
   // 3. FILTER LOGIC
   const filteredTickets = supportTickets.filter(ticket => {
-    const matchesFilter = filterStatus === 'All Status' || ticket.status === filterStatus;
+    const matchesFilter = statusFilter === 'All Status' || ticket.status === statusFilter;
+    const matchesPriority = priorityFilter === 'All Priority' || ticket.priority === priorityFilter;
     const matchesSearch = ticket.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      ticket.email.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesFilter && matchesSearch;
+      ticket.email.toLowerCase().includes(searchTerm.toLowerCase())||ticket.ticketId.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchesFilter && matchesPriority && matchesSearch;
   });
 
   return (
@@ -731,44 +769,88 @@ export default function UserManagementDashboard() {
             />
           </div>
 
-          <div className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center gap-1 md:gap-4  md:px-4 px-1 py-2 md:py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] min-w-[70px] md:min-w-[140px] justify-between"
-            >
-              <div className="flex items-center md:gap-2 gap-1">
-                <Filter size={18} className="text-gray-500" />
+          <div className="flex items-center justify-center gap-3">
+                       <div className="relative">
+              <button
+                onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full justify-between"
+              >
                 <span className="font-medium text-gray-700 font-inter text-[20px]">
-                  <span className="inline sm:hidden">
-                    {filterStatus === 'All Status' ? 'All' : filterStatus}
-                  </span>
-
-                  <span className="hidden sm:inline">
-                    {filterStatus}
-                  </span>
+                  {statusFilter}
                 </span>
 
-              </div>
-              < ChevronDown className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
-              {/* <span >▼</span> */}
-            </button>
+                <ChevronDown
+                  className={`transition-transform ${isStatusDropdownOpen ? "rotate-180" : ""
+                    }`}
+                />
+              </button>
 
-            {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]
-                 ">
-                {['All Status', 'Open', 'In Progress', 'Resolved'].map((status) => (
-                  <button
-                    key={status}
-                    className={`font-inter text-[20px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${filterStatus === status ? 'bg-[#e1ffd9] font-medium' : 'text-black'}`}
-                    onClick={() => { setFilterStatus(status); setIsDropdownOpen(false); }}
-                  >
-                    {status}
-                    {filterStatus === status && <IoCheckmarkSharp size={20} />}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+              {isStatusDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
+                  {["All Status", "Open", "In Progress", "Resolved"].map((status) => (
+                    <button
+                      key={status}
+                      className={`font-inter text-[18px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
+                        ? "bg-[#e1ffd9] font-medium"
+                        : "text-black"
+                        }`}
+                      onClick={() => {
+                        setStatusFilter(status);
+                        setIsStatusDropdownOpen(false);
+                      }}
+                    >
+                      {status}
+                      {statusFilter === status && <IoCheckmarkSharp size={20} />}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="relative">
+              <button
+                onClick={() => setIsPriorityDropdownOpen(!isPriorityDropdownOpen)}
+                className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full  justify-between"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="font-medium text-gray-700 font-inter text-[20px]">
+                    {priorityFilter}
+                  </span>
+                </div>
+
+                <ChevronDown
+                  className={`transition-transform ${isPriorityDropdownOpen ? "rotate-180" : ""
+                    }`}
+                />
+              </button>
+
+              {isPriorityDropdownOpen && (
+                <div className="absolute right-0 mt-2 md:w-48 w-40  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-[999] overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
+
+                  {["All Priority", "High", "Medium" , "Low"].map((type) => (
+                    <button
+                      key={type}
+                      className={`font-inter text-[20px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${priorityFilter === type
+                        ? "bg-[#e1ffd9] font-medium"
+                        : "text-black"
+                        }`}
+                      onClick={() => {
+                        setPriorityFilter(type);
+                        setIsPriorityDropdownOpen(false);
+                      }}
+                    >
+                      {type}
+                      {priorityFilter === type && <IoCheckmarkSharp size={20} />}
+                    </button>
+                  ))}
+
+                </div>
+              )}
+            </div>
+
+
+
+ 
+            </div>
         </div>
 
         {/* TABLE CONTAINER */}
@@ -830,6 +912,15 @@ export default function UserManagementDashboard() {
                     </th>
                     <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
                       Date
+                    </th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                      Time
+                    </th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                      Screenshot
+                    </th>
+                    <th className="px-6 py-4 text-[#364153] font-medium text-[20px] text-center">
+                      Chat
                     </th>
                   </tr>
                 </thead>
@@ -895,6 +986,24 @@ export default function UserManagementDashboard() {
                         {/* Date */}
                         <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
                           {ticket.date}
+                        </td>
+                        {/* Time*/}
+                        <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
+                          {ticket.time}
+                        </td>
+                        {/* Screenshot */}
+                        <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
+                          <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto `}>
+                          <IoEye className="text-gray-400 hover:text-gray-600 cursor-pointer" />
+                          <span className="">View</span>
+                          </span>
+                        </td>
+                        {/*Chat */}
+                        <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
+                          <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto `}>
+                          <BsChatDots className="text-gray-400 hover:text-gray-600 cursor-pointer" />
+                          <span className="">Chat</span>
+                          </span>
                         </td>
                       </tr>
                     );
