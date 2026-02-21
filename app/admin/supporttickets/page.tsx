@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import UploadedScreenshotModal from "./screenshotmodal";
 import {
   Users, CircleDashed, ChevronDown, CheckCircle, Radio, DollarSign, FileCheck, Wallet, FileText, UserX, Calendar, CreditCard, TrendingUp, Clock, User,
   LogIn,
@@ -34,6 +35,11 @@ import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { IoEye } from "react-icons/io5";
 import { BsChatDots } from "react-icons/bs";
+import { FaArrowDownLong } from "react-icons/fa6";
+import { FaExclamation } from "react-icons/fa6";
+import { IoHourglassOutline } from "react-icons/io5";
+import { SiConventionalcommits } from "react-icons/si";
+import ChatModal from "./chatmodal";
 
 // import Image from "next/image";
 
@@ -244,7 +250,12 @@ const getActivityConfig = (action: string) => {
   }
 };
 
-
+export interface ChatMessage {
+  id: number;
+  sender: "customer" | "company";
+  text: string;
+  time: string;
+}
 
 export interface SupportTicket {
   id: number;
@@ -263,9 +274,10 @@ export interface SupportTicket {
   priority: "Low" | "Medium" | "High";
   date: string;
   time: string;          // ✅ Added
-  screenshot: boolean;   // ✅ Added
+  screenshot: string;   // ✅ Added
   chat: boolean;         // ✅ Added
   imageUrl: string;
+  messages?: ChatMessage[];
 }
 
 
@@ -281,9 +293,35 @@ export const supportTickets: SupportTicket[] = [
     priority: "High",
     date: "12/02/2026",
     time: "10:45 AM",
-    screenshot: true,
+    screenshot: "/iages/ticketss.png",
     chat: true,
     imageUrl: "/images/user.jpg",
+    messages: [
+    {
+      id: 1,
+      sender: "customer",
+      text: "Hi, charger is not starting.",
+      time: "10:46 AM",
+    },
+    {
+      id: 2,
+      sender: "company",
+      text: "Please confirm charger ID.",
+      time: "10:47 AM",
+    },
+    {
+      id: 3,
+      sender: "customer",
+      text: "Hi, I tried to start the charging session but the charger is not starting. It shows connected but nothing happens.",
+      time: "10:47 AM",
+    },
+    {
+      id: 4,
+      sender: "company",
+      text: "Hi, I tried to start the charging session but the charger is not starting. It shows connected but nothing happens.",
+      time: "10:47 AM",
+    },
+  ],
   },
   {
     id: 2,
@@ -296,7 +334,7 @@ export const supportTickets: SupportTicket[] = [
     priority: "High",
     date: "11/02/2026",
     time: "02:15 PM",
-    screenshot: true,
+    screenshot: "/images/ticketss.png",
     chat: true,
     imageUrl: "/images/user1.jpg",
   },
@@ -311,7 +349,7 @@ export const supportTickets: SupportTicket[] = [
     priority: "Low",
     date: "10/02/2026",
     time: "09:30 AM",
-    screenshot: true,
+    screenshot: "/images/ticketss.png",
     chat: true,
     imageUrl: "/images/user2.jpg",
   },
@@ -326,7 +364,7 @@ export const supportTickets: SupportTicket[] = [
     priority: "High",
     date: "10/02/2026",
     time: "04:20 PM",
-    screenshot: true,
+    screenshot: "/images/ticketss.png",
     chat: true,
     imageUrl: "/images/user3.jpg",
   },
@@ -341,7 +379,7 @@ export const supportTickets: SupportTicket[] = [
     priority: "Medium",
     date: "09/02/2026",
     time: "11:10 AM",
-    screenshot: true,
+    screenshot: "/images/ticketss.png",
     chat: true,
     imageUrl: "/images/user.jpg",
   },
@@ -356,7 +394,7 @@ export const supportTickets: SupportTicket[] = [
     priority: "Low",
     date: "08/02/2026",
     time: "03:25 PM",
-    screenshot: true,
+    screenshot: "/images/ticketss.png",
     chat: true,
     imageUrl: "/images/user1.jpg",
   },
@@ -371,7 +409,7 @@ export const supportTickets: SupportTicket[] = [
     priority: "High",
     date: "07/02/2026",
     time: "01:40 PM",
-    screenshot: true,
+    screenshot: "/images/ticketss.png",
     chat: true,
     imageUrl: "/images/user2.jpg",
   },
@@ -386,7 +424,7 @@ export const supportTickets: SupportTicket[] = [
     priority: "Medium",
     date: "06/02/2026",
     time: "05:50 PM",
-    screenshot: true,
+    screenshot: "/images/ticketss.png",
     chat: true,
     imageUrl: "/images/user3.jpg",
   },
@@ -465,12 +503,20 @@ const getPriorityBadgeConfig = (value: string) => {
 
 /* ================= COMPONENT ================= */
 export default function UserManagementDashboard() {
+  const [isScreenshotModalOpen, setIsScreenshotModalOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [selectedTicket, setSelectedTicket] = useState<SupportTicket | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
   const [isPriorityDropdownOpen, setIsPriorityDropdownOpen] = useState(false);
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [priorityFilter, setPriorityFilter] = useState("All Priority");
 
+
+
+  const handleCloseScreenshotModal = () => {
+    setIsScreenshotModalOpen(false);
+  };
 
   // 3. FILTER LOGIC
   const filteredTickets = supportTickets.filter(ticket => {
@@ -482,6 +528,7 @@ export default function UserManagementDashboard() {
   });
 
   return (
+    <>
     <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2 flex flex-col desktop:w-[1010px]">
       {/* HEADER */}
       <div className="desktop:text-left text-center">
@@ -941,19 +988,31 @@ export default function UserManagementDashboard() {
                             {ticket.time}
                           </td>
                           {/* Screenshot */}
-                          <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
-                            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto `}>
-                              <IoEye className="text-gray-400 hover:text-gray-600 cursor-pointer" />
-                              <span className="">View</span>
-                            </span>
-                          </td>
+<td className="px-6 py-4 text-center">
+  <button
+    onClick={() => {
+      setSelectedTicket(ticket);   // store clicked ticket
+      setIsScreenshotModalOpen(true); // open modal
+    }}
+    className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-black"
+  >
+    <IoEye className="w-4 h-4" />
+    View
+  </button>
+</td>
                           {/*Chat */}
-                          <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
-                            <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-md text-[14px] font-roboto `}>
-                              <BsChatDots className="text-gray-400 hover:text-gray-600 cursor-pointer" />
-                              <span className="">Chat</span>
-                            </span>
-                          </td>
+                       <td className="px-6 py-4 text-center">
+  <button
+    onClick={() => {
+      setSelectedTicket(ticket);
+      setIsChatOpen(true);
+    }}
+    className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-black"
+  >
+    <BsChatDots className="w-4 h-4" />
+    Chat
+  </button>
+</td>
                         </tr>
                       );
                     })}
@@ -965,6 +1024,35 @@ export default function UserManagementDashboard() {
             </div>)}
         </div>
       </div>
+
     </div >
+    <UploadedScreenshotModal
+  isOpen={isScreenshotModalOpen}
+  onClose={() => {
+    setIsScreenshotModalOpen(false);
+    setSelectedTicket(null);
+  }}
+  imageSrc={selectedTicket?.imageUrl || ""}
+  uploadedBy={selectedTicket?.userName || ""}
+  uploadedAt={selectedTicket?.time || ""}
+  ticketId={selectedTicket?.ticketId || ""}
+/>
+<ChatModal
+  open={isChatOpen}
+  onClose={() => {
+    setIsChatOpen(false);
+    setSelectedTicket(null);
+  }}
+  ticketId={selectedTicket?.ticketId || ""}
+  customerName={selectedTicket?.userName || ""}
+  email={selectedTicket?.email || ""}
+  description={selectedTicket?.description || ""}
+  category={selectedTicket?.category || ""}
+  status={selectedTicket?.status || ""}
+  priority={selectedTicket?.priority || ""}
+  customerAvatar={selectedTicket?.imageUrl || ""}
+  messages={selectedTicket?.messages || []}
+/>
+    </>
   );
 }
