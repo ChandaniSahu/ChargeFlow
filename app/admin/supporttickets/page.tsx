@@ -40,7 +40,9 @@ import { FaExclamation } from "react-icons/fa6";
 import { IoHourglassOutline } from "react-icons/io5";
 import { SiConventionalcommits } from "react-icons/si";
 import ChatModal from "./chatmodal";
-
+import { MessagesSquare } from 'lucide-react';
+import { FaClipboardList } from "react-icons/fa";
+import { VscCircleFilled } from "react-icons/vsc";
 // import Image from "next/image";
 
 /* ================= DATA ================= */
@@ -89,13 +91,13 @@ export const userStats = [
 
 export const actionCards = [
   {
-    icon: ClipboardList, // list icon (All tickets)
+    icon: FaClipboardList, // list icon (All tickets)
     title: "All Ticket Management",
     sub: "View and manage all tickets",
     btn: "View List",
   },
   {
-    icon: MessageSquareMore, // chat icon
+    icon: MessagesSquare, // chat icon
     title: "Assign & Chat System",
     sub: "Assign ticket and chat with user",
     btn: "Open Chat",
@@ -231,7 +233,7 @@ const getActivityConfig = (action: string) => {
       return {
         icon: <Clock size={20} className="group-hover:text-white" />,
         className:
-          "bg-[#fff0e5] text-[#b45309] group-hover:bg-[#b45309]",
+          "bg-[#fff0e5] text-[#ff8000] group-hover:bg-[#ff8000]",
       };
 
     case "resolved":
@@ -437,15 +439,15 @@ const getStatusBadgeConfig = (value: string) => {
     return {
       text: value,
       className: "bg-[#ffdbd6] text-[#fb2c2f] border border-[#ffb4ab]",
-      icon: <RxCross2 size={16} className="text-[#fb2c2f]" />,
+      icon: <SiConventionalcommits size={16} className="text-[#fb2c2f]" />,
     };
   }
 
   if (v === "in progress") {
     return {
       text: value,
-      className: "bg-[#fff4e5] text-[#b45309] border border-[#facc15]",
-      icon: <Clock size={16} className="text-[#b45309]" />,
+      className: "bg-[#f9e8db] text-[#dc7527] border border-[#facc15]",
+      icon: <IoHourglassOutline size={16} className="text-[#dc7527]" />,
     };
   }
 
@@ -471,23 +473,23 @@ const getPriorityBadgeConfig = (value: string) => {
     return {
       text: value,
       className: "bg-[#ffe2e2] text-[#e7000b] border border-[#ffb3b3]",
-      icon: <AlertTriangle size={16} className="text-[#e7000b]" />,
+      icon: <FaExclamation size={16} className="text-[#e7000b]" />,
     };
   }
 
   if (v === "medium") {
     return {
       text: value,
-      className: "bg-[#fff8e1] text-[#c27803] border border-[#facc15]",
-      icon: <Clock size={16} className="text-[#c27803]" />,
+      className: "bg-[#fef3e3] text-[#faad40] border border-[#facc15]",
+      icon: <VscCircleFilled size={16} className="text-[#faad40]" />,
     };
   }
 
   if (v === "low") {
     return {
       text: value,
-      className: "bg-[#e6f9f0] text-[#00a63e] border border-[#7ae7b0]",
-      icon: <CheckCircle size={16} className="text-[#00a63e]" />,
+      className: "bg-[#e1eefd] text-[#2f85f3] border border-[#7ae7b0]",
+      icon: <FaArrowDownLong size={16} className="text-[#2f85f3]" />,
     };
   }
 

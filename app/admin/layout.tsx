@@ -21,7 +21,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* CONTENT */}
       <div className="relative z-10 flex flex-col h-full">
-        <div className="absolute inset-0  backdrop-blur-[23.700000762939453px]" />
+        {/* <div className="absolute inset-0  backdrop-blur-sm" /> */}
         {/* Navbar (fixed height) */}
         <Navbar />
         <div className="desktop:hidden  border-b-[1px] border-[#a9a9a3] max-w-max mx-2 ">

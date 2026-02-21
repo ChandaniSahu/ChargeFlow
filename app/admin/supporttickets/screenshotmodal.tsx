@@ -34,7 +34,7 @@ export default function UploadedScreenshotModal({
   };
 
   return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/55 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/55 backdrop-blur-md">
       <div className="w-[420px] max-w-[95vw] bg-white rounded-[8px] shadow-2xl overflow-hidden flex flex-col px-4">
 
         {/* Header */}
@@ -87,11 +87,11 @@ export default function UploadedScreenshotModal({
 
 function MetaRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex gap-2">
-      <span className="font-medium text-gray-500">
+    <div className="font-inter flex gap-2">
+      <span className="text-[14px] font-medium text-[#364153]">
         {label}
       </span>
-      <span className="text-gray-800">{value}</span>
+      <span className="text-[12px] text-[#757575]">{value}</span>
     </div>
   );
 }

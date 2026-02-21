@@ -116,7 +116,7 @@ export default function ChatModal({
   </div>
 
   {/* RIGHT COLUMN (TAGS) */}
-  <div className="flex gap-3 items-center text-[12px] font-roboto">
+  <div className="hidden sm:flex gap-3  items-center text-[12px] font-roboto">
     <span className="px-4 py-1 border border-[#FF080C47] text-[#E90408] bg-[#FF000424] rounded-lg flex items-center gap-1 ">
       <AlertTriangle size={12} />
       {status}
@@ -132,6 +132,18 @@ export default function ChatModal({
 
 </div>
             </div>
+            <div className="flex sm:hidden flex flex-col gap-2 items-end">
+            <span className="px-3 py-1 text-xs border border-orange-400 text-orange-500 rounded-md flex items-center gap-1">
+              <AlertTriangle size={14} />
+              {status}
+            </span>
+
+            <span
+              className={`px-3 py-1 text-xs border rounded-md ${priorityColor}`}
+            >
+              {priority}
+            </span>
+          </div>
           </div>
 
 
@@ -224,15 +236,15 @@ export default function ChatModal({
     </div>
   );
 }
-// <div className="flex flex-col gap-2 items-end">
-//             <span className="px-3 py-1 text-xs border border-orange-400 text-orange-500 rounded-md flex items-center gap-1">
-//               <AlertTriangle size={14} />
-//               {status}
-//             </span>
+{/* <div className="flex flex-col gap-2 items-end">
+            <span className="px-3 py-1 text-xs border border-orange-400 text-orange-500 rounded-md flex items-center gap-1">
+              <AlertTriangle size={14} />
+              {status}
+            </span>
 
-//             <span
-//               className={`px-3 py-1 text-xs border rounded-md ${priorityColor}`}
-//             >
-//               {priority}
-//             </span>
-//           </div>
+            <span
+              className={`px-3 py-1 text-xs border rounded-md ${priorityColor}`}
+            >
+              {priority}
+            </span>
+          </div> */}
