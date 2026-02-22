@@ -34,44 +34,40 @@ import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import toast from "react-hot-toast";
-
+import data from '../admin-data.json'
 
 
 // import Image from "next/image";
 
 /* ================= DATA ================= */
 
-export const userStats = [
+const StatsConfig = [
   {
-    topIcon: RiMoneyRupeeCircleFill,          // ₹ icon
+    key: "totalRevenue",
     title: "Total Revenue",
-    amount: 1245600,
-    growthValue: 12,
-    bottomIcon: SiSimpleanalytics,
+    topIcon: RiMoneyRupeeCircleFill,
+    bottomIcon: SiSimpleanalytics
   },
   {
-    topIcon: BsGraphUpArrow,           // graph arrow
+    key: "adminCommission",
     title: "Admin Commission",
-    amount: 280500,
-    growthValue: 15,
-    bottomIcon: BsGraphUpArrow,
+    topIcon: BsGraphUpArrow,
+    bottomIcon: BsGraphUpArrow
   },
   {
-    topIcon: FaUsers,                // group icon
+    key: "totalHost",
     title: "Total Host",
-    amount: 965200,
-    growthValue: 10,
+    topIcon: FaUsers,
     bottomIcon: FaUsers,
+    isNumber:true
   },
   {
-    topIcon: FaWallet,               // wallet icon
+    key: "platformRevenue",
     title: "Total Revenue",
-    amount: 540000,
-    growthValue: 8,
-    bottomIcon: FaWallet,
-  },
+    topIcon: FaWallet,
+    bottomIcon: FaWallet
+  }
 ];
-
 
 export const actionCards = [
   {
@@ -645,46 +641,71 @@ export default function UserManagementDashboard() {
           <div className="flex-1 space-y-3 h-full">
             {/* STATS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.6rem]">
-              {userStats.map((s, i) => {
-                const TopIcon = s.topIcon;
-                const BottomIcon = s.bottomIcon;
+              {StatsConfig.map((card, i) => {
+  const statData = data?.payment?.stats[card.key];
 
-                return (
-                  <div
-                    key={i}
-                    className="font-inter relative bg-white rounded-xl py-4 px-2 shadow-md border border-gray-100 overflow-hidden"
-                  >
-                    {/* TOP ICON */}
-                    <div className="flex gap-1 items-center mb-2">
-                      <TopIcon className="text-[#38EF0A]" size={30} />
-                      <p className=" text-[14px] text-[#364153] font-medium">
-                        {s.title}
-                      </p>
-                    </div>
+  if (!statData) return null;
 
-                    {/* VALUE */}
-                    <h2 className="text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-2">
-                      {s.amount.toLocaleString("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 })}
-                    </h2>
+  const TopIcon = card.topIcon;
+  const BottomIcon = card.bottomIcon;
 
-                    {/* GROWTH */}
-                    <div className="flex flex-col gap-1 mt-2">
-                      <span className="font-regular  text-[#25BB00] text-[14px] flex items-center gap-2">
-                        <TrendingUp size={15} />
-                        {'+'}{s.growthValue}%
-                      </span>
-                      <span className="text-[#757575] text-[10px] -mt-1">
-                        Vs Last Month
-                      </span>
-                    </div>
+  // Format value based on type
+  let formattedValue;
 
-                    {/* BOTTOM ICON */}
-                    <div className="absolute -bottom-6 -right-4 w-24 h-24 bg-[#2CDE0026] rounded-full flex items-center justify-center">
-                      <BottomIcon className="text-[#38EF0A]" size={40} />
-                    </div>
-                  </div>
-                );
-              })}
+  if (card.isNumber) {
+    formattedValue = statData.amount.toLocaleString("en-IN");
+  } else {
+    formattedValue = statData.amount.toLocaleString("en-IN", {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 0
+    });
+  }
+
+  const isPositive = statData.growth >= 0;
+
+  return (
+    <div
+      key={i}
+      className="font-inter relative bg-white rounded-xl py-4 px-2 shadow-md border border-gray-100 overflow-hidden"
+    >
+      {/* TOP ICON */}
+      <div className="flex gap-1 items-center mb-2">
+        <TopIcon className="text-[#38EF0A]" size={30} />
+        <p className="text-[14px] text-[#364153] font-medium">
+          {card.title}
+        </p>
+      </div>
+
+      {/* VALUE */}
+      <h2 className="text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-2">
+        {formattedValue}
+      </h2>
+
+      {/* GROWTH */}
+      <div className="flex flex-col gap-1 mt-2">
+        <span
+          className={`text-[14px] flex items-center gap-2 ${
+            isPositive ? "text-[#25BB00]" : "text-red-500"
+          }`}
+        >
+          <TrendingUp size={15} />
+          {isPositive ? "+" : ""}
+          {statData.growth}%
+        </span>
+
+        <span className="text-[#757575] text-[10px] -mt-1">
+          Vs Last Month
+        </span>
+      </div>
+
+      {/* BOTTOM ICON */}
+      <div className="absolute -bottom-6 -right-4 w-24 h-24 bg-[#2CDE0026] rounded-full flex items-center justify-center">
+        <BottomIcon className="text-[#38EF0A]" size={40} />
+      </div>
+    </div>
+  );
+})}
             </div>
 
             {/* ACTION CARDS */}

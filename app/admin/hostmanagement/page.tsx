@@ -26,89 +26,122 @@ import { PiBatteryChargingBold } from "react-icons/pi";
 import { LiaMoneyBillWaveSolid } from "react-icons/lia";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 // import Image from "next/image";
+import data from '../admin-data.json'
 
 /* ================= DATA ================= */
-export const userStats = [
+const StatsConfig = [
   {
+    key: "totalHosts",
+    title: "Total Hosts",
     topIcon: MdOutlinePeopleAlt,
-    title: "Total Users",
-    value: "1,459",
-    growth: "+12.5%",
-    bottomIcon: MdOutlinePeopleAlt,
+    bottomIcon: MdOutlinePeopleAlt
   },
   {
+    key: "verifiedHosts",
+    title: "Host Verified",
     topIcon: CheckCircle,
-    title: "User Verified",
-    value: "1,120",
-    growth: "+10%",
-    bottomIcon: CheckCircle,
+    bottomIcon: CheckCircle
   },
   {
+    key: "activeHosts",
+    title: "Active Host",
     topIcon: Radio,
-    title: "Active User",
-    value: "156",
-    growth: "+10%",
-    bottomIcon: Radio,
+    bottomIcon: Radio
   },
   {
-    topIcon: RiMoneyRupeeCircleFill,
+    key: "totalRevenue",
     title: "Total Revenue",
-    value: "₹2,85,450",
-    growth: "+14.5%",
+    topIcon: RiMoneyRupeeCircleFill,
     bottomIcon: SiSimpleanalytics,
-  },
+    isCurrency: true
+  }
 ];
 
-const actionCards = [
+const ActionConfig = [
   {
+    key: "kyc",
     title: "KYC Verifications",
-    sub: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[15px] font-semibold">28</span>
-        <span className="text-[12px] font-medium">Pending Approvals</span>
-      </div>
-    ),
-    btn: "Review Now",
-    btnIcon: AiOutlineArrowRight,
     icon: CheckCircle,
+    btn: "Review Now",
+    btnIcon: AiOutlineArrowRight
   },
   {
+    key: "wallet",
     title: "Wallet",
-    sub: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[15px] font-semibold">₹45,200</span>
-        <span className="text-[12px]">Success</span>
-      </div>
-    ),
-    btn: "View All",
-    btnIcon: MdOutlineKeyboardArrowRight,
     icon: Wallet,
+    btn: "View All",
+    btnIcon: MdOutlineKeyboardArrowRight
   },
   {
+    key: "payments",
     title: "Payment History",
-    sub: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[15px] font-semibold">145</span>
-        <span className="text-[12px]">Successful Payments</span>
-      </div>
-    ),
-    btn: "View Reports",
-    btnIcon: MdOutlineKeyboardArrowRight,
     icon: FileText,
+    btn: "View Reports",
+    btnIcon: MdOutlineKeyboardArrowRight
   },
   {
+    key: "blockedUsers",
     title: "Blocked Users",
-    sub: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[15px] font-semibold">07</span>
-        <span className="text-[12px]">Blocked Accounts</span>
-      </div>
-    ),
-    btn: "Manage List",
-    btnIcon: MdOutlineKeyboardArrowRight,
     icon: UserX,
-  },
+    btn: "Manage List",
+    btnIcon: MdOutlineKeyboardArrowRight
+  }
 ];
+
+const renderActionSub = (key, data) => {
+  switch (key) {
+    case "kyc":
+      return (
+        <div className="flex items-center gap-[0.3rem]">
+          <span className="text-[15px] font-semibold">
+            {data.pending}
+          </span>
+          <span className="text-[12px] font-medium">
+            Pending Approvals
+          </span>
+        </div>
+      );
+
+    case "wallet":
+      return (
+        <div className="flex items-center gap-[0.3rem]">
+          <span className="text-[15px] font-semibold">
+            ₹{data.amount.toLocaleString()}
+          </span>
+          <span className="text-[12px]">
+            Sucess
+          </span>
+        </div>
+      );
+
+    case "payments":
+      return (
+        <div className="flex items-center gap-[0.3rem]">
+          <span className="text-[15px] font-semibold">
+            {data.successful}
+          </span>
+          <span className="text-[12px]">
+            Successful Payments
+          </span>
+        </div>
+      );
+
+    case "blockedUsers":
+      return (
+        <div className="flex items-center gap-[0.3rem]">
+          <span className="text-[15px] font-semibold">
+            {data.count}
+          </span>
+          <span className="text-[12px]">
+            Blocked Accounts
+          </span>
+        </div>
+      );
+
+    default:
+      return null;
+  }
+};
 
 export const chargerStatus = [
   { name: "Active", value: 220, color: "#22c55e" },
@@ -359,80 +392,94 @@ export default function UserManagementDashboard() {
           <div className="flex-1 space-y-3 h-full">
             {/* STATS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.6rem]">
-              {userStats.map((s, i) => {
-                const TopIcon = s.topIcon;
-                const BottomIcon = s.bottomIcon;
+              {StatsConfig.map((card, i) => {
+  const statData = data.host.stats[card.key]; // from JSON
+  const TopIcon = card.topIcon; // or card.topIcon if you named it that
+  const BottomIcon = card.bottomIcon || card.topIcon;
 
-                return (
-                  <div
-                    key={i}
-                    className="font-inter relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
-                  >
-                    {/* TOP ICON */}
-                    <div className="flex gap-4 items-center mb-2">
-                      <TopIcon className="text-[#38EF0A]" size={30} />
-                      <p className=" text-[13px] text-[#364153] font-medium">
-                        {s.title}
-                      </p>
-                    </div>
+  const formattedValue = card.isCurrency
+    ? `₹${statData.value.toLocaleString()}`
+    : statData.value.toLocaleString();
 
-                    {/* VALUE */}
-                    <h2 className="text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-2">
-                      {s.value}
-                    </h2>
+  const isPositive = statData.growth >= 0;
 
-                    {/* GROWTH */}
-                    <div className="flex flex-col gap-1 mt-2">
-                      <span className="font-regular  text-[#25BB00] text-[14px] flex items-center gap-2">
-                        <TrendingUp size={15} />
-                        {s.growth}
-                      </span>
-                      <span className="text-[#757575] text-[10px] -mt-1">
-                        Vs Last Month
-                      </span>
-                    </div>
+  return (
+    <div
+      key={i}
+      className="font-inter relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
+    >
+      {/* TOP ICON */}
+      <div className="flex gap-4 items-center mb-2">
+        <TopIcon className="text-[#38EF0A]" size={30} />
+        <p className="text-[13px] text-[#364153] font-medium">
+          {card.title}
+        </p>
+      </div>
 
-                    {/* BOTTOM ICON */}
-                    <div className="absolute -bottom-6 -right-4 w-24 h-24 bg-[#2CDE0026] rounded-full flex items-center justify-center">
-                      <BottomIcon className="text-[#38EF0A]" size={40} />
-                    </div>
-                  </div>
-                );
-              })}
+      {/* VALUE */}
+      <h2 className="text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-2">
+        {formattedValue}
+      </h2>
+
+      {/* GROWTH */}
+      <div className="flex flex-col gap-1 mt-2">
+        <span
+          className={`text-[14px] flex items-center gap-2 ${
+            isPositive ? "text-[#25BB00]" : "text-red-500"
+          }`}
+        >
+          <TrendingUp size={15} />
+          {isPositive ? "+" : ""}
+          {statData.growth}%
+        </span>
+
+        <span className="text-[#757575] text-[10px] -mt-1">
+          Vs Last Month
+        </span>
+      </div>
+
+      {/* BOTTOM ICON */}
+      <div className="absolute -bottom-6 -right-4 w-24 h-24 bg-[#2CDE0026] rounded-full flex items-center justify-center">
+        <BottomIcon className="text-[#38EF0A]" size={40} />
+      </div>
+    </div>
+  );
+})}
             </div>
 
             {/* ACTION CARDS */}
             <div className="grid grid-cols-2  lg:grid-cols-4 gap-[0.6rem] mt-3">
-              {actionCards.map((a, i) => {
-                const TopIcon = a.icon;
-                const BtnIcon = a.btnIcon;
+{ActionConfig.map((card, i) => {
+  const TopIcon = card.icon;
+  const BtnIcon = card.btnIcon;
+  const actionData = data.host.actions[card.key]; // from JSON
 
-                return (
-                  <div
-                    key={i}
-                    className="font-inter bg-white p-2 rounded-xl shadow-md border border-gray-100"
-                  >
-                    {/* TOP ICON + TITLE */}
-                    <div className="flex items-center gap-1 mb-2">
-                      <TopIcon size={17} className="text-[#2CDE00]" />
-                      <h3 className="text-[11px] font-semibold text-[#364153]">
-                        {a.title}
-                      </h3>
-                    </div>
+  return (
+    <div
+      key={i}
+      className="font-inter bg-white p-2 rounded-xl shadow-md border border-gray-100"
+    >
+      {/* TOP ICON + TITLE */}
+      <div className="flex items-center gap-1 mb-2">
+        <TopIcon size={17} className="text-[#2CDE00]" />
+        <h3 className="text-[11px] font-semibold text-[#364153]">
+          {card.title}
+        </h3>
+      </div>
 
-                    {/* SUB TEXT */}
-                    <div className="font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF] pt-1 text-sm">
-                      {a.sub}
-                    </div>
+      {/* SUB TEXT */}
+      <div className="font-medium text-[#333333] mb-3 border-t-[1.5px] border-[#DFDFDF] pt-1 text-sm">
+        {renderActionSub(card.key, actionData)}
+      </div>
 
-                    {/* BUTTON */}
-                    <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] text-white rounded-md">
-                      {a.btn}
-                      {BtnIcon && <BtnIcon size={14} />}
-                    </button>
-                  </div>
-                );
-              })}
+      {/* BUTTON */}
+      <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] text-white rounded-md">
+        {card.btn}
+        {BtnIcon && <BtnIcon size={14} />}
+      </button>
+    </div>
+  );
+})}
             </div>
           </div>
 

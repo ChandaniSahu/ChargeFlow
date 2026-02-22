@@ -67,5 +67,63 @@
         "count": 7
       }
     }
+  },
+  "host": {
+    "stats": {
+      "totalHosts": {
+        "value": 1459,
+        "growth": 12.5
+      },
+      "verifiedHosts": {
+        "value": 1120,
+        "growth": 10
+      },
+      "activeHosts": {
+        "value": 156,
+        "growth": 10
+      },
+      "totalRevenue": {
+        "value": 285450,
+        "growth": 14.5
+      }
+    },
+    "actions": {
+      "kyc": {
+        "pending": 28
+      },
+      "wallet": {
+        "amount": 45200,
+        "status": "Success"
+      },
+      "payments": {
+        "successful": 145
+      },
+      "blockedUsers": {
+        "count": 7
+      }
+    }
+  },
+    "booking": {
+    "stats": {
+      "totalBooking": { "value": 1850 },
+      "activeSessions": { "value": 20 },
+      "successRate": { "value": 92 },
+      "totalRevenue": { "value": 145000 }
+    },
+    "actions": {
+      "manageBooking": { "value": 1250 },
+      "upcomingBooking": { "value": 45 },
+      "completedSessions": { "value": 1150 },
+      "cancelledBooking": { "value": 55 }
+    }
+  },
+  "payment": {
+    "stats": {
+      "totalRevenue": { "amount": 1245600, "growth": 12 },
+      "adminCommission": { "amount": 280500, "growth": 15 },
+      "totalHost": { "amount": 965200, "growth": 10 },
+      "platformRevenue": { "amount": 540000, "growth": 8 }
+    }
   }
+  
 }

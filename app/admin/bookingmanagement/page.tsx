@@ -30,75 +30,74 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { BsCalendarMonth  } from "react-icons/bs";
 import { Bolt } from "lucide-react";
 import { BiSolidZap } from "react-icons/bi";
-
+import data from '../admin-data.json'
 
 
 // import Image from "next/image";
 
 /* ================= DATA ================= */
-export const userStats = [
+const StatsConfig = [
   {
-    topIcon: CalendarDays,
+    key: "totalBooking",
     title: "Total Booking",
-    value: 1850,
     sub: "All-time count",
-    bottomIcon: CalendarDays,
+    topIcon: CalendarDays,
+    bottomIcon: CalendarDays
   },
   {
-    topIcon: BiSolidZap,
+    key: "activeSessions",
     title: "Active Sessions",
-    value: 20,
     sub: "Currently Charging",
-    bottomIcon: BiSolidZap,
+    topIcon: BiSolidZap,
+    bottomIcon: BiSolidZap
   },
   {
-    topIcon: CheckCircle,
+    key: "successRate",
     title: "Success Rate",
-    value: 92,
     sub: "Completed vs Cancelled",
+    topIcon: CheckCircle,
     bottomIcon: CheckCircle,
+    isPercentage: true
   },
   {
-    topIcon: RiMoneyRupeeCircleFill, // unchanged
+    key: "totalRevenue",
     title: "Total Revenue",
-    value: 145000,
     sub: "Lifetime Earnings",
-    bottomIcon: SiSimpleanalytics, // unchanged
-  },
+    topIcon: RiMoneyRupeeCircleFill,
+    bottomIcon: SiSimpleanalytics,
+    isCurrency: true
+  }
 ];
 
-
-
-
-export const actionCards = [
+const ActionConfig = [
   {
-    icon: CalendarDays,
+    key: "manageBooking",
     title: "Manage All Booking",
-    value: 1250,
     sub: "Bookings",
-    btn: "View All",
+    icon: CalendarDays,
+    btn: "View All"
   },
   {
-    icon: TbCalendarTime ,
+    key: "upcomingBooking",
     title: "Upcoming Booking",
-    value: 45,
     sub: "Upcoming",
-    btn: "View Schedule",
+    icon: TbCalendarTime,
+    btn: "View Schedule"
   },
   {
-    icon: CheckCircle,
+    key: "completedSessions",
     title: "Completed Sessions",
-    value: 1150,
     sub: "Completed",
-    btn: "View History",
+    icon: CheckCircle,
+    btn: "View History"
   },
   {
-    icon: X,
+    key: "cancelledBooking",
     title: "Cancelled Booking",
-    value: 55,
     sub: "Cancelled",
-    btn: "Manage Disputes",
-  },
+    icon: X,
+    btn: "Manage Disputes"
+  }
 ];
 
 export const chargerStatus = [
@@ -446,79 +445,91 @@ if (typeFilter !== "All Dates") {
           <div className="flex-1 space-y-3 h-full">
             {/* STATS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.6rem]">
-              {userStats.map((s, i) => {
-                const TopIcon = s.topIcon;
-                const BottomIcon = s.bottomIcon;
+{StatsConfig.map((card, i) => {
+  const statData = data.booking.stats[card.key];
+  console.log('statData', statData)
+  const TopIcon = card.topIcon;
+  const BottomIcon = card.bottomIcon;
 
-                return (
-                  <div
-                    key={i}
-                    className="font-inter relative bg-white rounded-xl p-4 pb-13 shadow-md border border-gray-100 overflow-hidden"
-                  >
-                    {/* TOP ICON */}
-                    <div className="flex gap-4 items-center mb-1">
-                      <TopIcon className="text-[#38EF0A]" size={30} />
-                      <p className=" text-[13px] text-[#364153] font-medium">
-                        {s.title}
-                      </p>
-                    </div>
+  let formattedValue = statData.value.toLocaleString();
 
-                    {/* VALUE */}
-                    <h2 className="text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">
-                      {s.value}
-                    </h2>
+  if (card.isCurrency) {
+    formattedValue = `₹${statData.value.toLocaleString()}`;
+  }
 
-                    {/* GROWTH */}
-                    
-                      <div className="font-inter font-medium text-[#7C7C7C] text-[10px] ">
-                        {s.sub}
-                      </div>
+  if (card.isPercentage) {
+    formattedValue = `${statData.value}%`;
+  }
 
-                    {/* BOTTOM ICON */}
-                    <div className="absolute -bottom-12 -right-4 w-26 h-26 bg-[#2CDE0026] rounded-full flex pt-3 justify-center">
-                      <BottomIcon className="text-[#38EF0A] w-10 h-10" />
-                    </div>
-                  </div>
-                );
-              })}
+  return (
+    <div
+      key={i}
+      className="font-inter relative bg-white rounded-xl p-4 pb-13 shadow-md border border-gray-100 overflow-hidden"
+    >
+      {/* TOP ICON */}
+      <div className="flex gap-4 items-center mb-1">
+        <TopIcon className="text-[#38EF0A]" size={30} />
+        <p className="text-[13px] text-[#364153] font-medium">
+          {card.title}
+        </p>
+      </div>
+
+      {/* VALUE */}
+      <h2 className="text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">
+        {formattedValue}
+      </h2>
+
+      {/* SUB */}
+      <div className="font-inter font-medium text-[#7C7C7C] text-[10px]">
+        {card.sub}
+      </div>
+
+      {/* BOTTOM ICON */}
+      <div className="absolute -bottom-12 -right-4 w-26 h-26 bg-[#2CDE0026] rounded-full flex pt-3 justify-center">
+        <BottomIcon className="text-[#38EF0A] w-10 h-10" />
+      </div>
+    </div>
+  );
+})}
             </div>
 
             {/* ACTION CARDS */}
 <div className="grid grid-cols-2 lg:grid-cols-4 gap-[0.6rem] mt-3">
-  {actionCards.map((a, i) => {
-    const Icon = a.icon;
+{ActionConfig.map((card, i) => {
+  const Icon = card.icon;
+  const actionData = data.booking.actions[card.key];
 
-    return (
-      <div
-        key={i}
-        className="font-inter bg-white px-3 py-2 rounded-xl shadow-md border border-gray-100"
-      >
-        {/* TOP ICON + TITLE */}
-        <div className="flex items-center gap-2 mb-2">
-          <Icon size={18} className="text-[#2CDE00]" />
-          <h3 className="text-[13px] font-semibold text-[#364153]">
-            {a.title}
-          </h3>
-        </div>
-
-        {/* VALUE + SUB */}
-        <div className="flex items-center gap-1 border-t-[1.5px] border-[#DFDFDF] pt-1 mb-1">
-          <div className="text-[20px] font-bold text-[#333333]">
-            {a.title === "Upcoming Booking" ? `₹${a.value}` : a.value}
-          </div>
-          <div className="text-[12px] text-[#666666]">
-            {a.sub}
-          </div>
-        </div>
-
-        {/* BUTTON */}
-        <button className="flex items-center justify-center gap-1 w-[130px] py-1.5 text-[12px] font-semibold bg-[#38EF0A] text-white rounded-md">
-          {a.btn}
-          <ChevronRight size={14} />
-        </button>
+  return (
+    <div
+      key={i}
+      className="font-inter bg-white px-3 py-2 rounded-xl shadow-md border border-gray-100"
+    >
+      {/* TOP ICON + TITLE */}
+      <div className="flex items-center gap-2 mb-2">
+        <Icon size={18} className="text-[#2CDE00]" />
+        <h3 className="text-[13px] font-semibold text-[#364153]">
+          {card.title}
+        </h3>
       </div>
-    );
-  })}
+
+      {/* VALUE + SUB */}
+      <div className="flex items-center gap-1 border-t-[1.5px] border-[#DFDFDF] pt-1 mb-1">
+        <div className="text-[20px] font-bold text-[#333333]">
+          {actionData.value.toLocaleString()}
+        </div>
+        <div className="text-[12px] text-[#666666]">
+          {card.sub}
+        </div>
+      </div>
+
+      {/* BUTTON */}
+      <button className="flex items-center justify-center gap-1 w-[130px] py-1.5 text-[12px] font-semibold bg-[#38EF0A] text-white rounded-md">
+        {card.btn}
+        <ChevronRight size={14} />
+      </button>
+    </div>
+  );
+})}
 </div>
           </div>
 
