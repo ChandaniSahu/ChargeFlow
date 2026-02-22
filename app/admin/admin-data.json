@@ -32,5 +32,40 @@
       "maintenance": { "underMaintenance": 40 },
       "blocked": { "blockedCount": 20 }
     }
+  },
+  "user": {
+    "stats": {
+      "totalUsers": {
+        "value": 1459,
+        "growth": 12.5
+      },
+      "verifiedUsers": {
+        "value": 1120,
+        "growth": 10
+      },
+      "activeUsers": {
+        "value": 156,
+        "growth": 10
+      },
+      "totalRevenue": {
+        "value": 285450,
+        "growth": 14.5
+      }
+    },
+    "actions": {
+      "kyc": {
+        "pending": 28
+      },
+      "wallet": {
+        "amount": 45200,
+        "status": "Success"
+      },
+      "payments": {
+        "successful": 145
+      },
+      "blockedUsers": {
+        "count": 7
+      }
+    }
   }
 }

@@ -40,136 +40,79 @@ import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { IoMdSettings } from "react-icons/io";
-
+import data from "../admin-data.json";
 // import Image from "next/image";
 
 /* ================= DATA ================= */
-export const StatsCards = [
+const StatsConfig = [
   {
+    key: "totalChargers",
     title: "Total Chargers",
-    value: "850",
-    meta: <>
-      <div className="max-w-[85px] font-inter font-medium flex flex-wrap gap-x-1 gap-y-1 text-[9px] text-[#7C7C7C] text-center mt-1">
-        <span className="whitespace-nowrap">
-          AC: <span className="font-semibold text-[#38EF0A]">560</span>
-        </span>
-        <span className="text-[#DFDFDF]">|</span>
-        <span className="whitespace-nowrap">
-          DC: <span className="font-semibold text-[#38EF0A]">210</span>
-        </span>
-
-        <span className="whitespace-nowrap mx-auto">
-          Fast: <span className="font-semibold text-[#38EF0A]">80</span>
-        </span>
-      </div>
-
-    </>,
-    growth: null,
     icon: FaChargingStation,
-    theme: "green",
     bottomIcon: FaChargingStation,
+    theme: "green",
+    type: "totalWithBreakdown"
   },
   {
+    key: "inactiveChargers",
     title: "Inactive Chargers",
-    value: "80",
-    meta: "Vs Yesterday",
-    growth: "-2%",
     icon: RiAlertFill,
-    theme: "orange",
     bottomIcon: RiAlertFill,
+    theme: "orange",
+    type: "growth"
   },
   {
+    key: "activeChargers",
     title: "Active Chargers",
-    value: "820",
-    meta: "Vs Yesterday",
-    growth: "+8%",
     icon: Radio,
+    bottomIcon: Radio,
     theme: "green",
-    bottomIcon: Radio
+    type: "growth"
   },
   {
+    key: "totalRevenue",
     title: "Total Revenue",
-    value: "₹4,50,890",
-    meta: "Vs Last Month",
-    growth: "+15%",
     icon: RiMoneyRupeeCircleFill,
-    theme: "green",
     bottomIcon: SiSimpleanalytics,
-  },
+    theme: "green",
+    type: "currencyGrowth"
+  }
 ];
 
-export const actionCards = [
+const ActionConfig = [
   {
+    key: "manageChargers",
     title: "Manage Chargers",
-    sub1: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[12px] font-medium">
-          Total Chargers:
-        </span>
-        <span className="text-[15px] font-semibold">850</span>
-
-      </div>
-    ),
-    sub2: "aC / DC / Fast chargers",
+    icon: IoMdSettings,
     btn: "Manage",
-    btnIcon: MdOutlineKeyboardArrowRight,
-    icon:IoMdSettings ,
+    type: "manage",
+    sub: "AC / DC / Fast chargers"
   },
   {
+    key: "chargerStatus",
     title: "Charger Status",
-    sub1: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[12px] font-medium">
-          Active :
-        </span>
-        <span className="text-[15px] font-semibold text-[#38EF0A]">720</span>
-        <span className="text-[#DFDFDF]">|</span>
-        <span className="text-[12px] font-medium">
-          Offline :
-        </span>
-        <span className="text-[15px] font-semibold text-[#38EF0A]">90</span>
-
-      </div>
-    ),
-
-    btn: "View Status",
-    btnIcon: MdOutlineKeyboardArrowRight,
     icon: FaChargingStation,
+    btn: "View Status",
+    type: "status"
   },
   {
+    key: "maintenance",
     title: "Maintenance Mode",
-    sub1: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[12px] font-medium">
-          Under Maintenance :
-        </span>
-        <span className="text-[15px] font-semibold">40</span>
-
-      </div>
-    ),
-    sub2: "requires attention",
-    btn: "Manage",
-    btnIcon: MdOutlineKeyboardArrowRight,
     icon: MdOutlineBuildCircle,
+    btn: "Manage",
+    type: "maintenance",
+    sub: "requires attention"
   },
   {
+    key: "blocked",
     title: "Blocked Chargers",
-    sub1: (
-      <div className="flex items-center gap-[0.3rem]">
-        <span className="text-[15px] font-semibold">20</span>
-        <span className="text-[12px] font-medium">
-          Chargers Blocked
-        </span>
-
-
-      </div>
-    ),
-    sub2: "offline / blocked",
-    btn: "Manage List",
-    btnIcon: MdOutlineKeyboardArrowRight,
     icon: MdBlock,
-  },
+    btn: "Manage List",
+    type: "blocked",
+    sub: "offline / blocked"
+  }
 ];
+
 export const chargerStatus = [
   { name: "Active", value: 220, color: "#22c55e" },
   { name: "Offline", value: 45, color: "#ef4444" },
@@ -395,7 +338,7 @@ export interface ChargerCard {
   image: string;
 }
 
-export const chargers: ChargerCard[] = [
+export const chargerData: ChargerCard[] = [
   {
     title: "DC Fast - MG Road Metro",
     sub: "Reddy Fast Charge",
@@ -537,7 +480,7 @@ export const getAmountTextStyle = (status: ActivityItem["status"]) => {
 
 /* ================= COMPONENT ================= */
 export default function UserManagementDashboard() {
-  const [data, setData] = useState<ChargerCard[]>(chargers);
+  const [chargers, setChargers] = useState<ChargerCard[]>(chargerData);
   const [search, setSearch] = useState("");
   const [isTypeDropdownOpen, setIsTypeDropdownOpen] = useState(false);
   const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
@@ -549,7 +492,7 @@ export default function UserManagementDashboard() {
 
 
   /* ---------------- FILTER LOGIC ---------------- */
-const filteredData = data.filter((c) => {
+const filteredChargers = chargers.filter((c) => {
   const searchText = search.toLowerCase();
 
   const matchSearch =
@@ -573,7 +516,7 @@ const filteredData = data.filter((c) => {
 
   /* ---------------- STATE HANDLERS ---------------- */
   const toggleState = (index: number, state: "block" | "unblock") => {
-    setData((prev) =>
+    setChargers((prev) =>
       prev.map((c, i) => (i === index ? { ...c, state } : c))
     );
   };
@@ -582,7 +525,7 @@ const filteredData = data.filter((c) => {
     index: number,
     mode: "online" | "offline" | "maintenance"
   ) => {
-    setData((prev) =>
+    setChargers((prev) =>
       prev.map((c, i) => (i === index ? { ...c, mode } : c))
     );
   };
@@ -605,105 +548,203 @@ const filteredData = data.filter((c) => {
           <div className="flex-1 space-y-3 h-full">
             {/* STATS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.6rem]">
-              {StatsCards.map((s, i) => {
-                const TopIcon = s.icon;
-                const BottomIcon = s.bottomIcon;
-                const isPositive = s.growth?.includes("+");
+              {StatsConfig.map((card) => {
+  const stat = data.charger.stats[card.key];
+  const TopIcon = card.icon;
+  const BottomIcon = card.bottomIcon;
 
-                return (
-                  <div
-                    key={i}
-                    className="font-inter relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
-                  >
-                    {/* TOP ICON + TITLE */}
-                    <div className="flex gap-2 items-center mb-2">
-                      <TopIcon
-                        size={30}
-                        className={s.theme === "green" ? "text-[#38EF0A]" : "text-[#FF8A00]"}
-                      />
-                      <p className="text-[12px] text-[#364153] font-medium">
-                        {s.title}
-                      </p>
-                    </div>
+  const isPositive = stat.growth >= 0;
 
-                    {/* VALUE */}
-                    <h2 className="text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">
-                      {s.value}
-                    </h2>
+  return (
+    <div
+      key={card.key}
+      className="font-inter relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
+    >
+      {/* TOP ICON */}
+      <div className="flex gap-2 items-center mb-2">
+        <TopIcon
+          size={30}
+          className={
+            card.theme === "green"
+              ? "text-[#38EF0A]"
+              : "text-[#FF8A00]"
+          }
+        />
+        <p className="text-[12px] text-[#364153] font-medium">
+          {card.title}
+        </p>
+      </div>
 
-                    {/* META / GROWTH */}
-                    <div className="flex flex-col gap-1 mt-2">
-                      {s.growth ? (
-                        <>
-                          <span
-                            className={`text-[14px] flex items-center gap-2 font-medium ${isPositive ? "text-[#25BB00]" : "text-red-500"
-                              }`}
-                          >
-                            <TrendingUp size={15} />
-                            {s.growth}
-                          </span>
-                          <span className="text-[#757575] text-[10px] -mt-1">
-                            {s.meta}
-                          </span>
-                        </>
-                      ) : (
-                        <span className="text-[#757575] text-[11px] mt-1">
-                          {s.meta}
-                        </span>
-                      )}
-                    </div>
+      {/* VALUE */}
+      <h2 className="text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">
+        {card.type === "currencyGrowth"
+          ? `₹${stat.total.toLocaleString()}`
+          : stat.total}
+      </h2>
 
-                    {/* BOTTOM CIRCLE ICON */}
-                    <div
-                      className={`absolute -bottom-6 -right-4 w-24 h-24 rounded-full flex items-center justify-center
-        ${s.theme === "green"
-                          ? "bg-[#2CDE0026]"
-                          : "bg-[#FF8A0026]"
-                        }`}
-                    >
-                      <BottomIcon
-                        size={40}
-                        className={s.theme === "green" ? "text-[#38EF0A]" : "text-[#FF8A00]"}
-                      />
-                    </div>
-                  </div>
-                );
-              })}
+      {/* META SECTION */}
+      <div className="flex flex-col gap-1 mt-2">
+
+        {/* TYPE 1 → Total With Breakdown */}
+        {card.type === "totalWithBreakdown" && (
+          <div className="max-w-[85px] font-medium flex flex-wrap gap-x-1 gap-y-1 text-[9px] text-[#7C7C7C] text-center mt-1">
+            <span>
+              AC: <span className="font-semibold text-[#38EF0A]">{stat.ac}</span>
+            </span>
+            <span className="text-[#DFDFDF]">|</span>
+            <span>
+              DC: <span className="font-semibold text-[#38EF0A]">{stat.dc}</span>
+            </span>
+            <span className="mx-auto">
+              Fast: <span className="font-semibold text-[#38EF0A]">{stat.fast}</span>
+            </span>
+          </div>
+        )}
+
+        {/* TYPE 2 → Growth */}
+        {(card.type === "growth" || card.type === "currencyGrowth") && (
+          <>
+            <span
+              className={`text-[14px] flex items-center gap-2 font-medium ${
+                isPositive ? "text-[#25BB00]" : "text-red-500"
+              }`}
+            >
+              <TrendingUp size={15} />
+              {isPositive ? "+" : ""}
+              {stat.growth}%
+            </span>
+            <span className="text-[#757575] text-[10px] -mt-1">
+              Vs Yesterday
+            </span>
+          </>
+        )}
+      </div>
+
+      {/* BOTTOM ICON */}
+      <div
+        className={`absolute -bottom-6 -right-4 w-24 h-24 rounded-full flex items-center justify-center ${
+          card.theme === "green"
+            ? "bg-[#2CDE0026]"
+            : "bg-[#FF8A0026]"
+        }`}
+      >
+        <BottomIcon
+          size={40}
+          className={
+            card.theme === "green"
+              ? "text-[#38EF0A]"
+              : "text-[#FF8A00]"
+          }
+        />
+      </div>
+    </div>
+  );
+})}
 
             </div>
 
             {/* ACTION CARDS */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-[0.6rem] mt-3">
-              {actionCards.map((a, i) => {
-                const TopIcon = a.icon;
-                const BtnIcon = a.btnIcon;
+{ActionConfig.map((card) => {
+  const TopIcon = card.icon;
+  const action = data.charger.actions[card.key];
 
-                return (
-                  <div
-                    key={i}
-                    className="font-inter bg-white p-2 rounded-xl shadow-md border border-gray-100 flex flex-col"
-                  >
-                    {/* TOP ICON + TITLE */}
-                    <div className="flex items-center gap-1 mb-2">
-                      <TopIcon size={17} className="text-[#2CDE00]" />
-                      <h3 className="text-[11px] font-semibold text-[#364153]">
-                        {a.title}
-                      </h3>
-                    </div>
+  return (
+    <div
+      key={card.key}
+      className="font-inter bg-white p-2 rounded-xl shadow-md border border-gray-100 flex flex-col"
+    >
+      {/* TOP ICON + TITLE */}
+      <div className="flex items-center gap-1 mb-2">
+        <TopIcon size={17} className="text-[#2CDE00]" />
+        <h3 className="text-[11px] font-semibold text-[#364153]">
+          {card.title}
+        </h3>
+      </div>
 
-                    {/* SUB TEXT */}
-                    <div className="font-medium text-[#333333]  border-t-[1.5px] border-[#DFDFDF] pt-1 text-[10px]">
-                      {a.sub1}
-                    </div>
-                    <div className="font-medium text-[#8E8E93] text-[9px] mb-1 capitalize">{a.sub2}</div>
-                    {/* BUTTON */}
-                    <button className="mt-auto flex items-center justify-center gap-1 w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A]  text-white rounded-md">
-                      {a.btn}
-                      {BtnIcon && <BtnIcon size={14} />}
-                    </button>
-                  </div>
-                );
-              })}
+      {/* SUB TEXT */}
+      <div className="font-medium text-[#333333] border-t-[1.5px] border-[#DFDFDF] pt-1 text-[10px]">
+
+        {card.type === "manage" && (
+          <>
+            <div className="flex items-center gap-[0.3rem]">
+              <span className="text-[12px] font-medium">
+                Total Chargers:
+              </span>
+              <span className="text-[15px] font-semibold">
+                {action.total}
+              </span>
+            </div>
+            {/* <div className="text-[9px] text-[#8E8E93] mt-1">
+              AC / DC / Fast chargers
+            </div> */}
+          </>
+        )}
+
+        {card.type === "status" && (
+          <div className="flex items-center gap-[0.3rem]">
+            <span className="text-[12px] font-medium">
+              Active :
+            </span>
+            <span className="text-[15px] font-semibold text-[#38EF0A]">
+              {action.active}
+            </span>
+            <span className="text-[#DFDFDF]">|</span>
+            <span className="text-[12px] font-medium">
+              Offline :
+            </span>
+            <span className="text-[15px] font-semibold text-[#38EF0A]">
+              {action.offline}
+            </span>
+          </div>
+        )}
+
+        {card.type === "maintenance" && (
+          <>
+            <div className="flex items-center gap-[0.3rem]">
+              <span className="text-[12px] font-medium">
+                Under Maintenance :
+              </span>
+              <span className="text-[15px] font-semibold">
+                {action.underMaintenance}
+              </span>
+            </div>
+            {/* <div className="text-[9px] text-[#8E8E93] mt-1">
+              requires attention
+            </div> */}
+          </>
+        )}
+
+        {card.type === "blocked" && (
+          <>
+            <div className="flex items-center gap-[0.3rem]">
+              <span className="text-[15px] font-semibold">
+                {action.blockedCount}
+              </span>
+              <span className="text-[12px] font-medium">
+                Chargers Blocked
+              </span>
+            </div>
+            {/* <div className="text-[9px] text-[#8E8E93] mt-1">
+              offline / blocked
+            </div> */}
+          </>
+        )}
+          {card.sub && (
+    <div className="text-[9px] text-[#8E8E93] mb-1 capitalize">
+      {card.sub}
+    </div>
+  )}
+
+      </div>
+
+      {/* BUTTON */}
+      <button className="mt-auto flex gap-1 items-center justify-center w-[110px] py-1.5 text-[11px] font-semibold bg-[#38EF0A] text-white rounded-md">
+        {card.btn} <MdOutlineKeyboardArrowRight size={14} />
+      </button>
+    </div>
+  );
+})}
             </div>
           </div>
 
@@ -976,7 +1017,7 @@ const filteredData = data.filter((c) => {
          
 
           {/* ================= CARDS ================= */}
-          {filteredData.length === 0 ? (
+          {filteredChargers.length === 0 ? (
   <div className="flex flex-col items-center justify-center h-[300px] text-center">
     
     {/* SVG */}
@@ -1009,7 +1050,7 @@ const filteredData = data.filter((c) => {
   </div>
 ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 overflow-y-auto max-h-[450px] no-scrollbar">
-            {filteredData.map((c, i) => (
+            {filteredChargers.map((c, i) => (
               <div
                 key={i}
                 className="bg-white   rounded-2xl shadow-md p-3 relative border border-[#D4D4D4] shadow-[0px_2.41px_5.86px_0px_#00000036]
