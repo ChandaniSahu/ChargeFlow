@@ -38,110 +38,126 @@ import {
 
 import { Clock, Zap, FileText, DollarSign } from 'lucide-react';
 import Image from 'next/image';
-
+import data from "../admin-data.json";
 /* ---------- DATA ---------- */
 
 
-const stats = [
+const statsConfig = [
   {
-    topIcon: MdOutlinePeopleAlt,
+    key: "totalUsers",
     title: "Total Users",
-    value: "12,459",
-    growth: "+12.5%",
+    topIcon: MdOutlinePeopleAlt,
     bottomIcon: MdOutlinePeopleAlt,
   },
   {
-    topIcon: Home,
+    key: "totalHosts",
     title: "Total Hosts",
-    value: "847",
-    growth: "+8.2%",
+    topIcon: Home,
     bottomIcon: Home,
   },
   {
-    topIcon: RiChargingPileLine,
+    key: "activeChargers",
     title: "Active Chargers",
-    value: "3,284",
-    growth: "+12.5%",
+    topIcon: RiChargingPileLine,
     bottomIcon: Car,
   },
   {
-    topIcon: RiMoneyRupeeCircleFill,
+    key: "totalRevenue",
     title: "Total Revenue",
-    value: "₹78,450",
-    growth: "+12.5%",
+    topIcon: RiMoneyRupeeCircleFill,
     bottomIcon: SiSimpleanalytics,
+    isCurrency: true,
   },
 ];
 
-const actions = [
+const actionConfig = [
   {
+    key: "kyc",
     title: "KYC Verifications",
-    sub: (
-      <>
-        <div className=" flex items-center gap-[0.3rem] ">
-          <span className="text-[15px] font-semibold text-small">25</span>{" "}
-          <span className="font-medium  text-[10px] text-small">Pending Approvals</span>
-        </div>
-      </>
-    ),
     btn: "Review Now",
     btnIcon: AiOutlineArrowRight,
     icon: CheckCircle,
   },
   {
+    key: "addCharger",
     title: "Add New Chargers",
-    sub: <span className="text-[11px] text-small">Setup & Configure</span>,
+    sub:"Setup and Configure",
     btn: "Configure",
     btnIcon: Settings,
     icon: FaChargingStation,
   },
   {
+    key: "booking",
     title: "Booking Overview",
-    sub: (
-      <>
-        <div className="flex items-center gap-[0.3rem] reduce-gap">
-          <span className="text-[8px] text-small ">Upcoming:</span>
-          <span className="font-semibold text-[#EA4335] num-reduce">40</span>
-          <span className="text-[8px] text-small ">| Cancelled:</span>
-          <span className="font-semibold text-[#EA4335] num-reduce">8</span>
-        </div>
-
-      </>
-    ),
     btn: "View All",
     btnIcon: MdOutlineKeyboardArrowRight,
     icon: TbCalendarTime,
   },
   {
+    key: "payout",
     title: "Payouts Transactions",
-    sub: (
-      <>
-        <span className="font-semibold text-[14px]">₹12,500</span>&nbsp;
-        <span className="text-[10px]">Pending Payout</span>
-      </>
-    ),
     btn: "Manage Payout",
     btnIcon: MdOutlineKeyboardArrowRight,
     icon: CreditCard,
   },
   {
+    key: "support",
     title: "Support Tickets",
-    sub: (
-      <>
-        <div className="flex items-center  gap-[0.3rem]">
-          <span className="text-[9px]">Open{" "}:</span>{" "}
-          <span className="font-semibold text-[#EA4335]">10</span>{" "}
-          <span className="text-[9px]">| Resolved{" "}:</span>{" "}
-          <span className="font-semibold text-[#EA4335]">45</span>
-        </div>
-
-      </>
-    ),
     btn: "View Tickets",
     btnIcon: MdOutlineKeyboardArrowRight,
     icon: MessageCircleQuestionMark,
   },
 ];
+
+const subtitleRenderer = {
+  kyc: (data) => (
+    <div className="flex items-center gap-[0.3rem]">
+      <span className="text-[15px] font-semibold text-small">
+        {data.pending}
+      </span>
+      <span className="font-medium text-[10px] text-small">
+        Pending Approvals
+      </span>
+    </div>
+  ),
+
+  booking: (data) => (
+    <div className="flex items-center gap-[0.3rem] reduced-gap">
+      <span className="text-[8px] text-small">Upcoming:</span>
+      <span className="font-semibold text-[#EA4335] num-reduce">
+        {data.upcoming}
+      </span>
+      <span className="text-[8px] text-small">| Cancelled:</span>
+      <span className="font-semibold text-[#EA4335] num-reduce">
+        {data.cancelled}
+      </span>
+    </div>
+  ),
+
+  payout: (data) => (
+    <>
+      <span className="font-semibold text-[14px]">
+        ₹{data.pendingAmount.toLocaleString()}
+      </span>
+      <span className="text-[10px]">
+        {" "}Pending Payout
+      </span>
+    </>
+  ),
+
+  support: (data) => (
+    <div className="flex items-center gap-[0.3rem]">
+      <span className="text-[9px]">Open:</span>
+      <span className="font-semibold text-[#EA4335]">
+        {data.open}
+      </span>
+      <span className="text-[9px]">| Resolved:</span>
+      <span className="font-semibold text-[#EA4335]">
+        {data.resolved}
+      </span>
+    </div>
+  ),
+};
 
 const revenueData = [
   { month: "Jan", revenue: 20000 },
@@ -309,85 +325,110 @@ export default function Dashboard() {
           {/* COLUMN 1: Stats + Actions (4 columns) */}
           <div className="lg:col-span-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.5rem]">
-              {stats.map((s, i) => {
-                const TopIcon = s.topIcon;
-                const BottomIcon = s.bottomIcon;
+{statsConfig.map((card) => {
+  const statData = data.dashboard.stats[card.key];
+  const TopIcon = card.topIcon;
+  const BottomIcon = card.bottomIcon;
 
-                return (
-                  <div
-                    key={i}
-                    className="relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
-                  >
-                    {/* TOP ICON */}
-                    <div className="flex gap-[1rem] items-center mb-2">
-                      <TopIcon className="text-[#38EF0A]" size={30} />
-                      <p className="font-inter text-[13px] text-[#364153] font-medium">{s.title}</p>
-                    </div>
+  const formattedValue = card.isCurrency
+    ? `₹${statData.value.toLocaleString()}`
+    : statData.value.toLocaleString();
 
-                    {/* TEXT */}
-                    <h2 className="font-inter text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">{s.value}</h2>
+  const isPositive = statData.growth >= 0;
 
-                    {/* GROWTH */}
-                    <div className="flex flex-col gap-1 mt-1">
-                      <span className="font-inter text-[#25BB00] text-[14px] font-regular flex items-center gap-[0.5rem] ">
-                        <TrendingUp size={15} className="text-green-500 " />
-                        {s.growth}
-                      </span>
-                      <span className="font-inter font-regular text-[#757575] text-[10px] -mt-1">Vs Last Month</span>
-                    </div>
+  return (
+    <div
+      key={card.key}
+      className="relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
+    >
+      {/* TOP ICON */}
+      <div className="flex gap-[1rem] items-center mb-2">
+        <TopIcon className="text-[#38EF0A]" size={30} />
+        <p className="font-inter text-[13px] text-[#364153] font-medium">
+          {card.title}
+        </p>
+      </div>
 
-                    {/* BOTTOM ICON (LIGHT GREEN, ROUNDED) */}
-                    <div className="absolute -bottom-6 -right-4 w-24 h-24 bg-[#2CDE0026] rounded-full flex items-center justify-center">
-                      <BottomIcon className="text-[#38EF0A]" size={40} />
-                    </div>
-                  </div>
-                );
-              })}
+      {/* VALUE */}
+      <h2 className="font-inter text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">
+        {formattedValue}
+      </h2>
+
+      {/* GROWTH */}
+      <div className="flex flex-col gap-1 mt-1">
+        <span
+          className={`font-inter text-[14px] flex items-center gap-[0.5rem] ${
+            isPositive ? "text-[#25BB00]" : "text-red-500"
+          }`}
+        >
+          <TrendingUp
+            size={15}
+            className={isPositive ? "text-green-500" : "text-red-500"}
+          />
+          {isPositive ? "+" : ""}
+          {statData.growth}%
+        </span>
+
+        <span className="font-inter font-regular text-[#757575] text-[10px] -mt-1">
+          Vs Last Month
+        </span>
+      </div>
+
+      {/* BOTTOM ICON */}
+      <div className="absolute -bottom-6 -right-4 w-24 h-24 bg-[#2CDE0026] rounded-full flex items-center justify-center">
+        <BottomIcon className="text-[#38EF0A]" size={40} />
+      </div>
+    </div>
+  );
+})}
             </div>
 
             {/* Actions Cards - Added margin-top for spacing between Stats and Actions */}
             <div className="flex flex-wrap items-center justify-center gap-[0.3rem] mt-3 actions-wrapper">
-              {actions.map((a, i) => {
-                const TopIcon = a.icon;
-                const BtnIcon = a.btnIcon;
+              {actionConfig.map((card, i) => {
+  const TopIcon = card.icon;
+  const BtnIcon = card.btnIcon;
 
-                return (
-                  <div
-                    key={i}
-                    className={`bg-white p-2 rounded-xl shadow-md border border-gray-100 text-[11px]
+  // get JSON data
+  const actionData = data.dashboard.actions[card.key];
+
+  // get renderer function
+  const renderSubtitle = subtitleRenderer[card.key];
+
+  return (
+    <div
+      key={card.key}
+      className={`flex flex-col lg:h-[110px] bg-white p-2 rounded-xl shadow-md border border-gray-100 text-[11px]
 w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
- ${(i === actions.length - 1 || i === actions.length - 2)
-                        ? 'half-width'
-                        : ''}
-       ${(i<=2 ? 'text-small':'')}                 
-  `}
+${(i === actionConfig.length - 1 || i === actionConfig.length - 2)
+  ? "half-width"
+  : ""}
+${i <= 2 ? "text-small" : ""}
+`}
+    >
+      {/* TOP ICON + TITLE */}
+      <div className="flex items-center gap-1 mb-2">
+        <TopIcon size={17} className="text-[#2CDE00]" />
+        <h3 className="font-inter font-semibold text-[#364153]">
+          {card.title}
+        </h3>
+      </div>
 
+      {/* SUBTITLE (JSON Driven) */}
+      <p className="font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] pt-1 border-[#DFDFDF] w-full">
+        {renderSubtitle ? renderSubtitle(actionData) : card.sub || ""}
+      </p>
 
-                  >
-                    {/* TOP ICON + TITLE */}
-                    <div className={`flex items-center gap-1 mb-2 `}>
-                      <TopIcon size={17} className="text-[#2CDE00]" />
-                      <h3 className={`font-inter font-semibold text-[#364153] `}>
-                        {a.title}
-                      </h3>
-                    </div>
-
-                    {/* SUB TEXT (The "Open/Resolved" part) */}
-                    <p className={`font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] pt-1 border-[#DFDFDF] w-full
-    `}>
-                      {a.sub}
-                    </p>
-
-                    {/* BUTTON */}
-                    <div className={`flex `}>
-                      <button className="flex items-center justify-center gap-1 w-[110px] py-1.5  font-semibold bg-[#38EF0A] text-white rounded-md">
-                        {a.btn}
-                        {BtnIcon && <BtnIcon size={14} />}
-                      </button>
-                    </div>
-                  </div>
-                );
-              })}
+      {/* BUTTON */}
+      <div className="flex mt-auto">
+        <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 font-semibold bg-[#38EF0A] text-white rounded-md">
+          {card.btn}
+          {BtnIcon && <BtnIcon size={14} />}
+        </button>
+      </div>
+    </div>
+  );
+})}
             </div>
 
 

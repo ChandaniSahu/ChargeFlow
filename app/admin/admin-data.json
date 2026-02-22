@@ -1,0 +1,36 @@
+{
+  "dashboard": {
+    "stats": {
+      "totalUsers": { "value": 12459, "growth": 12.5 },
+      "totalHosts": { "value": 847, "growth": 8.2 },
+      "activeChargers": { "value": 3284, "growth": 12.5 },
+      "totalRevenue": { "value": 78450, "growth": 12.5 }
+    },
+    "actions": {
+      "kyc": { "pending": 25 },
+      "booking": { "upcoming": 40, "cancelled": 8 },
+      "payout": { "pendingAmount": 12500 },
+      "support": { "open": 10, "resolved": 45 }
+    }
+  },
+
+  "charger": {
+    "stats": {
+      "totalChargers": {
+        "total": 850,
+        "ac": 560,
+        "dc": 210,
+        "fast": 80
+      },
+      "inactiveChargers": { "total": 80, "growth": -2 },
+      "activeChargers": { "total": 820, "growth": 8 },
+      "totalRevenue": { "total": 450890, "growth": 15 }
+    },
+    "actions": {
+      "manageChargers": { "total": 850 },
+      "chargerStatus": { "active": 720, "offline": 90 },
+      "maintenance": { "underMaintenance": 40 },
+      "blocked": { "blockedCount": 20 }
+    }
+  }
+}
