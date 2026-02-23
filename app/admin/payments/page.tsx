@@ -951,7 +951,7 @@ export default function UserManagementDashboard() {
             </div>
           </div>
         </div>
-
+        <h1 className="font-inter font-medium desktop:text-[25px] mb-2 text-[20px] text-white">Recent Trasaction History</h1>
         {/* search & filter functionality */}
         <div className="bg-white p-2 md:p-4 w-full desktop:min-h-[500px]
          desktop:w-[973px]  rounded-[16px] ">

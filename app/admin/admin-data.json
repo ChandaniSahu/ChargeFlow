@@ -11,7 +11,33 @@
       "booking": { "upcoming": 40, "cancelled": 8 },
       "payout": { "pendingAmount": 12500 },
       "support": { "open": 10, "resolved": 45 }
-    }
+    },
+    
+      "revenueTrend": [
+        { "month": "Jan", "revenue": 20000 },
+        { "month": "Feb", "revenue": 32000 },
+        { "month": "Mar", "revenue": 28000 },
+        { "month": "Apr", "revenue": 45000 },
+        { "month": "May", "revenue": 40000 },
+        { "month": "Jun", "revenue": 60000 }
+      ],
+      "chargerUtilization": [
+        { "level": "0%", "value": 35 },
+        { "level": "26%", "value": 55 },
+        { "level": "51%", "value": 80 },
+        { "level": "100%", "value": 90 }
+      ],
+      "chargerStatus": [
+        { "name": "Active", "value": 260, "color": "#00C637" },
+        { "name": "Offline", "value": 45, "color": "#E30004" },
+        { "name": "Maintenance", "value": 65, "color": "#FFD700" }
+      ],
+      "bookingStatus": [
+        { "name": "Completed", "value": 70, "color": "#22c55e" },
+        { "name": "Upcoming", "value": 20, "color": "#3b82f6" },
+        { "name": "Cancelled", "value": 10, "color": "#ef4444" }
+      ]
+    
   },
 
   "charger": {

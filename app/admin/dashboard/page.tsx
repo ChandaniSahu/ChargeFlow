@@ -159,33 +159,33 @@ const subtitleRenderer = {
   ),
 };
 
-const revenueData = [
-  { month: "Jan", revenue: 20000 },
-  { month: "Feb", revenue: 32000 },
-  { month: "Mar", revenue: 28000 },
-  { month: "Apr", revenue: 45000 },
-  { month: "May", revenue: 40000 },
-  { month: "Jun", revenue: 60000 },
-];
+// const revenueData = [
+//   { month: "Jan", revenue: 20000 },
+//   { month: "Feb", revenue: 32000 },
+//   { month: "Mar", revenue: 28000 },
+//   { month: "Apr", revenue: 45000 },
+//   { month: "May", revenue: 40000 },
+//   { month: "Jun", revenue: 60000 },
+// ];
 
-const utilizationData = [
-  { level: "0%", value: 35 },
-  { level: "26%", value: 55 },
-  { level: "51%", value: 80 },
-  { level: "100%", value: 90 },
-];
+// const utilizationData = [
+//   { level: "0%", value: 35 },
+//   { level: "26%", value: 55 },
+//   { level: "51%", value: 80 },
+//   { level: "100%", value: 90 },
+// ];
 
-const chargerStatus = [
-  { name: "Active", value: 260, color: "#00C637" },
-  { name: "Offline", value: 45, color: "#E30004" },
-  { name: "Maintenance", value: 65, color: "#FFD700" },
-];
+// const chargerStatus = [
+//   { name: "Active", value: 260, color: "#00C637" },
+//   { name: "Offline", value: 45, color: "#E30004" },
+//   { name: "Maintenance", value: 65, color: "#FFD700" },
+// ];
 
-const bookingStatus = [
-  { name: "Completed", value: 70, color: "#22c55e" },
-  { name: "Upcoming", value: 20, color: "#3b82f6" },
-  { name: "Cancelled", value: 10, color: "#ef4444" },
-];
+// const bookingStatus = [
+//   { name: "Completed", value: 70, color: "#22c55e" },
+//   { name: "Upcoming", value: 20, color: "#3b82f6" },
+//   { name: "Cancelled", value: 10, color: "#ef4444" },
+// ];
 
 
 interface ActivityItem {
@@ -303,6 +303,7 @@ const getStatusIcon = (status: ActivityItem['status']) => {
 /* ---------- COMPONENT ---------- */
 
 export default function Dashboard() {
+  const {revenueTrend, chargerUtilization, bookingStatus, chargerStatus} = data.dashboard;
   return (
 
     <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2  flex flex-col">
@@ -478,7 +479,7 @@ ${i <= 2 ? "text-small" : ""}
               <div className="lg:col-span-3 bg-white rounded-xl shadow-md px-4 py-2 border border-gray-100 h-full">
                 <h3 className="font-semibold text-[20px] font-inter  text-gray-700 mb-6">Revenue Trend</h3>
                 <ResponsiveContainer width="100%" height={200}>
-                  <LineChart data={revenueData}>
+                  <LineChart data={revenueTrend}>
                     <XAxis dataKey="month" tickLine={false} />
                     <YAxis tickLine={false} tickFormatter={(v) => `${v / 1000}k`} />
                     <Tooltip />
@@ -491,7 +492,7 @@ ${i <= 2 ? "text-small" : ""}
               <div className="lg:col-span-2 bg-white rounded-xl shadow-md px-4 py-2 border border-gray-100 h-full">
                 <h3 className="font-semibold text-[20px] font-inter text-gray-700 mb-6">Charger Utilization</h3>
                 <ResponsiveContainer width="100%" height={200}>
-                  <BarChart data={utilizationData}>
+                  <BarChart data={chargerUtilization}>
                     <XAxis dataKey="level" />
                     <YAxis />
                     <Tooltip cursor={false} />
