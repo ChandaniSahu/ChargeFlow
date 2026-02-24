@@ -142,7 +142,7 @@ export default function ChatModal({
         </div>
 
         {/* Ticket Info */}
-        <div className="font-roboto p-3 border-b border-[#DAD7D7] flex sm:flex-row  flex-col gap-3">
+        <div className="relative font-roboto p-3 border-b border-[#DAD7D7] flex sm:flex-row  flex-col gap-3">
           <div className="flex gap-3">
             <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center overflow-hidden">
               {customerAvatar ? (
@@ -187,16 +187,16 @@ export default function ChatModal({
           </div>
 
           {/* desktop badges */}
-          <div className="hidden sm:flex flex-1 gap-3 flex-col  items-center ">
+          <div className="absolute right-3 top-3 hidden sm:flex gap-3 flex  items-center ">
             <span
-              className={`inline-flex items-center gap-2 px-2 py-1 rounded-md text-[14px] font-roboto ${statusBadge.className}`}
+              className={`inline-flex items-center gap-2 px-2  rounded-md text-[14px] font-roboto ${statusBadge.className}`}
             >
               {statusBadge.icon}
               {statusBadge.text}
             </span>
 
             <span
-              className={`inline-flex items-center gap-2 px-2 py-1 rounded-md text-[14px] font-roboto ${priorityBadge.className}`}
+              className={`inline-flex items-center gap-2 px-2  rounded-md text-[14px] font-roboto ${priorityBadge.className}`}
             >
               {priorityBadge.icon}
               {priorityBadge.text}
