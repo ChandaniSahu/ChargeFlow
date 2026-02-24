@@ -81,7 +81,7 @@ const actionConfig = [
   {
     key: "addCharger",
     title: "Add New Chargers",
-    sub:"Setup and Configure",
+    sub: "Setup and Configure",
     btn: "Configure",
     btnIcon: Settings,
     icon: FaChargingStation,
@@ -303,7 +303,7 @@ const getStatusIcon = (status: ActivityItem['status']) => {
 /* ---------- COMPONENT ---------- */
 
 export default function Dashboard() {
-  const {revenueTrend, chargerUtilization, bookingStatus, chargerStatus} = data.dashboard;
+  const { revenueTrend, chargerUtilization, bookingStatus, chargerStatus } = data.dashboard;
   return (
 
     <div className="mt-2 mx-2 desktop:mx-0 desktop:mr-2  flex flex-col">
@@ -326,110 +326,109 @@ export default function Dashboard() {
           {/* COLUMN 1: Stats + Actions (4 columns) */}
           <div className="lg:col-span-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.5rem]">
-{statsConfig.map((card) => {
-  const statData = data.dashboard.stats[card.key];
-  const TopIcon = card.topIcon;
-  const BottomIcon = card.bottomIcon;
+              {statsConfig.map((card) => {
+                const statData = data.dashboard.stats[card.key];
+                const TopIcon = card.topIcon;
+                const BottomIcon = card.bottomIcon;
 
-  const formattedValue = card.isCurrency
-    ? `₹${statData.value.toLocaleString()}`
-    : statData.value.toLocaleString();
+                const formattedValue = card.isCurrency
+                  ? `₹${statData.value.toLocaleString()}`
+                  : statData.value.toLocaleString();
 
-  const isPositive = statData.growth >= 0;
+                const isPositive = statData.growth >= 0;
 
-  return (
-    <div
-      key={card.key}
-      className="relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
-    >
-      {/* TOP ICON */}
-      <div className="flex gap-[1rem] items-center mb-2">
-        <TopIcon className="text-[#38EF0A]" size={30} />
-        <p className="font-inter text-[13px] text-[#364153] font-medium">
-          {card.title}
-        </p>
-      </div>
+                return (
+                  <div
+                    key={card.key}
+                    className="relative bg-white rounded-xl p-4 shadow-md border border-gray-100 overflow-hidden"
+                  >
+                    {/* TOP ICON */}
+                    <div className="flex gap-[1rem] items-center mb-2">
+                      <TopIcon className="text-[#38EF0A]" size={30} />
+                      <p className="font-inter text-[13px] text-[#364153] font-medium">
+                        {card.title}
+                      </p>
+                    </div>
 
-      {/* VALUE */}
-      <h2 className="font-inter text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">
-        {formattedValue}
-      </h2>
+                    {/* VALUE */}
+                    <h2 className="font-inter text-[20px] font-semibold text-[#171717] border-t-[1.5px] border-[#DFDFDF] pt-1">
+                      {formattedValue}
+                    </h2>
 
-      {/* GROWTH */}
-      <div className="flex flex-col gap-1 mt-1">
-        <span
-          className={`font-inter text-[14px] flex items-center gap-[0.5rem] ${
-            isPositive ? "text-[#25BB00]" : "text-red-500"
-          }`}
-        >
-          <TrendingUp
-            size={15}
-            className={isPositive ? "text-green-500" : "text-red-500"}
-          />
-          {isPositive ? "+" : ""}
-          {statData.growth}%
-        </span>
+                    {/* GROWTH */}
+                    <div className="flex flex-col gap-1 mt-1">
+                      <span
+                        className={`font-inter text-[14px] flex items-center gap-[0.5rem] ${isPositive ? "text-[#25BB00]" : "text-red-500"
+                          }`}
+                      >
+                        <TrendingUp
+                          size={15}
+                          className={isPositive ? "text-green-500" : "text-red-500"}
+                        />
+                        {isPositive ? "+" : ""}
+                        {statData.growth}%
+                      </span>
 
-        <span className="font-inter font-regular text-[#757575] text-[10px] -mt-1">
-          Vs Last Month
-        </span>
-      </div>
+                      <span className="font-inter font-regular text-[#757575] text-[10px] -mt-1">
+                        Vs Last Month
+                      </span>
+                    </div>
 
-      {/* BOTTOM ICON */}
-      <div className="absolute -bottom-6 -right-4 w-24 h-24 bg-[#2CDE0026] rounded-full flex items-center justify-center">
-        <BottomIcon className="text-[#38EF0A]" size={40} />
-      </div>
-    </div>
-  );
-})}
+                    {/* BOTTOM ICON */}
+                    <div className="absolute -bottom-6 -right-4 w-24 h-24 bg-[#2CDE0026] rounded-full flex items-center justify-center">
+                      <BottomIcon className="text-[#38EF0A]" size={40} />
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             {/* Actions Cards - Added margin-top for spacing between Stats and Actions */}
             <div className="flex flex-wrap items-center justify-center gap-[0.3rem] mt-3 actions-wrapper">
               {actionConfig.map((card, i) => {
-  const TopIcon = card.icon;
-  const BtnIcon = card.btnIcon;
+                const TopIcon = card.icon;
+                const BtnIcon = card.btnIcon;
 
-  // get JSON data
-  const actionData = data.dashboard.actions[card.key];
+                // get JSON data
+                const actionData = data.dashboard.actions[card.key];
 
-  // get renderer function
-  const renderSubtitle = subtitleRenderer[card.key];
+                // get renderer function
+                const renderSubtitle = subtitleRenderer[card.key];
 
-  return (
-    <div
-      key={card.key}
-      className={`flex flex-col lg:h-[110px] bg-white p-2 rounded-xl shadow-md border border-gray-100 text-[11px]
+                return (
+                  <div
+                    key={card.key}
+                    className={`flex flex-col lg:h-[110px] bg-white p-2 rounded-xl shadow-md border border-gray-100 text-[11px]
 w-[calc(33.333%-0.2rem)] lg:w-[calc(20%-0.24rem)]
 ${(i === actionConfig.length - 1 || i === actionConfig.length - 2)
-  ? "half-width"
-  : ""}
+                        ? "half-width"
+                        : ""}
 ${i <= 2 ? "text-small" : ""}
 `}
-    >
-      {/* TOP ICON + TITLE */}
-      <div className="flex items-center gap-1 mb-2">
-        <TopIcon size={17} className="text-[#2CDE00]" />
-        <h3 className="font-inter font-semibold text-[#364153]">
-          {card.title}
-        </h3>
-      </div>
+                  >
+                    {/* TOP ICON + TITLE */}
+                    <div className="flex items-center gap-1 mb-2">
+                      <TopIcon size={17} className="text-[#2CDE00]" />
+                      <h3 className="font-inter font-semibold text-[#364153]">
+                        {card.title}
+                      </h3>
+                    </div>
 
-      {/* SUBTITLE (JSON Driven) */}
-      <p className="font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] pt-1 border-[#DFDFDF] w-full">
-        {renderSubtitle ? renderSubtitle(actionData) : card.sub || ""}
-      </p>
+                    {/* SUBTITLE (JSON Driven) */}
+                    <p className="font-inter font-medium text-[#333333] mb-3 border-t-[1.5px] pt-1 border-[#DFDFDF] w-full">
+                      {renderSubtitle ? renderSubtitle(actionData) : card.sub || ""}
+                    </p>
 
-      {/* BUTTON */}
-      <div className="flex mt-auto">
-        <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 font-semibold bg-[#38EF0A] text-white rounded-md">
-          {card.btn}
-          {BtnIcon && <BtnIcon size={14} />}
-        </button>
-      </div>
-    </div>
-  );
-})}
+                    {/* BUTTON */}
+                    <div className="flex mt-auto">
+                      <button className="flex items-center justify-center gap-1 w-[110px] py-1.5 font-semibold bg-[#38EF0A] text-white rounded-md">
+                        {card.btn}
+                        {BtnIcon && <BtnIcon size={14} />}
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
 
@@ -490,15 +489,28 @@ ${i <= 2 ? "text-small" : ""}
 
               {/* Charger Utilization - 2/5 width */}
               <div className="lg:col-span-2 bg-white rounded-xl shadow-md px-4 py-2 border border-gray-100 h-full">
-                <h3 className="font-semibold text-[20px] font-inter text-gray-700 mb-6">Charger Utilization</h3>
-                <ResponsiveContainer width="100%" height={200}>
+                <h3 className="font-semibold text-[20px] font-inter text-gray-700 mb-1">Charger Utilization</h3>
+                <ResponsiveContainer width="120%" height={220} className="-ml-10 mb-1">
                   <BarChart data={chargerUtilization}>
-                    <XAxis dataKey="level" />
+                    <XAxis dataKey="capacity" />
                     <YAxis />
                     <Tooltip cursor={false} />
-                    <Bar dataKey="value" fill="#22c55e" />
+
+                    <Bar dataKey="ac" fill="#7CFF5B" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="dc" fill="#22c55e" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
+                <div className="flex justify-center items-center gap-6 -mt-2 text-sm">
+  <div className="flex items-center gap-2">
+    <div className="w-3 h-3 rounded-sm bg-[#7CFF5B]" />
+    <span>AC Charger</span>
+  </div>
+
+  <div className="flex items-center gap-2">
+    <div className="w-3 h-3 rounded-sm bg-[#22c55e]" />
+    <span>DC Charger</span>
+  </div>
+</div>
               </div>
             </div>
           </div>

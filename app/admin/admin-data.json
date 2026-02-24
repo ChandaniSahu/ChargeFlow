@@ -21,12 +21,12 @@
         { "month": "May", "revenue": 40000 },
         { "month": "Jun", "revenue": 60000 }
       ],
-      "chargerUtilization": [
-        { "level": "0%", "value": 35 },
-        { "level": "26%", "value": 55 },
-        { "level": "51%", "value": 80 },
-        { "level": "100%", "value": 90 }
-      ],
+ "chargerUtilization" : [
+  { "capacity":"7 kW" ,"level": "25%", "ac": 30, "dc": 40 },
+  { "capacity":"22 kW" ,"level": "50%", "ac": 45, "dc": 55 },
+  { "capacity":"50 kW" ,"level": "73%", "ac": 75, "dc": 85 },
+  { "capacity":"150 kW" ,"level": "100%", "ac": 90, "dc": 80 }
+],
       "chargerStatus": [
         { "name": "Active", "value": 260, "color": "#00C637" },
         { "name": "Offline", "value": 45, "color": "#E30004" },
