@@ -30,7 +30,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { BsCalendarMonth  } from "react-icons/bs";
 import { Bolt } from "lucide-react";
 import { BiSolidZap } from "react-icons/bi";
-import data from '../admin-data.json'
+import data from '../data/admin-data.json'
 
 
 // import Image from "next/image";

@@ -43,6 +43,9 @@ import ChatModal from "./chatmodal";
 import { MessagesSquare } from 'lucide-react';
 import { FaClipboardList } from "react-icons/fa";
 import { VscCircleFilled } from "react-icons/vsc";
+// import data from '../data/admin-data.json';
+import supportData from '../data/supporttickets.json';
+import { formatTimestamp } from "../utility/function";
 // import Image from "next/image";
 
 /* ================= DATA ================= */
@@ -123,89 +126,89 @@ export const chargerStatus = [
   { name: "Maintenance", value: 65, color: "#facc15" },
 ];
 
-export interface ActivityItem {
-  id: number;
-  name: string;
-  action:
-  | "created"
-  | "escalated"
-  | "replied"
-  | "assigned"
-  | "updated"
-  | "resolved";
-  ticketId: string;
-  description: string;
-  timeAgo: string;
-  date: string;
-}
+// export interface ActivityItem {
+//   id: number;
+//   name: string;
+//   action:
+//   | "created"
+//   | "escalated"
+//   | "replied"
+//   | "assigned"
+//   | "updated"
+//   | "resolved";
+//   ticketId: string;
+//   description: string;
+//   timeAgo: string;
+//   date: string;
+// }
 
-export const activities: ActivityItem[] = [
-  {
-    id: 1,
-    name: "Sneha Reddy",
-    action: "created",
-    ticketId: "TKT-0043",
-    description: "New ticket created by customer",
-    timeAgo: "1 hour ago",
-    date: "11/02/2026",
-  },
-  {
-    id: 2,
-    name: "Vikram Singh",
-    action: "escalated",
-    ticketId: "TKT-0039",
-    description: "Escalated to senior support team",
-    timeAgo: "2 hour ago",
-    date: "10/02/2026",
-  },
-  {
-    id: 3,
-    name: "Ananya Gupta",
-    action: "replied",
-    ticketId: "TKT-0038",
-    description: "Requested additional information",
-    timeAgo: "5 hour ago",
-    date: "10/02/2026",
-  },
-  {
-    id: 4,
-    name: "Divya Nair",
-    action: "assigned",
-    ticketId: "TKT-0036",
-    description: "Assigned to technical support team",
-    timeAgo: "6 hour ago",
-    date: "10/02/2026",
-  },
-  {
-    id: 5,
-    name: "Priya Sharma",
-    action: "replied",
-    ticketId: "TKT-0042",
-    description: "Added a response to high priority ticket",
-    timeAgo: "15 min ago",
-    date: "11/02/2026",
-  },
-  {
-    id: 6,
-    name: "Rahul Verma",
-    action: "updated",
-    ticketId: "TKT-0041",
-    description: "Changed ticket status to in progress",
-    timeAgo: "28 min ago",
-    date: "11/02/2026",
-  },
-  {
-    id: 7,
-    name: "Amit Patel",
-    action: "resolved",
-    ticketId: "TKT-0040",
-    description: "Marked ticket as resolved and closed",
-    timeAgo: "45 min ago",
-    date: "11/02/2026",
-  },
-];
+// export const activities: ActivityItem[] = [
+//   {
+//     id: 1,
+//     name: "Sneha Reddy",
+//     action: "created",
+//     ticketId: "TKT-0043",
+//     description: "New ticket created by customer",
+//     timeAgo: "1 hour ago",
+//     date: "11/02/2026",
+//   },
+//   {
+//     id: 2,
+//     name: "Vikram Singh",
+//     action: "escalated",
+//     ticketId: "TKT-0039",
+//     description: "Escalated to senior support team",
+//     timeAgo: "2 hour ago",
+//     date: "10/02/2026",
+//   },
+//   {
+//     id: 3,
+//     name: "Ananya Gupta",
+//     action: "replied",
+//     ticketId: "TKT-0038",
+//     description: "Requested additional information",
+//     timeAgo: "5 hour ago",
+//     date: "10/02/2026",
+//   },
+//   {
+//     id: 4,
+//     name: "Divya Nair",
+//     action: "assigned",
+//     ticketId: "TKT-0036",
+//     description: "Assigned to technical support team",
+//     timeAgo: "6 hour ago",
+//     date: "10/02/2026",
+//   },
+//   {
+//     id: 5,
+//     name: "Priya Sharma",
+//     action: "replied",
+//     ticketId: "TKT-0042",
+//     description: "Added a response to high priority ticket",
+//     timeAgo: "15 min ago",
+//     date: "11/02/2026",
+//   },
+//   {
+//     id: 6,
+//     name: "Rahul Verma",
+//     action: "updated",
+//     ticketId: "TKT-0041",
+//     description: "Changed ticket status to in progress",
+//     timeAgo: "28 min ago",
+//     date: "11/02/2026",
+//   },
+//   {
+//     id: 7,
+//     name: "Amit Patel",
+//     action: "resolved",
+//     ticketId: "TKT-0040",
+//     description: "Marked ticket as resolved and closed",
+//     timeAgo: "45 min ago",
+//     date: "11/02/2026",
+//   },
+// ];
 
-const getActivityConfig = (action: string) => {
+const getActivityBadge = (action: string) => {
   switch (action) {
     case "created":
     case "assigned":
@@ -252,253 +255,252 @@ const getActivityConfig = (action: string) => {
   }
 };
 
-export interface ChatMessage {
-  id: number;
-  sender: "customer" | "company";
-  text: string;
-  time: string;
-}
+// export interface ChatMessage {
+//   id: number;
+//   sender: "customer" | "company";
+//   text: string;
+//   time: string;
+// }
 
-export interface SupportTicket {
-  id: number;
-  userName: string;
-  email: string;
-  ticketId: string;
-  description: string;
-  category:
-  | "Technical Issue"
-  | "Payment Issue"
-  | "App Issue"
-  | "Refund"
-  | "Account Issue";   // ✅ Added
+// export interface SupportTicket {
+//   id: number;
+//   userName: string;
+//   email: string;
+//   ticketId: string;
+//   description: string;
+//   category:
+//   | "Technical Issue"
+//   | "Payment Issue"
+//   | "App Issue"
+//   | "Refund"
+//   | "Account Issue";   // ✅ Added
 
-  status: "Open" | "In Progress" | "Resolved";
-  priority: "Low" | "Medium" | "High";
-  date: string;
-  time: string;          // ✅ Added
-  screenshot: string;   // ✅ Added
-  chat: boolean;         // ✅ Added
-  imageUrl: string;
-  messages?: ChatMessage[];
-}
+//   status: "Open" | "In Progress" | "Resolved";
+//   priority: "Low" | "Medium" | "High";
+//   date: string;
+//   time: string;          // ✅ Added
+//   screenshotUrl: string;   // ✅ Added
+//   imageUrl: string;
+//   messages?: ChatMessage[];
+// }
 
 
-export const supportTickets: SupportTicket[] = [
-  {
-    id: 1,
-    userName: "Priya Singh",
-    email: "priyasingh@gmail.com",
-    ticketId: "TKT-1001",
-    description: "Charger not starting",
-    category: "Technical Issue",
-    status: "Open",
-    priority: "High",
-    date: "12/02/2026",
-    time: "10:45 AM",
-    screenshot: "/iages/ticketss.png",
-    chat: true,
-    imageUrl: "/images/user.jpg",
-    messages: [
-    {
-      id: 1,
-      sender: "customer",
-      text: "Hi, charger is not starting.",
-      time: "10:46 AM",
-    },
-    {
-      id: 2,
-      sender: "company",
-      text: "Please confirm charger ID.",
-      time: "10:47 AM",
-    },
-    {
-      id: 3,
-      sender: "customer",
-      text: "Hi, I tried to start the charging session but the charger is not starting. It shows connected but nothing happens.",
-      time: "10:47 AM",
-    },
-    {
-      id: 4,
-      sender: "company",
-      text: "Hi, I tried to start the charging session but the charger is not starting. It shows connected but nothing happens.",
-      time: "10:47 AM",
-    },
-  ],
-  },
-  {
-    id: 2,
-    userName: "Rajesh Kumar",
-    email: "rajeshkumar@gmail.com",
-    ticketId: "TKT-1002",
-    description: "Payment deducted but failed",
-    category: "Payment Issue",
-    status: "In Progress",
-    priority: "High",
-    date: "11/02/2026",
-    time: "02:15 PM",
-    screenshot: "/images/ticketss.png",
-    chat: true,
-    imageUrl: "/images/user1.jpg",
-  },
-  {
-    id: 3,
-    userName: "Amit Patel",
-    email: "amitpatel@gmail.com",
-    ticketId: "TKT-1003",
-    description: "App not showing nearby stations",
-    category: "App Issue",
-    status: "Resolved",
-    priority: "Low",
-    date: "10/02/2026",
-    time: "09:30 AM",
-    screenshot: "/images/ticketss.png",
-    chat: true,
-    imageUrl: "/images/user2.jpg",
-  },
-  {
-    id: 4,
-    userName: "Neha Gupta",
-    email: "nehagupta@gmail.com",
-    ticketId: "TKT-1004",
-    description: "Refund not received",
-    category: "Refund",
-    status: "In Progress",
-    priority: "High",
-    date: "10/02/2026",
-    time: "04:20 PM",
-    screenshot: "/images/ticketss.png",
-    chat: true,
-    imageUrl: "/images/user3.jpg",
-  },
-  {
-    id: 5,
-    userName: "Rahul Sharma",
-    email: "rahulsharma@gmail.com",
-    ticketId: "TKT-1005",
-    description: "Charging stopped midway",
-    category: "Technical Issue",
-    status: "Open",
-    priority: "Medium",
-    date: "09/02/2026",
-    time: "11:10 AM",
-    screenshot: "/images/ticketss.png",
-    chat: true,
-    imageUrl: "/images/user.jpg",
-  },
-  {
-    id: 6,
-    userName: "Sneha Kapoor",
-    email: "snehakapoor@gmail.com",
-    ticketId: "TKT-1006",
-    description: "Wallet balance not updated",
-    category: "Payment Issue",
-    status: "Resolved",
-    priority: "Low",
-    date: "08/02/2026",
-    time: "03:25 PM",
-    screenshot: "/images/ticketss.png",
-    chat: true,
-    imageUrl: "/images/user1.jpg",
-  },
-  {
-    id: 7,
-    userName: "Vikram Singh",
-    email: "vikramsingh@gmail.com",
-    ticketId: "TKT-1007",
-    description: "Unable to login to account",
-    category: "Account Issue",   // ✅ New Category Used Here
-    status: "In Progress",
-    priority: "High",
-    date: "07/02/2026",
-    time: "01:40 PM",
-    screenshot: "/images/ticketss.png",
-    chat: true,
-    imageUrl: "/images/user2.jpg",
-  },
-  {
-    id: 8,
-    userName: "Kavya Nair",
-    email: "kavyanair@gmail.com",
-    ticketId: "TKT-1008",
-    description: "Refund delayed for cancelled booking",
-    category: "Refund",
-    status: "Open",
-    priority: "Medium",
-    date: "06/02/2026",
-    time: "05:50 PM",
-    screenshot: "/images/ticketss.png",
-    chat: true,
-    imageUrl: "/images/user3.jpg",
-  },
-];
+// export const supportTickets: SupportTicket[] = [
+//   {
+//     id: 1,
+//     userName: "Priya Singh",
+//     email: "priyasingh@gmail.com",
+//     ticketId: "TKT-1001",
+//     description: "Charger not starting",
+//     category: "Technical Issue",
+//     status: "Open",
+//     priority: "High",
+//     date: "12/02/2026",
+//     time: "10:45 AM",
+//     screenshotUrl: "/images/ticketss.png",
+    
+//     imageUrl: "/images/user.jpg",
+//     messages: [
+//     {
+//       id: 1,
+//       sender: "customer",
+//       text: "Hi, charger is not starting.",
+//       time: "10:46 AM",
+//     },
+//     {
+//       id: 2,
+//       sender: "company",
+//       text: "Please confirm charger ID.",
+//       time: "10:47 AM",
+//     },
+//     {
+//       id: 3,
+//       sender: "customer",
+//       text: "Hi, I tried to start the charging session but the charger is not starting. It shows connected but nothing happens.",
+//       time: "10:47 AM",
+//     },
+//     {
+//       id: 4,
+//       sender: "company",
+//       text: "Hi, I tried to start the charging session but the charger is not starting. It shows connected but nothing happens.",
+//       time: "10:47 AM",
+//     },
+//   ],
+//   },
+//   {
+//     id: 2,
+//     userName: "Rajesh Kumar",
+//     email: "rajeshkumar@gmail.com",
+//     ticketId: "TKT-1002",
+//     description: "Payment deducted but failed",
+//     category: "Payment Issue",
+//     status: "In Progress",
+//     priority: "High",
+//     date: "11/02/2026",
+//     time: "02:15 PM",
+//     screenshotUrl: "/images/ticketss.png",
+    
+//     imageUrl: "/images/user1.jpg",
+//   },
+//   {
+//     id: 3,
+//     userName: "Amit Patel",
+//     email: "amitpatel@gmail.com",
+//     ticketId: "TKT-1003",
+//     description: "App not showing nearby stations",
+//     category: "App Issue",
+//     status: "Resolved",
+//     priority: "Low",
+//     date: "10/02/2026",
+//     time: "09:30 AM",
+//     screenshotUrl: "/images/ticketss.png",
+    
+//     imageUrl: "/images/user2.jpg",
+//   },
+//   {
+//     id: 4,
+//     userName: "Neha Gupta",
+//     email: "nehagupta@gmail.com",
+//     ticketId: "TKT-1004",
+//     description: "Refund not received",
+//     category: "Refund",
+//     status: "In Progress",
+//     priority: "High",
+//     date: "10/02/2026",
+//     time: "04:20 PM",
+//     screenshotUrl: "/images/ticketss.png",
+    
+//     imageUrl: "/images/user3.jpg",
+//   },
+//   {
+//     id: 5,
+//     userName: "Rahul Sharma",
+//     email: "rahulsharma@gmail.com",
+//     ticketId: "TKT-1005",
+//     description: "Charging stopped midway",
+//     category: "Technical Issue",
+//     status: "Open",
+//     priority: "Medium",
+//     date: "09/02/2026",
+//     time: "11:10 AM",
+//     screenshotUrl: "/images/ticketss.png",
+    
+//     imageUrl: "/images/user.jpg",
+//   },
+//   {
+//     id: 6,
+//     userName: "Sneha Kapoor",
+//     email: "snehakapoor@gmail.com",
+//     ticketId: "TKT-1006",
+//     description: "Wallet balance not updated",
+//     category: "Payment Issue",
+//     status: "Resolved",
+//     priority: "Low",
+//     date: "08/02/2026",
+//     time: "03:25 PM",
+//     screenshotUrl: "/images/ticketss.png",
+    
+//     imageUrl: "/images/user1.jpg",
+//   },
+//   {
+//     id: 7,
+//     userName: "Vikram Singh",
+//     email: "vikramsingh@gmail.com",
+//     ticketId: "TKT-1007",
+//     description: "Unable to login to account",
+//     category: "Account Issue",   // ✅ New Category Used Here
+//     status: "In Progress",
+//     priority: "High",
+//     date: "07/02/2026",
+//     time: "01:40 PM",
+//     screenshotUrl: "/images/ticketss.png",
+    
+//     imageUrl: "/images/user2.jpg",
+//   },
+//   {
+//     id: 8,
+//     userName: "Kavya Nair",
+//     email: "kavyanair@gmail.com",
+//     ticketId: "TKT-1008",
+//     description: "Refund delayed for cancelled booking",
+//     category: "Refund",
+//     status: "Open",
+//     priority: "Medium",
+//     date: "06/02/2026",
+//     time: "05:50 PM",
+//     screenshotUrl: "/images/ticketss.png",
+    
+//     imageUrl: "/images/user3.jpg",
+//   },
+// ];
 
-const getStatusBadgeConfig = (value: string) => {
-  const v = value.toLowerCase();
+  const getStatusBadgeConfig = (value: string) => {
+    const v = value.toLowerCase();
+    const text = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+    if (v === "open") {
+      return {
+        text: text,
+        className: "bg-[#ffdbd6] text-[#fb2c2f] border border-[#ffb4ab]",
+        icon: <AlertTriangle size={15} className="text-[#fb2c2f]" />,
+      };
+    }
 
-  if (v === "open") {
+    if (v === "in progress") {
+      return {
+        text: text,
+        className: "bg-[#f9e8db] text-[#dc7527] border border-[#facc15]",
+        icon: <IoHourglassOutline size={15} className="text-[#dc7527]" />,
+      };
+    }
+
+    if (v === "resolved") {
+      return {
+        text: text,
+        className: "bg-[#e1ffd9] text-[#29b605] border border-[#38EF0A66]",
+        icon: <CheckCircle size={15} className="text-[#29b605]" />,
+      };
+    }
+
     return {
-      text: value,
-      className: "bg-[#ffdbd6] text-[#fb2c2f] border border-[#ffb4ab]",
-      icon: <SiConventionalcommits size={16} className="text-[#fb2c2f]" />,
+      text: text,
+      className: "bg-[#f2f2f2] text-[#757575] border border-[#d6d6d7]",
+      icon: null,
     };
-  }
-
-  if (v === "in progress") {
-    return {
-      text: value,
-      className: "bg-[#f9e8db] text-[#dc7527] border border-[#facc15]",
-      icon: <IoHourglassOutline size={16} className="text-[#dc7527]" />,
-    };
-  }
-
-  if (v === "resolved") {
-    return {
-      text: value,
-      className: "bg-[#e1ffd9] text-[#29b605] border border-[#38EF0A66]",
-      icon: <CheckCircle size={16} className="text-[#29b605]" />,
-    };
-  }
-
-  return {
-    text: value,
-    className: "bg-[#f2f2f2] text-[#757575] border border-[#d6d6d7]",
-    icon: null,
   };
-};
 
-const getPriorityBadgeConfig = (value: string) => {
-  const v = value.toLowerCase();
+  const getPriorityBadgeConfig = (value: string) => {
+    const v = value.toLowerCase();
+    const text= value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+    if (v === "high") {
+      return {
+        text: text,
+        className: "bg-[#ffe2e2] text-[#e7000b] border border-[#ffb3b3]",
+        icon: <FaExclamation size={15} className="text-[#e7000b]" />,
+      };
+    }
 
-  if (v === "high") {
+    if (v === "medium") {
+      return {
+        text: text,
+        className: "bg-[#fef3e3] text-[#faad40] border border-[#facc15]",
+        icon: <VscCircleFilled size={15} className="text-[#faad40]" />,
+      };
+    }
+
+    if (v === "low") {
+      return {
+        text: text,
+        className: "bg-[#e1eefd] text-[#2f85f3] border border-[#7ae7b0]",
+        icon: <FaArrowDownLong size={15} className="text-[#2f85f3]" />,
+      };
+    }
+
     return {
-      text: value,
-      className: "bg-[#ffe2e2] text-[#e7000b] border border-[#ffb3b3]",
-      icon: <FaExclamation size={16} className="text-[#e7000b]" />,
+      text: text,
+      className: "bg-[#f2f2f2] text-[#757575] border border-[#d6d6d7]",
+      icon: null,
     };
-  }
-
-  if (v === "medium") {
-    return {
-      text: value,
-      className: "bg-[#fef3e3] text-[#faad40] border border-[#facc15]",
-      icon: <VscCircleFilled size={16} className="text-[#faad40]" />,
-    };
-  }
-
-  if (v === "low") {
-    return {
-      text: value,
-      className: "bg-[#e1eefd] text-[#2f85f3] border border-[#7ae7b0]",
-      icon: <FaArrowDownLong size={16} className="text-[#2f85f3]" />,
-    };
-  }
-
-  return {
-    text: value,
-    className: "bg-[#f2f2f2] text-[#757575] border border-[#d6d6d7]",
-    icon: null,
   };
-};
 
 
 
@@ -507,14 +509,14 @@ const getPriorityBadgeConfig = (value: string) => {
 export default function UserManagementDashboard() {
   const [isScreenshotModalOpen, setIsScreenshotModalOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [selectedTicket, setSelectedTicket] = useState<SupportTicket | null>(null);
+  const [selectedTicket, setSelectedTicket] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [isStatusDropdownOpen, setIsStatusDropdownOpen] = useState(false);
   const [isPriorityDropdownOpen, setIsPriorityDropdownOpen] = useState(false);
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [priorityFilter, setPriorityFilter] = useState("All Priority");
 
-
+  const supportTickets = supportData.supportTickets;
 
   const handleCloseScreenshotModal = () => {
     setIsScreenshotModalOpen(false);
@@ -524,10 +526,12 @@ export default function UserManagementDashboard() {
   const filteredTickets = supportTickets.filter(ticket => {
     const matchesFilter = statusFilter === 'All Status' || ticket.status === statusFilter;
     const matchesPriority = priorityFilter === 'All Priority' || ticket.priority === priorityFilter;
-    const matchesSearch = ticket.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    const matchesSearch = ticket.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       ticket.category.toLowerCase().includes(searchTerm.toLowerCase()) || ticket.ticketId.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesPriority && matchesSearch;
   });
+
+  
 
   return (
     <>
@@ -694,9 +698,9 @@ export default function UserManagementDashboard() {
           <h3 className="font-inter text-[24px] font-semibold text-[#364153] mb-3">Recent Activity</h3>
 
           <div className="max-h-[260px] overflow-y-auto no-scrollbar space-y-2 -mx-2">
-            {activities.map((a) => {
-              const config = getActivityConfig(a.action);
-
+            {supportTickets.map((a) => {
+              const config = getActivityBadge(a.activityType);
+              const { date, timeAgo } = formatTimestamp(a.createdAt);
               return (
                 <div
                   key={a.id}
@@ -716,21 +720,21 @@ export default function UserManagementDashboard() {
                       </p>
 
                       <p className="text-[14px] text-[#6B7280]">
-                        {a.action.charAt(0).toUpperCase() + a.action.slice(1)}{" "}
+                        {a.activityType.charAt(0).toUpperCase() + a.activityType.slice(1)}{" "}
                         <span className="text-[#29B605] font-medium">
                           {a.ticketId}
                         </span>
                       </p>
 
                       <p className="text-[13px] text-[#9CA3AF]">
-                        {a.description}
+                        {a.statusDescription}
                       </p>
                        <div className="md:hidden">
                     <p className="text-[14px] text-[#6B7280]">
-                      {a.timeAgo}
+                      {timeAgo}
                     </p>
                     <p className="text-[13px] text-[#9CA3AF]">
-                      {a.date}
+                      {date}
                     </p>
                   </div>
                     </div>
@@ -739,10 +743,10 @@ export default function UserManagementDashboard() {
                   {/* RIGHT */}
                   <div className="hidden md:block  text-right">
                     <p className="text-[14px] text-[#6B7280]">
-                      {a.timeAgo}
+                      {timeAgo}
                     </p>
                     <p className="text-[13px] text-[#9CA3AF]">
-                      {a.date}
+                      {date}
                     </p>
                   </div>
                 </div>
@@ -935,7 +939,7 @@ export default function UserManagementDashboard() {
                     {filteredTickets.map((ticket) => {
                       const statusBadge = getStatusBadgeConfig(ticket.status);
                       const priorityBadge = getPriorityBadgeConfig(ticket.priority);
-
+                     const { date, time } = formatTimestamp(ticket.createdAt);
                       return (
                         <tr key={ticket.id} className="hover:bg-[#f4fff1] transition-colors">
                           {/* User */}
@@ -946,7 +950,7 @@ export default function UserManagementDashboard() {
                                 className="w-12 h-12 rounded-full object-cover"
                               />
                               <div>
-                                <div className="text-gray-800 text-[14px]">{ticket.userName}</div>
+                                <div className="text-gray-800 text-[14px]">{ticket.name}</div>
                                 <div className="text-[12px] text-gray-400">{ticket.email}</div>
                               </div>
                             </div>
@@ -959,7 +963,7 @@ export default function UserManagementDashboard() {
 
                           {/* Description */}
                           <td className="px-6 py-4 text-[14px] text-[#707274]">
-                            {ticket.description}
+                            {ticket.ticketDescription}
                           </td>
 
                           {/* Category */}
@@ -989,11 +993,11 @@ export default function UserManagementDashboard() {
 
                           {/* Date */}
                           <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
-                            {ticket.date}
+                            {date}
                           </td>
                           {/* Time*/}
                           <td className="px-6 py-4 text-center text-[14px] text-[#707274]">
-                            {ticket.time}
+                            {time}
                           </td>
                           {/* Screenshot */}
 <td className="px-6 py-4 text-center">
@@ -1040,8 +1044,8 @@ export default function UserManagementDashboard() {
     setIsScreenshotModalOpen(false);
     setSelectedTicket(null);
   }}
-  imageSrc={selectedTicket?.imageUrl || ""}
-  uploadedBy={selectedTicket?.userName || ""}
+  imageSrc={selectedTicket?.screenshotUrl || ""}
+  uploadedBy={selectedTicket?.name || ""}
   uploadedAt={selectedTicket?.time || ""}
   ticketId={selectedTicket?.ticketId || ""}
 />
@@ -1054,12 +1058,12 @@ export default function UserManagementDashboard() {
   ticketId={selectedTicket?.ticketId || ""}
   customerName={selectedTicket?.userName || ""}
   email={selectedTicket?.email || ""}
-  description={selectedTicket?.description || ""}
+  description={selectedTicket?.ticketDescription || ""}
   category={selectedTicket?.category || ""}
   status={selectedTicket?.status || ""}
   priority={selectedTicket?.priority || ""}
   customerAvatar={selectedTicket?.imageUrl || ""}
-  messages={selectedTicket?.messages || []}
+  chatMessages={selectedTicket?.chatMessages || []}
 />
     </>
   );

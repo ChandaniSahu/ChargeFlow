@@ -10,8 +10,8 @@ import { VscCircleFilled } from "react-icons/vsc";
 
 interface Message {
   id: number;
-  sender: "customer" | "company";
-  text: string;
+  sender: "customer" | "support";
+  message: string;
   time: string;
 }
 
@@ -26,7 +26,7 @@ interface Props {
   status: string;
   priority: string;
   customerAvatar?: string | null;
-  messages: Message[];
+  chatMessages: Message[];
 }
 
 export default function ChatModal({
@@ -40,18 +40,18 @@ export default function ChatModal({
   status,
   priority,
   customerAvatar,
-  messages,
+  chatMessages,
 }: Props) {
   const [inputValue, setInputValue] = useState("");
-  console.log("ChatModal rendered with messages:", messages);
+  console.log("ChatModal rendered with messages:", chatMessages);
   if (!open) return null;
 
   const getStatusBadgeConfig = (value: string) => {
     const v = value.toLowerCase();
-
+    const text = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
     if (v === "open") {
       return {
-        text: value,
+        text: text,
         className: "bg-[#ffdbd6] text-[#fb2c2f] border border-[#ffb4ab]",
         icon: <AlertTriangle size={12} className="text-[#fb2c2f]" />,
       };
@@ -59,7 +59,7 @@ export default function ChatModal({
 
     if (v === "in progress") {
       return {
-        text: value,
+        text: text,
         className: "bg-[#f9e8db] text-[#dc7527] border border-[#facc15]",
         icon: <IoHourglassOutline size={12} className="text-[#dc7527]" />,
       };
@@ -67,14 +67,14 @@ export default function ChatModal({
 
     if (v === "resolved") {
       return {
-        text: value,
+        text: text,
         className: "bg-[#e1ffd9] text-[#29b605] border border-[#38EF0A66]",
         icon: <CheckCircle size={12} className="text-[#29b605]" />,
       };
     }
 
     return {
-      text: value,
+      text: text,
       className: "bg-[#f2f2f2] text-[#757575] border border-[#d6d6d7]",
       icon: null,
     };
@@ -82,10 +82,10 @@ export default function ChatModal({
 
   const getPriorityBadgeConfig = (value: string) => {
     const v = value.toLowerCase();
-
+    const text= value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
     if (v === "high") {
       return {
-        text: value,
+        text: text,
         className: "bg-[#ffe2e2] text-[#e7000b] border border-[#ffb3b3]",
         icon: <FaExclamation size={12} className="text-[#e7000b]" />,
       };
@@ -93,7 +93,7 @@ export default function ChatModal({
 
     if (v === "medium") {
       return {
-        text: value,
+        text: text,
         className: "bg-[#fef3e3] text-[#faad40] border border-[#facc15]",
         icon: <VscCircleFilled size={12} className="text-[#faad40]" />,
       };
@@ -101,14 +101,14 @@ export default function ChatModal({
 
     if (v === "low") {
       return {
-        text: value,
+        text: text,
         className: "bg-[#e1eefd] text-[#2f85f3] border border-[#7ae7b0]",
         icon: <FaArrowDownLong size={12} className="text-[#2f85f3]" />,
       };
     }
 
     return {
-      text: value,
+      text: text,
       className: "bg-[#f2f2f2] text-[#757575] border border-[#d6d6d7]",
       icon: null,
     };
@@ -187,7 +187,7 @@ export default function ChatModal({
           </div>
 
           {/* desktop badges */}
-          <div className="absolute right-3 top-3 hidden sm:flex gap-3 flex  items-center ">
+          <div className="absolute md:right-3 right-1 md:top-3 top-1 gap-3 flex  items-center ">
             <span
               className={`inline-flex items-center gap-2 px-2  rounded-md text-[14px] font-roboto ${statusBadge.className}`}
             >
@@ -204,7 +204,7 @@ export default function ChatModal({
           </div>
 
           {/* mobile view badges */}
-          <div className=" flex sm:hidden  gap-2 justify-end items-center ">
+          {/* <div className=" flex sm:hidden  gap-2 justify-end items-center ">
             <span
               className={`flex items-center gap-1 px-1 py-1 rounded-md text-xs font-roboto ${statusBadge.className}`}
             >
@@ -218,15 +218,15 @@ export default function ChatModal({
               {priorityBadge.icon}
               {priorityBadge.text}
             </span>
-          </div>
+          </div> */}
 
 
         </div>
 
         {/* Chat Area */}
         <div className="font-roboto flex-1 max-h-[200px] no-scrollbar overflow-y-auto bg-gray-50 p-4 space-y-4">
-          {messages.map((msg) => {
-            const isCompany = msg.sender === "company";
+          {chatMessages.map((msg) => {
+            const isCompany = msg.sender === "support";
 
             return (
               <div
@@ -261,7 +261,7 @@ export default function ChatModal({
                       : "bg-[#B4FFBC] text-[#121212] rounded-tl-sm"
                       }`}
                   >
-                    {msg.text.split("\n").map((line, i) => (
+                    {msg.message.split("\n").map((line, i) => (
                       <div key={i}>{line}</div>
                     ))}
                   </div>

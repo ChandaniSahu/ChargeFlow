@@ -5,6 +5,9 @@ const nextConfig= {
    allowedDevOrigins: [
     "https://smilingly-revisory-flora.ngrok-free.dev",
   ],
+   images: {
+    domains: ["res.cloudinary.com"],
+  },
     typescript: {
     ignoreBuildErrors: true,
   },

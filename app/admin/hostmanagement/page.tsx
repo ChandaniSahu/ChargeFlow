@@ -26,7 +26,7 @@ import { PiBatteryChargingBold } from "react-icons/pi";
 import { LiaMoneyBillWaveSolid } from "react-icons/lia";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 // import Image from "next/image";
-import data from '../admin-data.json'
+import data from '../data/admin-data.json'
 
 /* ================= DATA ================= */
 const StatsConfig = [

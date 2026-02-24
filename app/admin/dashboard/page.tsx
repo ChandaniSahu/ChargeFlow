@@ -38,7 +38,7 @@ import {
 
 import { Clock, Zap, FileText, DollarSign } from 'lucide-react';
 import Image from 'next/image';
-import data from "../admin-data.json";
+import data from "../data/admin-data.json";
 /* ---------- DATA ---------- */
 
 

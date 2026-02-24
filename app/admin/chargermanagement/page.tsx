@@ -40,7 +40,7 @@ import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { IoMdSettings } from "react-icons/io";
-import data from "../admin-data.json";
+import data from "../data/admin-data.json";
 // import Image from "next/image";
 
 /* ================= DATA ================= */

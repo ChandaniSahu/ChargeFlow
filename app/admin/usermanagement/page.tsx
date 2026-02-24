@@ -20,7 +20,7 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import data from "../admin-data.json"
+import data from "../data/admin-data.json"
 // import Image from "next/image";
 
 /* ================= DATA ================= */
