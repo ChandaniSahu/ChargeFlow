@@ -491,7 +491,7 @@ ${i <= 2 ? "text-small" : ""}
               <div className="lg:col-span-2 bg-white rounded-xl shadow-md px-4 py-2 border border-gray-100 h-full">
                 <h3 className="font-semibold text-[20px] font-inter text-gray-700 mb-1">Charger Utilization</h3>
                 <ResponsiveContainer width="100%" height={220} >
-                  <BarChart  margin={{ top: 0, right: 0, left: -25, bottom: 0 }} data={chargerUtilization}>
+                  <BarChart margin={{ top: 0, right: 0, left: -25, bottom: 0 }} data={chargerUtilization}>
                     <XAxis dataKey="capacity" />
                     <YAxis />
                     <Tooltip cursor={false} />
@@ -501,16 +501,16 @@ ${i <= 2 ? "text-small" : ""}
                   </BarChart>
                 </ResponsiveContainer>
                 <div className="flex justify-center items-center gap-6 text-sm">
-  <div className="flex items-center gap-2">
-    <div className="w-3 h-3 rounded-sm bg-[#7CFF5B]" />
-    <span>AC Charger</span>
-  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-sm bg-[#7CFF5B]" />
+                    <span>AC Charger</span>
+                  </div>
 
-  <div className="flex items-center gap-2">
-    <div className="w-3 h-3 rounded-sm bg-[#22c55e]" />
-    <span>DC Charger</span>
-  </div>
-</div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-sm bg-[#22c55e]" />
+                    <span>DC Charger</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
