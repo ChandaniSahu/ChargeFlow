@@ -935,11 +935,13 @@ const filteredChargers = chargers.filter((c) => {
             <div className="flex items-center justify-center gap-3">
             <div className="relative">
               <button
-                onClick={() => setIsTypeDropdownOpen(!isTypeDropdownOpen)}
+                onClick={() => {setIsTypeDropdownOpen(!isTypeDropdownOpen);
+                  setIsStatusDropdownOpen(false)}
+                }
                 className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full  justify-between"
               >
                 <div className="flex items-center gap-2">
-                  <span className="font-medium text-gray-700 font-inter text-[20px]">
+                  <span className="font-medium text-gray-700 font-inter md:text-[20px] text-[18px]">
                     {typeFilter}
                   </span>
                 </div>
@@ -951,12 +953,12 @@ const filteredChargers = chargers.filter((c) => {
               </button>
 
               {isTypeDropdownOpen && (
-                <div className="absolute right-0 mt-2 md:w-48 w-40  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
+                <div className="absolute right-0  mt-2 md:w-48 w-40  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
 
                   {["All Type", "DC", "AC"].map((type) => (
                     <button
                       key={type}
-                      className={`font-inter text-[20px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${typeFilter === type
+                      className={`font-inter md:text-[20px] text-[16px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${typeFilter === type
                         ? "bg-[#e1ffd9] font-medium"
                         : "text-black"
                         }`}
@@ -978,10 +980,12 @@ const filteredChargers = chargers.filter((c) => {
 
             <div className="relative">
               <button
-                onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
+                 onClick={() => {setIsTypeDropdownOpen(false);
+                  setIsStatusDropdownOpen(!isStatusDropdownOpen)}
+                }
                 className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full justify-between"
               >
-                <span className="font-medium text-gray-700 font-inter text-[20px]">
+                <span className="font-medium text-gray-700 font-inter md:text-[20px] text-[18px]">
                   {statusFilter}
                 </span>
 
@@ -992,11 +996,11 @@ const filteredChargers = chargers.filter((c) => {
               </button>
 
               {isStatusDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
+                <div className="absolute right-0 mt-2 md:w-48 w-45 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
                   {["All Status", "Online", "Offline", "Maintenance"].map((status) => (
                     <button
                       key={status}
-                      className={`font-inter text-[18px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
+                      className={`font-inter md:text-[18px] text-[16px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
                         ? "bg-[#e1ffd9] font-medium"
                         : "text-black"
                         }`}

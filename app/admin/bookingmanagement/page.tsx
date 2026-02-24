@@ -741,7 +741,9 @@ desktop:w-[973px] rounded-[16px]">
             <div className="flex items-center justify-center gap-3">
             <div className="relative">
               <button
-                onClick={() => setIsTypeDropdownOpen(!isTypeDropdownOpen)}
+                onClick={() => {setIsTypeDropdownOpen(!isTypeDropdownOpen);
+                  setIsStatusDropdownOpen(false)
+                }}
                 className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full  justify-between"
               >
                 <div className="flex items-center gap-2">
@@ -757,12 +759,12 @@ desktop:w-[973px] rounded-[16px]">
               </button>
 
               {isTypeDropdownOpen && (
-                <div className="absolute right-0 mt-2 md:w-48 w-40  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-[999] overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
+                <div className="absolute right-0 mt-2 md:w-48 w-43  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-[999] overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
 
                   {["All Dates", "This Week", "This Month"].map((type) => (
                     <button
                       key={type}
-                      className={`font-inter text-[20px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${typeFilter === type
+                      className={`font-inter md:text-[20px] text-[16px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${typeFilter === type
                         ? "bg-[#e1ffd9] font-medium"
                         : "text-black"
                         }`}
@@ -784,7 +786,9 @@ desktop:w-[973px] rounded-[16px]">
 
             <div className="relative">
               <button
-                onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
+                onClick={() => {setIsStatusDropdownOpen(!isStatusDropdownOpen);
+                  setIsTypeDropdownOpen(false);
+                }}
                 className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full justify-between"
               >
                 <span className="font-medium text-gray-700 font-inter text-[20px]">
@@ -798,11 +802,11 @@ desktop:w-[973px] rounded-[16px]">
               </button>
 
               {isStatusDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
+                <div className="absolute right-0  mt-2 md:w-48 w-45 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
                   {["All Status", "Upcoming", "Completed", "Cancelled"].map((status) => (
                     <button
                       key={status}
-                      className={`font-inter text-[18px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
+                      className={`font-inter md:text-[18px] text-[16px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
                         ? "bg-[#e1ffd9] font-medium"
                         : "text-black"
                         }`}

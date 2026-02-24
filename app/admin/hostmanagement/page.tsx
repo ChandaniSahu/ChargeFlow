@@ -334,7 +334,7 @@ const userData = [
   { id: 1, name: 'Priya Singh', email: 'priyasingh@gmail.com', contact: '+91 5678903488', status: 'Approved', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
   { id: 2, name: 'Rohit Singh', email: 'rohitsingh@gmail.com', contact: '+91 5778433390', status: 'Approved', date: '2024-11-15', bookings: 14, amount: '₹2450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
   { id: 3, name: 'Sneha Kapoor', email: 'snehakapoor@gmail.com', contact: '+91 1258444907', status: 'Pending', date: '2024-11-15', bookings: 9, amount: '₹4550', paymentStatus: 'Pending', imageUrl: "/images/user1.jpg", },
-  { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Failed', date: '2024-11-15', bookings: 30, amount: '₹4950', paymentStatus: 'Failed', imageUrl: "/images/user2.jpg", },
+  { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Rejected', date: '2024-11-15', bookings: 30, amount: '₹4950', paymentStatus: 'Failed', imageUrl: "/images/user2.jpg", },
   { id: 5, name: 'Rahul Sharma', email: 'rahulsharma@gmail.com', contact: '+91 7576329420', status: 'Approved', date: '2024-11-15', bookings: 23, amount: '₹6450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
   { id: 6, name: 'Krishna Thakur', email: 'krishna@gmail.com', contact: '+91 7576329420', status: 'Approved', date: '2024-11-15', bookings: 40, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
   { id: 7, name: 'Antara Mishra', email: 'antaramishra@gmail.com', contact: '+91 7576329420', status: 'Approved', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user1.jpg", },
@@ -350,7 +350,7 @@ const GetStatusIcon = (type: string, status: string) => {
       return <Clock size={16} className="text-[#b45309]" />;
     case 'failed':
       return <RxCross2 size={16} className="text-[#fb2c2f]" />;
-    case 'blocked':
+    case 'rejected':
       return <XCircle size={16} className="text-[#fb2c2f]" />;
     case 'inactive':
       return <CircleDashed size={16} className="text-[#7d7d7d]" />

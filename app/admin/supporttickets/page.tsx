@@ -648,7 +648,7 @@ export default function UserManagementDashboard() {
           </div>
 
           {/* CHARGER STATUS */}
-          <div className="w-full lg:w-[190px]  bg-white rounded-xl shadow px-3 py-2 h-full flex flex-col">
+          {/* <div className="w-full lg:w-[190px]  bg-white rounded-xl shadow px-3 py-2 h-full flex flex-col">
             <h3 className="font-inter text-center text-[20px] font-semibold text-[#434343] mb-1">
               Charger Status
             </h3>
@@ -686,7 +686,7 @@ export default function UserManagementDashboard() {
               </div>
             </div>
 
-          </div>
+          </div> */}
         </div>
 
         {/* RECENT ACTIVITY + REVENUE CONTRIBUTION */}
@@ -770,10 +770,13 @@ export default function UserManagementDashboard() {
             <div className="flex items-center justify-center gap-3">
               <div className="relative">
                 <button
-                  onClick={() => setIsStatusDropdownOpen(!isStatusDropdownOpen)}
+                  onClick={() => {
+                    setIsStatusDropdownOpen(!isStatusDropdownOpen);
+                    setIsPriorityDropdownOpen(false);
+                  }}
                   className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full justify-between"
                 >
-                  <span className="font-medium text-gray-700 font-inter text-[20px]">
+                  <span className="font-medium text-gray-700 font-inter md:text-[20px] text-[18px]">
                     {statusFilter}
                   </span>
 
@@ -784,11 +787,11 @@ export default function UserManagementDashboard() {
                 </button>
 
                 {isStatusDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
+                  <div className="absolute right-0 mt-2 md:w-48 w-43 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20">
                     {["All Status", "Open", "In Progress", "Resolved"].map((status) => (
                       <button
                         key={status}
-                        className={`font-inter text-[18px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
+                        className={`font-inter md:text-[18px] text-[15px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${statusFilter === status
                           ? "bg-[#e1ffd9] font-medium"
                           : "text-black"
                           }`}
@@ -806,11 +809,14 @@ export default function UserManagementDashboard() {
               </div>
               <div className="relative">
                 <button
-                  onClick={() => setIsPriorityDropdownOpen(!isPriorityDropdownOpen)}
+                  onClick={() => {
+                    setIsPriorityDropdownOpen(!isPriorityDropdownOpen);
+                    setIsStatusDropdownOpen(false);
+                  }}
                   className="flex items-center gap-4 px-4 py-2.5 bg-white border border-gray-200 rounded-lg shadow-sm hover:ring-[0.8px] hover:ring-[#38EF0A] desktop:w-[200px] w-full  justify-between"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="font-medium text-gray-700 font-inter text-[20px]">
+                    <span className="font-medium text-gray-700 font-inter md:text-[20px] text-[18px]">
                       {priorityFilter}
                     </span>
                   </div>
@@ -822,12 +828,12 @@ export default function UserManagementDashboard() {
                 </button>
 
                 {isPriorityDropdownOpen && (
-                  <div className="absolute right-0 mt-2 md:w-48 w-40  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-[999] overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
+                  <div className="absolute right-0 mt-2 md:w-48 w-43  p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-[999] overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]">
 
                     {["All Priority", "High", "Medium", "Low"].map((type) => (
                       <button
                         key={type}
-                        className={`font-inter text-[20px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${priorityFilter === type
+                        className={`font-inter md:text-[20px] text-[15px]  w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${priorityFilter === type
                           ? "bg-[#e1ffd9] font-medium"
                           : "text-black"
                           }`}

@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { X, Send, AlertTriangle } from "lucide-react";
+import { X, Send, AlertTriangle, CheckCircle } from "lucide-react";
 import Image from "next/image";
-import { FaExclamation } from "react-icons/fa6";
+import { FaArrowDownLong, FaExclamation } from "react-icons/fa6";
+import { SiConventionalcommits } from "react-icons/si";
+import { IoHourglassOutline } from "react-icons/io5";
+import { VscCircleFilled } from "react-icons/vsc";
 
 interface Message {
   id: number;
@@ -43,13 +46,75 @@ export default function ChatModal({
   console.log("ChatModal rendered with messages:", messages);
   if (!open) return null;
 
-  const priorityColor =
-    priority === "High"
-      ? "text-red-500 border-red-500"
-      : priority === "Medium"
-        ? "text-orange-500 border-orange-500"
-        : "text-[#27C300] border-[#27C300]";
+  const getStatusBadgeConfig = (value: string) => {
+    const v = value.toLowerCase();
 
+    if (v === "open") {
+      return {
+        text: value,
+        className: "bg-[#ffdbd6] text-[#fb2c2f] border border-[#ffb4ab]",
+        icon: <AlertTriangle size={12} className="text-[#fb2c2f]" />,
+      };
+    }
+
+    if (v === "in progress") {
+      return {
+        text: value,
+        className: "bg-[#f9e8db] text-[#dc7527] border border-[#facc15]",
+        icon: <IoHourglassOutline size={12} className="text-[#dc7527]" />,
+      };
+    }
+
+    if (v === "resolved") {
+      return {
+        text: value,
+        className: "bg-[#e1ffd9] text-[#29b605] border border-[#38EF0A66]",
+        icon: <CheckCircle size={12} className="text-[#29b605]" />,
+      };
+    }
+
+    return {
+      text: value,
+      className: "bg-[#f2f2f2] text-[#757575] border border-[#d6d6d7]",
+      icon: null,
+    };
+  };
+
+  const getPriorityBadgeConfig = (value: string) => {
+    const v = value.toLowerCase();
+
+    if (v === "high") {
+      return {
+        text: value,
+        className: "bg-[#ffe2e2] text-[#e7000b] border border-[#ffb3b3]",
+        icon: <FaExclamation size={12} className="text-[#e7000b]" />,
+      };
+    }
+
+    if (v === "medium") {
+      return {
+        text: value,
+        className: "bg-[#fef3e3] text-[#faad40] border border-[#facc15]",
+        icon: <VscCircleFilled size={12} className="text-[#faad40]" />,
+      };
+    }
+
+    if (v === "low") {
+      return {
+        text: value,
+        className: "bg-[#e1eefd] text-[#2f85f3] border border-[#7ae7b0]",
+        icon: <FaArrowDownLong size={12} className="text-[#2f85f3]" />,
+      };
+    }
+
+    return {
+      text: value,
+      className: "bg-[#f2f2f2] text-[#757575] border border-[#d6d6d7]",
+      icon: null,
+    };
+  };
+  const statusBadge = getStatusBadgeConfig(status);
+  const priorityBadge = getPriorityBadgeConfig(priority);
   return (
     <div className="fixed h-screen inset-0 bg-black/45 backdrop-blur-sm flex items-center justify-center z-[999999]">
       <div className="relative w-[460px] max-w-[95vw] max-h-[90vh] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden">
@@ -77,7 +142,7 @@ export default function ChatModal({
         </div>
 
         {/* Ticket Info */}
-        <div className="font-roboto p-3 border-b border-[#DAD7D7] flex justify-between gap-3">
+        <div className="font-roboto p-3 border-b border-[#DAD7D7] flex sm:flex-row  flex-col gap-3">
           <div className="flex gap-3">
             <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center overflow-hidden">
               {customerAvatar ? (
@@ -100,124 +165,130 @@ export default function ChatModal({
               <div className="font-medium">{customerName}</div>
               <div className="text-gray-500 text-xs">{email}</div>
 
-<div className="mt-1 flex gap-6 items-start w-full">
+              <div className="mt-1 flex justify-between  items-start">
 
-  {/* LEFT COLUMN */}
-  <div className="flex flex-col gap-1 text-xs text-gray-700">
-    <div>
-      <span className="font-semibold">Description:</span>{" "}
-      <span className="font-normal">{description}</span>
-    </div>
+                {/* LEFT COLUMN */}
+                <div className="flex flex-col gap-1 text-xs text-gray-700">
+                  <div>
+                    <span className="font-semibold">Description:</span>{" "}
+                    <span className="font-normal">{description}</span>
+                  </div>
 
-    <div>
-      <span className="font-semibold">Category:</span>{" "}
-      <span className="font-normal">{category}</span>
-    </div>
-  </div>
+                  <div>
+                    <span className="font-semibold">Category:</span>{" "}
+                    <span className="font-normal">{category}</span>
+                  </div>
+                </div>
 
-  {/* RIGHT COLUMN (TAGS) */}
-  <div className="hidden sm:flex gap-3  items-center text-[12px] font-roboto">
-    <span className="px-4 py-1 border border-[#FF080C47] text-[#E90408] bg-[#FF000424] rounded-lg flex items-center gap-1 ">
-      <AlertTriangle size={12} />
-      {status}
-    </span>
 
-    <span
-      className={`px-4 py-1 border border-[#FF080C47] text-[#E90408] bg-[#FF000424] rounded-lg flex items-center gap-1 ${priorityColor}`}
-    >
-      <FaExclamation size={12} />
-      {priority}
-    </span>
-  </div>
-
-</div>
+              </div>
             </div>
-            <div className="flex sm:hidden flex flex-col gap-2 items-end">
-            <span className="px-3 py-1 text-xs border border-orange-400 text-orange-500 rounded-md flex items-center gap-1">
-              <AlertTriangle size={14} />
-              {status}
+
+          </div>
+
+          {/* desktop badges */}
+          <div className="hidden sm:flex flex-1 gap-3 flex-col  items-center ">
+            <span
+              className={`inline-flex items-center gap-2 px-2 py-1 rounded-md text-[14px] font-roboto ${statusBadge.className}`}
+            >
+              {statusBadge.icon}
+              {statusBadge.text}
             </span>
 
             <span
-              className={`px-3 py-1 text-xs border rounded-md ${priorityColor}`}
+              className={`inline-flex items-center gap-2 px-2 py-1 rounded-md text-[14px] font-roboto ${priorityBadge.className}`}
             >
-              {priority}
+              {priorityBadge.icon}
+              {priorityBadge.text}
             </span>
           </div>
+
+          {/* mobile view badges */}
+          <div className=" flex sm:hidden  gap-2 justify-end items-center ">
+            <span
+              className={`flex items-center gap-1 px-1 py-1 rounded-md text-xs font-roboto ${statusBadge.className}`}
+            >
+              {statusBadge.icon}
+              {statusBadge.text}
+            </span>
+
+            <span
+              className={`flex items-center gap-1 px-1 py-1 rounded-md text-xs font-roboto ${priorityBadge.className}`}
+            >
+              {priorityBadge.icon}
+              {priorityBadge.text}
+            </span>
           </div>
 
 
         </div>
 
         {/* Chat Area */}
-<div className="font-roboto flex-1 max-h-[200px] no-scrollbar overflow-y-auto bg-gray-50 p-4 space-y-4">
-  {messages.map((msg) => {
-    const isCompany = msg.sender === "company";
+        <div className="font-roboto flex-1 max-h-[200px] no-scrollbar overflow-y-auto bg-gray-50 p-4 space-y-4">
+          {messages.map((msg) => {
+            const isCompany = msg.sender === "company";
 
-    return (
-      <div
-        key={msg.id}
-        className={`flex  gap-2 ${
-          isCompany ? "justify-end" : "justify-start"
-        }`}
-      >
-        {/* LEFT AVATAR (Customer) */}
-        {!isCompany && (
-          <div className="w-8 h-8 rounded-full overflow-hidden bg-green-100 flex items-center justify-center">
-            {customerAvatar ? (
-              <Image
-                src={customerAvatar}
-                alt={customerName}
-                width={32}
-                height={32}
-                className="object-cover"
-              />
-            ) : (
-              <span className="text-xs font-semibold text-green-600">
-                {customerName.charAt(0)}
-              </span>
-            )}
-          </div>
-        )}
+            return (
+              <div
+                key={msg.id}
+                className={`flex  gap-2 ${isCompany ? "justify-end" : "justify-start"
+                  }`}
+              >
+                {/* LEFT AVATAR (Customer) */}
+                {!isCompany && (
+                  <div className="w-8 h-8 rounded-full overflow-hidden bg-green-100 flex items-center justify-center">
+                    {customerAvatar ? (
+                      <Image
+                        src={customerAvatar}
+                        alt={customerName}
+                        width={32}
+                        height={32}
+                        className="object-cover"
+                      />
+                    ) : (
+                      <span className="text-xs font-semibold text-green-600">
+                        {customerName.charAt(0)}
+                      </span>
+                    )}
+                  </div>
+                )}
 
-        {/* MESSAGE + TIME */}
-        <div className="max-w-[70%] flex flex-col">
-          <div
-            className={`px-4 py-2 text-sm rounded-2xl ${
-              isCompany
-                ? "bg-[#2CDE00] text-white rounded-tr-sm"
-                : "bg-[#B4FFBC] text-[#121212] rounded-tl-sm"
-            }`}
-          >
-            {msg.text.split("\n").map((line, i) => (
-              <div key={i}>{line}</div>
-            ))}
-          </div>
+                {/* MESSAGE + TIME */}
+                <div className="max-w-[70%] flex flex-col">
+                  <div
+                    className={`px-4 py-2 text-sm rounded-2xl ${isCompany
+                      ? "bg-[#2CDE00] text-white rounded-tr-sm"
+                      : "bg-[#B4FFBC] text-[#121212] rounded-tl-sm"
+                      }`}
+                  >
+                    {msg.text.split("\n").map((line, i) => (
+                      <div key={i}>{line}</div>
+                    ))}
+                  </div>
 
-          <span
-            className={`text-[11px] text-gray-400 mt-1 ${
-              isCompany ? "text-right" : "text-left"
-            }`}
-          >
-            {msg.time}
-          </span>
+                  <span
+                    className={`text-[11px] text-gray-400 mt-1 ${isCompany ? "text-right" : "text-left"
+                      }`}
+                  >
+                    {msg.time}
+                  </span>
+                </div>
+
+                {/* RIGHT AVATAR (Company) */}
+                {isCompany && (
+                  <div className="w-8 h-8 rounded-full bg-white flex items-center shadow-[0px_1px_5.3px_0px_#00000040] justify-center">
+                    <Image
+                      src="/logo.svg"
+                      alt="Company"
+                      width={20}
+                      height={20}
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
-
-        {/* RIGHT AVATAR (Company) */}
-        {isCompany && (
-          <div className="w-8 h-8 rounded-full bg-white flex items-center shadow-[0px_1px_5.3px_0px_#00000040] justify-center">
-            <Image
-              src="/logo.svg"
-              alt="Company"
-              width={20}
-              height={20}
-            />
-          </div>
-        )}
-      </div>
-    );
-  })}
-</div>
 
         {/* Input */}
         <div className="p-3 bg-white w-full sticky bottom-0 flex items-center gap-2">
