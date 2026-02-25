@@ -150,6 +150,68 @@
       "totalHost": { "amount": 965200, "growth": 10 },
       "platformRevenue": { "amount": 540000, "growth": 8 }
     }
+  },
+  "settings": {
+    "general": {
+      "platformSettings": {
+        "platformName": "Chargeflow",
+        "supportEmail": "support@chargeflow.com",
+        "defaultCurrency": "INR - Indian Rupee",
+        "timezone": "IST - Indian Standard Time"
+      },
+      "toggles": {
+        "maintenanceMode": false,
+        "autoApproveHosts": false
+      }
+    },
+
+    "commission": {
+      "commissionStructure": {
+        "platformCommissionPercent": 20,
+        "paymentProcessingFeePercent": 0.9,
+        "minimumBookingAmount": 4,
+        "maximumBookingAmount": 500
+      },
+      "dynamicPricing": {
+        "peakHourPricing": true,
+        "weekendPremium": false
+      }
+    },
+    "roles": [
+    {
+      "id": 1,
+      "name": "Super Admin",
+      "description": "Full platform access",
+      "iconColor": "green",
+      "permissions": {
+        "userManagement": true,
+        "financialAccess": true,
+        "systemSettings": true
+      }
+    },
+    {
+      "id": 2,
+      "name": "Support Admin",
+      "description": "Customer support access",
+      "iconColor": "blue",
+      "permissions": {
+        "userManagement": true,
+        "financialAccess": false,
+        "systemSettings": false
+      }
+    },
+    {
+      "id": 3,
+      "name": "Finance Admin",
+      "description": "Payment and revenue access",
+      "iconColor": "blue",
+      "permissions": {
+        "userManagement": false,
+        "financialAccess": true,
+        "systemSettings": false
+      }
+    }
+  ]
   }
   
 }

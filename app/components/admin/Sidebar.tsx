@@ -21,7 +21,7 @@ const menu = [
   { title: "Booking Management", icon: Calendar, path: "/admin/bookingmanagement" },
   { title: "Payments & Revenue", icon: LuBadgeIndianRupee, path: "/admin/payments" },
   { title: "Support Tickets", icon: BiSupport, path: "/admin/supporttickets" },
-  { title: "Settings", icon: Settings, path: "/admin/settings" },
+  { title: "Settings", icon: Settings, path: "/admin/settings?type=general" },
 ];
 
 export default function Sidebar() {
