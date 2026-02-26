@@ -13,17 +13,17 @@ export default async function SettingsPage({
   console.log("SettingsPage searchParams:", params.type);
 
   return (
-    <div className="overflow-hidden flex-1 py-4 pr-2 w-full">
-      <h1 className="text-[28px] font-semibold text-white">
+    <div className="py-1 px-2 xl:px-8 w-full">
+      <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 text-[30px] text-white">
         Settings
       </h1>
-      <p className="text-white/80 text-[14px] mb-6">
+      <p className="font-arial text-white desktop:text-[20px] text-[15px] mb-5 -mt-1 leading-[19px] desktop:leading-tight">
         Configure Basic Platform Information
       </p>
-
+      
       <SettingsHeader active={type} />
 
-      <div className="max-h-[82vh] overflow-y-auto no-scrollbar mt-6 bg-white/80 backdrop-blur-xl rounded-[20px] p-6 md:p-10">
+      <div className="xl:max-h-[63vh] overflow-y-auto no-scrollbar mt-6 bg-white backdrop-blur-xl rounded-[20px] px-4 xl:px-10 py-3">
         {type === "general" && <General />}
         {type === "commission" && <Commission />}
         {type === "roles" && <RolesPage />}

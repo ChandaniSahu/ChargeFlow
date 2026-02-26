@@ -182,7 +182,6 @@
       "id": 1,
       "name": "Super Admin",
       "description": "Full platform access",
-      "iconColor": "green",
       "permissions": {
         "userManagement": true,
         "financialAccess": true,
@@ -193,7 +192,6 @@
       "id": 2,
       "name": "Support Admin",
       "description": "Customer support access",
-      "iconColor": "blue",
       "permissions": {
         "userManagement": true,
         "financialAccess": false,
@@ -204,7 +202,6 @@
       "id": 3,
       "name": "Finance Admin",
       "description": "Payment and revenue access",
-      "iconColor": "blue",
       "permissions": {
         "userManagement": false,
         "financialAccess": true,

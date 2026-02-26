@@ -12,7 +12,7 @@ const tabs = [
 
 export default function SettingsHeader({ active }: { active: string }) {
   return (
-    <div className="flex flex-wrap gap-2 bg-white/70 rounded-full p-2 w-fit">
+    <div className="flex  justify-around items-center bg-white  rounded-full py-2">
       {tabs.map((tab) => {
         const isActive = active === tab.key;
 
@@ -20,7 +20,7 @@ export default function SettingsHeader({ active }: { active: string }) {
           <Link
             key={tab.key}
             href={`/admin/settings?type=${tab.key}`}
-            className={`px-6 py-2 rounded-full text-[15px] font-medium transition-all
+            className={`font-inter flex items-center  justify-center md:w-[170px] overflow-x-auto no-scrollbar py-2 rounded-full text-[20px] font-medium transition-all
               ${
                 isActive
                   ? "bg-[#30EF0A] text-white"
