@@ -208,7 +208,35 @@
         "systemSettings": false
       }
     }
+  ],
+  "security":{
+    "twoFactor": {
+    "enabled": false
+  },
+  "securityAlert": {
+    "notifyNewLogin": true
+  },
+  "loginHistory": [
+    {
+      "browser": "Chrome",
+      "device": "Samsung Galaxy S21",
+      "os": "Android 13",
+      "location": "Delhi, India",
+      "adminType": "Super Admin",
+      "loginTime": "Today 10:15 AM",
+      "status": "active"
+    },
+    {
+      "browser": "Edge",
+      "device": "ASUS Laptop",
+      "os": "Windows 11",
+      "location": "Mumbai, India",
+      "adminType": "Super Admin",
+      "loginTime": "Today 10:15 AM",
+      "status": "loggedout"
+    }
   ]
+  }
   }
   
 }

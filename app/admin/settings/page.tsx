@@ -2,6 +2,7 @@ import SettingsHeader from "./settingheader";
 import General from "./general";
 import Commission from "./commission";
 import RolesPage from "./roles";
+import Security from "./security";
 
 export default async function SettingsPage({
   searchParams,
@@ -13,7 +14,7 @@ export default async function SettingsPage({
   console.log("SettingsPage searchParams:", params.type);
 
   return (
-    <div className="py-1 px-2 xl:px-8 w-full">
+    <div className="py-1 px-2 xl:px-4 w-full">
       <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 text-[30px] text-white">
         Settings
       </h1>
@@ -27,6 +28,7 @@ export default async function SettingsPage({
         {type === "general" && <General />}
         {type === "commission" && <Commission />}
         {type === "roles" && <RolesPage />}
+        {type === "security" && <Security />}
       </div>
     </div>
   );
