@@ -12,11 +12,11 @@ const tabs = [
 
 export default function SettingsHeader({ active }: { active: string }) {
   return (
-    <div className="bg-white rounded-full">
+    <div className="bg-white rounded-[129px]">
 
       {/* Mobile Wrapper */}
-      <div className="flex gap-2 overflow-x-auto no-scrollbar px-2 py-2
-                      md:justify-around md:items-center md:overflow-visible md:px-0">
+      <div className="flex gap-2 overflow-x-auto no-scrollbar px-1.5 py-2
+                      md:justify-around md:items-center md:overflow-visible ">
 
         {tabs.map((tab) => {
           const isActive = active === tab.key;
@@ -31,7 +31,7 @@ export default function SettingsHeader({ active }: { active: string }) {
                           text-[16px]
                           md:text-[20px]
                           xl:px-0 md:xl:w-[170px]
-                          rounded-full font-medium transition-all
+                          rounded-[52px] font-medium transition-all
                           ${
                             isActive
                               ? "bg-[#30EF0A] text-white"

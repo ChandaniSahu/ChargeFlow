@@ -700,7 +700,7 @@ export default function UserManagementDashboard() {
           <div className="max-h-[260px] overflow-y-auto no-scrollbar space-y-2 -mx-2">
             {supportTickets.map((a) => {
               const config = getActivityBadge(a.activityType);
-              const { date, timeAgo } = formatTimestamp(a.createdAt);
+              const { date, timeAgo } = formatTimestamp(a.uploadedAt);
               return (
                 <div
                   key={a.id}
@@ -939,7 +939,7 @@ export default function UserManagementDashboard() {
                     {filteredTickets.map((ticket) => {
                       const statusBadge = getStatusBadgeConfig(ticket.status);
                       const priorityBadge = getPriorityBadgeConfig(ticket.priority);
-                     const { date, time } = formatTimestamp(ticket.createdAt);
+                     const { date, time } = formatTimestamp(ticket.uploadedAt);
                       return (
                         <tr key={ticket.id} className="hover:bg-[#f4fff1] transition-colors">
                           {/* User */}
@@ -1046,7 +1046,7 @@ export default function UserManagementDashboard() {
   }}
   imageSrc={selectedTicket?.screenshotUrl || ""}
   uploadedBy={selectedTicket?.name || ""}
-  uploadedAt={selectedTicket?.time || ""}
+  uploadedAt={selectedTicket?.uploadedAt|| ""}
   ticketId={selectedTicket?.ticketId || ""}
 />
 <ChatModal

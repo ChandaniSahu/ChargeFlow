@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { Download, X } from "lucide-react";
+import { formatTimestamp } from "../utility/function";
 
 interface Props {
   imageSrc: string;
@@ -23,16 +24,21 @@ export default function UploadedScreenshotModal({
 }: Props) {
     if (!isOpen) return null;
   const imgRef = useRef<HTMLImageElement>(null);
-
+console.log('uploadedat',uploadedAt)
+  const {time} = formatTimestamp(uploadedAt);
   const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href = imageSrc;
-    link.download = `screenshot-${ticketId || "download"}.png`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  const downloadUrl = imageSrc.replace(
+    "/upload/",
+    "/upload/fl_attachment/"
+  );
 
+  const link = document.createElement("a");
+  link.href = downloadUrl;
+  link.target = "_blank";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/55 backdrop-blur-md">
       <div className="w-[420px] max-w-[95vw] bg-white rounded-[8px] shadow-2xl overflow-hidden flex flex-col px-4">
@@ -63,7 +69,7 @@ export default function UploadedScreenshotModal({
         </div>
 
         {/* Image */}
-        <div className="w-full h-[190px] flex items-center justify-center py-2 mb-2">
+        <div className="w-full h-[250px] flex items-center justify-center py-2 mb-2">
           <Image
             src={imageSrc}
             alt="Uploaded screenshot"
@@ -76,7 +82,7 @@ export default function UploadedScreenshotModal({
         {/* Meta Info */}
         <div className="mb-1 flex flex-col gap-2 text-sm">
           <MetaRow label="Uploaded by:" value={uploadedBy} />
-          <MetaRow label="Uploaded at:" value={uploadedAt} />
+          <MetaRow label="Uploaded at:" value={time} />
           <MetaRow label="Ticket ID:" value={ticketId} />
         </div>
 

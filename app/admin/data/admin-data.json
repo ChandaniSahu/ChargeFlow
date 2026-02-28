@@ -216,14 +216,14 @@
   "securityAlert": {
     "notifyNewLogin": true
   },
-  "loginHistory": [
+ "loginHistory": [
     {
       "browser": "Chrome",
       "device": "Samsung Galaxy S21",
       "os": "Android 13",
       "location": "Delhi, India",
       "adminType": "Super Admin",
-      "loginTime": "Today 10:15 AM",
+      "loginTimeUTC": "2026-02-28T04:45:00Z",
       "status": "active"
     },
     {
@@ -232,7 +232,34 @@
       "os": "Windows 11",
       "location": "Mumbai, India",
       "adminType": "Super Admin",
-      "loginTime": "Today 10:15 AM",
+      "loginTimeUTC": "2026-02-28T04:45:00Z",
+      "status": "loggedout"
+    },
+    {
+      "browser": "Safari",
+      "device": "MacBook Pro",
+      "os": "MacOS",
+      "location": "Toronto, Canada",
+      "adminType": "Super Admin",
+      "loginTimeUTC": "2026-02-28T04:45:00Z",
+      "status": "loggedout"
+    },
+    {
+      "browser": "Chrome",
+      "device": "iPhone 14 Pro",
+      "os": "iOS 17",
+      "location": "New York, USA",
+      "adminType": "Super Admin",
+      "loginTimeUTC": "2026-02-28T04:45:00Z",
+      "status": "loggedout"
+    },
+    {
+      "browser": "Firefox",
+      "device": "Nokia G20",
+      "os": "Android 12",
+      "location": "Berlin, Germany",
+      "adminType": "Super Admin",
+      "loginTimeUTC": "2026-02-28T04:45:00Z",
       "status": "loggedout"
     }
   ]

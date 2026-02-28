@@ -14,7 +14,7 @@ export default async function SettingsPage({
   console.log("SettingsPage searchParams:", params.type);
 
   return (
-    <div className="py-1 px-2 xl:px-4 w-full">
+    <div className="py-1 px-2 xl:px-4 overflow-hidden pb-4 w-full flex flex-col h-full">
       <h1 className="font-inter font-semibold desktop:text-[36px] desktop:mb-0 text-[30px] text-white">
         Settings
       </h1>
@@ -24,7 +24,7 @@ export default async function SettingsPage({
       
       <SettingsHeader active={type} />
 
-      <div className="xl:max-h-[63vh] overflow-y-auto no-scrollbar mt-6 bg-white backdrop-blur-xl rounded-[20px] px-4 xl:px-10 py-3">
+      <div className="flex-1 overflow-y-auto no-scrollbar mt-6 bg-white backdrop-blur-xl rounded-[20px] px-4 xl:px-10 py-3">
         {type === "general" && <General />}
         {type === "commission" && <Commission />}
         {type === "roles" && <RolesPage />}
