@@ -12,6 +12,7 @@ import toast from "react-hot-toast";
 
 export default function SecuritySettings() {
     const securityData = data.settings.security;
+    console.log('securityData', securityData);
     const [formData, setFormData] = useState({
         currentPassword: "",
         newPassword: "",
@@ -58,8 +59,8 @@ export default function SecuritySettings() {
     const isFormValid =
         formData.currentPassword &&
         formData.newPassword &&
-        formData.confirmPassword &&
-        formData.newPassword === formData.confirmPassword;
+        formData.confirmPassword 
+        // formData.newPassword === formData.confirmPassword;
 
     const formatLoginTime = (utcString: string) => {
         const date = new Date(utcString);
@@ -194,24 +195,24 @@ export default function SecuritySettings() {
             <p className="text-[16px] text-[#7C7C7C] mt-4">
                 Two-factor authentication adds an additional layer of security to your account.
             </p>
-
+<div className="border-t border-[#C9C8C8] my-8" />
             <div className="border border-[#C9C8C8] rounded-[12px] overflow-hidden">
 
   {/* Title */}
-  <div className="bg-[#F3F3F3] px-6 py-4">
+  <div className="px-6 py-4">
     <h3 className="text-[20px] font-medium text-black">
       Login Activity
     </h3>
   </div>
 
   {/* Scrollable Table */}
-  <div className="max-h-[350px] overflow-y-auto no-scrollbar">
+  <div className="max-h-[350px] overflow-y-auto no-scrollbar border border-[#C9C8C8] shadow-[0px_2px_2px_0px_#00000026]">
 
-    <table className="min-w-full text-[16px]">
+    <table className="min-w-max w-full text-[16px] border-collapse  ">
 
       {/* Sticky Header */}
-      <thead className="bg-[#F9F9F9] sticky top-0 z-10 border-b border-[#C9C8C8]">
-        <tr className="text-left text-[#364153] font-medium">
+      <thead className="bg-white sticky top-0 z-99 border border-[#C9C8C8] shadow-[0px_2px_6.3px_0px_#00000026]">
+        <tr className="text-left text-[#364153] font-medium text-[18px]">
           <th className="px-6 py-4">Browser</th>
           <th className="px-6 py-4">Device Name</th>
           <th className="px-6 py-4">OS</th>
@@ -222,12 +223,12 @@ export default function SecuritySettings() {
         </tr>
       </thead>
 
-      <tbody className="text-[#434343]">
+      <tbody className="text-[#434343] z-0">
 
         {securityData.loginHistory.map((item, index) => (
           <tr
             key={index}
-            className="border-b border-[#E5E5E5] hover:bg-gray-50 transition"
+            className="border-b border-[#E5E5E5] text-[14px] transition"
           >
             <td className="px-6 py-4">{item.browser}</td>
             <td className="px-6 py-4">{item.device}</td>
@@ -246,6 +247,7 @@ export default function SecuritySettings() {
                 </span>
               ) : (
                 <span className="flex items-center gap-2 border border-[#C9C8C8] text-[#7C7C7C] px-4 py-1.5 rounded-[6px] text-[14px] font-medium w-fit">
+                  <LogOut size={14} />
                   Logged Out
                 </span>
               )}
@@ -267,16 +269,16 @@ export default function SecuritySettings() {
                 Logout Options
             </h3>
 
-            <div className="space-y-4">
+            <div className="space-y-4 ">
 
                 {/* Logout Current Device */}
-                <button className="flex items-center gap-3 border border-[#C9C8C8] rounded-[10px] px-6 py-3 text-[18px] text-[#364153] bg-white hover:bg-gray-50 transition">
+                <button className="flex items-center gap-3 border border-[#C9C8C8] rounded-[10px] w-full md:w-[320px] justify-center  py-3 text-[18px] text-[#364153] bg-white hover:bg-[#30EF0A] hover:text-white transition">
                     <LogOut size={20} />
                     Logout from Current Device
                 </button>
 
                 {/* Logout All Device */}
-                <button className="flex items-center gap-3 rounded-[10px] px-6 py-3 text-[18px] font-medium text-white bg-[#30EF0A] hover:bg-green-500 transition">
+                <button className="flex items-center gap-3 rounded-[10px] w-full md:w-[320px] justify-center py-3 text-[18px] font-medium text-white bg-[#30EF0A] hover:bg-green-500 transition">
                     <LogOut size={20} />
                     Logout from All Device
                 </button>
@@ -294,7 +296,7 @@ export default function SecuritySettings() {
                 Security Alerts
             </h3>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 md:mb-6">
                 <Toggle
                     enabled={notifyNewLogin}
                     onToggle={() =>

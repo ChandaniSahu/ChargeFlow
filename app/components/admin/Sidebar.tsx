@@ -59,7 +59,10 @@ export default function Sidebar() {
         <div className="space-y-2">
           {menu.map((item, i) => {
             const Icon = item.icon;
-            const isActive = pathname === item.path;
+           const cleanPath = item.path.split("?")[0];
+
+const isActive = pathname.startsWith(cleanPath);
+            console.log("Sidebar pathname:", pathname, isActive);
             return (
               <Link
                 href={item.path}
