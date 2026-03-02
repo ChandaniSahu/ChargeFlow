@@ -71,6 +71,7 @@ export default function Notification() {
 
 
   return (
+    <>
     <div className="font-inter space-y-8">
 
       {/* Header */}
@@ -84,20 +85,20 @@ export default function Notification() {
           </p>
         </div>
 
-        <button className="flex items-center gap-2 bg-[#30EF0A] text-white px-6 py-3 rounded-[10px] text-[20px] font-medium">
+        <button className="flex items-center gap-2 bg-[#30EF0A] hover:bg-green-500 cursor-pointer text-white px-6 py-3 rounded-[10px] text-[20px] font-medium">
           <Plus size={22} />
           Create New Notification
         </button>
       </div>
 
       {/* Active Automations */}
-      <div>
+      <div className="font-inter">
 
         <h3 className="text-[22px] font-medium mb-4">
           Notification
         </h3>
 
-        <div className="border rounded-[16px] p-6 bg-white">
+        <div className="border border-[#C9C8C8] rounded-[16px] p-6 bg-white">
 
           <h4 className="text-[22px] font-medium mb-4 text-[#364153]">
             Active Automations
@@ -109,7 +110,7 @@ export default function Notification() {
 
               <div
                 key={item.id}
-                className="border rounded-[12px] p-4 flex justify-between items-center flex-wrap gap-4"
+                className="border border-[#C9C8C8] rounded-[12px] p-4 flex justify-between items-center flex-wrap gap-4"
               >
 
                 <div>
@@ -119,8 +120,8 @@ export default function Notification() {
                   </h4>
 
                   <p className="text-[18px] text-[#7C7C7C]">
-                    Start: {formatDate(item.start)} &nbsp;
-                    End: {formatDate(item.end)}
+                    Start: <span className="text-[#364153]">{formatDate(item.start)}</span> &nbsp;
+                    End: <span className="text-[#364153]">{formatDate(item.end)}</span>
                   </p>
 
                   <p className="text-[18px] text-[#7C7C7C]">
@@ -131,23 +132,24 @@ export default function Notification() {
                 </div>
 
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col items-center gap-3">
 
                   <span className="bg-[#30EF0A] text-white px-4 py-1 rounded-full text-[16px]">
                     ● Active
                   </span>
-
-                  <button className="border px-4 py-2 rounded-[8px] flex gap-2 items-center">
+                  
+                  <div className="flex items-center gap-2">
+                  <button className="border border-[#C9C8C8] px-2 py-1 rounded-[8px] flex gap-2 items-center">
                     <Pencil size={18} /> Edit
                   </button>
 
                   <button
                     onClick={() => setPauseDialog(item.id)}
-                    className="border px-4 py-2 rounded-[8px] flex gap-2 items-center"
+                    className="border border-[#C9C8C8] px-2 py-1 rounded-[8px] flex gap-2 items-center"
                   >
                     <Pause size={18} /> Pause
                   </button>
-
+                 </div>
                 </div>
 
               </div>
@@ -161,7 +163,7 @@ export default function Notification() {
       </div>
 
       {/* Recent Notifications */}
-      <div className="border rounded-[16px] p-6 bg-white">
+      <div className="border border-[#C9C8C8] rounded-[16px] p-6 bg-white">
 
         <h3 className="text-[22px] font-medium mb-4">
           Recent Notifications
@@ -204,7 +206,7 @@ export default function Notification() {
 
               <div
                 key={item.id}
-                className="border rounded-[14px] p-4 flex justify-between items-center"
+                className="border border-[#C9C8C8] rounded-[14px] p-4 flex justify-between items-center"
               >
 
                 <div className="flex gap-4 items-center">
@@ -261,7 +263,7 @@ export default function Notification() {
           <Bell size={22} /> Admin Notifications
         </h3>
 
-        <div className="space-y-6 mt-4">
+        <div className=" mt-4">
 
           <Toggle
   title="New Station Registration"
@@ -314,7 +316,7 @@ export default function Notification() {
 
               <button
                 onClick={() => setPauseDialog(null)}
-                className="border px-6 py-2 rounded-[10px]"
+                className="border border-[#C9C8C8] px-6 py-2 rounded-[10px]"
               >
                 Cancel
               </button>
@@ -335,6 +337,7 @@ export default function Notification() {
       )}
 
     </div>
+    </>
   );
 }
 
