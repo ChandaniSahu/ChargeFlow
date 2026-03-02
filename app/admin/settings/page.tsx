@@ -3,6 +3,7 @@ import General from "./general";
 import Commission from "./commission";
 import RolesPage from "./roles";
 import Security from "./security";
+import Notification from "./notification";
 
 export default async function SettingsPage({
   searchParams,
@@ -29,6 +30,7 @@ export default async function SettingsPage({
         {type === "commission" && <Commission />}
         {type === "roles" && <RolesPage />}
         {type === "security" && <Security />}
+        {type === "notification" && <Notification/>}
       </div>
     </div>
   );

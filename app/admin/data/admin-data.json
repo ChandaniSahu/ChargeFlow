@@ -263,6 +263,67 @@
       "status": "loggedout"
     }
   ]
+  },
+  "notification":{
+"adminNotifications": {
+  "newStationRegistration": true,
+  "highPrioritySupportTickets": true,
+  "dailyRevenueSummary": true,
+  "chargerOfflineAlerts": true
+},
+  "recentNotifications": [
+    {
+      "id": 1,
+      "title": "Ev Charging Reminder Sent",
+      "subtitle": "Sent to 120 user",
+      "date": "2026-04-24T05:00:00Z",
+      "status": "sent"
+    },
+    {
+      "id": 2,
+      "title": "Low Battery Alert Triggered",
+      "subtitle": "Battery below 20%",
+      "date": "2026-04-24T04:45:00Z",
+      "status": "warning"
+    },
+    {
+      "id": 3,
+      "title": "Maintenance Reminder Failed",
+      "subtitle": "Network error",
+      "date": "2026-04-24T05:00:00Z",
+      "status": "failed"
+    }
+  ],
+
+  "activeAutomations": [
+    {
+      "id": 1,
+      "title": "Ev Charging Reminder - Daily",
+      "start": "2026-02-02T16:00:00Z",
+      "end": "2026-06-02T00:53:20Z",
+      "time": "2026-04-24T05:00:00Z",
+      "day": null,
+      "isPaused": false
+    },
+    {
+      "id": 2,
+      "title": "Low Battery Alert - Weekly",
+      "start": "2026-01-21T02:13:20Z",
+      "end": "2026-05-21T10:40:00Z",
+      "time": "2026-04-24T03:00:00Z",
+      "day": "Every Monday",
+      "isPaused": false
+    },
+    {
+      "id": 3,
+      "title": "Station Maintenance Reminder - Monthly",
+      "start": "2026-01-09T12:26:40Z",
+      "end": "2026-09-19T00:26:40Z",
+      "time": "2026-04-24T06:00:00Z",
+      "day": "1st Of Every Month",
+      "isPaused": false
+    }
+  ]
   }
   }
   
