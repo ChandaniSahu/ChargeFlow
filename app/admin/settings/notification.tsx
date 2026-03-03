@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 import data from "../data/admin-data.json";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+
+
 import {
   Bell,
   Send,
@@ -10,9 +14,17 @@ import {
   Plus,
   Pencil,
   Pause,
+  AlertTriangle,
+  X,
 } from "lucide-react";
+import CreateNotification from "./createnotification";
 
 export default function Notification() {
+const searchParams = useSearchParams();
+
+const view = searchParams.get("view");
+
+const router = useRouter(); 
 
   const [adminNotifications, setAdminNotifications] = useState(
     data.settings.notification.adminNotifications
@@ -68,7 +80,77 @@ export default function Notification() {
     });
   };
 
+  const getNotificationIcon = (status: string) => {
+  switch (status) {
+    case "sent":
+      return {
+        icon: <Bell size={20} className="group-hover:text-white" />,
+        className:
+          "bg-[#dcfce7] text-[#16a34a] group-hover:bg-[#16a34a]",
+      };
 
+    case "warning":
+      return {
+        icon: <AlertTriangle size={20} className="group-hover:text-white" />,
+        className:
+          "bg-[#fff0e5] text-[#ff8000] group-hover:bg-[#ff8000]",
+      };
+
+    case "failed":
+      return {
+        icon: <X size={20} className="group-hover:text-white" />,
+        className:
+          "bg-[#ffe4e6] text-[#fb2c2f] group-hover:bg-[#fb2c2f]",
+      };
+
+    default:
+      return {
+        icon: <Send size={20} className="group-hover:text-white" />,
+        className:
+          "bg-[#f2f2f2] text-[#757575] group-hover:bg-[#757575]",
+      };
+  }
+};
+
+const getNotificationStatus = (status: string) => {
+  switch (status) {
+    case "sent":
+      return {
+        icon: <Send size={14} className="group-hover:text-white" />,
+        className:
+          "bg-[#dcfce7] text-[#16a34a] group-hover:bg-[#16a34a]",
+      };
+
+    case "warning":
+      return {
+        icon: <AlertTriangle size={14} className="group-hover:text-white" />,
+        className:
+          "bg-[#fff0e5] text-[#ff8000] group-hover:bg-[#ff8000]",
+      };
+
+    case "failed":
+      return {
+        icon: <X size={14} className="group-hover:text-white" />,
+        className:
+          "bg-[#ffe4e6] text-[#fb2c2f] group-hover:bg-[#fb2c2f]",
+      };
+
+    default:
+      return {
+        icon: <Send size={14} className="group-hover:text-white" />,
+        className:
+          "bg-[#f2f2f2] text-[#757575] group-hover:bg-[#757575]",
+      };
+  }
+};
+
+  if (view === "create") {
+    return <CreateNotification />;
+  }
+
+  // if (view === "edit") {
+  //   return <EditNotification id={id} />;
+  // }
 
   return (
     <>
@@ -85,7 +167,11 @@ export default function Notification() {
           </p>
         </div>
 
-        <button className="flex items-center gap-2 bg-[#30EF0A] hover:bg-green-500 cursor-pointer text-white px-6 py-3 rounded-[10px] text-[20px] font-medium">
+        <button 
+            onClick={() =>
+    router.push("/admin/settings?type=notification&view=create")
+  }
+        className="flex items-center gap-2 bg-[#30EF0A] hover:bg-green-500 cursor-pointer text-white px-6 py-3 rounded-[10px] text-[20px] font-medium">
           <Plus size={22} />
           Create New Notification
         </button>
@@ -94,13 +180,13 @@ export default function Notification() {
       {/* Active Automations */}
       <div className="font-inter">
 
-        <h3 className="text-[22px] font-medium mb-4">
+        <h3 className="text-[24px] font-medium mb-4">
           Notification
         </h3>
 
         <div className="border border-[#C9C8C8] rounded-[16px] p-6 bg-white">
 
-          <h4 className="text-[22px] font-medium mb-4 text-[#364153]">
+          <h4 className="text-[21px] font-medium mb-4 text-[#364153]">
             Active Automations
           </h4>
 
@@ -110,44 +196,48 @@ export default function Notification() {
 
               <div
                 key={item.id}
-                className="border border-[#C9C8C8] rounded-[12px] p-4 flex justify-between items-center flex-wrap gap-4"
+                className="border border-[#C9C8C8] rounded-[12px] py-2  px-4 flex justify-between items-center flex-wrap gap-4"
               >
 
                 <div>
 
-                  <h4 className="text-[20px] font-medium text-[#364153]">
+                  <h4 className="text-[16px] font-medium text-[#364153]">
                     {item.title}
                   </h4>
 
-                  <p className="text-[18px] text-[#7C7C7C]">
-                    Start: <span className="text-[#364153]">{formatDate(item.start)}</span> &nbsp;
-                    End: <span className="text-[#364153]">{formatDate(item.end)}</span>
+                  <p className="text-[16px] text-[#7C7C7C]">
+                    Start: <span className="text-[14px] text-[#364153]">{formatDate(item.start)}</span> &nbsp;
+                    End: <span className="text-[14px] text-[#364153]">{formatDate(item.end)}</span>
                   </p>
 
-                  <p className="text-[18px] text-[#7C7C7C]">
-                    Time: {formatTime(item.time)}{" "}
-                    {item.day && `Day: ${item.day}`}
+                  <p className="flex gap-4 text-[16px] text-[#7C7C7C]">
+                    <span>Time: <span className="text-[14px] text-[#364153]">{formatTime(item.time)}</span></span>
+                    <span>{item.day && <span>Day: <span className="text-[14px] text-[#364153]">{item.day}</span></span>}</span>
                   </p>
 
                 </div>
 
 
-                <div className="flex flex-col items-center gap-3">
+                <div className="flex flex-col items-end gap-3 font-medium text-[10px]">
 
-                  <span className="bg-[#30EF0A] text-white px-4 py-1 rounded-full text-[16px]">
+                  <span className="flex bg-[#30EF0A] text-white px-4 py-1 rounded-full ">
                     ● Active
                   </span>
                   
                   <div className="flex items-center gap-2">
-                  <button className="border border-[#C9C8C8] px-2 py-1 rounded-[8px] flex gap-2 items-center">
-                    <Pencil size={18} /> Edit
+                  <button 
+                  onClick={() =>
+    router.push(`/admin/settings?type=notification&view=edit&id=${item.id}`)
+  }
+                  className="border border-[#C9C8C8] px-2 py-1 rounded-[8px] flex gap-2 items-center">
+                    <Pencil size={10} /> Edit
                   </button>
 
                   <button
                     onClick={() => setPauseDialog(item.id)}
                     className="border border-[#C9C8C8] px-2 py-1 rounded-[8px] flex gap-2 items-center"
                   >
-                    <Pause size={18} /> Pause
+                    <Pause size={10} /> Pause
                   </button>
                  </div>
                 </div>
@@ -173,34 +263,9 @@ export default function Notification() {
 
           {recent.map((item) => {
 
-            const statusConfig: any = {
-              sent: {
-                icon: <Send size={20} className="text-green-600" />,
-                label: "Sent",
-                bg: "bg-green-100 text-green-700",
-              },
+            const iconData = getNotificationIcon(item.status);
+const statusData = getNotificationStatus(item.status);
 
-              warning: {
-                icon: (
-                  <TriangleAlert
-                    size={20}
-                    className="text-orange-500"
-                  />
-                ),
-                label: "Warning",
-                bg: "bg-orange-100 text-orange-600",
-              },
-
-              failed: {
-                icon: (
-                  <XCircle size={20} className="text-red-600" />
-                ),
-                label: "Failed",
-                bg: "bg-red-100 text-red-600",
-              },
-            };
-
-            const cfg = statusConfig[item.status];
 
             return (
 
@@ -211,16 +276,16 @@ export default function Notification() {
 
                 <div className="flex gap-4 items-center">
 
-                  <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
-                    {cfg.icon}
-                  </div>
+                  <div className={`p-2 rounded-full ${iconData.className}`}>
+  {iconData.icon}
+</div>
 
                   <div>
-                    <h4 className="text-[18px] font-medium text-[#364153]">
+                    <h4 className="text-[16px] font-medium text-[#364153]">
                       {item.title}
                     </h4>
 
-                    <p className="text-[16px] text-[#7C7C7C]">
+                    <p className="text-[14px] text-[#7C7C7C]">
                       {item.subtitle}
                     </p>
                   </div>
@@ -229,22 +294,20 @@ export default function Notification() {
 
 
                 <div className="text-right">
-                  <p className="text-[16px] text-[#7C7C7C]">
+                  <p className="text-[14px] text-[#7C7C7C]">
                     {formatTime(item.date)}
                   </p>
 
-                  <p className="text-[16px] text-[#7C7C7C]">
+                  <p className="text-[12px] text-[#7C7C7C]">
                     {formatDate(item.date)}
                   </p>
                 </div>
 
 
-                <span
-                  className={`px-4 py-2 rounded-[10px] text-[16px] flex items-center gap-2 ${cfg.bg}`}
-                >
-                  {cfg.icon}
-                  {cfg.label}
-                </span>
+               <div className={`flex items-center gap-1 px-3 py-1 text-[12px] rounded-md ${statusData.className}`}>
+  {statusData.icon}
+  {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+</div>
 
               </div>
 
@@ -259,11 +322,11 @@ export default function Notification() {
 
       {/* Admin Notifications */}
       <div>
-        <h3 className="flex items-center gap-2 text-[22px] font-medium">
+        <h3 className="flex items-center gap-2 text-[24px] font-medium">
           <Bell size={22} /> Admin Notifications
         </h3>
 
-        <div className=" mt-4">
+        <div className=" mt-3">
 
           <Toggle
   title="New Station Registration"
@@ -343,9 +406,9 @@ export default function Notification() {
 
 function Toggle({ title, subtitle, enabled, onToggle }: any) {
   return (
-    <div className="font-inter flex items-center justify-between py-4">
+    <div className="font-inter flex items-center justify-between py-2">
       <div>
-        <h4 className="text-[20px] font-medium text-[#364153]">
+        <h4 className="text-[18px] font-medium text-[#364153]">
           {title}
         </h4>
         <p className="text-[16px] text-[#7C7C7C]">
