@@ -4,6 +4,7 @@ import { useState } from "react";
 import data from "../data/admin-data.json";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import PauseAutomationModal from "./PauseNotificationModal";
 
 
 import {
@@ -34,10 +35,24 @@ const router = useRouter();
     data.settings.notification.activeAutomations
   );
 
+  // const [selectedAutomation, setSelectedAutomation] = useState(null);
+
   const [recent] = useState(data.settings.notification.recentNotifications);
 
-  const [pauseDialog, setPauseDialog] = useState<number | null>(null);
+  const [pauseDialog, setPauseDialog] = useState(false);
 
+  function getScheduleText(scheduleType: string) {
+  switch (scheduleType) {
+    case "weekly":
+      return "Every Monday";
+
+    case "monthly":
+      return "1st Day of Month";
+
+    default:
+      return "";
+  }
+}
 
   const handleToggleChange = (field: string) => {
   setAdminNotifications((prev) => ({
@@ -147,10 +162,10 @@ const getNotificationStatus = (status: string) => {
   if (view === "create") {
     return <CreateNotification />;
   }
-
-  // if (view === "edit") {
-  //   return <EditNotification id={id} />;
-  // }
+  
+if (view === "edit") {
+  return <CreateNotification />;
+}
 
   return (
     <>
@@ -192,7 +207,9 @@ const getNotificationStatus = (status: string) => {
 
           <div className="space-y-4">
 
-            {automations.map((item) => (
+            {automations.map((item) =>{
+              const scheduleText = getScheduleText(item.scheduleType);
+              return(
 
               <div
                 key={item.id}
@@ -201,8 +218,8 @@ const getNotificationStatus = (status: string) => {
 
                 <div>
 
-                  <h4 className="text-[16px] font-medium text-[#364153]">
-                    {item.title}
+                  <h4 className="flex gap-1 text-[16px] font-medium text-[#364153]">
+                    {item.title}<span>-</span>{item.scheduleType && <span>{item.scheduleType.charAt(0).toUpperCase() + item.scheduleType.slice(1)}</span>}
                   </h4>
 
                   <p className="text-[16px] text-[#7C7C7C]">
@@ -212,9 +229,9 @@ const getNotificationStatus = (status: string) => {
 
                   <p className="flex gap-4 text-[16px] text-[#7C7C7C]">
                     <span>Time: <span className="text-[14px] text-[#364153]">{formatTime(item.time)}</span></span>
-                    <span>{item.day && <span>Day: <span className="text-[14px] text-[#364153]">{item.day}</span></span>}</span>
+                                   {scheduleText !== "" &&      <span>Day: <span className="text-[14px] text-[#364153]">{scheduleText.charAt(0).toUpperCase() + scheduleText.slice(1)}</span></span>}
                   </p>
-
+                  
                 </div>
 
 
@@ -226,9 +243,10 @@ const getNotificationStatus = (status: string) => {
                   
                   <div className="flex items-center gap-2">
                   <button 
-                  onClick={() =>
+                  onClick={() =>{
     router.push(`/admin/settings?type=notification&view=edit&id=${item.id}`)
-  }
+    setSelectedAutomation(item);
+  }}
                   className="border border-[#C9C8C8] px-2 py-1 rounded-[8px] flex gap-2 items-center">
                     <Pencil size={10} /> Edit
                   </button>
@@ -244,7 +262,7 @@ const getNotificationStatus = (status: string) => {
 
               </div>
 
-            ))}
+            )})}
 
           </div>
 

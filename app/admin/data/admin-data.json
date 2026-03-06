@@ -295,32 +295,50 @@
     }
   ],
 
-  "activeAutomations": [
+"activeAutomations": [
     {
       "id": 1,
-      "title": "Ev Charging Reminder - Daily",
+      "title": "Ev Charging Reminder",
+      "category": "Active Users",
+      "message": "Your EV charger is now online and ready to accept charging sessions. Users can start charging immediately. Monitor live activity from your dashboard.",
+      "receiver": "user",
+      "imgurl": "https://res.cloudinary.com/difln2fvn/image/upload/v1772702836/ChargingBanner_u8lhf0.jpg",
       "start": "2026-02-02T16:00:00Z",
       "end": "2026-06-02T00:53:20Z",
       "time": "2026-04-24T05:00:00Z",
-      "day": null,
+      "inApp":false,
+      "inWeb":true,
+      "scheduleType": "daily",
       "isPaused": false
     },
     {
       "id": 2,
-      "title": "Low Battery Alert - Weekly",
+      "title": "Low Battery Alert",
+      "category": "Active Users",
+      "message": "Battery level is running low. Please charge your EV soon to avoid interruptions during your next trip.",
+      "receiver": "user",
+      "imgurl": "https://res.cloudinary.com/difln2fvn/image/upload/v1772702836/ChargingBanner_u8lhf0.jpg",
       "start": "2026-01-21T02:13:20Z",
       "end": "2026-05-21T10:40:00Z",
       "time": "2026-04-24T03:00:00Z",
-      "day": "Every Monday",
+      "inApp":false,
+      "inWeb":true,
+      "scheduleType": "weekly",
       "isPaused": false
     },
     {
       "id": 3,
-      "title": "Station Maintenance Reminder - Monthly",
+      "title": "Station Maintenance Reminder",
+      "category": "Active Users",
+      "message": "Reminder to perform scheduled maintenance on your EV charging station to ensure optimal performance.",
+      "receiver": "user",
+      "imgurl": "https://res.cloudinary.com/difln2fvn/image/upload/v1772702836/ChargingBanner_u8lhf0.jpg",
       "start": "2026-01-09T12:26:40Z",
       "end": "2026-09-19T00:26:40Z",
       "time": "2026-04-24T06:00:00Z",
-      "day": "1st Of Every Month",
+      "inApp":false,
+      "inWeb":true,
+      "scheduleType": "monthly",
       "isPaused": false
     }
   ]
