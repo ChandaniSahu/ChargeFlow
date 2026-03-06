@@ -13,6 +13,8 @@ import { FaHouseUser } from "react-icons/fa6";
 import { useRouter, useSearchParams } from "next/navigation";
 import ScheduleNotificationModal from "./scheduleModal";
 import AutomationModal from "./automationModal";
+import { LuPencil } from "react-icons/lu";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 export default function CreateNotification() {
 
@@ -408,8 +410,9 @@ ${receiver === "user"
 
         <textarea
           value={formData.message}
+          placeholder="Write the content of your notification here..."
           onChange={(e) => handleChange("message", e.target.value)}
-          className="w-full mt-2 border border-[#AAAAAA] rounded-[10px] px-4 py-3 h-[120px]"
+          className="w-full mt-2 border border-[#AAAAAA] rounded-[10px] px-4 py-3 h-[120px] placeholder:text-[#7C7C7C] resize-none"
         />
 
         <div className="text-right text-[14px] text-[#7C7C7C]">
@@ -418,101 +421,155 @@ ${receiver === "user"
 
       </div>
 
-      {/* IMAGE UPLOAD */}
-      <div className="mt-6 border border-[#AAAAAA] rounded-[14px] p-5">
+{/* IMAGE UPLOAD */}
+<div className="mt-6 border border-[#AAAAAA] rounded-[14px] p-5">
 
-        <h3 className="text-[20px] font-medium text-[#364153]">
-          Add Visual (Optional)
-        </h3>
+<h3 className="text-[20px] font-medium text-[#364153]">
+Add Visual (Optional)
+</h3>
 
-        <p className="text-[#7C7C7C] mb-4">
-          Upload an image that will appear with this notification
-        </p>
+<p className="text-[#7C7C7C] mb-4">
+Upload an image that will appear with this notification
+</p>
 
-        {/* DRAG AREA */}
+{/* ------------------ BEFORE IMAGE ------------------ */}
 
-        {!formData.image && !formData.imageUrl && (
+{!formData.image && !formData.imageUrl && (
 
-          <div
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            onClick={() => document.getElementById("fileUpload")?.click()}
-            className={`border-2 border-dashed rounded-[12px] h-[140px] flex flex-col items-center justify-center cursor-pointer
-  ${dragActive ? "bg-[#DFFFE0]" : "bg-[#EAF7E9]"}`}
-          >
+<>
 
-            <UploadCloud size={34} className="text-gray-600 mb-2" />
+<div
+onDragOver={handleDragOver}
+onDragLeave={handleDragLeave}
+onDrop={handleDrop}
+onClick={()=>document.getElementById("fileUpload")?.click()}
+className={`border-2 border-dashed border-gray-300 rounded-[12px] bg-[#EAF7E9] h-[140px] flex flex-col items-center justify-center cursor-pointer`}
+>
 
-            <p className="text-[#364153]">
-              Drag and drop image here
-            </p>
+<UploadCloud size={38} className="text-gray-600 mb-2"/>
 
-            <p className="text-[#7C7C7C]">
-              or click to browse
-            </p>
+<p className="text-[#364153] text-[16px]">
+Drag and drop image here
+</p>
 
-            <input
-              id="fileUpload"
-              type="file"
-              accept="image/png, image/jpeg, image/gif"
-              className="hidden"
-              onChange={handleFileChange}
-            />
+<p className="text-[#7C7C7C] text-[15px]">
+or click to browse
+</p>
 
-          </div>
-        )}
+<input
+id="fileUpload"
+type="file"
+accept="image/png, image/jpeg, image/gif"
+className="hidden"
+onChange={handleFileChange}
+/>
 
-        {/* IMAGE PREVIEW */}
+</div>
 
-        {(formData.image || formData.imageUrl) && (
+{/* SUPPORT TEXT + BUTTON */}
 
-          <div className="h-[200px] flex flex-col items-center justify-center rounded-[12px] p-3">
+<div className="flex justify-between mt-3">
 
-            <img
-              src={
-                formData.image
-                  ? URL.createObjectURL(formData.image)
-                  : formData.imageUrl
-              }
-              className="mt-3 rounded object-contain h-full shadow-md"
-            />
+<p className="text-[#7C7C7C]">
+Support Formats; JPG, PNG,GIF
+</p>
 
-            <div className="mt-3 text-sm text-[#364153] font-medium">
-              {formData.image ? formData.image.name : "Uploaded Image"}
-            </div>
+<button
+type="button"
+onClick={()=>document.getElementById("fileUpload")?.click()}
+className="border border-[#AAAAAA] px-4 py-1 rounded-[8px] bg-white"
+>
+Browse Files
+</button>
 
-          </div>
+</div>
 
-        )}
+</>
 
-        {/* BOTTOM SECTION */}
+)}
 
-        <div className="flex justify-between mt-3">
+{/* ------------------ AFTER IMAGE ------------------ */}
 
-          <p className="text-[#7C7C7C]">
-            Support Formats; JPG, PNG,GIF
-          </p>
+{(formData.image || formData.imageUrl) && (
 
-          <button
-            onClick={() => document.getElementById("fileUpload")?.click()}
-            className="border border-[#AAAAAA] px-4 py-1 rounded-[8px]"
-          >
-            Browse Files
+<div className="border-2 border-dashed border-green-400 bg-[#EAF7E9] rounded-[12px] p-4">
 
-            <input
-              id="fileUpload"
-              type="file"
-              accept="image/png, image/jpeg, image/gif"
-              className="hidden"
-              onChange={handleFileChange}
-            />
+<div className="flex gap-4 flex-wrap md:flex-nowrap items-center">
 
-          </button>
+{/* IMAGE */}
 
-        </div>
+<img
+src={
+formData.image
+? URL.createObjectURL(formData.image)
+: formData.imageUrl
+}
+className="w-[200px] h-[120px] object-cover rounded-md"
+/>
 
-      </div>
+{/* RIGHT SIDE */}
+
+<div className="flex-1 ">
+
+<h4 className="text-[18px] font-medium text-[#364153]">
+{formData.image ? formData.image.name : "Charging_Banner.jpg"}
+</h4>
+
+<p className="text-[14px] text-[#7C7C7C]">
+1.2 MB Uploaded <span className="text-green-600">Successfully</span>
+</p>
+
+<hr className="my-4 border-gray-300"/>
+
+<div className="flex gap-3 justify-end">
+
+{/* CHANGE */}
+
+<button
+type="button"
+onClick={()=>document.getElementById("fileUpload")?.click()}
+className="flex text-[#171717] font-medium items-center gap-2 border border-[#AAAAAA] px-4 py-2 rounded-[8px] bg-[#EEECEC]"
+>
+  <LuPencil size={16}/>
+Change Photo
+</button>
+
+{/* REMOVE */}
+
+<button
+type="button"
+onClick={()=>{
+setFormData(prev=>({
+...prev,
+image:null,
+imageUrl:""
+}))
+}}
+className="flex items-center gap-2 border border-[#FA202342] text-[#CD0003] px-4 py-2 rounded-[8px] bg-[#FA202342]"
+>
+ < FaRegTrashAlt size={16}/>
+Remove
+</button>
+
+<input
+id="fileUpload"
+type="file"
+accept="image/png, image/jpeg, image/gif"
+className="hidden"
+onChange={handleFileChange}
+/>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+)}
+
+</div>
 
       {/* DELIVERY */}
 
