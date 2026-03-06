@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Users, CircleDashed, ChevronDown, CheckCircle, Radio, DollarSign, FileCheck, Wallet, FileText, UserX, Calendar, CreditCard, TrendingUp, Clock, User,
   LogIn,
@@ -21,6 +21,8 @@ import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import data from "../data/admin-data.json"
+import users from '../data/users.json'
+import { formatTimestamp } from "../utility/function";
 // import Image from "next/image";
 
 /* ================= DATA ================= */
@@ -314,6 +316,7 @@ const userData = [
 
 // 2. ICON SWITCH CASE HELPER
 const GetStatusIcon = (type: string, status: string) => {
+   if (!status) return null;
   switch (status.toLowerCase()) {
     case 'success':
     case 'active':
@@ -338,10 +341,23 @@ export default function UserManagementDashboard() {
   const [filterStatus, setFilterStatus] = useState('All Status');
   const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const usersData = users.usersData;
+
+// useEffect(() => {
+//   fetch("/api/loadData")
+//     .then((res) => res.json())
+//     .then((data) => {
+//       console.log(data);
+//       console.log('successfully submitted')
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// }, []);
 
   // 3. FILTER LOGIC
-  const filteredUsers = userData.filter(user => {
-    const matchesFilter = filterStatus === 'All Status' || user.status === filterStatus;
+  const filteredUsers = usersData.filter(user => {
+    const matchesFilter = filterStatus === 'All Status' || user.userStatus === filterStatus;
     const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesSearch;
@@ -505,9 +521,9 @@ export default function UserManagementDashboard() {
 
             {/* LIST WRAPPER */}
             <div className="max-h-[260px] overflow-y-auto no-scrollbar -mx-4 border-t border-[#DEDEDE]">
-              {activities.map((a) => {
-                const StatusIcon = getStatusIcon(a.status);
-
+              {usersData.map((a) => {
+                const StatusIcon = getStatusIcon(a.activityType);
+                const {timeAgo} = formatTimestamp(a.lastActivityTimestamp);
                 return (
                   <div
                     key={a.id}
@@ -523,13 +539,13 @@ export default function UserManagementDashboard() {
 
                       <div>
                         <p className="font-roboto font-semibold text-[16px] text-[#364153]">{a.name}</p>
-                        <p className="font-roboto font-regular text-[15px] text-[#848484]">{a.title}</p>
-                        <p className="font-inter font-regular text-[12px] text-[#707274]">{a.subTitle}</p>
+                        <p className="font-roboto font-regular text-[15px] text-[#848484]">{a.activityTitle}</p>
+                        <p className="font-inter font-regular text-[12px] text-[#707274]">{a.activityDescription}</p>
                         <div className="desktop:hidden">
-                          {a.amount && <p className="font-roboto text-[#29B605] text-[15px]">
-                            {a.amount}
+                          {a.bookingAmount && <p className="font-roboto text-[#29B605] text-[15px]">
+                            {a.bookingAmount}
                           </p>}
-                          <p className="font-inter text-[12px] text-[#707274]">{a.time}</p>
+                          <p className="font-inter text-[12px] text-[#707274]">{timeAgo}</p>
                         </div>
                       </div>
 
@@ -538,27 +554,27 @@ export default function UserManagementDashboard() {
                     {/* RIGHT */}
                     <div className="flex items-center gap-4">
                       <div className="hidden desktop:block text-right">
-                        {a.amount && <p className="font-roboto text-[#29B605] text-[15px]">
-                          {a.amount}
+                        {a.bookingAmount && <p className="font-roboto text-[#29B605] text-[15px]">
+                          {a.bookingAmount}
                         </p>}
-                        <p className="font-inter text-[12px] text-[#707274]">{a.time}</p>
+                        <p className="font-inter text-[12px] text-[#707274]">{timeAgo}</p>
                       </div>
 
                       <span
                         className={`hidden md:flex font-roboto  items-center gap-2 md:w-[133px] justify-center py-2 text-[16px] border rounded-md ${getStatusStyles(
-                          a.status
+                          a.activityType
                         )}`}
                       >
                         <StatusIcon size={19} />
-                        {getStatusText(a.status)}
+                        {getStatusText(a.activityType)}
                       </span>
                       <span
                         className={`md:hidden absolute bottom-0 right-1 font-roboto  flex items-center gap-2 w-[120px] justify-center py-2 text-[14px] border rounded-md ${getStatusStyles(
-                          a.status
+                          a.activityType
                         )}`}
                       >
                         <StatusIcon size={16} />
-                        {getStatusText(a.status)}
+                        {getStatusText(a.activityType)}
                       </span>
 
                     </div>
@@ -689,7 +705,9 @@ export default function UserManagementDashboard() {
 
 
                   <tbody className="font-arial divide-y-[1.3px] divide-gray-100 overflow-y-auto">
-                    {filteredUsers.map((user) => (
+                    {filteredUsers.map((user) =>{
+                      const {date} = formatTimestamp(user.lastActivityTimestamp);
+                    return (
                       <tr key={user.id} className="hover:bg-green-50 transition-colors">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
@@ -700,28 +718,28 @@ export default function UserManagementDashboard() {
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-[14px] text-gray-600 text-center font-medium">{user.contact}</td>
+                        <td className="px-6 py-4 text-[14px] text-gray-600 text-center font-medium">{user.phoneNo}</td>
                         <td className="px-6 py-4 text-center">
-                          <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md ${user.status === "Active"
+                          <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md ${user.userStatus === "active"
                             ? "bg-[#e1ffd9] text-[#29b605]"
-                            : user.status === "Inactive"
+                            : user.userStatus === "inactive"
                               ? "bg-gray-100 text-gray-600"
                               : "bg-[#ffdbd6] text-[#fb2c2f]"
                             }`}>
-                            {GetStatusIcon('status', user.status)}
-                            {user.status}
+                             {GetStatusIcon("status", user.userStatus)}
+  {user.userStatus ?? "N/A"}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.date}</td>
-                        <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.bookings}</td>
-                        <td className="px-6 py-4 text-[14px] text-gray-800 text-center">{user.amount}</td>
+                        <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{date}</td>
+                        <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.bookingCount}</td>
+                        <td className="px-6 py-4 text-[14px] text-gray-800 text-center">{user.totalAmount}</td>
                         <td className="px-6 py-4 text-center">
-                          <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md  ${user.paymentStatus === 'Success' ? 'bg-[#e1ffd9] text-[#29b605] ' :
-                            user.paymentStatus === 'Pending' ? 'bg-[#f9e8db] text-[#b45309]' :
+                          <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md  ${user.paymentStatus === 'success' ? 'bg-[#e1ffd9] text-[#29b605] ' :
+                            user.paymentStatus === 'pending' ? 'bg-[#f9e8db] text-[#b45309]' :
                               'bg-[#ffdbd6] text-[#fb2c2f]'
                             }`}>
-                            {GetStatusIcon('payment', user.paymentStatus)}
-                            {user.paymentStatus}
+                              {GetStatusIcon("payment", user.paymentStatus)}
+  {user.paymentStatus ?? "N/A"}
                           </span>
                         </td>
                         <td className="px-6 py-4">
@@ -735,7 +753,7 @@ export default function UserManagementDashboard() {
                           </div>
                         </td>
                       </tr>
-                    ))}
+                    )})}
                   </tbody>
 
                 </table>

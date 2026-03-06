@@ -1,0 +1,178 @@
+{
+  "usersData": [
+    {
+      "userId": "USR001",
+      "name": "Priya Singh",
+      "email": "priyasingh@gmail.com",
+      "phoneNo": "+91 5678903488",
+      "imageUrl": "https://res.cloudinary.com/difln2fvn/image/upload/v1771840705/user1_jswrwl.jpg",
+      "userStatus": "active",
+
+      "totalBookings": 28,
+      "totalAmount": 1450,
+
+      "bookingCount": 28,
+      "bookingAmount": 450,
+      "paymentStatus": "success",
+      "accountActionStatus": "blocked",
+
+      "activityTitle": "Completed Charging Session",
+      "activityDescription": "DC fast charger - 45 kwh",
+      "activityAmount": 350,
+      "activityType": "booking",
+      "activityActionLabel": "Booking",
+      "createdAt": "2026-01-15T10:55:00Z",
+      "lastActivityTimestamp": "2026-01-15T10:55:00Z"
+    },
+
+    {
+      "userId": "USR002",
+      "name": "Rohit Singh",
+      "email": "rohitsingh@gmail.com",
+      "phoneNo": "+91 5778433390",
+      "imageUrl": "https://res.cloudinary.com/difln2fvn/image/upload/v1771840705/user1_jswrwl.jpg",
+      "userStatus": "active",
+
+      "totalBookings": 28,
+      "totalAmount": 1450,
+
+      "bookingCount": 28,
+      "bookingAmount": 450,
+      "paymentStatus": "pending",
+      "accountActionStatus": "blocked",
+
+      "activityTitle": "New Booking Created",
+      "activityDescription": "AC 22kw charger - scheduled for tomorrow",
+      "activityAmount": 220,
+      "activityType": "booking",
+      "activityActionLabel": "Booking",
+      "createdAt": "2026-01-15T10:55:00Z",
+      "lastActivityTimestamp": "2026-02-28T09:40:00Z"
+    },
+
+    {
+      "userId": "USR003",
+      "name": "Sneha Kapoor",
+      "email": "snehakapoor@gmail.com",
+      "phoneNo": "+91 1258444907",
+      "imageUrl": "https://res.cloudinary.com/difln2fvn/image/upload/v1771840705/user1_jswrwl.jpg",
+      "userStatus": "inactive",
+
+      "totalBookings": 28,
+      "totalAmount": 1450,
+
+      "bookingCount": 28,
+      "bookingAmount": 450,
+      "paymentStatus": "failed",
+      "accountActionStatus": "blocked",
+
+      "activityTitle": "Payment Successful",
+      "activityDescription": "booking #bk-2456 - ₹3240",
+      "activityAmount": 450,
+      "activityType": "payment",
+      "activityActionLabel": "Payment",
+      "createdAt": "2026-01-15T10:55:00Z",
+      "lastActivityTimestamp": "2026-02-15T07:32:00Z"
+    },
+
+    {
+      "userId": "USR004",
+      "name": "Vikram Singh",
+      "email": "vikram@gmail.com",
+      "phoneNo": "+91 9876543210",
+      "imageUrl": "https://res.cloudinary.com/difln2fvn/image/upload/v1771840705/user1_jswrwl.jpg",
+      "userStatus": "active",
+
+      "totalBookings": 12,
+      "totalAmount": 1900,
+
+      "bookingCount": 0,
+      "bookingAmount": 0,
+      "paymentStatus": "success",
+      "accountActionStatus": "active",
+
+      "activityTitle": "Profile Updated",
+      "activityDescription": "Updated payment method and address",
+      "activityAmount": null,
+      "activityType": "profile",
+      "activityActionLabel": "Profile",
+      "createdAt": "2026-01-15T10:55:00Z",
+      "lastActivityTimestamp": "2026-02-11T12:40:00Z"
+    },
+
+    {
+      "userId": "USR005",
+      "name": "Neha Reddy",
+      "email": "nehareddy@gmail.com",
+      "phoneNo": "+91 8899776655",
+      "imageUrl": "https://res.cloudinary.com/difln2fvn/image/upload/v1771840705/user1_jswrwl.jpg",
+      "userStatus": "active",
+
+      "totalBookings": 5,
+      "totalAmount": 1200,
+
+      "bookingCount": 0,
+      "bookingAmount": 0,
+      "paymentStatus": "pending",
+      "accountActionStatus": "active",
+
+      "activityTitle": "Logged In",
+      "activityDescription": "Active on web",
+      "activityAmount": null,
+      "activityType": "login",
+      "activityActionLabel": "Login",
+      "createdAt": "2026-01-15T10:55:00Z",
+      "lastActivityTimestamp": "2026-01-15T09:10:00Z"
+    },
+
+    {
+      "userId": "USR006",
+      "name": "Arjun Verma",
+      "email": "arjun@gmail.com",
+      "phoneNo": "+91 7788996655",
+      "imageUrl": "https://res.cloudinary.com/difln2fvn/image/upload/v1771840705/user1_jswrwl.jpg",
+      "userStatus": "active",
+
+      "totalBookings": 16,
+      "totalAmount": 11200,
+
+      "bookingCount": 1,
+      "bookingAmount": 550,
+      "paymentStatus": "failed",
+      "accountActionStatus": "active",
+
+      "activityTitle": "Booking Cancelled",
+      "activityDescription": "Refund processed - ₹550",
+      "activityAmount": 550,
+      "activityType": "booking",
+      "activityActionLabel": "Booking",
+      "createdAt": "2026-01-15T10:55:00Z",
+      "lastActivityTimestamp": "2026-02-09T08:00:00Z"
+    },
+
+    {
+      "userId": "USR007",
+      "name": "Kavya Nair",
+      "email": "kavya@gmail.com",
+      "phoneNo": "+91 6677889900",
+      "imageUrl": "https://res.cloudinary.com/difln2fvn/image/upload/v1771840705/user1_jswrwl.jpg",
+      "userStatus": "blocked",
+
+      "totalBookings": 0,
+      "totalAmount": 10,
+
+      "bookingCount": 0,
+      "bookingAmount": 0,
+      "paymentStatus": "pending",
+      "accountActionStatus": "active",
+
+      "activityTitle": "New Account Created",
+      "activityDescription": "Registered via email",
+      "activityAmount": null,
+      "activityType": "registration",
+      "activityActionLabel": "Registration",
+      "createdAt": "2026-01-15T10:55:00Z",
+      "lastActivityTimestamp": "2026-02-24T22:30:00Z"
+    }
+  ]
+}
