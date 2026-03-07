@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X, CalendarDays } from "lucide-react";
+import { createPortal } from "react-dom";
 
 type Props = {
   open: boolean;
@@ -31,7 +32,7 @@ export default function SetAutomationModal({
     onClose();
   };
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 px-3">
       <div className="bg-white w-full max-w-md rounded-xl p-6 relative">
 
@@ -53,7 +54,7 @@ export default function SetAutomationModal({
         <div className="flex gap-6 mt-3 mb-5">
 
           {["Daily", "Weekly", "Monthly"].map((item) => (
-            <label key={item} className="flex items-center gap-2 cursor-pointer">
+            <label key={item} className="flex items-center gap-2 cursor-pointer text-[#505050]">
               <input
                 type="radio"
                 name="frequency"
@@ -78,7 +79,7 @@ export default function SetAutomationModal({
                 type="date"
                 value={startDate}
                 onChange={(e) => setStartDate(e.target.value)}
-                className="w-full border rounded-lg px-3 py-2"
+                className="w-full border border-[#AAAAAA] rounded-lg px-3 py-2 "
               />
 
               {/* <CalendarDays
@@ -96,7 +97,7 @@ export default function SetAutomationModal({
                 type="date"
                 value={endDate}
                 onChange={(e) => setEndDate(e.target.value)}
-                className="w-full border rounded-lg px-3 py-2"
+                className="w-full border border-[#AAAAAA] rounded-lg px-3 py-2"
               />
 
               {/* <CalendarDays
@@ -110,11 +111,11 @@ export default function SetAutomationModal({
 
         <button
           onClick={handleSubmit}
-          className="w-full bg-green-500 hover:bg-green-600 text-white py-2.5 rounded-lg font-medium"
+          className="w-full bg-[#2CDE00] hover:bg-green-600 text-white py-2.5 rounded-lg font-medium"
         >
           Create Automation
         </button>
       </div>
-    </div>
+    </div>,document.body
   );
 }

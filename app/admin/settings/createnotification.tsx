@@ -197,7 +197,7 @@ export default function CreateNotification() {
               setReceiver("host");
               handleChange("receiver", "host");
             }}
-            className={`group flex items-center justify-center gap-2 md:w-[145px] py-1.5 rounded-[8px] border text-[20px]
+            className={`group flex items-center justify-center gap-2 md:w-[145px] w-[140px] py-1.5 rounded-[8px] border text-[20px]
 ${receiver === "host"
                 ? "bg-[#30EF0A] text-white border-[#30EF0A]"
                 : "border-[#C9C8C8] text-[#364153]"}`}
@@ -213,7 +213,7 @@ ${receiver === "host"
               setReceiver("user");
               handleChange("receiver", "user");
             }}
-            className={`group flex items-center justify-center gap-2 md:w-[145px] py-1.5 rounded-[8px] border text-[18px]
+            className={`group flex items-center justify-center gap-2 md:w-[145px] w-[140px] py-1.5 rounded-[8px] border text-[18px]
 ${receiver === "user"
                 ? "bg-[#30EF0A] text-white border-[#30EF0A]"
                 : "border-[#C9C8C8] text-[#364153]"}`}
@@ -470,7 +470,7 @@ onChange={handleFileChange}
 
 <div className="flex justify-between mt-3">
 
-<p className="text-[#7C7C7C]">
+<p className="text-[#7C7C7C] md:text-[16px] text-[12px]">
 Support Formats; JPG, PNG,GIF
 </p>
 
@@ -580,7 +580,7 @@ onChange={handleFileChange}
         </p>
 
       <div className="flex gap-6 mt-2">
-        <label className="flex gap-2">
+        <label className="flex gap-2 ">
 
           <input
             type="checkbox"
@@ -588,7 +588,7 @@ onChange={handleFileChange}
             onChange={(e) => handleChange("inApp", e.target.checked)}
             className="peer hidden"
           />
-                        <div className="w-6 h-6 rounded-md border border-gray-300 flex items-center justify-center
+                        <div className="md:w-6 md:h-6 w-4 h-4 rounded-md border border-gray-300 flex items-center justify-center
                   peer-checked:bg-green-500 peer-checked:border-green-500 peer-checked:[&>span]:block">
 
     <span className="hidden text-white">
@@ -608,7 +608,7 @@ onChange={handleFileChange}
             onChange={(e) => handleChange("website", e.target.checked)}
             className="peer hidden"
           />
-                         <div className="w-6 h-6 rounded-md border border-gray-300 flex items-center justify-center
+                         <div className="md:w-6 md:h-6 w-4 h-4 rounded-md border border-gray-300 flex items-center justify-center
                   peer-checked:bg-green-500 peer-checked:border-green-500 peer-checked:[&>span]:block">
 
     <span className="hidden text-white">
@@ -629,7 +629,7 @@ onChange={handleFileChange}
           Schedule:
         </p>
 
-        <div className="flex gap-6">
+        <div className="flex flex-wrap gap-6">
 
           {["now", "later", "automation"].map(option => (
 
@@ -673,7 +673,7 @@ peer-checked:border-[5px] peer-checked:border-green-500">
             Scheduling
           </h3>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
             {/* Start Date */}
 
@@ -774,7 +774,7 @@ peer-checked:border-[5px] peer-checked:border-green-500">
 
         <button
           onClick={() => router.back()}
-          className="border px-6 py-2 rounded-[10px]"
+          className="border  border-[#AAAAAA] px-6 py-2 rounded-[10px]"
         >
           Cancel
         </button>
@@ -792,3 +792,4 @@ peer-checked:border-[5px] peer-checked:border-green-500">
 
   );
 }
+
