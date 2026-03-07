@@ -162,7 +162,7 @@
 //   if (view === "create") {
 //     return <CreateNotification />;
 //   }
-  
+
 // if (view === "edit") {
 //   return <CreateNotification />;
 // }
@@ -231,7 +231,7 @@
 //                     <span>Time: <span className="text-[14px] text-[#364153]">{formatTime(item.time)}</span></span>
 //                                    {scheduleText !== "" &&      <span>Day: <span className="text-[14px] text-[#364153]">{scheduleText.charAt(0).toUpperCase() + scheduleText.slice(1)}</span></span>}
 //                   </p>
-                  
+
 //                 </div>
 
 
@@ -240,7 +240,7 @@
 //                   <span className="flex bg-[#30EF0A] text-white px-4 py-1 rounded-full ">
 //                     ● Active
 //                   </span>
-                  
+
 //                   <div className="flex items-center gap-2">
 //                   <button 
 //                   onClick={() =>{
@@ -466,6 +466,7 @@ import {
   Pause,
   AlertTriangle,
   X,
+  Play,
 } from "lucide-react";
 import CreateNotification from "./createnotification";
 
@@ -484,6 +485,7 @@ export default function Notification() {
 
   const [recent] = useState(data.settings.notification.recentNotifications);
   const [pauseDialog, setPauseDialog] = useState<any>(false);
+  const [selectedAutomation, setSelectedAutomation] = useState()
 
   function getScheduleText(scheduleType: string) {
     switch (scheduleType) {
@@ -503,10 +505,10 @@ export default function Notification() {
     }));
   };
 
-  const pauseAutomation = (id: number) => {
+  const handlePause = () => {
     setAutomations((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, isPaused: !item.isPaused } : item
+        item.id === selectedAutomation?.id ? { ...item, isPaused: !item.isPaused } : item
       )
     );
     setPauseDialog(null);
@@ -693,16 +695,21 @@ export default function Notification() {
 
                     <div className="flex flex-row sm:flex-col sm:items-end justify-between gap-3 font-medium text-[12px] w-full sm:w-auto">
 
-                      <span className="flex bg-[#30EF0A] text-white px-4 py-1 rounded-full">
+                      {!item.isPaused && <span className="flex bg-[#30EF0A] text-white px-4 py-1 rounded-full">
                         ● Active
-                      </span>
+                      </span>}
+
+                      {item.isPaused && <span className="flex bg-gray-400 text-white px-4 py-1 rounded-full">
+                        ● Inactive
+                      </span>}
 
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() =>
+                          onClick={() => {
                             router.push(
                               `/admin/settings?type=notification&view=edit&id=${item.id}`
-                            )
+                            );
+                          }
                           }
                           className="border border-[#C9C8C8] px-3 py-1 rounded-[8px] flex gap-2 items-center"
                         >
@@ -710,10 +717,18 @@ export default function Notification() {
                         </button>
 
                         <button
-                          onClick={() => setPauseDialog(item.id)}
+                          onClick={() => { setPauseDialog(item.id); setSelectedAutomation(item) }}
                           className="border border-[#C9C8C8] px-3 py-1 rounded-[8px] flex gap-2 items-center"
                         >
-                          <Pause size={12} /> Pause
+                          {item.isPaused ? (
+                            <>
+                              <Play size={12} /> Unpause
+                            </>
+                          ) : (
+                            <>
+                              <Pause size={12} /> Pause
+                            </>
+                          )}
                         </button>
                       </div>
 
@@ -835,48 +850,10 @@ export default function Notification() {
 
         </div>
 
-        {/* Pause Dialog */}
 
-        {pauseDialog && 
-        createPortal(
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[9999]">
-
-            <div className="bg-white rounded-[16px] p-6 w-[90%] sm:w-[380px]">
-
-              <h3 className="text-[22px] sm:text-[24px] font-medium">
-                Pause Automation?
-              </h3>
-
-              <p className="text-[16px] sm:text-[18px] text-[#7C7C7C] mt-2">
-                This automation will stop sending notification until you
-                activate it again.
-              </p>
-
-              <div className="flex justify-end gap-4 mt-6">
-
-                <button
-                  onClick={() => setPauseDialog(null)}
-                  className="border border-[#C9C8C8] px-5 py-2 rounded-[10px]"
-                >
-                  Cancel
-                </button>
-
-                <button
-                  onClick={() => pauseAutomation(pauseDialog)}
-                  className="bg-[#30EF0A] text-white px-5 py-2 rounded-[10px]"
-                >
-                  Pause
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>,
-          document.body
-        )}
 
       </div>
+      <PauseAutomationModal open={pauseDialog} onClose={() => { setPauseDialog(null) }} onPause={handlePause} isPaused={selectedAutomation?.isPaused} />
     </>
   );
 }
@@ -899,14 +876,12 @@ function Toggle({ title, subtitle, enabled, onToggle }: any) {
 
       <div
         onClick={onToggle}
-        className={`w-12 h-6 rounded-full p-1 cursor-pointer transition ${
-          enabled ? "bg-[#30EF0A]" : "bg-[#D0BCFF]"
-        }`}
+        className={`w-12 h-6 rounded-full p-1 cursor-pointer transition ${enabled ? "bg-[#30EF0A]" : "bg-[#D0BCFF]"
+          }`}
       >
         <div
-          className={`bg-white w-4 h-4 rounded-full transition ${
-            enabled ? "translate-x-6" : ""
-          }`}
+          className={`bg-white w-4 h-4 rounded-full transition ${enabled ? "translate-x-6" : ""
+            }`}
         />
       </div>
 

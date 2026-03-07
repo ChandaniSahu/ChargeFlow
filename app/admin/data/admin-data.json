@@ -92,7 +92,21 @@
       "blockedUsers": {
         "count": 7
       }
-    }
+    },
+    "chargerStatus": [
+    { "name": "Active", "value": 220, "color": "#22c55e" },
+    { "name": "Offline", "value": 45, "color": "#ef4444" },
+    { "name": "Maintenance", "value": 65, "color": "#facc15" }
+  ],
+  "revenueData": [
+    { "month": "Jan", "revenue": 20000 },
+    { "month": "Feb", "revenue": 28000 },
+    { "month": "Mar", "revenue": 24000 },
+    { "month": "Apr", "revenue": 35000 },
+    { "month": "May", "revenue": 38000 },
+    { "month": "Jun", "revenue": 45000 },
+    { "month": "Jul", "revenue": 50000 }
+  ]
   },
   "host": {
     "stats": {

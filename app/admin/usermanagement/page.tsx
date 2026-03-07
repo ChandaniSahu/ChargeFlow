@@ -20,8 +20,8 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { RiMoneyRupeeCircleFill } from "react-icons/ri";
 import { SiSimpleanalytics } from "react-icons/si";
 import { AiOutlineArrowRight } from "react-icons/ai";
-import data from "../data/admin-data.json"
-import users from '../data/users.json'
+// import dashData from "../data/admin-data.json"
+// import users from '../data/users.json'
 import { formatTimestamp } from "../utility/function";
 // import Image from "next/image";
 
@@ -140,21 +140,27 @@ const renderActionSub = (key, data) => {
   }
 };
 
-export const chargerStatus = [
-  { name: "Active", value: 220, color: "#22c55e" },
-  { name: "Offline", value: 45, color: "#ef4444" },
-  { name: "Maintenance", value: 65, color: "#facc15" },
-];
+// export const chargerStatus = [
+//   { name: "Active", value: 220, color: "#22c55e" },
+//   { name: "Offline", value: 45, color: "#ef4444" },
+//   { name: "Maintenance", value: 65, color: "#facc15" },
+// ];
 
-export const revenueData = [
-  { month: "Jan", revenue: 20000 },
-  { month: "Feb", revenue: 28000 },
-  { month: "Mar", revenue: 24000 },
-  { month: "Apr", revenue: 35000 },
-  { month: "May", revenue: 38000 },
-  { month: "Jun", revenue: 45000 },
-  { month: "Jul", revenue: 50000 },
-];
+// export const revenueData = [
+//   { month: "Jan", revenue: 20000 },
+//   { month: "Feb", revenue: 28000 },
+//   { month: "Mar", revenue: 24000 },
+//   { month: "Apr", revenue: 35000 },
+//   { month: "May", revenue: 38000 },
+//   { month: "Jun", revenue: 45000 },
+//   { month: "Jul", revenue: 50000 },
+// ];
+
+const statusColors = {
+  Active: "#22c55e",
+  Offline: "#ef4444",
+  Maintenance: "#facc15"
+};
 
 
 
@@ -304,15 +310,15 @@ const getStatusIcon = (status: ActivityItem['status']) => {
 
 
 // 1. DATA ARRAY
-const userData = [
-  { id: 1, name: 'Priya Singh', email: 'priyasingh@gmail.com', contact: '+91 5678903488', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
-  { id: 2, name: 'Rohit Singh', email: 'rohitsingh@gmail.com', contact: '+91 5778433390', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
-  { id: 3, name: 'Sneha Kapoor', email: 'snehakapoor@gmail.com', contact: '+91 1258444907', status: 'Inactive', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user1.jpg", },
-  { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Blocked', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Failed', imageUrl: "/images/user2.jpg", },
-  { id: 5, name: 'Rahul Sharma', email: 'rahulsharma@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
-  { id: 6, name: 'Krishna Thakur', email: 'krishna@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
-  { id: 7, name: 'Antara Mishra', email: 'antaramishra@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user1.jpg", },
-];
+// const userData = [
+//   { id: 1, name: 'Priya Singh', email: 'priyasingh@gmail.com', contact: '+91 5678903488', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
+//   { id: 2, name: 'Rohit Singh', email: 'rohitsingh@gmail.com', contact: '+91 5778433390', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
+//   { id: 3, name: 'Sneha Kapoor', email: 'snehakapoor@gmail.com', contact: '+91 1258444907', status: 'Inactive', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user1.jpg", },
+//   { id: 4, name: 'Neha Singh', email: 'nehasingh@gmail.com', contact: '+91 3279333487', status: 'Blocked', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Failed', imageUrl: "/images/user2.jpg", },
+//   { id: 5, name: 'Rahul Sharma', email: 'rahulsharma@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user.jpg", },
+//   { id: 6, name: 'Krishna Thakur', email: 'krishna@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Pending', imageUrl: "/images/user3.jpg", },
+//   { id: 7, name: 'Antara Mishra', email: 'antaramishra@gmail.com', contact: '+91 7576329420', status: 'Active', date: '2024-11-15', bookings: 28, amount: '₹450', paymentStatus: 'Success', imageUrl: "/images/user1.jpg", },
+// ];
 
 // 2. ICON SWITCH CASE HELPER
 const GetStatusIcon = (type: string, status: string) => {
@@ -341,7 +347,16 @@ export default function UserManagementDashboard() {
   const [filterStatus, setFilterStatus] = useState('All Status');
   const [searchTerm, setSearchTerm] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const usersData = users.usersData;
+  const [usersData,setUsersData] = useState([])
+  const [recentUsers,setRecentUsers] = useState([])
+  const [data, setData] = useState({
+  stats:[],
+  actions:[],  
+  chargerStatus: [],
+  revenueData: []
+})
+  // const {chargerStatus , revenueData} = data
+  // const usersData = users.usersData;
 
 // useEffect(() => {
 //   fetch("/api/loadData")
@@ -355,9 +370,36 @@ export default function UserManagementDashboard() {
 //     });
 // }, []);
 
+useEffect(() => {
+    fetch("/api/fetchUserDashData")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setData(data.data);
+        }
+      });
+  }, []);
+
+useEffect(() => {
+    fetch("/api/fetchUsers")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setUsersData(data.data);
+           const sortedUsers = data.data
+          .sort((a, b) => new Date(b.lastActivityTimestamp) - new Date(a.lastActivityTimestamp))
+          .slice(0, 3);
+         setRecentUsers(sortedUsers)
+         
+       
+        }
+      });
+  }, []);
+
+
   // 3. FILTER LOGIC
-  const filteredUsers = usersData.filter(user => {
-    const matchesFilter = filterStatus === 'All Status' || user.userStatus === filterStatus;
+  const filteredUsers = usersData?.filter(user => {
+    const matchesFilter = filterStatus === 'All Status' || user.userStatus === filterStatus.toLowerCase();
     const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesSearch;
@@ -381,7 +423,8 @@ export default function UserManagementDashboard() {
             {/* STATS */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-[0.6rem]">
               {StatsConfig.map((card, i) => {
-  const statData = data.user.stats[card.key]; // from JSON
+  const statData = data?.stats?.[card.key]; // from JSON
+  if(!statData) return null;
   const TopIcon = card.topIcon; // or card.topIcon if you named it that
   const BottomIcon = card.bottomIcon || card.topIcon;
 
@@ -440,8 +483,8 @@ export default function UserManagementDashboard() {
 {ActionConfig.map((card, i) => {
   const TopIcon = card.icon;
   const BtnIcon = card.btnIcon;
-  const actionData = data.user.actions[card.key]; // from JSON
-
+  const actionData = data?.actions?.[card.key]; // from JSON
+  if(!actionData) return null
   return (
     <div
       key={i}
@@ -481,14 +524,14 @@ export default function UserManagementDashboard() {
               <div className="flex justify-center">
                 <PieChart width={160} height={160}>
                   <Pie
-                    data={chargerStatus}
+                    data={data.chargerStatus||[]}
                     dataKey="value"
                     innerRadius={45}
                     outerRadius={70}
                     startAngle={-90}
                     endAngle={-450}
                   >
-                    {chargerStatus.map((e, i) => (
+                    {data.chargerStatus.map((e, i) => (
                       <Cell key={i} fill={e.color} />
                     ))}
                   </Pie>
@@ -496,7 +539,7 @@ export default function UserManagementDashboard() {
                 </PieChart>
               </div>
               <div className="space-y-1 ">
-                {chargerStatus.map((s, i) => (
+                {data.chargerStatus.map((s, i) => (
                   <div key={i} className="flex items-center gap-2 text-sm">
                     <span
                       className="w-2.5 h-2.5 rounded-full"
@@ -521,7 +564,7 @@ export default function UserManagementDashboard() {
 
             {/* LIST WRAPPER */}
             <div className="max-h-[260px] overflow-y-auto no-scrollbar -mx-4 border-t border-[#DEDEDE]">
-              {usersData.map((a) => {
+              {recentUsers.map((a) => {
                 const StatusIcon = getStatusIcon(a.activityType);
                 const {timeAgo} = formatTimestamp(a.lastActivityTimestamp);
                 return (
@@ -542,8 +585,8 @@ export default function UserManagementDashboard() {
                         <p className="font-roboto font-regular text-[15px] text-[#848484]">{a.activityTitle}</p>
                         <p className="font-inter font-regular text-[12px] text-[#707274]">{a.activityDescription}</p>
                         <div className="desktop:hidden">
-                          {a.bookingAmount && <p className="font-roboto text-[#29B605] text-[15px]">
-                            {a.bookingAmount}
+                          {a.bookingAmount!==0 && <p className="font-roboto text-[#29B605] text-[15px]">
+                            ₹{(a.bookingAmount).toFixed(2)}
                           </p>}
                           <p className="font-inter text-[12px] text-[#707274]">{timeAgo}</p>
                         </div>
@@ -554,8 +597,8 @@ export default function UserManagementDashboard() {
                     {/* RIGHT */}
                     <div className="flex items-center gap-4">
                       <div className="hidden desktop:block text-right">
-                        {a.bookingAmount && <p className="font-roboto text-[#29B605] text-[15px]">
-                          {a.bookingAmount}
+                        {a.bookingAmount!==0 && <p className="font-roboto text-[#29B605] text-[15px]">
+                          ₹{(a.bookingAmount).toFixed(2)}
                         </p>}
                         <p className="font-inter text-[12px] text-[#707274]">{timeAgo}</p>
                       </div>
@@ -589,7 +632,7 @@ export default function UserManagementDashboard() {
           <div className="bg-white rounded-xl p-4 shadow">
             <h3 className="font-inter text-[#434343] text-[20px] font-semibold mb-3">User Revenue Contribution</h3>
             <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={revenueData}>
+              <LineChart  data={data.revenueData || []}>
                 <XAxis dataKey="month" />
                 <YAxis tickFormatter={(v) => `${v / 1000}k`} />
                 <Tooltip />
@@ -638,7 +681,7 @@ export default function UserManagementDashboard() {
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 p-2 bg-white space-y-2 border border-gray-200 rounded-xl shadow-xl z-20 overflow-hidden shadow-[0px_1px_4px_0px_rgba(0,0,0,0.25)]
 ">
-                  {['All Status', 'Active', 'Inactive', 'Failed'].map((status) => (
+                  {['All Status', 'Active', 'Inactive', 'Blocked'].map((status) => (
                     <button
                       key={status}
                       className={`font-inter text-[20px] w-full rounded-[10px] text-left px-4 py-3 hover:bg-[#e1ffd9] flex items-center justify-between ${filterStatus === status ? 'bg-[#e1ffd9] font-medium' : 'text-black'}`}
@@ -732,7 +775,7 @@ export default function UserManagementDashboard() {
                         </td>
                         <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{date}</td>
                         <td className="px-6 py-4 text-[14px] text-gray-500 text-center">{user.bookingCount}</td>
-                        <td className="px-6 py-4 text-[14px] text-gray-800 text-center">{user.totalAmount}</td>
+                        <td className="px-6 py-4 text-[14px] text-gray-800 text-center">₹{user.totalAmount.toLocaleString()}</td>
                         <td className="px-6 py-4 text-center">
                           <span className={`font-roboto inline-flex items-center gap-1 w-[90px] justify-center text-[14px] py-1 rounded-md  ${user.paymentStatus === 'success' ? 'bg-[#e1ffd9] text-[#29b605] ' :
                             user.paymentStatus === 'pending' ? 'bg-[#f9e8db] text-[#b45309]' :
